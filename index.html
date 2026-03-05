@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Disruption. — Daily Intelligence Hub</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #fafaf9;
+    --surface: #ffffff;
+    --surface-alt: #f5f5f4;
+    --border: #e7e5e4;
+    --text: #1c1917;
+    --text-secondary: #57534e;
+    --text-muted: #a8a29e;
+    --accent: #dc2626;
+    --accent-hover: #b91c1c;
+    --indigo: #4F46E5;
+    --purple: #7C3AED;
+    --green: #059669;
+    --red: #DC2626;
+    --cyan: #0891B2;
+    --pink: #DB2777;
+    --orange: #EA580C;
+    --teal: #0D9488;
+    --amber: #D97706;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:var(--bg); color:var(--text); font-family:'Inter',system-ui,-apple-system,sans-serif; line-height:1.6; -webkit-font-smoothing:antialiased; }
+
+  /* === NAV === */
+  .nav { border-bottom:3px solid var(--text); }
+  .nav-inner { max-width:1100px; margin:0 auto; padding:16px 24px; display:flex; align-items:center; justify-content:space-between; }
+  .nav .logo { font-family:'Playfair Display',Georgia,serif; font-size:1.5rem; font-weight:900; letter-spacing:-0.5px; color:var(--text); text-decoration:none; }
+  .nav .logo span { color:var(--accent); }
+  .nav-links { display:flex; gap:24px; align-items:center; }
+  .nav-links a { color:var(--text-secondary); text-decoration:none; font-size:0.82rem; font-weight:600; transition:color 0.2s; }
+  .nav-links a:hover { color:var(--text); }
+  .nav .edition { font-size:0.72rem; font-weight:600; text-transform:uppercase; letter-spacing:2px; color:var(--text-muted); }
+
+  .container { max-width:1100px; margin:0 auto; padding:0 24px; }
+
+  /* === DATA TICKER === */
+  .data-strip { padding:14px 0; border-bottom:1px solid var(--border); overflow:hidden; background:var(--surface); }
+  .data-strip-track { display:flex; gap:40px; animation:ticker 35s linear infinite; width:max-content; }
+  .data-strip-track:hover { animation-play-state:paused; }
+  .dp { white-space:nowrap; display:flex; align-items:center; gap:8px; }
+  .dp-dot { width:6px; height:6px; border-radius:50%; flex-shrink:0; }
+  .dp-figure { font-weight:800; font-size:0.85rem; color:var(--text); }
+  .dp-label { font-size:0.75rem; color:var(--text-secondary); }
+  .dp-sep { color:var(--border); font-size:0.7rem; }
+  @keyframes ticker {
+    0% { transform:translateX(0); }
+    100% { transform:translateX(-50%); }
+  }
+
+  /* === HERO === */
+  .hero { padding:48px 0 40px; border-bottom:1px solid var(--border); }
+  .hero-grid { display:grid; grid-template-columns:1fr 340px; gap:48px; align-items:start; }
+  .hero-kicker { font-size:0.7rem; font-weight:700; text-transform:uppercase; letter-spacing:2.5px; color:var(--accent); margin-bottom:12px; }
+  .hero h1 { font-family:'Playfair Display',Georgia,serif; font-size:2.6rem; font-weight:900; line-height:1.1; letter-spacing:-1px; margin-bottom:16px; }
+  .hero .byline { font-size:0.82rem; color:var(--text-secondary); margin-bottom:20px; }
+  .hero .byline strong { color:var(--text); }
+  .hero .summary { font-size:1.02rem; color:var(--text-secondary); line-height:1.75; margin-bottom:24px; }
+  .hero .summary::first-letter { font-family:'Playfair Display',Georgia,serif; font-size:3.2rem; font-weight:900; float:left; line-height:1; margin-right:8px; margin-top:4px; color:var(--accent); }
+  .hero .actions { display:flex; gap:12px; }
+  .btn { display:inline-flex; align-items:center; gap:8px; padding:12px 24px; border-radius:4px; font-size:0.85rem; font-weight:600; text-decoration:none; transition:all 0.15s; }
+  .btn-primary { background:var(--text); color:#fff; }
+  .btn-primary:hover { background:var(--accent); }
+  .btn-outline { background:transparent; color:var(--text); border:2px solid var(--text); }
+  .btn-outline:hover { background:var(--text); color:#fff; }
+
+  /* === ZEITGEIST SIDEBAR === */
+  .hero-sidebar { background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:24px; }
+  .sidebar-title { font-size:0.68rem; font-weight:700; text-transform:uppercase; letter-spacing:2px; color:var(--text-muted); margin-bottom:16px; padding-bottom:10px; border-bottom:1px solid var(--border); }
+  .zeitgeist-item { display:flex; align-items:center; gap:8px; padding:7px 0; border-bottom:1px solid rgba(0,0,0,0.04); }
+  .zeitgeist-item:last-child { border-bottom:none; }
+  .z-lens { font-size:0.75rem; font-weight:600; flex:1; color:var(--text-secondary); }
+  .z-score { font-size:0.85rem; font-weight:800; width:24px; text-align:center; color:var(--text); }
+  .z-bar { flex:0 0 60px; height:5px; background:var(--surface-alt); border-radius:3px; overflow:hidden; }
+  .z-bar-fill { height:100%; border-radius:3px; }
+  .z-status { font-size:0.58rem; font-weight:700; text-transform:uppercase; letter-spacing:0.8px; padding:2px 6px; border-radius:3px; white-space:nowrap; }
+  .status-hot { background:#fef2f2; color:var(--red); }
+  .status-heating { background:#fff7ed; color:var(--orange); }
+  .status-new { background:#f0fdf4; color:var(--green); }
+  .status-cooling { background:#f0f9ff; color:var(--cyan); }
+  .status-dormant { background:var(--surface-alt); color:var(--text-muted); }
+
+  /* === SECTION LABELS === */
+  .section-label { font-size:0.68rem; font-weight:700; text-transform:uppercase; letter-spacing:2.5px; color:var(--text-muted); margin-bottom:20px; }
+
+  /* === RECENT GRID === */
+  .recent { padding:40px 0; border-bottom:1px solid var(--border); }
+  .recent-grid { display:grid; grid-template-columns:repeat(3, 1fr); gap:1px; background:var(--border); border:1px solid var(--border); border-radius:8px; overflow:hidden; }
+  .recent-card { background:var(--surface); padding:24px; text-decoration:none; color:inherit; transition:background 0.15s; display:block; }
+  .recent-card:hover { background:var(--surface-alt); }
+  .card-date { font-size:0.7rem; font-weight:600; text-transform:uppercase; letter-spacing:1.5px; color:var(--text-muted); margin-bottom:8px; }
+  .card-accent { width:32px; height:3px; margin-bottom:12px; border-radius:2px; }
+  .card-title { font-family:'Playfair Display',Georgia,serif; font-size:1.02rem; font-weight:700; line-height:1.35; margin-bottom:10px; color:var(--text); }
+  .card-excerpt { font-size:0.8rem; color:var(--text-secondary); line-height:1.6; margin-bottom:14px; }
+  .card-meta { display:flex; gap:8px; align-items:center; }
+  .card-format { font-size:0.62rem; font-weight:700; text-transform:uppercase; letter-spacing:1px; padding:3px 8px; border:1px solid var(--border); border-radius:3px; color:var(--text-muted); text-decoration:none; transition:all 0.15s; }
+  .card-format:hover { border-color:var(--text); color:var(--text); }
+
+  /* === ARCHIVE === */
+  .archive { padding:40px 0 60px; }
+  .archive-table { width:100%; border-collapse:collapse; }
+  .archive-row { border-bottom:1px solid var(--border); }
+  .archive-row:hover { background:var(--surface-alt); }
+  .archive-row td { padding:14px 0; vertical-align:middle; }
+  .archive-date { font-size:0.78rem; color:var(--text-muted); font-weight:600; width:110px; }
+  .archive-title { font-size:0.9rem; color:var(--text); font-weight:500; }
+  .archive-links { text-align:right; white-space:nowrap; }
+  .archive-links a { color:var(--text-muted); text-decoration:none; font-size:0.72rem; font-weight:700; text-transform:uppercase; letter-spacing:0.5px; margin-left:16px; transition:color 0.15s; }
+  .archive-links a:hover { color:var(--text); }
+
+  /* === FOOTER === */
+  .footer { text-align:center; padding:28px 0; border-top:3px solid var(--text); }
+  .footer-logo { font-family:'Playfair Display',Georgia,serif; font-size:1.1rem; font-weight:900; color:var(--text); margin-bottom:4px; }
+  .footer-logo span { color:var(--accent); }
+  .footer p { font-size:0.72rem; color:var(--text-muted); }
+  .footer .methodology { font-size:0.68rem; color:var(--text-muted); max-width:600px; margin:6px auto 0; }
+
+  @media (max-width:800px) {
+    .hero-grid { grid-template-columns:1fr; gap:24px; }
+    .hero h1 { font-size:2rem; }
+    .recent-grid { grid-template-columns:1fr; }
+    .nav-inner { flex-direction:column; gap:12px; }
+    .data-strip-track { gap:24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<div class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="logo">Disruption<span>.</span></a>
+    <div class="nav-links">
+      <a href="search.html">Search</a>
+      <a href="spotlights.html">Joining the Dots</a>
+      <span class="edition">Daily Intelligence &bull; 5 Mar 2026</span>
+    </div>
+  </div>
+</div>
+
+<!-- DATA TICKER -->
+<div class="data-strip">
+  <div class="container">
+    <div class="data-strip-track">
+      <div class="dp"><span class="dp-dot" style="background:var(--indigo)"></span><span class="dp-figure">$19B</span><span class="dp-label">Anthropic ARR run rate</span><span class="dp-sep">&bull;</span></div>
+      <div class="dp"><span class="dp-dot" style="background:var(--indigo)"></span><span class="dp-figure">295%</span><span class="dp-label">ChatGPT uninstall surge</span><span class="dp-sep">&bull;</span></div>
+      <div class="dp"><span class="dp-dot" style="background:var(--green)"></span><span class="dp-figure">$1.9T</span><span class="dp-label">Stripe payment volume 2025</span><span class="dp-sep">&bull;</span></div>
+      <div class="dp"><span class="dp-dot" style="background:var(--orange)"></span><span class="dp-figure">$84.05</span><span class="dp-label">Brent crude +3.26%</span><span class="dp-sep">&bull;</span></div>
+      <div class="dp"><span class="dp-dot" style="background:var(--red)"></span><span class="dp-figure">70%</span><span class="dp-label">Hormuz traffic decline</span><span class="dp-sep">&bull;</span></div>
+      <div class="dp"><span class="dp-dot" style="background:var(--pink)"></span><span class="dp-figure">52%</span><span class="dp-label">ChatGPT Health triage failures</span><span class="dp-sep">&bull;</span></div>
+      <div class="dp"><span class="dp-dot" style="background:var(--purple)"></span><span class="dp-figure">6 GW</span><span class="dp-label">AMD-Meta GPU deal</span><span class="dp-sep">&bull;</span></div>
+      <div class="dp"><span class="dp-dot" style="background:var(--amber)"></span><span class="dp-figure">$86.7B</span><span class="dp-label">Hyundai robotics commitment</span><span class="dp-sep">&bull;</span></div>
+      <!-- duplicate for seamless scroll -->
+      <div class="dp"><span class="dp-dot" style="background:var(--indigo)"></span><span class="dp-figure">$19B</span><span class="dp-label">Anthropic ARR run rate</span><span class="dp-sep">&bull;</span></div>
+      <div class="dp"><span class="dp-dot" style="background:var(--indigo)"></span><span class="dp-figure">295%</span><span class="dp-label">ChatGPT uninstall surge</span><span class="dp-sep">&bull;</span></div>
+      <div class="dp"><span class="dp-dot" style="background:var(--green)"></span><span class="dp-figure">$1.9T</span><span class="dp-label">Stripe payment volume 2025</span><span class="dp-sep">&bull;</span></div>
+      <div class="dp"><span class="dp-dot" style="background:var(--orange)"></span><span class="dp-figure">$84.05</span><span class="dp-label">Brent crude +3.26%</span><span class="dp-sep">&bull;</span></div>
+      <div class="dp"><span class="dp-dot" style="background:var(--red)"></span><span class="dp-figure">70%</span><span class="dp-label">Hormuz traffic decline</span><span class="dp-sep">&bull;</span></div>
+      <div class="dp"><span class="dp-dot" style="background:var(--pink)"></span><span class="dp-figure">52%</span><span class="dp-label">ChatGPT Health triage failures</span><span class="dp-sep">&bull;</span></div>
+      <div class="dp"><span class="dp-dot" style="background:var(--purple)"></span><span class="dp-figure">6 GW</span><span class="dp-label">AMD-Meta GPU deal</span><span class="dp-sep">&bull;</span></div>
+      <div class="dp"><span class="dp-dot" style="background:var(--amber)"></span><span class="dp-figure">$86.7B</span><span class="dp-label">Hyundai robotics commitment</span><span class="dp-sep">&bull;</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- HERO -->
+<div class="container">
+  <div class="hero">
+    <div class="hero-grid">
+      <div>
+        <div class="hero-kicker">Lead Signal &bull; 5 March 2026</div>
+        <h1>Anthropic vs The Pentagon &mdash; The AI Safety Showdown Goes Global</h1>
+        <div class="byline">By <strong>Disruption Intelligence</strong> &bull; 9 newsletters &bull; 11 influencers &bull; 9 lenses</div>
+        <p class="summary">Anthropic's $19B ARR run rate makes it the fastest-growing AI company in history, but it's simultaneously locked in an existential confrontation with the Trump administration over AI safety guardrails. ChatGPT uninstalls surged 295% as users flee to Claude, now #1 on the App Store. The Hormuz crisis deepens with traffic down 70% and Brent crude climbing past $84.</p>
+        <div class="actions">
+          <a href="strategic-daily-briefing-2026-03-05.html" class="btn btn-primary">Read Full Briefing &rarr;</a>
+          <a href="strategic-daily-briefing-2026-03-05.pdf" class="btn btn-outline">PDF</a>
+        </div>
+      </div>
+      <div class="hero-sidebar">
+        <div class="sidebar-title">Zeitgeist Scores &bull; Today</div>
+        <div class="zeitgeist-item">
+          <div class="z-lens">AI &amp; Agents</div>
+          <div class="z-score">9</div>
+          <div class="z-bar"><div class="z-bar-fill" style="width:90%;background:var(--indigo)"></div></div>
+          <span class="z-status status-hot">HOT</span>
+        </div>
+        <div class="zeitgeist-item">
+          <div class="z-lens">Digital Trust</div>
+          <div class="z-score">8</div>
+          <div class="z-bar"><div class="z-bar-fill" style="width:80%;background:var(--red)"></div></div>
+          <span class="z-status status-hot">HOT</span>
+        </div>
+        <div class="zeitgeist-item">
+          <div class="z-lens">Business &amp; Policy</div>
+          <div class="z-score">8</div>
+          <div class="z-bar"><div class="z-bar-fill" style="width:80%;background:var(--orange)"></div></div>
+          <span class="z-status status-hot">HOT</span>
+        </div>
+        <div class="zeitgeist-item">
+          <div class="z-lens">Digital Markets</div>
+          <div class="z-score">7</div>
+          <div class="z-bar"><div class="z-bar-fill" style="width:70%;background:var(--green)"></div></div>
+          <span class="z-status status-heating">HEATING</span>
+        </div>
+        <div class="zeitgeist-item">
+          <div class="z-lens">Quantum &amp; Compute</div>
+          <div class="z-score">6</div>
+          <div class="z-bar"><div class="z-bar-fill" style="width:60%;background:var(--purple)"></div></div>
+          <span class="z-status status-heating">HEATING</span>
+        </div>
+        <div class="zeitgeist-item">
+          <div class="z-lens">Bio-Human</div>
+          <div class="z-score">6</div>
+          <div class="z-bar"><div class="z-bar-fill" style="width:60%;background:var(--pink)"></div></div>
+          <span class="z-status status-heating">HEATING</span>
+        </div>
+        <div class="zeitgeist-item">
+          <div class="z-lens">Interface &amp; Spatial</div>
+          <div class="z-score">5</div>
+          <div class="z-bar"><div class="z-bar-fill" style="width:50%;background:var(--cyan)"></div></div>
+          <span class="z-status status-cooling">COOLING</span>
+        </div>
+        <div class="zeitgeist-item">
+          <div class="z-lens">Consumer</div>
+          <div class="z-score">5</div>
+          <div class="z-bar"><div class="z-bar-fill" style="width:50%;background:var(--teal)"></div></div>
+          <span class="z-status status-cooling">COOLING</span>
+        </div>
+        <div class="zeitgeist-item">
+          <div class="z-lens">Horizon Scanner</div>
+          <div class="z-score">7</div>
+          <div class="z-bar"><div class="z-bar-fill" style="width:70%;background:var(--amber)"></div></div>
+          <span class="z-status status-heating">HEATING</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RECENT -->
+  <div class="recent">
+    <div class="section-label">Recent Briefings</div>
+    <div class="recent-grid">
+      <a href="strategic-daily-briefing-2026-03-04.html" class="recent-card">
+        <div class="card-date">4 Mar 2026</div>
+        <div class="card-accent" style="background:var(--red)"></div>
+        <div class="card-title">The AI Doom Loop Goes Live</div>
+        <div class="card-excerpt">Block fires 4,000, stock surges 24%. Iran conflict hits AWS data centres. AI bots defeating KYC at industrial scale.</div>
+        <div class="card-meta">
+          <span class="card-format">HTML</span>
+          <a href="strategic-daily-briefing-2026-03-04.pdf" class="card-format">PDF</a>
+        </div>
+      </a>
+      <a href="strategic-daily-briefing-2026-03-03.html" class="recent-card">
+        <div class="card-date">3 Mar 2026</div>
+        <div class="card-accent" style="background:var(--orange)"></div>
+        <div class="card-title">Iran Day 3: Riyadh Embassy Hit</div>
+        <div class="card-excerpt">Drone strikes hit US Embassy. OpenAI admitted Pentagon deal was "sloppy." Hormuz traffic down 70%.</div>
+        <div class="card-meta">
+          <span class="card-format">HTML</span>
+          <a href="strategic-daily-briefing-2026-03-03.pdf" class="card-format">PDF</a>
+        </div>
+      </a>
+      <a href="strategic-daily-briefing-2026-03-02.html" class="recent-card">
+        <div class="card-date">2 Mar 2026</div>
+        <div class="card-accent" style="background:var(--indigo)"></div>
+        <div class="card-title">Hormuz Crisis as Oil Surges 13%</div>
+        <div class="card-excerpt">Khamenei killed. Hormuz under de facto closure. OpenAI pivots to Pentagon classified work.</div>
+        <div class="card-meta">
+          <span class="card-format">HTML</span>
+          <a href="strategic-daily-briefing-2026-03-02.pdf" class="card-format">PDF</a>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <!-- ARCHIVE -->
+  <div class="archive">
+    <div class="section-label">Archive</div>
+    <table class="archive-table">
+      <tr class="archive-row">
+        <td class="archive-date">28 Feb 2026</td>
+        <td class="archive-title">Anthropic Blacklisted by Pentagon as AI Governance Battle Reaches Breaking Point</td>
+        <td class="archive-links">
+          <a href="strategic-daily-briefing-2026-02-28.html">HTML</a>
+          <a href="strategic-daily-briefing-2026-02-28.pdf">PDF</a>
+        </td>
+      </tr>
+      <tr class="archive-row">
+        <td class="archive-date">27 Feb 2026</td>
+        <td class="archive-title">Pentagon vs Anthropic: The AI Governance Showdown Reaches D-Day</td>
+        <td class="archive-links">
+          <a href="strategic-daily-briefing-2026-02-27.html">HTML</a>
+          <a href="strategic-daily-briefing-2026-02-27.pdf">PDF</a>
+        </td>
+      </tr>
+      <tr class="archive-row">
+        <td class="archive-date">26 Feb 2026</td>
+        <td class="archive-title">Anthropic Faces Pentagon Ultimatum as AI Defence Battle Escalates</td>
+        <td class="archive-links">
+          <a href="strategic-daily-briefing-2026-02-26.html">HTML</a>
+          <a href="strategic-daily-briefing-2026-02-26.pdf">PDF</a>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="container">
+    <div class="footer-logo">Disruption<span>.</span></div>
+    <p>Daily Intelligence Hub &bull; Last updated 5 March 2026</p>
+    <div class="methodology">9 newsletters &bull; 11 influencers &bull; 9 strategic lenses &bull; Polymarket integration &bull; Zeitgeist scoring &bull; Signal status tracking</div>
+  </div>
+</div>
+
+</body>
+</html>
