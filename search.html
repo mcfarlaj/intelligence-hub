@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Search — Disruption Watch</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #fafaf9;
+    --surface: #ffffff;
+    --surface-alt: #f5f5f4;
+    --border: #e7e5e4;
+    --text: #1c1917;
+    --text-secondary: #57534e;
+    --text-muted: #a8a29e;
+    --accent: #dc2626;
+    --indigo: #4F46E5;
+    --purple: #7C3AED;
+    --green: #059669;
+    --red: #DC2626;
+    --cyan: #0891B2;
+    --pink: #DB2777;
+    --orange: #EA580C;
+    --teal: #0D9488;
+    --amber: #D97706;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:var(--bg); color:var(--text); font-family:'Inter',system-ui,-apple-system,sans-serif; line-height:1.6; -webkit-font-smoothing:antialiased; }
+
+  /* NAV */
+  .nav { border-bottom:3px solid var(--text); }
+  .nav-inner { max-width:900px; margin:0 auto; padding:16px 24px; display:flex; align-items:center; justify-content:space-between; }
+  .nav .logo { font-family:'Playfair Display',Georgia,serif; font-size:1.5rem; font-weight:900; letter-spacing:-0.5px; color:var(--text); text-decoration:none; }
+  .nav .logo span { color:var(--indigo); }
+  .nav-links { display:flex; gap:24px; align-items:center; }
+  .nav-links a { color:var(--text-secondary); text-decoration:none; font-size:0.82rem; font-weight:600; transition:color 0.2s; }
+  .nav-links a:hover { color:var(--text); }
+
+  .container { max-width:900px; margin:0 auto; padding:40px 24px; }
+
+  /* AUTH */
+  .auth-bar { display:flex; gap:12px; align-items:center; margin-bottom:24px; padding:16px 20px; background:var(--surface); border:1px solid var(--border); border-radius:8px; }
+  .auth-bar input[type="password"] { flex:1; padding:10px 14px; border:1px solid var(--border); border-radius:6px; font-family:'Inter',sans-serif; font-size:14px; background:var(--bg); }
+  .auth-bar input[type="password"]:focus { outline:none; border-color:var(--text); box-shadow:0 0 0 3px rgba(28,25,23,0.08); }
+  .auth-bar button { padding:10px 20px; background:var(--text); color:#fff; border:none; border-radius:6px; font-family:'Inter',sans-serif; font-weight:600; font-size:14px; cursor:pointer; white-space:nowrap; transition:background 0.15s; }
+  .auth-bar button:hover { background:var(--accent); }
+  .auth-bar button:disabled { opacity:0.6; cursor:not-allowed; }
+  .auth-status { font-size:13px; color:var(--text-secondary); margin-bottom:20px; }
+  .auth-status.success { color:var(--green); }
+  .auth-status.error { color:var(--accent); }
+
+  /* SEARCH */
+  .search-bar { position:relative; margin-bottom:24px; }
+  .search-bar input { width:100%; padding:14px 20px 14px 48px; border:2px solid var(--border); border-radius:8px; font-family:'Inter',sans-serif; font-size:16px; transition:border-color 0.2s; background:var(--surface); }
+  .search-bar input:focus { outline:none; border-color:var(--text); }
+  .search-bar input:disabled { background:var(--surface-alt); cursor:not-allowed; }
+  .search-icon { position:absolute; left:16px; top:50%; transform:translateY(-50%); color:var(--text-muted); font-size:18px; }
+
+  /* FILTERS */
+  .filters { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:24px; }
+  .filter-chip { padding:6px 14px; border-radius:20px; font-size:0.72rem; font-weight:600; cursor:pointer; border:1px solid var(--border); background:var(--surface); color:var(--text-secondary); transition:all 0.15s; }
+  .filter-chip:hover { border-color:var(--text); color:var(--text); }
+  .filter-chip.active { background:var(--text); color:#fff; border-color:var(--text); }
+
+  /* RESULTS */
+  .results-meta { font-size:14px; color:var(--text-muted); margin-bottom:20px; }
+  .result-card { background:var(--surface); border-radius:8px; padding:24px; margin-bottom:12px; border-left:4px solid var(--border); border:1px solid var(--border); transition:box-shadow 0.15s; }
+  .result-card:hover { box-shadow:0 2px 12px rgba(0,0,0,0.04); }
+  .result-header { display:flex; align-items:center; gap:10px; margin-bottom:10px; flex-wrap:wrap; }
+  .result-lens { display:inline-block; padding:3px 10px; border-radius:3px; font-size:0.62rem; font-weight:700; text-transform:uppercase; letter-spacing:0.4px; }
+  .result-date { font-size:12px; color:var(--text-muted); font-weight:500; }
+  .result-type { font-size:0.62rem; color:var(--text-muted); background:var(--surface-alt); padding:2px 8px; border-radius:10px; font-weight:600; }
+  .result-headline { font-family:'Playfair Display',Georgia,serif; font-size:1.05rem; font-weight:700; color:var(--text); margin-bottom:8px; line-height:1.4; }
+  .result-excerpt { font-size:0.85rem; color:var(--text-secondary); line-height:1.6; margin-bottom:12px; }
+  .result-excerpt mark { background:rgba(220,38,38,0.12); color:var(--accent); padding:1px 3px; border-radius:2px; }
+  .result-link { color:var(--text); text-decoration:none; font-weight:700; font-size:0.82rem; border-bottom:2px solid var(--text); padding-bottom:1px; transition:all 0.15s; }
+  .result-link:hover { color:var(--accent); border-bottom-color:var(--accent); }
+
+  /* Lens colors */
+  .lens-ai { background:rgba(79,70,229,0.1); color:var(--indigo); }
+  .lens-quantum { background:rgba(124,58,237,0.1); color:var(--purple); }
+  .lens-markets { background:rgba(5,150,105,0.1); color:var(--green); }
+  .lens-trust { background:rgba(220,38,38,0.1); color:var(--red); }
+  .lens-interface { background:rgba(8,145,178,0.1); color:var(--cyan); }
+  .lens-bio { background:rgba(219,39,119,0.1); color:var(--pink); }
+  .lens-business { background:rgba(234,88,12,0.1); color:var(--orange); }
+  .lens-consumer { background:rgba(13,148,136,0.1); color:var(--teal); }
+  .lens-horizon { background:rgba(217,119,6,0.1); color:var(--amber); }
+  .lens-exec { background:rgba(99,102,241,0.1); color:#6366F1; }
+  .lens-data { background:rgba(107,114,128,0.1); color:#6B7280; }
+
+  .border-ai { border-left-color:var(--indigo) !important; }
+  .border-quantum { border-left-color:var(--purple) !important; }
+  .border-markets { border-left-color:var(--green) !important; }
+  .border-trust { border-left-color:var(--red) !important; }
+  .border-interface { border-left-color:var(--cyan) !important; }
+  .border-bio { border-left-color:var(--pink) !important; }
+  .border-business { border-left-color:var(--orange) !important; }
+  .border-consumer { border-left-color:var(--teal) !important; }
+  .border-horizon { border-left-color:var(--amber) !important; }
+  .border-exec { border-left-color:#6366F1 !important; }
+  .border-data { border-left-color:#6B7280 !important; }
+
+  /* EMPTY / LOADING */
+  .empty-state { text-align:center; padding:60px 20px; color:var(--text-muted); }
+  .empty-state h3 { font-family:'Playfair Display',Georgia,serif; font-size:1.2rem; margin-bottom:8px; color:var(--text-secondary); }
+  .loading-spinner { display:inline-block; width:20px; height:20px; border:3px solid var(--border); border-top-color:var(--text); border-radius:50%; animation:spin 0.8s linear infinite; }
+  @keyframes spin { to { transform:rotate(360deg); } }
+  .progress-bar { width:100%; height:4px; background:var(--border); border-radius:2px; margin:10px 0; overflow:hidden; }
+  .progress-fill { height:100%; background:var(--text); border-radius:2px; transition:width 0.3s; }
+
+  /* FOOTER */
+  .footer { text-align:center; padding:28px 0; border-top:3px solid var(--text); margin-top:60px; }
+  .footer-logo { font-family:'Playfair Display',Georgia,serif; font-size:1.1rem; font-weight:900; color:var(--text); margin-bottom:4px; }
+  .footer-logo span { color:var(--indigo); }
+  .footer p { font-size:0.72rem; color:var(--text-muted); }
+
+  @media (max-width:768px) { .nav-inner { flex-direction:column; gap:12px; } .auth-bar { flex-direction:column; } }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<div class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="logo">Disruption <span>Watch</span></a>
+    <div class="nav-links">
+      <a href="index.html">&larr; Hub</a>
+      <a href="spotlights.html">Joining the Dots</a>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <!-- Auth Bar -->
+  <div class="auth-bar" id="authBar">
+    <input type="password" id="password" placeholder="Enter briefing password" autocomplete="off">
+    <button id="indexBtn" onclick="startIndexing()">Unlock &amp; Index</button>
+  </div>
+  <div class="auth-status" id="authStatus"></div>
+
+  <!-- Search Bar -->
+  <div class="search-bar">
+    <span class="search-icon">&#128269;</span>
+    <input type="text" id="searchInput" placeholder="Search across all briefings..." disabled oninput="handleSearch()">
+  </div>
+
+  <!-- Lens Filters -->
+  <div class="filters" id="filters" style="display:none;">
+    <span class="filter-chip active" data-filter="all" onclick="setFilter('all')">All</span>
+    <span class="filter-chip" data-filter="ai" onclick="setFilter('ai')">AI &amp; Agents</span>
+    <span class="filter-chip" data-filter="quantum" onclick="setFilter('quantum')">Quantum</span>
+    <span class="filter-chip" data-filter="markets" onclick="setFilter('markets')">Markets</span>
+    <span class="filter-chip" data-filter="trust" onclick="setFilter('trust')">Digital Trust</span>
+    <span class="filter-chip" data-filter="interface" onclick="setFilter('interface')">Interface</span>
+    <span class="filter-chip" data-filter="bio" onclick="setFilter('bio')">Bio-Human</span>
+    <span class="filter-chip" data-filter="business" onclick="setFilter('business')">Business</span>
+    <span class="filter-chip" data-filter="consumer" onclick="setFilter('consumer')">Consumer</span>
+    <span class="filter-chip" data-filter="horizon" onclick="setFilter('horizon')">Horizon</span>
+    <span class="filter-chip" data-filter="exec" onclick="setFilter('exec')">Executive Summary</span>
+    <span class="filter-chip" data-filter="data" onclick="setFilter('data')">Data Points</span>
+  </div>
+
+  <!-- Results -->
+  <div class="results-meta" id="resultsMeta" style="display:none;"></div>
+  <div id="results">
+    <div class="empty-state" id="emptyState">
+      <h3>Enter your password to unlock and index all briefings</h3>
+      <p>Once indexed, you can search across every lens card, data point, and executive summary</p>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="container">
+    <div class="footer-logo">Disruption <span>Watch</span></div>
+    <p>Search &bull; Intelligence Archive</p>
+  </div>
+</div>
+
+<script>
+    // ============================================================
+    // STATE
+    // ============================================================
+    let searchIndex = [];
+    let activeFilter = 'all';
+    let isIndexed = false;
+    let derivedKeys = {};
+
+    // ============================================================
+    // INIT: Check localStorage for password
+    // ============================================================
+    window.addEventListener('load', function() {
+        const saved = localStorage.getItem('briefing_password');
+        if (saved) {
+            document.getElementById('password').value = saved;
+            startIndexing();
+        }
+    });
+
+    // ============================================================
+    // CRYPTO: Derive AES-GCM key from password + salt
+    // ============================================================
+    async function deriveKey(password, salt) {
+        const saltHex = Array.from(salt).map(b => b.toString(16).padStart(2,'0')).join('');
+        if (derivedKeys[saltHex]) return derivedKeys[saltHex];
+        const enc = new TextEncoder();
+        const keyMaterial = await crypto.subtle.importKey('raw', enc.encode(password), 'PBKDF2', false, ['deriveBits']);
+        const bits = await crypto.subtle.deriveBits({ name: 'PBKDF2', hash: 'SHA-256', salt: salt, iterations: 600000 }, keyMaterial, 256);
+        const key = await crypto.subtle.importKey('raw', bits, 'AES-GCM', false, ['decrypt']);
+        derivedKeys[saltHex] = key;
+        return key;
+    }
+
+    // ============================================================
+    // DECRYPT
+    // ============================================================
+    async function decryptFile(url, password) {
+        const resp = await fetch(url);
+        const html = await resp.text();
+        const match = html.match(/const ENCRYPTED_DATA = '([^']+)'/);
+        if (!match) throw new Error('No encrypted payload found in ' + url);
+        const raw = Uint8Array.from(atob(match[1]), c => c.charCodeAt(0));
+        const salt = raw.slice(0, 16);
+        const iv = raw.slice(16, 28);
+        const ciphertext = raw.slice(28);
+        const key = await deriveKey(password, salt);
+        const decrypted = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: iv }, key, ciphertext);
+        return new TextDecoder().decode(decrypted);
+    }
+
+    // ============================================================
+    // PARSE
+    // ============================================================
+    function parseBriefing(htmlStr, date, file) {
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(htmlStr, 'text/html');
+        const entries = [];
+        const lensMap = {
+            'ai': { label: 'AI & Agents', cls: 'ai' },
+            'agent': { label: 'AI & Agents', cls: 'ai' },
+            'quantum': { label: 'Quantum & Compute', cls: 'quantum' },
+            'compute': { label: 'Quantum & Compute', cls: 'quantum' },
+            'market': { label: 'Digital Markets & Assets', cls: 'markets' },
+            'asset': { label: 'Digital Markets & Assets', cls: 'markets' },
+            'trust': { label: 'Digital Trust', cls: 'trust' },
+            'interface': { label: 'Interface & Spatial', cls: 'interface' },
+            'spatial': { label: 'Interface & Spatial', cls: 'interface' },
+            'bio': { label: 'Bio-Human', cls: 'bio' },
+            'human': { label: 'Bio-Human', cls: 'bio' },
+            'business': { label: 'Business Finance & Policy', cls: 'business' },
+            'finance': { label: 'Business Finance & Policy', cls: 'business' },
+            'policy': { label: 'Business Finance & Policy', cls: 'business' },
+            'consumer': { label: 'Consumer', cls: 'consumer' },
+            'horizon': { label: 'Horizon Scanner', cls: 'horizon' },
+            'scanner': { label: 'Horizon Scanner', cls: 'horizon' }
+        };
+        function classifyLens(text) {
+            const lower = text.toLowerCase();
+            for (const [key, val] of Object.entries(lensMap)) {
+                if (lower.includes(key)) return val;
+            }
+            return { label: text, cls: 'data' };
+        }
+        const leadSignal = doc.querySelector('.lead-signal, .signal-card');
+        if (leadSignal) {
+            const h = leadSignal.querySelector('h3');
+            const ps = leadSignal.querySelectorAll('p');
+            entries.push({ date, file, type: 'Executive Summary', lens: 'Lead Signal', lensClass: 'lens-exec', borderClass: 'border-exec', headline: h ? h.textContent.trim() : 'Lead Signal', text: Array.from(ps).map(p => p.textContent.trim()).join(' ') });
+        }
+        const broadOverview = doc.querySelector('.broad-overview');
+        if (broadOverview) {
+            const h = broadOverview.querySelector('h3');
+            const ps = broadOverview.querySelectorAll('p');
+            entries.push({ date, file, type: 'Executive Summary', lens: 'Broad Overview', lensClass: 'lens-exec', borderClass: 'border-exec', headline: h ? h.textContent.trim() : 'Broad Overview', text: Array.from(ps).map(p => p.textContent.trim()).join(' ') });
+        }
+        const tables = doc.querySelectorAll('table');
+        tables.forEach(table => {
+            const ths = table.querySelectorAll('th');
+            const isDataTable = Array.from(ths).some(th => th.textContent.includes('Metric') || th.textContent.includes('Value'));
+            if (isDataTable) {
+                table.querySelectorAll('tbody tr').forEach(tr => {
+                    const tds = tr.querySelectorAll('td');
+                    if (tds.length >= 3) {
+                        entries.push({ date, file, type: 'Data Point', lens: 'Key Data', lensClass: 'lens-data', borderClass: 'border-data', headline: tds[0].textContent.trim(), text: tds[0].textContent.trim() + ': ' + tds[1].textContent.trim() + ' (Source: ' + tds[2].textContent.trim() + ')' });
+                    }
+                });
+            }
+        });
+        const lensCards = doc.querySelectorAll('.lens-card');
+        lensCards.forEach(card => {
+            const tag = card.querySelector('.lens-tag');
+            const headline = card.querySelector('h2, h3');
+            const paragraphs = card.querySelectorAll('p');
+            const soWhat = card.querySelector('.so-what');
+            const tagText = tag ? tag.textContent.trim() : '';
+            const lensInfo = classifyLens(tagText);
+            const bodyText = Array.from(paragraphs).map(p => p.textContent.trim()).join(' ');
+            const soWhatText = soWhat ? soWhat.textContent.trim() : '';
+            entries.push({ date, file, type: 'Lens Analysis', lens: lensInfo.label, lensClass: 'lens-' + lensInfo.cls, borderClass: 'border-' + lensInfo.cls, headline: headline ? headline.textContent.trim() : tagText, text: bodyText + (soWhatText ? ' ' + soWhatText : '') });
+        });
+        return entries;
+    }
+
+    // ============================================================
+    // INDEX
+    // ============================================================
+    async function startIndexing() {
+        const password = document.getElementById('password').value;
+        if (!password) return;
+        const statusEl = document.getElementById('authStatus');
+        const indexBtn = document.getElementById('indexBtn');
+        const resultsEl = document.getElementById('results');
+        indexBtn.disabled = true;
+        indexBtn.textContent = 'Indexing...';
+        statusEl.className = 'auth-status';
+        statusEl.innerHTML = '<span class="loading-spinner"></span> Fetching manifest...';
+        try {
+            let manifest;
+            try {
+                const resp = await fetch('manifest.json?t=' + Date.now());
+                manifest = await resp.json();
+            } catch (e) {
+                statusEl.className = 'auth-status error';
+                statusEl.textContent = 'Could not load manifest.json — deploy the site first';
+                indexBtn.disabled = false;
+                indexBtn.textContent = 'Unlock & Index';
+                return;
+            }
+            const files = [...(manifest.briefings || []), ...(manifest.spotlights || [])];
+            resultsEl.innerHTML = '<div class="empty-state"><div class="loading-spinner"></div><p style="margin-top:12px;">Decrypting and indexing ' + files.length + ' files...</p><div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:0%"></div></div><p id="progressText" style="font-size:12px;color:var(--text-muted);margin-top:4px;">0 / ' + files.length + '</p></div>';
+            searchIndex = [];
+            let completed = 0;
+            for (const entry of files) {
+                try {
+                    statusEl.innerHTML = '<span class="loading-spinner"></span> Decrypting ' + entry.file + '...';
+                    const html = await decryptFile(entry.file, password);
+                    const entries = parseBriefing(html, entry.date, entry.file);
+                    searchIndex.push(...entries);
+                } catch (err) {
+                    if (err.name === 'OperationError') {
+                        statusEl.className = 'auth-status error';
+                        statusEl.textContent = 'Incorrect password. Please try again.';
+                        indexBtn.disabled = false;
+                        indexBtn.textContent = 'Unlock & Index';
+                        resultsEl.innerHTML = '<div class="empty-state"><h3>Incorrect password</h3><p>Enter the correct password and try again</p></div>';
+                        return;
+                    }
+                    console.warn('Skipping ' + entry.file + ':', err.message);
+                }
+                completed++;
+                const pct = Math.round((completed / files.length) * 100);
+                const fill = document.getElementById('progressFill');
+                const txt = document.getElementById('progressText');
+                if (fill) fill.style.width = pct + '%';
+                if (txt) txt.textContent = completed + ' / ' + files.length;
+            }
+            localStorage.setItem('briefing_password', password);
+            isIndexed = true;
+            statusEl.className = 'auth-status success';
+            statusEl.textContent = 'Indexed ' + searchIndex.length + ' entries across ' + files.length + ' files';
+            indexBtn.textContent = 'Re-index';
+            indexBtn.disabled = false;
+            document.getElementById('searchInput').disabled = false;
+            document.getElementById('searchInput').focus();
+            document.getElementById('filters').style.display = 'flex';
+            showResults(searchIndex);
+        } catch (err) {
+            statusEl.className = 'auth-status error';
+            statusEl.textContent = 'Error: ' + err.message;
+            indexBtn.disabled = false;
+            indexBtn.textContent = 'Unlock & Index';
+        }
+    }
+
+    // ============================================================
+    // SEARCH
+    // ============================================================
+    let searchTimeout;
+    function handleSearch() {
+        clearTimeout(searchTimeout);
+        searchTimeout = setTimeout(() => {
+            const query = document.getElementById('searchInput').value.trim().toLowerCase();
+            if (!query) { showResults(filterByLens(searchIndex)); return; }
+            const terms = query.split(/\s+/);
+            const matched = searchIndex.filter(entry => {
+                const haystack = (entry.headline + ' ' + entry.text + ' ' + entry.lens + ' ' + entry.date).toLowerCase();
+                return terms.every(t => haystack.includes(t));
+            });
+            showResults(filterByLens(matched));
+        }, 200);
+    }
+
+    function filterByLens(entries) {
+        if (activeFilter === 'all') return entries;
+        const filterMap = { 'ai': 'AI & Agents', 'quantum': 'Quantum & Compute', 'markets': 'Digital Markets & Assets', 'trust': 'Digital Trust', 'interface': 'Interface & Spatial', 'bio': 'Bio-Human', 'business': 'Business Finance & Policy', 'consumer': 'Consumer', 'horizon': 'Horizon Scanner', 'exec': 'Executive Summary', 'data': 'Data Point' };
+        const target = filterMap[activeFilter];
+        if (!target) return entries;
+        return entries.filter(e => {
+            if (activeFilter === 'exec') return e.type === 'Executive Summary';
+            if (activeFilter === 'data') return e.type === 'Data Point';
+            return e.lens === target;
+        });
+    }
+
+    function setFilter(f) {
+        activeFilter = f;
+        document.querySelectorAll('.filter-chip').forEach(chip => {
+            chip.classList.toggle('active', chip.dataset.filter === f);
+        });
+        handleSearch();
+    }
+
+    // ============================================================
+    // RENDER
+    // ============================================================
+    function showResults(entries) {
+        const resultsEl = document.getElementById('results');
+        const metaEl = document.getElementById('resultsMeta');
+        const query = document.getElementById('searchInput').value.trim().toLowerCase();
+        metaEl.style.display = 'block';
+        metaEl.textContent = entries.length + ' result' + (entries.length !== 1 ? 's' : '') + (query ? ' for "' + query + '"' : '');
+        if (entries.length === 0) {
+            resultsEl.innerHTML = '<div class="empty-state"><h3>No results found</h3><p>Try different search terms or clear the lens filter</p></div>';
+            return;
+        }
+        const grouped = {};
+        entries.forEach(e => { if (!grouped[e.date]) grouped[e.date] = []; grouped[e.date].push(e); });
+        const sortedDates = Object.keys(grouped).sort((a, b) => new Date(b) - new Date(a));
+        let html = '';
+        sortedDates.forEach(date => {
+            html += '<h3 style="font-family:Playfair Display,Georgia,serif;font-size:0.9rem;color:var(--text-muted);margin:28px 0 14px;font-weight:700;">' + formatDate(date) + '</h3>';
+            grouped[date].forEach(entry => {
+                const excerpt = getExcerpt(entry.text, query);
+                html += '<div class="result-card ' + entry.borderClass + '"><div class="result-header"><span class="result-lens ' + entry.lensClass + '">' + escHtml(entry.lens) + '</span><span class="result-type">' + escHtml(entry.type) + '</span></div><div class="result-headline">' + escHtml(entry.headline) + '</div><div class="result-excerpt">' + excerpt + '</div><a href="' + entry.file + '" class="result-link">View Full Briefing &rarr;</a></div>';
+            });
+        });
+        resultsEl.innerHTML = html;
+    }
+
+    function getExcerpt(text, query) {
+        if (!query || !text) return escHtml(text.substring(0, 200)) + (text.length > 200 ? '...' : '');
+        const terms = query.split(/\s+/);
+        const lower = text.toLowerCase();
+        let bestPos = -1;
+        for (const t of terms) {
+            const idx = lower.indexOf(t);
+            if (idx >= 0 && (bestPos < 0 || idx < bestPos)) bestPos = idx;
+        }
+        if (bestPos < 0) return escHtml(text.substring(0, 200)) + '...';
+        const start = Math.max(0, bestPos - 80);
+        const end = Math.min(text.length, bestPos + 200);
+        let snippet = (start > 0 ? '...' : '') + text.substring(start, end) + (end < text.length ? '...' : '');
+        let safe = escHtml(snippet);
+        terms.forEach(t => {
+            const regex = new RegExp('(' + escRegex(escHtml(t)) + ')', 'gi');
+            safe = safe.replace(regex, '<mark>$1</mark>');
+        });
+        return safe;
+    }
+
+    function formatDate(dateStr) {
+        try {
+            const d = new Date(dateStr + 'T00:00:00');
+            return d.toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+        } catch { return dateStr; }
+    }
+
+    function escHtml(str) {
+        const div = document.createElement('div');
+        div.textContent = str;
+        return div.innerHTML;
+    }
+
+    function escRegex(str) {
+        return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    }
+</script>
+
+</body>
+</html>

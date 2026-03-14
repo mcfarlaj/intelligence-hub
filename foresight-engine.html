@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Disruption Watch — The Foresight Engine</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #fafaf9;
+    --surface: #ffffff;
+    --surface-alt: #f5f5f4;
+    --border: #e7e5e4;
+    --text: #1c1917;
+    --text-secondary: #57534e;
+    --text-muted: #a8a29e;
+    --accent: #dc2626;
+    --accent-hover: #b91c1c;
+    --indigo: #4F46E5;
+    --purple: #7C3AED;
+    --green: #059669;
+    --red: #DC2626;
+    --cyan: #0891B2;
+    --pink: #DB2777;
+    --orange: #EA580C;
+    --teal: #0D9488;
+    --amber: #D97706;
+    --climate: #16a34a;
+    --geopolitical: #7c3aed;
+    --workforce: #be185d;
+    --dark: #0f172a;
+    --dark-surface: #1e293b;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:var(--bg); color:var(--text); font-family:'Inter',system-ui,-apple-system,sans-serif; line-height:1.6; -webkit-font-smoothing:antialiased; }
+
+  /* === NAV === */
+  .nav { border-bottom:3px solid var(--text); }
+  .nav-inner { max-width:1100px; margin:0 auto; padding:16px 24px; display:flex; align-items:center; justify-content:space-between; }
+  .nav .logo { font-family:'Playfair Display',Georgia,serif; font-size:1.5rem; font-weight:900; letter-spacing:-0.5px; color:var(--text); text-decoration:none; }
+  .nav .logo span { color:var(--indigo); }
+  .nav-links { display:flex; gap:24px; align-items:center; }
+  .nav-links a { color:var(--text-secondary); text-decoration:none; font-size:0.82rem; font-weight:600; transition:color 0.2s; }
+  .nav-links a:hover { color:var(--text); }
+  .nav .edition { font-size:0.72rem; font-weight:600; text-transform:uppercase; letter-spacing:2px; color:var(--text-muted); }
+
+  .container { max-width:1100px; margin:0 auto; padding:0 24px; }
+  .section-label { font-size:0.68rem; font-weight:700; text-transform:uppercase; letter-spacing:2.5px; color:var(--text-muted); margin-bottom:20px; }
+
+  /* === HERO === */
+  .fe-hero { background:linear-gradient(135deg, var(--dark) 0%, var(--dark-surface) 50%, var(--dark) 100%); color:#fff; padding:60px 0; position:relative; overflow:hidden; }
+  .fe-hero::before { content:''; position:absolute; top:0; left:0; right:0; bottom:0; background:radial-gradient(circle at 30% 50%, rgba(220,38,38,0.06) 0%, transparent 60%), radial-gradient(circle at 70% 50%, rgba(79,70,229,0.06) 0%, transparent 60%); }
+  .fe-hero-inner { position:relative; z-index:1; max-width:1100px; margin:0 auto; padding:0 24px; }
+  .fe-hero-kicker { font-size:0.68rem; font-weight:700; text-transform:uppercase; letter-spacing:3px; color:var(--accent); margin-bottom:12px; }
+  .fe-hero h1 { font-family:'Playfair Display',Georgia,serif; font-size:2.8rem; font-weight:900; line-height:1.1; letter-spacing:-1px; margin-bottom:16px; }
+  .fe-hero h1 em { font-style:italic; color:var(--accent); }
+  .fe-hero .fe-sub { font-size:1rem; color:#94a3b8; line-height:1.7; max-width:700px; margin-bottom:24px; }
+  .fe-hero .fe-stats { display:flex; gap:32px; }
+  .fe-stat { text-align:center; }
+  .fe-stat .stat-num { font-size:2rem; font-weight:900; color:#fff; }
+  .fe-stat .stat-label { font-size:0.7rem; color:#64748b; text-transform:uppercase; letter-spacing:1px; }
+
+  /* === THREE LAYERS === */
+  .three-layers { display:grid; grid-template-columns:repeat(3, 1fr); gap:1px; background:var(--border); border:1px solid var(--border); border-radius:8px; overflow:hidden; margin-bottom:24px; }
+  .layer-panel { background:var(--surface); padding:28px; }
+  .layer-panel .layer-badge { display:inline-block; font-size:0.58rem; font-weight:700; text-transform:uppercase; letter-spacing:2px; padding:3px 10px; border-radius:12px; color:#fff; margin-bottom:12px; }
+  .layer-panel h3 { font-family:'Playfair Display',Georgia,serif; font-size:1.1rem; font-weight:700; margin-bottom:4px; }
+  .layer-panel .layer-horizon { font-size:0.7rem; color:var(--text-muted); margin-bottom:12px; }
+  .layer-panel .layer-desc { font-size:0.82rem; color:var(--text-secondary); line-height:1.6; margin-bottom:16px; }
+  .layer-panel .layer-stat { display:flex; align-items:baseline; gap:6px; }
+  .layer-panel .layer-stat .stat-num { font-size:1.8rem; font-weight:900; color:var(--text); }
+  .layer-panel .layer-stat .stat-label { font-size:0.72rem; color:var(--text-muted); }
+
+  /* === TREND REGISTRY === */
+  .trends { padding:40px 0; border-bottom:1px solid var(--border); }
+  .trend-table { width:100%; border-collapse:collapse; }
+  .trend-table th { text-align:left; font-size:0.65rem; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; color:var(--text-muted); padding:10px 12px; border-bottom:2px solid var(--text); }
+  .trend-table td { padding:14px 12px; border-bottom:1px solid var(--border); vertical-align:middle; }
+  .trend-table tr:hover { background:var(--surface-alt); }
+  .trend-name { font-weight:600; font-size:0.88rem; color:var(--text); }
+  .trend-lens-tag { display:inline-block; font-size:0.58rem; font-weight:700; padding:2px 8px; border-radius:10px; color:#fff; }
+  .vim-score { display:flex; gap:4px; align-items:center; }
+  .vim-cell { width:28px; height:28px; display:flex; align-items:center; justify-content:center; font-size:0.75rem; font-weight:800; border-radius:4px; color:#fff; }
+  .vim-v { background:var(--indigo); }
+  .vim-i { background:var(--accent); }
+  .vim-m { background:var(--teal); }
+  .trend-priority { font-size:0.62rem; font-weight:700; text-transform:uppercase; letter-spacing:0.5px; padding:4px 10px; border-radius:3px; white-space:nowrap; }
+  .priority-act { background:#fef2f2; color:var(--red); }
+  .priority-watch { background:#fef3c7; color:#92400e; }
+  .priority-monitor { background:#dbeafe; color:#1e40af; }
+  .trend-trajectory { font-size:0.72rem; font-weight:600; }
+  .traj-acc { color:var(--green); }
+  .traj-str { color:var(--indigo); }
+  .traj-wkn { color:var(--accent); }
+  .cla-tag { font-size:0.58rem; font-weight:600; padding:2px 6px; border-radius:3px; background:var(--surface-alt); color:var(--text-muted); }
+  .cla-complete { background:#f0fdf4; color:var(--green); }
+
+  /* === ARCHETYPES === */
+  .archetypes { padding:40px 0; border-bottom:1px solid var(--border); }
+  .archetype-grid { display:grid; grid-template-columns:repeat(5, 1fr); gap:1px; background:var(--border); border:1px solid var(--border); border-radius:8px; overflow:hidden; }
+  .archetype-card { background:var(--surface); padding:20px; text-align:center; }
+  .archetype-card .arch-icon { font-size:2rem; margin-bottom:8px; }
+  .archetype-card h4 { font-family:'Playfair Display',Georgia,serif; font-size:0.95rem; font-weight:700; margin-bottom:2px; }
+  .archetype-card .arch-name { font-size:0.72rem; color:var(--accent); font-weight:600; font-style:italic; margin-bottom:10px; }
+  .archetype-card .arch-desc { font-size:0.78rem; color:var(--text-secondary); line-height:1.5; margin-bottom:12px; }
+  .arch-exposure { font-size:0.62rem; font-weight:700; text-transform:uppercase; letter-spacing:0.5px; padding:3px 8px; border-radius:3px; }
+  .exposure-high { background:#fef2f2; color:var(--red); }
+  .exposure-mod { background:#fef3c7; color:#92400e; }
+  .exposure-extreme { background:#fce7f3; color:#9d174d; }
+
+  /* === SCENARIO CANVAS === */
+  .scenarios { padding:40px 0; border-bottom:1px solid var(--border); }
+  .scenario-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  .scenario-card { background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:28px; position:relative; overflow:hidden; }
+  .scenario-card::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; }
+  .scenario-card .sc-name { font-family:'Playfair Display',Georgia,serif; font-size:1.05rem; font-weight:700; margin-bottom:8px; }
+  .scenario-card .sc-horizon { font-size:0.68rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:1px; margin-bottom:12px; }
+  .scenario-card .sc-desc { font-size:0.82rem; color:var(--text-secondary); line-height:1.6; margin-bottom:14px; }
+  .scenario-card .sc-plausibility { font-size:0.68rem; font-weight:700; text-transform:uppercase; letter-spacing:0.5px; }
+  .sc-rising { color:var(--green); }
+  .sc-stable { color:var(--amber); }
+  .sc-placeholder { background:var(--surface-alt); border:2px dashed var(--border); border-radius:8px; padding:28px; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:8px; min-height:180px; }
+  .sc-placeholder .sc-plus { font-size:2rem; color:var(--text-muted); }
+  .sc-placeholder p { font-size:0.78rem; color:var(--text-muted); text-align:center; }
+  .sc-wild { border:2px solid var(--amber); background:rgba(217,119,6,0.03); }
+  .sc-wild::before { background:var(--amber); }
+  .sc-personas { display:flex; gap:8px; flex-wrap:wrap; margin-top:10px; }
+  .sc-persona-tag { font-size:0.58rem; font-weight:600; padding:2px 8px; border-radius:10px; border:1px solid var(--border); color:var(--text-secondary); }
+  .sc-persona-risk { border-color:var(--red); color:var(--red); background:#fef2f2; }
+  .sc-persona-opp { border-color:var(--green); color:var(--green); background:#f0fdf4; }
+
+  /* === PROVOCATION === */
+  .provocation { padding:40px 0; border-bottom:1px solid var(--border); }
+  .provocation-card { background:linear-gradient(135deg, #1a0000 0%, #2d0000 50%, #1a0000 100%); border-radius:12px; padding:40px; color:#e0e0e0; position:relative; overflow:hidden; }
+  .provocation-card::before { content:''; position:absolute; top:0; left:0; right:0; height:4px; background:var(--accent); }
+  .provocation-card .prov-badge { display:inline-block; font-size:0.62rem; font-weight:700; text-transform:uppercase; letter-spacing:2.5px; color:var(--accent); margin-bottom:14px; padding:4px 10px; border:1px solid rgba(220,38,38,0.3); border-radius:3px; background:rgba(220,38,38,0.08); }
+  .provocation-card h3 { font-family:'Playfair Display',Georgia,serif; font-size:1.4rem; font-weight:900; color:#fff; margin-bottom:12px; line-height:1.3; }
+  .provocation-card .prov-text { font-size:0.9rem; color:#a0a0b0; line-height:1.7; }
+
+  /* === FOOTER === */
+  .footer { text-align:center; padding:28px 0; border-top:3px solid var(--text); }
+  .footer-logo { font-family:'Playfair Display',Georgia,serif; font-size:1.1rem; font-weight:900; color:var(--text); margin-bottom:4px; }
+  .footer-logo span { color:var(--indigo); }
+  .footer p { font-size:0.72rem; color:var(--text-muted); }
+  .btn { display:inline-flex; align-items:center; gap:8px; padding:12px 24px; border-radius:4px; font-size:0.85rem; font-weight:600; text-decoration:none; transition:all 0.15s; }
+  .btn-primary { background:var(--text); color:#fff; }
+  .btn-primary:hover { background:var(--accent); }
+  .btn-outline { background:transparent; color:var(--text); border:2px solid var(--text); }
+  .btn-outline:hover { background:var(--text); color:#fff; }
+  .btn-dark { background:rgba(255,255,255,0.1); color:#fff; border:1px solid rgba(255,255,255,0.2); }
+  .btn-dark:hover { background:rgba(255,255,255,0.2); }
+
+  /* === OVERLAY === */
+  .fe-overlay { display:none; position:fixed; top:0; left:0; right:0; bottom:0; z-index:1000; background:rgba(15,23,42,0.85); backdrop-filter:blur(4px); align-items:center; justify-content:center; }
+  .fe-overlay.active { display:flex; }
+  .fe-panel { background:var(--surface); border-radius:12px; max-width:720px; width:90%; max-height:85vh; overflow-y:auto; position:relative; box-shadow:0 25px 50px rgba(0,0,0,0.25); }
+  .fe-panel-header { padding:28px 28px 0; }
+  .fe-panel-header h2 { font-family:'Playfair Display',Georgia,serif; font-size:1.5rem; font-weight:900; margin-bottom:4px; }
+  .fe-panel-header p { font-size:0.82rem; color:var(--text-secondary); line-height:1.5; }
+  .fe-panel-body { padding:20px 28px 28px; }
+  .fe-panel-close { position:absolute; top:16px; right:16px; background:none; border:none; font-size:1.4rem; cursor:pointer; color:var(--text-muted); line-height:1; padding:4px 8px; border-radius:4px; }
+  .fe-panel-close:hover { background:var(--surface-alt); color:var(--text); }
+
+  .trend-picker { display:flex; flex-direction:column; gap:8px; margin:16px 0; }
+  .trend-pick-row { display:flex; align-items:center; gap:12px; padding:12px 14px; border:2px solid var(--border); border-radius:8px; cursor:pointer; transition:all 0.15s; }
+  .trend-pick-row:hover { border-color:var(--text-muted); background:var(--surface-alt); }
+  .trend-pick-row.selected { border-color:var(--indigo); background:rgba(79,70,229,0.04); }
+  .trend-pick-row .tp-name { font-weight:600; font-size:0.88rem; flex:1; }
+  .trend-pick-row .tp-vim { font-size:0.72rem; font-weight:700; color:var(--text-muted); }
+  .trend-pick-row .tp-check { width:20px; height:20px; border-radius:50%; border:2px solid var(--border); display:flex; align-items:center; justify-content:center; font-size:0.72rem; color:#fff; flex-shrink:0; }
+  .trend-pick-row.selected .tp-check { background:var(--indigo); border-color:var(--indigo); }
+
+  .axis-preview { display:none; margin:20px 0; padding:20px; background:var(--surface-alt); border-radius:8px; border:1px solid var(--border); }
+  .axis-preview.visible { display:block; }
+  .axis-preview h4 { font-size:0.72rem; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; color:var(--text-muted); margin-bottom:12px; }
+  .matrix-mini { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+  .matrix-mini-cell { padding:14px; border-radius:6px; background:var(--surface); border:1px solid var(--border); text-align:center; }
+  .matrix-mini-cell .mm-label { font-size:0.62rem; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:var(--text-muted); margin-bottom:4px; }
+  .matrix-mini-cell .mm-name { font-size:0.82rem; font-weight:600; color:var(--text-secondary); font-style:italic; }
+
+  .prompt-box { margin-top:16px; background:#0f172a; border-radius:8px; padding:16px; position:relative; }
+  .prompt-box pre { font-family:'SF Mono',Consolas,monospace; font-size:0.75rem; color:#e2e8f0; white-space:pre-wrap; line-height:1.6; max-height:200px; overflow-y:auto; }
+  .prompt-box .copy-btn { position:absolute; top:10px; right:10px; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2); color:#fff; font-size:0.68rem; font-weight:600; padding:4px 10px; border-radius:4px; cursor:pointer; }
+  .prompt-box .copy-btn:hover { background:rgba(255,255,255,0.2); }
+
+  .monitor-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:16px 0; }
+  .monitor-item { padding:16px; background:var(--surface-alt); border-radius:8px; border:1px solid var(--border); }
+  .monitor-item h4 { font-size:0.78rem; font-weight:700; margin-bottom:4px; }
+  .monitor-item p { font-size:0.75rem; color:var(--text-secondary); line-height:1.5; }
+  .monitor-item .mi-status { display:inline-block; font-size:0.62rem; font-weight:700; text-transform:uppercase; letter-spacing:0.5px; padding:2px 8px; border-radius:3px; margin-top:8px; }
+  .status-fired { background:#fef2f2; color:var(--red); }
+  .status-warming { background:#fef3c7; color:#92400e; }
+  .status-cold { background:#dbeafe; color:#1e40af; }
+
+  .step-indicator { display:flex; gap:12px; margin:16px 0; }
+  .step-dot { width:28px; height:28px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.72rem; font-weight:700; background:var(--surface-alt); color:var(--text-muted); border:2px solid var(--border); }
+  .step-dot.active { background:var(--indigo); color:#fff; border-color:var(--indigo); }
+  .step-dot.done { background:var(--green); color:#fff; border-color:var(--green); }
+
+  @media (max-width:800px) {
+    .three-layers { grid-template-columns:1fr; }
+    .scenario-grid { grid-template-columns:1fr; }
+    .archetype-grid { grid-template-columns:1fr 1fr; }
+    .fe-hero h1 { font-size:2rem; }
+    .fe-hero .fe-stats { flex-wrap:wrap; gap:16px; }
+    .monitor-grid { grid-template-columns:1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<div class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="logo">Disruption <span>Watch</span></a>
+    <div class="nav-links">
+      <a href="index.html">Intelligence Hub</a>
+      <a href="#trends">Trend Registry</a>
+      <a href="#scenarios">Scenarios</a>
+      <a href="#archetypes">Archetypes</a>
+      <a href="disruption-foresight-engine.html">Methodology</a>
+      <span class="edition">Foresight Engine &bull; v2.0</span>
+    </div>
+  </div>
+</div>
+
+<!-- HERO -->
+<div class="fe-hero">
+  <div class="fe-hero-inner">
+    <div class="fe-hero-kicker">Strategic Foresight &bull; Horizon 2&ndash;15 years</div>
+    <h1>The Foresight <em>Engine</em></h1>
+    <p class="fe-sub">Proprietary trend intelligence, scenario planning, and customer impact analysis for the bank's innovation, strategy, and product teams. Built on daily signal scanning across 12 strategic lenses. Grounded in five customer archetypes. Designed to surface the strategic questions the organisation needs to ask now.</p>
+    <div class="fe-stats">
+      <div class="fe-stat">
+        <div class="stat-num">5</div>
+        <div class="stat-label">Active Trends</div>
+      </div>
+      <div class="fe-stat">
+        <div class="stat-num">2</div>
+        <div class="stat-label">Scenario Seeds</div>
+      </div>
+      <div class="fe-stat">
+        <div class="stat-num">5</div>
+        <div class="stat-label">Customer Archetypes</div>
+      </div>
+      <div class="fe-stat">
+        <div class="stat-num">12</div>
+        <div class="stat-label">Strategic Lenses</div>
+      </div>
+    </div>
+    <div style="margin-top:24px; display:flex; gap:12px;">
+      <a href="disruption-foresight-engine.html" class="btn btn-dark">Read the Methodology &rarr;</a>
+      <a href="foresight-trend-registry.xlsx" class="btn btn-dark">Open Registry (xlsx)</a>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- THREE LAYERS OVERVIEW -->
+  <div style="padding:40px 0; border-bottom:1px solid var(--border);">
+    <div class="section-label">Architecture &bull; Four Layers</div>
+    <div class="three-layers">
+      <div class="layer-panel">
+        <span class="layer-badge" style="background:var(--accent);">Layer 1</span>
+        <h3>Signal Scanner</h3>
+        <div class="layer-horizon">Horizon 1 &mdash; Now to 2 years</div>
+        <div class="layer-desc">Daily intelligence across 12 strategic lenses. Signals typed via CIPHER, scored for intensity, tracked for momentum. The raw material that feeds everything above.</div>
+        <div class="layer-stat">
+          <span class="stat-num" id="briefing-count">15</span>
+          <span class="stat-label">daily briefings produced</span>
+        </div>
+      </div>
+      <div class="layer-panel">
+        <span class="layer-badge" style="background:var(--indigo);">Layer 2</span>
+        <h3>Trend Registry</h3>
+        <div class="layer-horizon">Horizon 2 &mdash; 2 to 5 years</div>
+        <div class="layer-desc">Persistent patterns graduated from signals. Each trend scored on Velocity, Impact, and Maturity (VIM) with calibrated anchor data. CLA depth analysis for high-impact trends.</div>
+        <div class="layer-stat">
+          <span class="stat-num">5</span>
+          <span class="stat-label">active trends seeded</span>
+        </div>
+      </div>
+      <div class="layer-panel">
+        <span class="layer-badge" style="background:var(--dark);">Layer 3</span>
+        <h3>Scenario Canvas</h3>
+        <div class="layer-horizon">Horizon 3 &mdash; 5 to 15 years</div>
+        <div class="layer-desc">Named plausible futures with wild card scenarios, stress-tested via wind tunnel protocol. Each scenario includes persona impact narratives for all five customer archetypes.</div>
+        <div class="layer-stat">
+          <span class="stat-num">2</span>
+          <span class="stat-label">scenario seeds (Q2 workshop)</span>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center; padding:12px; background:var(--surface); border:1px solid var(--border); border-radius:8px;">
+      <span style="font-size:0.72rem; font-weight:700; color:var(--accent); text-transform:uppercase; letter-spacing:1.5px;">Customer Impact Layer</span>
+      <span style="font-size:0.72rem; color:var(--text-muted);"> &mdash; Five banking archetypes running vertically through all three layers</span>
+    </div>
+  </div>
+
+  <!-- CUSTOMER ARCHETYPES -->
+  <div class="archetypes" id="archetypes">
+    <div class="section-label">Customer Archetypes &bull; The Human Layer</div>
+    <div class="archetype-grid">
+      <div class="archetype-card">
+        <div class="arch-icon" style="filter:grayscale(1);">&#128100;</div>
+        <h4>Mass Retail</h4>
+        <div class="arch-name">&ldquo;Sarah&rdquo;</div>
+        <div class="arch-desc">Digital-first individual consumer. Current account, savings, mortgage. Convenience-driven, price-sensitive, expects platform-level experiences.</div>
+        <span class="arch-exposure exposure-high">High exposure</span>
+      </div>
+      <div class="archetype-card">
+        <div class="arch-icon" style="filter:grayscale(1);">&#127970;</div>
+        <h4>SME / Business</h4>
+        <div class="arch-name">&ldquo;James&rdquo;</div>
+        <div class="arch-desc">Small-to-medium enterprise owner. Time-poor, relationship-dependent for complex needs, self-serve for routine. Underserved by most banks.</div>
+        <span class="arch-exposure exposure-mod">Moderate&ndash;High</span>
+      </div>
+      <div class="archetype-card">
+        <div class="arch-icon" style="filter:grayscale(1);">&#127970;</div>
+        <h4>Corporate</h4>
+        <div class="arch-name">&ldquo;Priya&rdquo;</div>
+        <div class="arch-desc">CFO or treasury function. Complex needs: syndicated lending, derivatives, cash management. Multi-bank, regulated, risk-conscious.</div>
+        <span class="arch-exposure exposure-mod">Moderate</span>
+      </div>
+      <div class="archetype-card">
+        <div class="arch-icon" style="filter:grayscale(1);">&#128176;</div>
+        <h4>Wealth</h4>
+        <div class="arch-name">&ldquo;David&rdquo;</div>
+        <div class="arch-desc">High-net-worth or affluent. Investment portfolio, tax planning, estate management. Relationship-intensive, advice-dependent.</div>
+        <span class="arch-exposure exposure-mod">Moderate</span>
+      </div>
+      <div class="archetype-card">
+        <div class="arch-icon" style="filter:grayscale(1);">&#128101;</div>
+        <h4>Digitally Excluded</h4>
+        <div class="arch-name">&ldquo;Margaret&rdquo;</div>
+        <div class="arch-desc">Unable or unwilling to engage digitally. Elderly, low-income, rural. Reliant on branches and cash. Often invisible in innovation discussions.</div>
+        <span class="arch-exposure exposure-extreme">Extreme (inverted)</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- TREND REGISTRY -->
+  <div class="trends" id="trends">
+    <div class="section-label">Trend Registry &bull; VIM Scored &bull; CLA Depth</div>
+    <table class="trend-table">
+      <thead>
+        <tr>
+          <th>Trend</th>
+          <th>Primary Lens</th>
+          <th>VIM</th>
+          <th>Priority</th>
+          <th>Trajectory</th>
+          <th>CLA</th>
+          <th>Archetype Impact</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="trend-name">Autonomous AI Agents in Financial Services</span></td>
+          <td><span class="trend-lens-tag" style="background:var(--indigo);">AI &amp; Agents</span></td>
+          <td>
+            <div class="vim-score">
+              <span class="vim-cell vim-v">5</span>
+              <span class="vim-cell vim-i">5</span>
+              <span class="vim-cell vim-m">5</span>
+            </div>
+          </td>
+          <td><span class="trend-priority priority-act">Act Now</span></td>
+          <td><span class="trend-trajectory traj-acc">&#9650; Accelerating</span></td>
+          <td><span class="cla-tag">Pending</span></td>
+          <td>
+            <div class="sc-personas">
+              <span class="sc-persona-tag sc-persona-opp">Sarah +</span>
+              <span class="sc-persona-tag sc-persona-opp">James +</span>
+              <span class="sc-persona-tag sc-persona-risk">David ?</span>
+              <span class="sc-persona-tag sc-persona-risk">Margaret &minus;</span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><span class="trend-name">Stablecoin Payment Rails</span></td>
+          <td><span class="trend-lens-tag" style="background:var(--green);">Digital Markets</span></td>
+          <td>
+            <div class="vim-score">
+              <span class="vim-cell vim-v">4</span>
+              <span class="vim-cell vim-i">4</span>
+              <span class="vim-cell vim-m">4</span>
+            </div>
+          </td>
+          <td><span class="trend-priority priority-act">Act Now</span></td>
+          <td><span class="trend-trajectory traj-str">&#9650; Strengthening</span></td>
+          <td><span class="cla-tag cla-complete">Complete</span></td>
+          <td>
+            <div class="sc-personas">
+              <span class="sc-persona-tag sc-persona-opp">James +</span>
+              <span class="sc-persona-tag sc-persona-opp">Priya +</span>
+              <span class="sc-persona-tag">Sarah ~</span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><span class="trend-name">Post-Quantum Cryptographic Migration</span></td>
+          <td><span class="trend-lens-tag" style="background:var(--purple);">Quantum</span></td>
+          <td>
+            <div class="vim-score">
+              <span class="vim-cell vim-v">3</span>
+              <span class="vim-cell vim-i">5</span>
+              <span class="vim-cell vim-m">3</span>
+            </div>
+          </td>
+          <td><span class="trend-priority priority-watch">Watch &amp; Prepare</span></td>
+          <td><span class="trend-trajectory traj-str">&#9650; Strengthening</span></td>
+          <td><span class="cla-tag">Pending</span></td>
+          <td>
+            <div class="sc-personas">
+              <span class="sc-persona-tag sc-persona-risk">Priya &minus;</span>
+              <span class="sc-persona-tag sc-persona-risk">David &minus;</span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><span class="trend-name">Embedded Finance 2.0</span></td>
+          <td><span class="trend-lens-tag" style="background:var(--teal);">Consumer</span></td>
+          <td>
+            <div class="vim-score">
+              <span class="vim-cell vim-v">4</span>
+              <span class="vim-cell vim-i">4</span>
+              <span class="vim-cell vim-m">6</span>
+            </div>
+          </td>
+          <td><span class="trend-priority priority-act">Act Now</span></td>
+          <td><span class="trend-trajectory traj-acc">&#9650; Accelerating</span></td>
+          <td><span class="cla-tag">Pending</span></td>
+          <td>
+            <div class="sc-personas">
+              <span class="sc-persona-tag sc-persona-risk">Sarah &minus;</span>
+              <span class="sc-persona-tag sc-persona-risk">Margaret &minus;</span>
+              <span class="sc-persona-tag sc-persona-opp">James +</span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><span class="trend-name">Climate Risk Repricing</span></td>
+          <td><span class="trend-lens-tag" style="background:var(--climate);">Climate</span></td>
+          <td>
+            <div class="vim-score">
+              <span class="vim-cell vim-v">3</span>
+              <span class="vim-cell vim-i">5</span>
+              <span class="vim-cell vim-m">5</span>
+            </div>
+          </td>
+          <td><span class="trend-priority priority-act">Act Now</span></td>
+          <td><span class="trend-trajectory traj-str">&#9650; Strengthening</span></td>
+          <td><span class="cla-tag">Pending</span></td>
+          <td>
+            <div class="sc-personas">
+              <span class="sc-persona-tag sc-persona-risk">Sarah &minus;</span>
+              <span class="sc-persona-tag sc-persona-risk">James &minus;</span>
+              <span class="sc-persona-tag sc-persona-risk">Priya &minus;</span>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div style="margin-top:16px;display:flex;gap:16px;align-items:center;">
+      <a href="foresight-trend-registry.xlsx" class="btn btn-outline" style="font-size:0.78rem;padding:8px 16px;">Open Full Registry &rarr;</a>
+      <span style="font-size:0.7rem;color:var(--text-muted);">5 active trends &bull; Next review: April 2026 &bull; VIM = Velocity &middot; Impact &middot; Maturity &bull; CLA = Causal Layered Analysis</span>
+    </div>
+    <div style="margin-top:12px; font-size:0.68rem; color:var(--text-muted);">
+      Archetype key: <span style="color:var(--green);">+</span> = opportunity &bull; <span style="color:var(--red);">&minus;</span> = threat &bull; <span>~</span> = neutral &bull; <span style="color:var(--red);">?</span> = uncertain
+    </div>
+  </div>
+
+  <!-- SCENARIO CANVAS -->
+  <div class="scenarios" id="scenarios">
+    <div class="section-label">Scenario Canvas &bull; Horizon 3 &bull; Wind Tunnel Protocol</div>
+    <div class="scenario-grid">
+      <div class="scenario-card" style="border-top:3px solid var(--indigo);">
+        <div class="sc-name">The Invisible Bank</div>
+        <div class="sc-horizon">2030&ndash;2035 &bull; Payments &amp; Distribution</div>
+        <div class="sc-desc">Financial services are delivered entirely through non-bank platforms. AI agents handle financial decisions. The bank becomes infrastructure &mdash; essential but invisible to the end customer.</div>
+        <div class="sc-plausibility sc-rising">&#9650; Plausibility: Rising</div>
+        <div class="sc-personas">
+          <span class="sc-persona-tag sc-persona-opp">Sarah: delighted</span>
+          <span class="sc-persona-tag sc-persona-opp">James: relieved</span>
+          <span class="sc-persona-tag">Priya: cautious</span>
+          <span class="sc-persona-tag sc-persona-risk">David: anxious</span>
+          <span class="sc-persona-tag sc-persona-risk">Margaret: locked out</span>
+        </div>
+      </div>
+      <div class="scenario-card" style="border-top:3px solid var(--accent);">
+        <div class="sc-name">Fortress Finance</div>
+        <div class="sc-horizon">2030&ndash;2035 &bull; Trust &amp; Regulation</div>
+        <div class="sc-desc">Post-crisis regulation creates a two-tier market. Licensed banks become the only trusted custodians. Compliance becomes the moat, not innovation. Sovereignty trumps efficiency.</div>
+        <div class="sc-plausibility sc-rising">&#9650; Plausibility: Rising</div>
+        <div class="sc-personas">
+          <span class="sc-persona-tag">Sarah: safe but frustrated</span>
+          <span class="sc-persona-tag sc-persona-risk">James: constrained</span>
+          <span class="sc-persona-tag sc-persona-opp">Priya: secure</span>
+          <span class="sc-persona-tag sc-persona-opp">David: reassured</span>
+          <span class="sc-persona-tag sc-persona-opp">Margaret: included</span>
+        </div>
+      </div>
+      <div class="sc-placeholder" style="cursor:pointer;" title="Run the Scenario Generator">
+        <div class="sc-plus">+</div>
+        <p><strong>Generate new scenarios</strong><br>Pick two trend drivers and generate a 2&times;2 matrix with wild card scenario, persona impacts, and wind tunnel analysis.</p>
+      </div>
+      <div class="sc-placeholder">
+        <div class="sc-plus" style="font-size:1.2rem;">&#x21BB;</div>
+        <p><strong>Plausibility monitor</strong><br>Active scenarios reviewed monthly. Leading indicators scored and plausibility recalibrated.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- QUARTERLY PROVOCATION -->
+  <div class="provocation" id="provocation">
+    <div class="section-label">Quarterly Provocation &bull; Thought Leadership</div>
+    <div class="provocation-card">
+      <span class="prov-badge">Q2 2026 &bull; Forthcoming</span>
+      <h3>The first quarterly provocation will be published in April 2026</h3>
+      <p class="prov-text">A one-page piece designed to make senior leaders uncomfortable. Drawn from converging trends, scenario plausibility shifts, and the archetype most at risk. The question the organisation needs to hear &mdash; backed by evidence from the Foresight Engine.</p>
+    </div>
+  </div>
+
+</div>
+
+<!-- SCENARIO GENERATOR OVERLAY -->
+<div class="fe-overlay" id="scenarioOverlay">
+  <div class="fe-panel">
+    <button class="fe-panel-close" onclick="closeOverlay('scenarioOverlay')">&times;</button>
+    <div class="fe-panel-header">
+      <h2>Generate Scenario Set</h2>
+      <p>Select two trend drivers from the registry to form the axes of a 2&times;2 scenario matrix. The generator will produce four named scenarios plus a wild card, with persona impacts and wind tunnel analysis.</p>
+    </div>
+    <div class="fe-panel-body">
+      <div class="step-indicator">
+        <span class="step-dot active" id="step1">1</span>
+        <span class="step-dot" id="step2">2</span>
+        <span class="step-dot" id="step3">3</span>
+      </div>
+
+      <!-- Step 1: Pick trends -->
+      <div id="pickStep">
+        <div style="font-size:0.72rem; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; color:var(--text-muted); margin-bottom:8px;">Select exactly two trend drivers</div>
+        <div class="trend-picker" id="trendPicker">
+          <div class="trend-pick-row" data-trend="Autonomous AI Agents in Financial Services" data-vim="5/5/5" data-lens="AI &amp; Agents" onclick="toggleTrend(this)">
+            <span class="tp-check"></span>
+            <span class="tp-name">Autonomous AI Agents in Financial Services</span>
+            <span class="tp-vim">VIM 5/5/5</span>
+          </div>
+          <div class="trend-pick-row" data-trend="Stablecoin Payment Rails" data-vim="4/4/4" data-lens="Digital Markets" onclick="toggleTrend(this)">
+            <span class="tp-check"></span>
+            <span class="tp-name">Stablecoin Payment Rails</span>
+            <span class="tp-vim">VIM 4/4/4</span>
+          </div>
+          <div class="trend-pick-row" data-trend="Post-Quantum Cryptographic Migration" data-vim="3/5/3" data-lens="Quantum" onclick="toggleTrend(this)">
+            <span class="tp-check"></span>
+            <span class="tp-name">Post-Quantum Cryptographic Migration</span>
+            <span class="tp-vim">VIM 3/5/3</span>
+          </div>
+          <div class="trend-pick-row" data-trend="Embedded Finance 2.0" data-vim="4/4/6" data-lens="Consumer" onclick="toggleTrend(this)">
+            <span class="tp-check"></span>
+            <span class="tp-name">Embedded Finance 2.0</span>
+            <span class="tp-vim">VIM 4/4/6</span>
+          </div>
+          <div class="trend-pick-row" data-trend="Climate Risk Repricing" data-vim="3/5/5" data-lens="Climate" onclick="toggleTrend(this)">
+            <span class="tp-check"></span>
+            <span class="tp-name">Climate Risk Repricing</span>
+            <span class="tp-vim">VIM 3/5/5</span>
+          </div>
+        </div>
+        <div id="selectionCount" style="font-size:0.75rem; color:var(--text-muted); margin-top:4px;">0 of 2 selected</div>
+      </div>
+
+      <!-- Step 2: Axis preview -->
+      <div class="axis-preview" id="axisPreview">
+        <h4>Proposed 2&times;2 Matrix</h4>
+        <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
+          <span style="font-size:0.72rem; font-weight:600; color:var(--indigo);" id="axis1Label">Axis 1</span>
+          <span style="font-size:0.72rem; font-weight:600; color:var(--accent);" id="axis2Label">Axis 2</span>
+        </div>
+        <div class="matrix-mini">
+          <div class="matrix-mini-cell">
+            <div class="mm-label">Both High</div>
+            <div class="mm-name" id="cellHH">Scenario A</div>
+          </div>
+          <div class="matrix-mini-cell">
+            <div class="mm-label" id="cellHLlabel">Axis 1 High / Axis 2 Low</div>
+            <div class="mm-name" id="cellHL">Scenario B</div>
+          </div>
+          <div class="matrix-mini-cell">
+            <div class="mm-label" id="cellLHlabel">Axis 1 Low / Axis 2 High</div>
+            <div class="mm-name" id="cellLH">Scenario C</div>
+          </div>
+          <div class="matrix-mini-cell">
+            <div class="mm-label">Both Low</div>
+            <div class="mm-name" id="cellLL">Scenario D</div>
+          </div>
+        </div>
+        <div style="text-align:center; margin-top:12px; padding:10px; background:rgba(217,119,6,0.06); border:1px dashed var(--amber); border-radius:6px;">
+          <span style="font-size:0.72rem; font-weight:700; color:var(--amber);">+ Wild Card Scenario</span>
+          <span style="font-size:0.68rem; color:var(--text-muted);"> &mdash; breaks the matrix</span>
+        </div>
+      </div>
+
+      <!-- Step 3: Generate prompt -->
+      <div id="promptStep" style="display:none;">
+        <div style="font-size:0.72rem; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; color:var(--text-muted); margin-bottom:8px;">Ready to generate</div>
+        <p style="font-size:0.82rem; color:var(--text-secondary); line-height:1.5; margin-bottom:12px;">Copy the command below and paste it into Cowork to run the Scenario Generator with your selected axes.</p>
+        <div class="prompt-box">
+          <button class="copy-btn" onclick="copyPrompt()">Copy</button>
+          <pre id="generatedPrompt"></pre>
+        </div>
+        <div style="margin-top:16px; display:flex; gap:12px;">
+          <button class="btn btn-primary" onclick="copyPrompt()" style="cursor:pointer; border:none;">Copy Command</button>
+          <button class="btn btn-outline" onclick="resetGenerator()" style="cursor:pointer;">Start Over</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PLAUSIBILITY MONITOR OVERLAY -->
+<div class="fe-overlay" id="monitorOverlay">
+  <div class="fe-panel">
+    <button class="fe-panel-close" onclick="closeOverlay('monitorOverlay')">&times;</button>
+    <div class="fe-panel-header">
+      <h2>Plausibility Monitor</h2>
+      <p>Monthly review of all active scenarios. Leading indicators are scored and plausibility recalibrated. Run on the first Monday of each month.</p>
+    </div>
+    <div class="fe-panel-body">
+      <div style="font-size:0.72rem; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; color:var(--text-muted); margin-bottom:12px;">Active Scenarios</div>
+
+      <div class="monitor-grid">
+        <div class="monitor-item">
+          <h4>The Invisible Bank</h4>
+          <p>Payments &amp; Distribution &bull; 2030&ndash;2035</p>
+          <p style="margin-top:6px;">Financial services delivered through non-bank platforms. AI agents handle decisions. The bank becomes invisible infrastructure.</p>
+          <span class="mi-status status-warming">&#9650; Rising</span>
+        </div>
+        <div class="monitor-item">
+          <h4>Fortress Finance</h4>
+          <p>Trust &amp; Regulation &bull; 2030&ndash;2035</p>
+          <p style="margin-top:6px;">Post-crisis regulation creates a two-tier market. Licensed banks become the only trusted custodians.</p>
+          <span class="mi-status status-warming">&#9650; Rising</span>
+        </div>
+      </div>
+
+      <div style="font-size:0.72rem; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; color:var(--text-muted); margin:20px 0 12px;">Indicator Scoring Framework</div>
+      <div class="monitor-grid">
+        <div class="monitor-item">
+          <h4>Fired</h4>
+          <p>The indicator has clearly materialised. Evidence confirmed.</p>
+          <span class="mi-status status-fired">+2 points</span>
+        </div>
+        <div class="monitor-item">
+          <h4>Warming</h4>
+          <p>Partial or directional evidence. Moving towards materialisation.</p>
+          <span class="mi-status status-warming">+1 point</span>
+        </div>
+        <div class="monitor-item">
+          <h4>Cold</h4>
+          <p>No meaningful activity detected on this indicator.</p>
+          <span class="mi-status status-cold">0 points</span>
+        </div>
+        <div class="monitor-item">
+          <h4>Counter</h4>
+          <p>Evidence suggests the opposite. Weakens scenario plausibility.</p>
+          <span class="mi-status status-fired">&minus;1 point</span>
+        </div>
+      </div>
+
+      <div style="margin-top:16px; padding:16px; background:var(--surface-alt); border-radius:8px; border:1px solid var(--border);">
+        <div style="font-size:0.72rem; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; color:var(--text-muted); margin-bottom:8px;">Plausibility Scale</div>
+        <div style="font-size:0.78rem; color:var(--text-secondary); line-height:1.8;">
+          <strong style="color:var(--red);">6+ pts</strong> = High &mdash; multiple indicators converging<br>
+          <strong style="color:var(--amber);">3&ndash;5 pts</strong> = Moderate &mdash; some movement, worth attention<br>
+          <strong style="color:var(--indigo);">0&ndash;2 pts</strong> = Low &mdash; plausible but not gaining traction<br>
+          <strong style="color:var(--text-muted);">&lt; 0 pts</strong> = Declining &mdash; consider retiring or revising
+        </div>
+      </div>
+
+      <div style="margin-top:16px;">
+        <p style="font-size:0.82rem; color:var(--text-secondary); line-height:1.5;">To run the plausibility monitor, paste the command below into Cowork.</p>
+        <div class="prompt-box" style="margin-top:8px;">
+          <button class="copy-btn" onclick="copyMonitorPrompt()">Copy</button>
+          <pre id="monitorPrompt">Run the Scenario Plausibility Monitor for this month. Review all active scenarios in foresight-trend-registry.xlsx, check leading indicators against the last 30 days of daily briefings, recalculate plausibility scores, and generate the monitor report.</pre>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="container">
+    <div class="footer-logo">Disruption <span>Watch</span></div>
+    <p>The Foresight Engine &bull; v2.0 &bull; Last updated March 2026</p>
+    <p style="margin-top:4px;">5 active trends &bull; 2 scenario seeds &bull; 5 customer archetypes &bull; VIM + CLA scoring &bull; Wind Tunnel protocol</p>
+    <p style="margin-top:8px;"><a href="disruption-foresight-engine.html" style="color:var(--accent);text-decoration:none;font-size:0.72rem;">Read the full methodology &rarr;</a> &nbsp; <a href="index.html" style="color:var(--text-muted);text-decoration:none;font-size:0.72rem;">Back to Intelligence Hub &rarr;</a></p>
+  </div>
+</div>
+
+<script>
+// Scenario Generator
+const selectedTrends = [];
+
+function toggleTrend(el) {
+  const trend = el.dataset.trend;
+  const idx = selectedTrends.indexOf(trend);
+  if (idx > -1) {
+    selectedTrends.splice(idx, 1);
+    el.classList.remove('selected');
+    el.querySelector('.tp-check').textContent = '';
+  } else if (selectedTrends.length < 2) {
+    selectedTrends.push(trend);
+    el.classList.add('selected');
+    el.querySelector('.tp-check').textContent = '\u2713';
+  }
+  document.getElementById('selectionCount').textContent = selectedTrends.length + ' of 2 selected';
+
+  // Update steps
+  const step1 = document.getElementById('step1');
+  const step2 = document.getElementById('step2');
+  const step3 = document.getElementById('step3');
+  const axisPreview = document.getElementById('axisPreview');
+  const promptStep = document.getElementById('promptStep');
+
+  if (selectedTrends.length === 2) {
+    step1.className = 'step-dot done';
+    step2.className = 'step-dot active';
+    axisPreview.classList.add('visible');
+
+    // Update axis labels
+    document.getElementById('axis1Label').textContent = 'Axis 1: ' + selectedTrends[0];
+    document.getElementById('axis2Label').textContent = 'Axis 2: ' + selectedTrends[1];
+    var a1 = shortName(selectedTrends[0]);
+    var a2 = shortName(selectedTrends[1]);
+    document.getElementById('cellHH').textContent = a1 + ' High + ' + a2 + ' High';
+    document.getElementById('cellHL').textContent = a1 + ' High + ' + a2 + ' Low';
+    document.getElementById('cellLH').textContent = a1 + ' Low + ' + a2 + ' High';
+    document.getElementById('cellLL').textContent = a1 + ' Low + ' + a2 + ' Low';
+    document.getElementById('cellHLlabel').textContent = 'Axis 1 High / Axis 2 Low';
+    document.getElementById('cellLHlabel').textContent = 'Axis 1 Low / Axis 2 High';
+
+    // Show prompt
+    step2.className = 'step-dot done';
+    step3.className = 'step-dot active';
+    promptStep.style.display = 'block';
+    document.getElementById('generatedPrompt').textContent =
+      'Run the Scenario Generator with these axes:\n\n' +
+      'Axis 1: ' + selectedTrends[0] + '\n' +
+      'Axis 2: ' + selectedTrends[1] + '\n\n' +
+      'Generate the full 2\u00d72 matrix with four named scenarios, a wild card scenario, persona impacts for all five archetypes (Sarah, James, Priya, David, Margaret), and wind tunnel analysis. Deliver HTML and PDF outputs.';
+  } else {
+    step1.className = 'step-dot active';
+    step2.className = 'step-dot';
+    step3.className = 'step-dot';
+    axisPreview.classList.remove('visible');
+    promptStep.style.display = 'none';
+  }
+}
+
+function shortName(trend) {
+  var map = {
+    'Autonomous AI Agents in Financial Services': 'AI Agents',
+    'Stablecoin Payment Rails': 'Stablecoins',
+    'Post-Quantum Cryptographic Migration': 'Post-Quantum',
+    'Embedded Finance 2.0': 'Embedded Finance',
+    'Climate Risk Repricing': 'Climate Risk'
+  };
+  return map[trend] || trend;
+}
+
+function copyPrompt() {
+  var text = document.getElementById('generatedPrompt').textContent;
+  navigator.clipboard.writeText(text).then(function() {
+    var btn = document.querySelector('#promptStep .copy-btn');
+    if (btn) { btn.textContent = 'Copied!'; setTimeout(function(){ btn.textContent = 'Copy'; }, 2000); }
+  });
+}
+
+function copyMonitorPrompt() {
+  var text = document.getElementById('monitorPrompt').textContent;
+  navigator.clipboard.writeText(text).then(function() {
+    var btn = document.querySelector('#monitorOverlay .copy-btn');
+    if (btn) { btn.textContent = 'Copied!'; setTimeout(function(){ btn.textContent = 'Copy'; }, 2000); }
+  });
+}
+
+function resetGenerator() {
+  selectedTrends.length = 0;
+  document.querySelectorAll('.trend-pick-row').forEach(function(r) {
+    r.classList.remove('selected');
+    r.querySelector('.tp-check').textContent = '';
+  });
+  document.getElementById('selectionCount').textContent = '0 of 2 selected';
+  document.getElementById('step1').className = 'step-dot active';
+  document.getElementById('step2').className = 'step-dot';
+  document.getElementById('step3').className = 'step-dot';
+  document.getElementById('axisPreview').classList.remove('visible');
+  document.getElementById('promptStep').style.display = 'none';
+}
+
+function openOverlay(id) {
+  document.getElementById(id).classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeOverlay(id) {
+  document.getElementById(id).classList.remove('active');
+  document.body.style.overflow = '';
+  if (id === 'scenarioOverlay') resetGenerator();
+}
+
+// Close on backdrop click
+document.querySelectorAll('.fe-overlay').forEach(function(overlay) {
+  overlay.addEventListener('click', function(e) {
+    if (e.target === overlay) closeOverlay(overlay.id);
+  });
+});
+
+// Close on Escape
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    document.querySelectorAll('.fe-overlay.active').forEach(function(o) {
+      closeOverlay(o.id);
+    });
+  }
+});
+
+// Attach click handlers to placeholders
+document.addEventListener('DOMContentLoaded', function() {
+  var placeholders = document.querySelectorAll('.sc-placeholder');
+  if (placeholders[0]) {
+    placeholders[0].addEventListener('click', function() { openOverlay('scenarioOverlay'); });
+    placeholders[0].style.cursor = 'pointer';
+    placeholders[0].style.transition = 'border-color 0.2s, background 0.2s';
+    placeholders[0].addEventListener('mouseenter', function() {
+      this.style.borderColor = 'var(--indigo)';
+      this.style.background = 'rgba(79,70,229,0.03)';
+    });
+    placeholders[0].addEventListener('mouseleave', function() {
+      this.style.borderColor = '';
+      this.style.background = '';
+    });
+  }
+  if (placeholders[1]) {
+    placeholders[1].addEventListener('click', function() { openOverlay('monitorOverlay'); });
+    placeholders[1].style.cursor = 'pointer';
+    placeholders[1].style.transition = 'border-color 0.2s, background 0.2s';
+    placeholders[1].addEventListener('mouseenter', function() {
+      this.style.borderColor = 'var(--amber)';
+      this.style.background = 'rgba(217,119,6,0.03)';
+    });
+    placeholders[1].addEventListener('mouseleave', function() {
+      this.style.borderColor = '';
+      this.style.background = '';
+    });
+  }
+});
+</script>
+</body>
+</html>
