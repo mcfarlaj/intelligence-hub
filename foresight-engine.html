@@ -1,0 +1,1486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Disruption Watch — The Foresight Engine</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #fafaf9;
+    --surface: #ffffff;
+    --surface-alt: #f5f5f4;
+    --border: #e7e5e4;
+    --text: #1c1917;
+    --text-secondary: #57534e;
+    --text-muted: #a8a29e;
+    --accent: #dc2626;
+    --accent-hover: #b91c1c;
+    --indigo: #4F46E5;
+    --purple: #7C3AED;
+    --green: #059669;
+    --red: #DC2626;
+    --cyan: #0891B2;
+    --pink: #DB2777;
+    --orange: #EA580C;
+    --teal: #0D9488;
+    --amber: #D97706;
+    --climate: #16a34a;
+    --geopolitical: #7c3aed;
+    --workforce: #be185d;
+    --dark: #0f172a;
+    --dark-surface: #1e293b;
+  }
+
+  /* === NAV === */
+  .nav { border-bottom:3px solid var(--text); }
+  .nav-inner { max-width:1100px; margin:0 auto; padding:16px 24px; display:flex; align-items:center; justify-content:space-between; }
+  .nav .logo { font-family:'Playfair Display',Georgia,serif; font-size:1.5rem; font-weight:900; letter-spacing:-0.5px; color:var(--text); text-decoration:none; }
+  .nav .logo span { color:var(--indigo); }
+  .nav-links { display:flex; gap:24px; align-items:center; }
+  .nav-links a { color:var(--text-secondary); text-decoration:none; font-size:0.82rem; font-weight:600; transition:color 0.2s; }
+  .nav-links a:hover { color:var(--text); }
+  .nav-links a.active { color:var(--accent, #dc2626); }
+  .nav .edition { font-size:0.72rem; font-weight:600; text-transform:uppercase; letter-spacing:2px; color:var(--text-muted); }
+  @media (max-width:768px) { .nav-inner { flex-direction:column; gap:12px; } .nav-links { gap:16px; flex-wrap:wrap; } }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:var(--bg); color:var(--text); font-family:'Inter',system-ui,-apple-system,sans-serif; line-height:1.6; -webkit-font-smoothing:antialiased; }
+
+  
+
+  .container { max-width:1100px; margin:0 auto; padding:0 24px; }
+  .section-label { font-size:0.68rem; font-weight:700; text-transform:uppercase; letter-spacing:2.5px; color:var(--text-muted); margin-bottom:20px; }
+
+  /* === HERO === */
+  .fe-hero { background:linear-gradient(135deg, var(--dark) 0%, var(--dark-surface) 50%, var(--dark) 100%); color:#fff; padding:60px 0; position:relative; overflow:hidden; }
+  .fe-hero::before { content:''; position:absolute; top:0; left:0; right:0; bottom:0; background:radial-gradient(circle at 30% 50%, rgba(220,38,38,0.06) 0%, transparent 60%), radial-gradient(circle at 70% 50%, rgba(79,70,229,0.06) 0%, transparent 60%); }
+  .fe-hero-inner { position:relative; z-index:1; max-width:1100px; margin:0 auto; padding:0 24px; }
+  .fe-hero-kicker { font-size:0.68rem; font-weight:700; text-transform:uppercase; letter-spacing:3px; color:var(--accent); margin-bottom:12px; }
+  .fe-hero h1 { font-family:'Playfair Display',Georgia,serif; font-size:2.8rem; font-weight:900; line-height:1.1; letter-spacing:-1px; margin-bottom:16px; }
+  .fe-hero h1 em { font-style:italic; color:var(--accent); }
+  .fe-hero .fe-sub { font-size:1rem; color:#94a3b8; line-height:1.7; max-width:700px; margin-bottom:24px; }
+  .fe-hero .fe-stats { display:flex; gap:32px; }
+  .fe-stat { text-align:center; }
+  .fe-stat .stat-num { font-size:2rem; font-weight:900; color:#fff; }
+  .fe-stat .stat-label { font-size:0.7rem; color:#64748b; text-transform:uppercase; letter-spacing:1px; }
+
+  /* === THREE LAYERS === */
+  .three-layers { display:grid; grid-template-columns:repeat(3, 1fr); gap:1px; background:var(--border); border:1px solid var(--border); border-radius:8px; overflow:hidden; margin-bottom:24px; }
+  .layer-panel { background:var(--surface); padding:28px; }
+  .layer-panel .layer-badge { display:inline-block; font-size:0.58rem; font-weight:700; text-transform:uppercase; letter-spacing:2px; padding:3px 10px; border-radius:12px; color:#fff; margin-bottom:12px; }
+  .layer-panel h3 { font-family:'Playfair Display',Georgia,serif; font-size:1.1rem; font-weight:700; margin-bottom:4px; }
+  .layer-panel .layer-horizon { font-size:0.7rem; color:var(--text-muted); margin-bottom:12px; }
+  .layer-panel .layer-desc { font-size:0.82rem; color:var(--text-secondary); line-height:1.6; margin-bottom:16px; }
+  .layer-panel .layer-stat { display:flex; align-items:baseline; gap:6px; }
+  .layer-panel .layer-stat .stat-num { font-size:1.8rem; font-weight:900; color:var(--text); }
+  .layer-panel .layer-stat .stat-label { font-size:0.72rem; color:var(--text-muted); }
+
+  /* === TREND REGISTRY === */
+  .trends { padding:40px 0; border-bottom:1px solid var(--border); }
+  .trend-table { width:100%; border-collapse:collapse; }
+  .trend-table th { text-align:left; font-size:0.65rem; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; color:var(--text-muted); padding:10px 12px; border-bottom:2px solid var(--text); }
+  .trend-table td { padding:14px 12px; border-bottom:1px solid var(--border); vertical-align:middle; }
+  .trend-table tr:hover { background:var(--surface-alt); }
+  .trend-name { font-weight:600; font-size:0.88rem; color:var(--text); }
+  .trend-lens-tag { display:inline-block; font-size:0.58rem; font-weight:700; padding:2px 8px; border-radius:10px; color:#fff; }
+  .vim-score { display:flex; gap:4px; align-items:center; }
+  .vim-cell { width:28px; height:28px; display:flex; align-items:center; justify-content:center; font-size:0.75rem; font-weight:800; border-radius:4px; color:#fff; }
+  .vim-v { background:var(--indigo); }
+  .vim-i { background:var(--accent); }
+  .vim-m { background:var(--teal); }
+  .trend-priority { font-size:0.62rem; font-weight:700; text-transform:uppercase; letter-spacing:0.5px; padding:4px 10px; border-radius:3px; white-space:nowrap; }
+  .priority-act { background:#fef2f2; color:var(--red); }
+  .priority-watch { background:#fef3c7; color:#92400e; }
+  .priority-monitor { background:#dbeafe; color:#1e40af; }
+  .trend-trajectory { font-size:0.72rem; font-weight:600; }
+  .traj-acc { color:var(--green); }
+  .traj-str { color:var(--indigo); }
+  .traj-wkn { color:var(--accent); }
+  .cla-tag { font-size:0.58rem; font-weight:600; padding:2px 6px; border-radius:3px; background:var(--surface-alt); color:var(--text-muted); }
+  .cla-complete { background:#f0fdf4; color:var(--green); }
+
+  /* === ARCHETYPES === */
+  .archetypes { padding:40px 0; border-bottom:1px solid var(--border); }
+  .archetype-grid { display:grid; grid-template-columns:repeat(5, 1fr); gap:1px; background:var(--border); border:1px solid var(--border); border-radius:8px; overflow:hidden; }
+  .archetype-card { background:var(--surface); padding:20px; text-align:center; }
+  .archetype-card .arch-icon { font-size:2rem; margin-bottom:8px; }
+  .archetype-card h4 { font-family:'Playfair Display',Georgia,serif; font-size:0.95rem; font-weight:700; margin-bottom:2px; }
+  .archetype-card .arch-name { font-size:0.72rem; color:var(--accent); font-weight:600; font-style:italic; margin-bottom:10px; }
+  .archetype-card .arch-desc { font-size:0.78rem; color:var(--text-secondary); line-height:1.5; margin-bottom:12px; }
+  .arch-exposure { font-size:0.62rem; font-weight:700; text-transform:uppercase; letter-spacing:0.5px; padding:3px 8px; border-radius:3px; }
+  .exposure-high { background:#fef2f2; color:var(--red); }
+  .exposure-mod { background:#fef3c7; color:#92400e; }
+  .exposure-extreme { background:#fce7f3; color:#9d174d; }
+
+  /* === SCENARIO CANVAS === */
+  .scenarios { padding:40px 0; border-bottom:1px solid var(--border); }
+  .scenario-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  .scenario-card { background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:28px; position:relative; overflow:hidden; }
+  .scenario-card::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; }
+  .scenario-card .sc-name { font-family:'Playfair Display',Georgia,serif; font-size:1.05rem; font-weight:700; margin-bottom:8px; }
+  .scenario-card .sc-horizon { font-size:0.68rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:1px; margin-bottom:12px; }
+  .scenario-card .sc-desc { font-size:0.82rem; color:var(--text-secondary); line-height:1.6; margin-bottom:14px; }
+  .scenario-card .sc-plausibility { font-size:0.68rem; font-weight:700; text-transform:uppercase; letter-spacing:0.5px; }
+  .sc-rising { color:var(--green); }
+  .sc-stable { color:var(--amber); }
+  .sc-placeholder { background:var(--surface-alt); border:2px dashed var(--border); border-radius:8px; padding:28px; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:8px; min-height:180px; }
+  .sc-placeholder .sc-plus { font-size:2rem; color:var(--text-muted); }
+  .sc-placeholder p { font-size:0.78rem; color:var(--text-muted); text-align:center; }
+  .sc-wild { border:2px solid var(--amber); background:rgba(217,119,6,0.03); }
+  .sc-wild::before { background:var(--amber); }
+  .sc-pdf-btn { position:absolute; top:12px; right:12px; background:var(--dark); color:#fff; border:none; padding:5px 10px; border-radius:5px; font-size:0.62rem; font-weight:600; cursor:pointer; opacity:0.7; transition:opacity 0.2s; z-index:2; text-decoration:none; }
+  .sc-pdf-btn:hover { opacity:1; }
+  .sc-personas { display:flex; gap:8px; flex-wrap:wrap; margin-top:10px; }
+  .sc-persona-tag { font-size:0.58rem; font-weight:600; padding:2px 8px; border-radius:10px; border:1px solid var(--border); color:var(--text-secondary); }
+  .sc-persona-risk { border-color:var(--red); color:var(--red); background:#fef2f2; }
+  .sc-persona-opp { border-color:var(--green); color:var(--green); background:#f0fdf4; }
+
+  /* === ARCHETYPE TOGGLE === */
+  .archetype-toggle { display:flex; gap:8px; margin-bottom:20px; flex-wrap:wrap; align-items:center; }
+  .archetype-toggle .toggle-label { font-size:0.68rem; font-weight:700; text-transform:uppercase; letter-spacing:2px; color:var(--text-muted); margin-right:8px; }
+  .arch-btn { display:inline-flex; align-items:center; gap:6px; padding:6px 14px; border-radius:20px; border:2px solid var(--border); background:var(--surface); color:var(--text-secondary); font-size:0.75rem; font-weight:600; cursor:pointer; transition:all 0.2s; font-family:'Inter',system-ui,sans-serif; }
+  .arch-btn:hover { border-color:var(--text-muted); background:var(--surface-alt); }
+  .arch-btn.active { border-color:var(--indigo); background:rgba(79,70,229,0.06); color:var(--indigo); }
+  .arch-btn .arch-btn-icon { font-size:0.85rem; filter:grayscale(1); }
+  .arch-btn.active .arch-btn-icon { filter:none; }
+
+  .scenario-card.dimmed { opacity:0.35; transform:scale(0.98); }
+  .scenario-card { transition:opacity 0.3s, transform 0.3s, border-color 0.3s; }
+  .scenario-card.highlighted { border-color:var(--indigo); box-shadow:0 0 0 1px var(--indigo); }
+
+  .sc-persona-expanded { display:none; margin-top:12px; padding:12px 14px; border-radius:6px; font-size:0.78rem; line-height:1.6; color:var(--text-secondary); border-left:3px solid var(--indigo); background:var(--surface-alt); }
+  .sc-persona-expanded.visible { display:block; }
+  .sc-persona-expanded .expanded-name { font-weight:700; font-size:0.68rem; text-transform:uppercase; letter-spacing:1px; margin-bottom:4px; }
+  .sc-persona-expanded .expanded-name.impact-opp { color:var(--green); }
+  .sc-persona-expanded .expanded-name.impact-risk { color:var(--red); }
+  .sc-persona-expanded .expanded-name.impact-neutral { color:var(--text-muted); }
+
+  .sc-persona-tag.persona-highlight { border-width:2px; font-weight:700; transform:scale(1.1); }
+
+  /* === PROVOCATION === */
+  .provocation { padding:40px 0; border-bottom:1px solid var(--border); }
+  .provocation-card { background:linear-gradient(135deg, #1a0000 0%, #2d0000 50%, #1a0000 100%); border-radius:12px; padding:40px; color:#e0e0e0; position:relative; overflow:hidden; }
+  .provocation-card::before { content:''; position:absolute; top:0; left:0; right:0; height:4px; background:var(--accent); }
+  .provocation-card .prov-badge { display:inline-block; font-size:0.62rem; font-weight:700; text-transform:uppercase; letter-spacing:2.5px; color:var(--accent); margin-bottom:14px; padding:4px 10px; border:1px solid rgba(220,38,38,0.3); border-radius:3px; background:rgba(220,38,38,0.08); }
+  .provocation-card h3 { font-family:'Playfair Display',Georgia,serif; font-size:1.4rem; font-weight:900; color:#fff; margin-bottom:12px; line-height:1.3; }
+  .provocation-card .prov-text { font-size:0.9rem; color:#a0a0b0; line-height:1.7; }
+
+  /* === FOOTER === */
+  .footer { text-align:center; padding:28px 0; border-top:3px solid var(--text); }
+  .footer-logo { font-family:'Playfair Display',Georgia,serif; font-size:1.1rem; font-weight:900; color:var(--text); margin-bottom:4px; }
+  .footer-logo span { color:var(--indigo); }
+  .footer p { font-size:0.72rem; color:var(--text-muted); }
+  .btn { display:inline-flex; align-items:center; gap:8px; padding:12px 24px; border-radius:4px; font-size:0.85rem; font-weight:600; text-decoration:none; transition:all 0.15s; }
+  .btn-primary { background:var(--text); color:#fff; }
+  .btn-primary:hover { background:var(--accent); }
+  .btn-outline { background:transparent; color:var(--text); border:2px solid var(--text); }
+  .btn-outline:hover { background:var(--text); color:#fff; }
+  .btn-dark { background:rgba(255,255,255,0.1); color:#fff; border:1px solid rgba(255,255,255,0.2); }
+  .btn-dark:hover { background:rgba(255,255,255,0.2); }
+
+  /* === OVERLAY === */
+  .fe-overlay { display:none; position:fixed; top:0; left:0; right:0; bottom:0; z-index:1000; background:rgba(15,23,42,0.85); backdrop-filter:blur(4px); align-items:center; justify-content:center; }
+  .fe-overlay.active { display:flex; }
+  .fe-panel { background:var(--surface); border-radius:12px; max-width:720px; width:90%; max-height:85vh; overflow-y:auto; position:relative; box-shadow:0 25px 50px rgba(0,0,0,0.25); }
+  .fe-panel-header { padding:28px 28px 0; }
+  .fe-panel-header h2 { font-family:'Playfair Display',Georgia,serif; font-size:1.5rem; font-weight:900; margin-bottom:4px; }
+  .fe-panel-header p { font-size:0.82rem; color:var(--text-secondary); line-height:1.5; }
+  .fe-panel-body { padding:20px 28px 28px; }
+  .fe-panel-close { position:absolute; top:16px; right:16px; background:none; border:none; font-size:1.4rem; cursor:pointer; color:var(--text-muted); line-height:1; padding:4px 8px; border-radius:4px; }
+  .fe-panel-close:hover { background:var(--surface-alt); color:var(--text); }
+
+  .trend-picker { display:flex; flex-direction:column; gap:8px; margin:16px 0; }
+  .trend-pick-row { display:flex; align-items:center; gap:12px; padding:12px 14px; border:2px solid var(--border); border-radius:8px; cursor:pointer; transition:all 0.15s; }
+  .trend-pick-row:hover { border-color:var(--text-muted); background:var(--surface-alt); }
+  .trend-pick-row.selected { border-color:var(--indigo); background:rgba(79,70,229,0.04); }
+  .trend-pick-row .tp-name { font-weight:600; font-size:0.88rem; flex:1; }
+  .trend-pick-row .tp-vim { font-size:0.72rem; font-weight:700; color:var(--text-muted); }
+  .trend-pick-row .tp-check { width:20px; height:20px; border-radius:50%; border:2px solid var(--border); display:flex; align-items:center; justify-content:center; font-size:0.72rem; color:#fff; flex-shrink:0; }
+  .trend-pick-row.selected .tp-check { background:var(--indigo); border-color:var(--indigo); }
+
+  .axis-preview { display:none; margin:20px 0; padding:20px; background:var(--surface-alt); border-radius:8px; border:1px solid var(--border); }
+  .axis-preview.visible { display:block; }
+  .axis-preview h4 { font-size:0.72rem; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; color:var(--text-muted); margin-bottom:12px; }
+  .matrix-mini { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+  .matrix-mini-cell { padding:14px; border-radius:6px; background:var(--surface); border:1px solid var(--border); text-align:center; }
+  .matrix-mini-cell .mm-label { font-size:0.62rem; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:var(--text-muted); margin-bottom:4px; }
+  .matrix-mini-cell .mm-name { font-size:0.82rem; font-weight:600; color:var(--text-secondary); font-style:italic; }
+
+  .prompt-box { margin-top:16px; background:#0f172a; border-radius:8px; padding:16px; position:relative; }
+  .prompt-box pre { font-family:'SF Mono',Consolas,monospace; font-size:0.75rem; color:#e2e8f0; white-space:pre-wrap; line-height:1.6; max-height:200px; overflow-y:auto; }
+  .prompt-box .copy-btn { position:absolute; top:10px; right:10px; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2); color:#fff; font-size:0.68rem; font-weight:600; padding:4px 10px; border-radius:4px; cursor:pointer; }
+  .prompt-box .copy-btn:hover { background:rgba(255,255,255,0.2); }
+
+  .monitor-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:16px 0; }
+  .monitor-item { padding:16px; background:var(--surface-alt); border-radius:8px; border:1px solid var(--border); }
+  .monitor-item h4 { font-size:0.78rem; font-weight:700; margin-bottom:4px; }
+  .monitor-item p { font-size:0.75rem; color:var(--text-secondary); line-height:1.5; }
+  .monitor-item .mi-status { display:inline-block; font-size:0.62rem; font-weight:700; text-transform:uppercase; letter-spacing:0.5px; padding:2px 8px; border-radius:3px; margin-top:8px; }
+  .status-fired { background:#fef2f2; color:var(--red); }
+  .status-warming { background:#fef3c7; color:#92400e; }
+  .status-cold { background:#dbeafe; color:#1e40af; }
+
+  .step-indicator { display:flex; gap:12px; margin:16px 0; }
+  .step-dot { width:28px; height:28px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.72rem; font-weight:700; background:var(--surface-alt); color:var(--text-muted); border:2px solid var(--border); }
+  .step-dot.active { background:var(--indigo); color:#fff; border-color:var(--indigo); }
+  .step-dot.done { background:var(--green); color:#fff; border-color:var(--green); }
+
+  @media (max-width:800px) {
+    .three-layers { grid-template-columns:1fr; }
+    .scenario-grid { grid-template-columns:1fr; }
+    .archetype-grid { grid-template-columns:1fr 1fr; }
+    .fe-hero h1 { font-size:2rem; }
+    .fe-hero .fe-stats { flex-wrap:wrap; gap:16px; }
+    .monitor-grid { grid-template-columns:1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<div class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="logo">Disruption <span>Watch</span> <span style="font-size:0.55em;color:#d97706;font-weight:600;letter-spacing:0;">(beta)</span></a>
+    <div class="nav-links">
+      <a href="foresight-engine.html" class="active">Foresight Engine</a>
+      <a href="disruption-radar.html">Radar</a>
+      <a href="search.html">Search</a>
+      <a href="spotlights.html">Joining the Dots</a>
+      <span class="edition">Foresight Engine</span>
+    </div>
+  </div>
+</div>
+
+<!-- HERO -->
+<div class="fe-hero">
+  <div class="fe-hero-inner">
+    <div class="fe-hero-kicker">Strategic Foresight &bull; Horizon 2&ndash;15 years</div>
+    <h1>The Foresight <em>Engine</em></h1>
+    <p class="fe-sub">Proprietary trend intelligence, scenario planning, and customer impact analysis for innovation, strategy, and product teams. Built on daily signal scanning across 12 strategic lenses. Grounded in five customer archetypes. Designed to surface the strategic questions the organisation needs to ask now.</p>
+    <div class="fe-stats">
+      <div class="fe-stat">
+        <div class="stat-num">19</div>
+        <div class="stat-label">Active Trends</div>
+      </div>
+      <div class="fe-stat">
+        <div class="stat-num">5</div>
+        <div class="stat-label">Active Scenarios</div>
+      </div>
+      <div class="fe-stat">
+        <div class="stat-num">5</div>
+        <div class="stat-label">Customer Archetypes</div>
+      </div>
+      <div class="fe-stat">
+        <div class="stat-num">12</div>
+        <div class="stat-label">Strategic Lenses</div>
+      </div>
+    </div>
+    <div style="margin-top:24px; display:flex; gap:12px;">
+      <a href="disruption-foresight-engine.html" class="btn btn-dark">Read the Methodology &rarr;</a>
+      <a href="foresight-trend-registry.xlsx" class="btn btn-dark">Open Registry (xlsx)</a>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- THREE LAYERS OVERVIEW -->
+  <div style="padding:40px 0; border-bottom:1px solid var(--border);">
+    <div class="section-label">Architecture &bull; Four Layers</div>
+    <div class="three-layers">
+      <div class="layer-panel">
+        <span class="layer-badge" style="background:var(--accent);">Layer 1</span>
+        <h3>Signal Scanner</h3>
+        <div class="layer-horizon">Horizon 1 &mdash; Now to 2 years</div>
+        <div class="layer-desc">Daily intelligence across 12 strategic lenses. Signals typed via CIPHER, scored for intensity, tracked for momentum. The raw material that feeds everything above.</div>
+        <div class="layer-stat">
+          <span class="stat-num" id="briefing-count">33</span>
+          <span class="stat-label">daily briefings produced</span>
+        </div>
+      </div>
+      <div class="layer-panel">
+        <span class="layer-badge" style="background:var(--indigo);">Layer 2</span>
+        <h3>Trend Registry</h3>
+        <div class="layer-horizon">Horizon 2 &mdash; 2 to 5 years</div>
+        <div class="layer-desc">Persistent patterns graduated from signals. Each trend scored on Velocity, Impact, and Maturity (VIM) with calibrated anchor data. CLA depth analysis for high-impact trends.</div>
+        <div class="layer-stat">
+          <span class="stat-num">19</span>
+          <span class="stat-label">active trends tracked</span>
+        </div>
+      </div>
+      <div class="layer-panel">
+        <span class="layer-badge" style="background:var(--dark);">Layer 3</span>
+        <h3>Scenario Canvas</h3>
+        <div class="layer-horizon">Horizon 3 &mdash; 5 to 15 years</div>
+        <div class="layer-desc">Named plausible futures with wild card scenarios, stress-tested via wind tunnel protocol. Each scenario includes persona impact narratives for all five customer archetypes.</div>
+        <div class="layer-stat">
+          <span class="stat-num">8</span>
+          <span class="stat-label">active scenarios</span>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center; padding:12px; background:var(--surface); border:1px solid var(--border); border-radius:8px;">
+      <span style="font-size:0.72rem; font-weight:700; color:var(--accent); text-transform:uppercase; letter-spacing:1.5px;">Customer Impact Layer</span>
+      <span style="font-size:0.72rem; color:var(--text-muted);"> &mdash; Five customer archetypes running vertically through all three layers</span>
+    </div>
+  </div>
+
+  <!-- CUSTOMER ARCHETYPES -->
+  <div class="archetypes" id="archetypes">
+    <div class="section-label">Customer Archetypes &bull; The Human Layer</div>
+    <div style="font-size:0.75rem; color:var(--text-secondary); line-height:1.5; margin-bottom:16px; max-width:720px;">Each archetype carries a <strong>disruption exposure</strong> rating: how vulnerable they are to the technology trends tracked by the Foresight Engine. High exposure means the archetype is directly affected by accelerating trends. "Extreme (inverted)" means the risk comes not from being disrupted by technology, but from being excluded by it as services shift digital.</div>
+    <div class="archetype-grid">
+      <div class="archetype-card">
+        <div class="arch-icon" style="filter:grayscale(1);">&#128100;</div>
+        <h4>Mass Retail</h4>
+        <div class="arch-name">&ldquo;Sarah&rdquo;</div>
+        <div class="arch-desc">Digital-first individual consumer. Current account, savings, mortgage. Convenience-driven, price-sensitive, expects platform-level experiences.</div>
+        <span class="arch-exposure exposure-high">High exposure</span>
+      </div>
+      <div class="archetype-card">
+        <div class="arch-icon" style="filter:grayscale(1);">&#127970;</div>
+        <h4>SME / Business</h4>
+        <div class="arch-name">&ldquo;James&rdquo;</div>
+        <div class="arch-desc">Small-to-medium enterprise owner. Time-poor, relationship-dependent for complex needs, self-serve for routine. Underserved by most banks.</div>
+        <span class="arch-exposure exposure-mod">Moderate&ndash;High</span>
+      </div>
+      <div class="archetype-card">
+        <div class="arch-icon" style="filter:grayscale(1);">&#127970;</div>
+        <h4>Corporate</h4>
+        <div class="arch-name">&ldquo;Priya&rdquo;</div>
+        <div class="arch-desc">CFO or treasury function. Complex needs: syndicated lending, derivatives, cash management. Multi-bank, regulated, risk-conscious.</div>
+        <span class="arch-exposure exposure-mod">Moderate</span>
+      </div>
+      <div class="archetype-card">
+        <div class="arch-icon" style="filter:grayscale(1);">&#128176;</div>
+        <h4>Wealth</h4>
+        <div class="arch-name">&ldquo;David&rdquo;</div>
+        <div class="arch-desc">High-net-worth or affluent. Investment portfolio, tax planning, estate management. Relationship-intensive, advice-dependent.</div>
+        <span class="arch-exposure exposure-mod">Moderate</span>
+      </div>
+      <div class="archetype-card">
+        <div class="arch-icon" style="filter:grayscale(1);">&#128101;</div>
+        <h4>Digitally Excluded</h4>
+        <div class="arch-name">&ldquo;Margaret&rdquo;</div>
+        <div class="arch-desc">Unable or unwilling to engage digitally. Elderly, low-income, rural. Reliant on branches and cash. Often invisible in innovation discussions.</div>
+        <span class="arch-exposure exposure-extreme">Extreme (inverted)</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- TREND REGISTRY -->
+  <div class="trends" id="trends">
+    <div class="section-label">Trend Registry &bull; VIM Scored &bull; CLA Depth</div>
+    <table class="trend-table">
+      <thead>
+        <tr>
+          <th>Trend</th>
+          <th>Primary Lens</th>
+          <th>VIM</th>
+          <th>Priority</th>
+          <th>Trajectory</th>
+          <th>CLA</th>
+          <th>Archetype Impact</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="trend-name">Crypto-TradFi Infrastructure Convergence</span></td>
+          <td><span class="trend-lens-tag" style="background:var(--green);">Digital Markets</span></td>
+          <td>
+            <div class="vim-score">
+              <span class="vim-cell vim-v">7</span>
+              <span class="vim-cell vim-i">5</span>
+              <span class="vim-cell vim-m">6</span>
+            </div>
+          </td>
+          <td><span class="trend-priority priority-act">Act Now</span></td>
+          <td><span class="trend-trajectory traj-str">&#9650; Strengthening</span></td>
+          <td><span class="cla-tag cla-complete">Complete</span></td>
+          <td>
+            <div class="sc-personas">
+              <span class="sc-persona-tag">Sarah ~</span><span class="sc-persona-tag sc-persona-opp">James +</span><span class="sc-persona-tag sc-persona-dis">Priya !</span><span class="sc-persona-tag sc-persona-dis">David !</span><span class="sc-persona-tag">Margaret ~</span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><span class="trend-name">AI-Powered Military Operations</span></td>
+          <td><span class="trend-lens-tag" style="background:var(--geopolitical);">Geopolitical</span></td>
+          <td>
+            <div class="vim-score">
+              <span class="vim-cell vim-v">5</span>
+              <span class="vim-cell vim-i">5</span>
+              <span class="vim-cell vim-m">6</span>
+            </div>
+          </td>
+          <td><span class="trend-priority priority-act">Act Now</span></td>
+          <td><span class="trend-trajectory traj-acc">&#9650;&#9650; Accelerating</span></td>
+          <td><span class="cla-tag cla-complete">Complete</span></td>
+          <td>
+            <div class="sc-personas">
+              <span class="sc-persona-tag">Sarah ~</span><span class="sc-persona-tag">James ~</span><span class="sc-persona-tag sc-persona-dis">Priya !</span><span class="sc-persona-tag sc-persona-dis">David !</span><span class="sc-persona-tag">Margaret ~</span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><span class="trend-name">Private Credit Liquidity Crisis</span></td>
+          <td><span class="trend-lens-tag" style="background:var(--orange);">Biz/Finance</span></td>
+          <td>
+            <div class="vim-score">
+              <span class="vim-cell vim-v">5</span>
+              <span class="vim-cell vim-i">5</span>
+              <span class="vim-cell vim-m">6</span>
+            </div>
+          </td>
+          <td><span class="trend-priority priority-act">Act Now</span></td>
+          <td><span class="trend-trajectory traj-acc">&#9650;&#9650; Accelerating</span></td>
+          <td><span class="cla-tag cla-complete">Complete</span></td>
+          <td>
+            <div class="sc-personas">
+              <span class="sc-persona-tag">Sarah ~</span><span class="sc-persona-tag">James ~</span><span class="sc-persona-tag sc-persona-dis">Priya !</span><span class="sc-persona-tag sc-persona-dis">David !</span><span class="sc-persona-tag">Margaret ~</span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><span class="trend-name">AI Capital Reallocation</span></td>
+          <td><span class="trend-lens-tag" style="background:var(--workforce);">Workforce &amp; Talent</span></td>
+          <td>
+            <div class="vim-score">
+              <span class="vim-cell vim-v">5</span>
+              <span class="vim-cell vim-i">5</span>
+              <span class="vim-cell vim-m">6</span>
+            </div>
+          </td>
+          <td><span class="trend-priority priority-act">Act Now</span></td>
+          <td><span class="trend-trajectory traj-str">&#9650; Strengthening</span></td>
+          <td><span class="cla-tag cla-complete">Complete</span></td>
+          <td>
+            <div class="sc-personas">
+              <span class="sc-persona-tag">Sarah ~</span><span class="sc-persona-tag sc-persona-opp">James +</span><span class="sc-persona-tag sc-persona-dis">Priya !</span><span class="sc-persona-tag">David ~</span><span class="sc-persona-tag sc-persona-dis">Margaret !</span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><span class="trend-name">Agentic Commerce Infrastructure</span></td>
+          <td><span class="trend-lens-tag" style="background:var(--green);">Digital Markets</span></td>
+          <td>
+            <div class="vim-score">
+              <span class="vim-cell vim-v">5</span>
+              <span class="vim-cell vim-i">5</span>
+              <span class="vim-cell vim-m">6</span>
+            </div>
+          </td>
+          <td><span class="trend-priority priority-act">Act Now</span></td>
+          <td><span class="trend-trajectory traj-str">&#9650; Strengthening</span></td>
+          <td><span class="cla-tag cla-complete">Complete</span></td>
+          <td>
+            <div class="sc-personas">
+              <span class="sc-persona-tag sc-persona-watch">Sarah ?</span><span class="sc-persona-tag sc-persona-dis">James !</span><span class="sc-persona-tag sc-persona-dis">Priya !</span><span class="sc-persona-tag sc-persona-watch">David ?</span><span class="sc-persona-tag sc-persona-watch">Margaret ?</span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><span class="trend-name">Enterprise AI Agent Procurement</span></td>
+          <td><span class="trend-lens-tag" style="background:var(--indigo);">AI/Agents</span></td>
+          <td>
+            <div class="vim-score">
+              <span class="vim-cell vim-v">5</span>
+              <span class="vim-cell vim-i">5</span>
+              <span class="vim-cell vim-m">6</span>
+            </div>
+          </td>
+          <td><span class="trend-priority priority-act">Act Now</span></td>
+          <td><span class="trend-trajectory traj-str">&#9650; Strengthening</span></td>
+          <td><span class="cla-tag cla-complete">Complete</span></td>
+          <td>
+            <div class="sc-personas">
+              <span class="sc-persona-tag sc-persona-opp">Sarah +</span><span class="sc-persona-tag sc-persona-opp">James +</span><span class="sc-persona-tag">Priya ~</span><span class="sc-persona-tag sc-persona-watch">David ?</span><span class="sc-persona-tag sc-persona-dis">Margaret !</span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><span class="trend-name">AI Agent Security Attack Surface</span></td>
+          <td><span class="trend-lens-tag" style="background:var(--red);">Digital Trust</span></td>
+          <td>
+            <div class="vim-score">
+              <span class="vim-cell vim-v">7</span>
+              <span class="vim-cell vim-i">5</span>
+              <span class="vim-cell vim-m">3</span>
+            </div>
+          </td>
+          <td><span class="trend-priority priority-act">Act Now</span></td>
+          <td><span class="trend-trajectory traj-acc">&#9650;&#9650; Accelerating</span></td>
+          <td><span class="cla-tag cla-complete">Complete</span></td>
+          <td>
+            <div class="sc-personas">
+              <span class="sc-persona-tag">Sarah ~</span><span class="sc-persona-tag">James ~</span><span class="sc-persona-tag">Priya ~</span><span class="sc-persona-tag">David ~</span><span class="sc-persona-tag">Margaret ~</span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><span class="trend-name">Climate Risk Repricing</span></td>
+          <td><span class="trend-lens-tag" style="background:var(--climate);">Climate</span></td>
+          <td>
+            <div class="vim-score">
+              <span class="vim-cell vim-v">4</span>
+              <span class="vim-cell vim-i">5</span>
+              <span class="vim-cell vim-m">6</span>
+            </div>
+          </td>
+          <td><span class="trend-priority priority-watch">Watch &amp; Prepare</span></td>
+          <td><span class="trend-trajectory traj-str">&#9650; Strengthening</span></td>
+          <td><span class="cla-tag cla-complete">Complete</span></td>
+          <td>
+            <div class="sc-personas">
+              <span class="sc-persona-tag sc-persona-dis">Sarah !</span><span class="sc-persona-tag sc-persona-dis">James !</span><span class="sc-persona-tag sc-persona-dis">Priya !</span><span class="sc-persona-tag">David ~</span><span class="sc-persona-tag">Margaret ~</span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><span class="trend-name">Embedded Finance 2.0</span></td>
+          <td><span class="trend-lens-tag" style="background:var(--teal);">Consumer</span></td>
+          <td>
+            <div class="vim-score">
+              <span class="vim-cell vim-v">4</span>
+              <span class="vim-cell vim-i">4</span>
+              <span class="vim-cell vim-m">6</span>
+            </div>
+          </td>
+          <td><span class="trend-priority priority-watch">Watch &amp; Prepare</span></td>
+          <td><span class="trend-trajectory traj-str">&#9650; Strengthening</span></td>
+          <td><span class="cla-tag cla-complete">Complete</span></td>
+          <td>
+            <div class="sc-personas">
+              <span class="sc-persona-tag sc-persona-dis">Sarah !</span><span class="sc-persona-tag sc-persona-opp">James +</span><span class="sc-persona-tag">Priya ~</span><span class="sc-persona-tag">David ~</span><span class="sc-persona-tag sc-persona-dis">Margaret !</span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><span class="trend-name">UK Regulatory Structural Reform</span></td>
+          <td><span class="trend-lens-tag" style="background:var(--orange);">Biz/Finance</span></td>
+          <td>
+            <div class="vim-score">
+              <span class="vim-cell vim-v">4</span>
+              <span class="vim-cell vim-i">5</span>
+              <span class="vim-cell vim-m">5</span>
+            </div>
+          </td>
+          <td><span class="trend-priority priority-watch">Watch &amp; Prepare</span></td>
+          <td><span class="trend-trajectory traj-str">&#9650; Strengthening</span></td>
+          <td><span class="cla-tag cla-complete">Complete</span></td>
+          <td>
+            <div class="sc-personas">
+              <span class="sc-persona-tag">Sarah ~</span><span class="sc-persona-tag">James ~</span><span class="sc-persona-tag">Priya ~</span><span class="sc-persona-tag">David ~</span><span class="sc-persona-tag sc-persona-opp">Margaret +</span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><span class="trend-name">AI Ethics as Commercial Differentiator</span></td>
+          <td><span class="trend-lens-tag" style="background:var(--red);">Digital Trust</span></td>
+          <td>
+            <div class="vim-score">
+              <span class="vim-cell vim-v">4</span>
+              <span class="vim-cell vim-i">4</span>
+              <span class="vim-cell vim-m">5</span>
+            </div>
+          </td>
+          <td><span class="trend-priority priority-watch">Watch &amp; Prepare</span></td>
+          <td><span class="trend-trajectory traj-str">&#9650; Strengthening</span></td>
+          <td><span class="cla-tag cla-complete">Complete</span></td>
+          <td>
+            <div class="sc-personas">
+              <span class="sc-persona-tag sc-persona-dis">Sarah !</span><span class="sc-persona-tag">James ~</span><span class="sc-persona-tag sc-persona-dis">Priya !</span><span class="sc-persona-tag">David ~</span><span class="sc-persona-tag sc-persona-dis">Margaret !</span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><span class="trend-name">Materials Bottleneck (Copper/Rare Earth Supply Gap)</span></td>
+          <td><span class="trend-lens-tag" style="background:var(--climate);">Climate</span></td>
+          <td>
+            <div class="vim-score">
+              <span class="vim-cell vim-v">4</span>
+              <span class="vim-cell vim-i">4</span>
+              <span class="vim-cell vim-m">5</span>
+            </div>
+          </td>
+          <td><span class="trend-priority priority-watch">Watch &amp; Prepare</span></td>
+          <td><span class="trend-trajectory traj-str">&#9650; Strengthening</span></td>
+          <td><span class="cla-tag cla-complete">Complete</span></td>
+          <td>
+            <div class="sc-personas">
+              <span class="sc-persona-tag">Sarah ~</span><span class="sc-persona-tag sc-persona-dis">James !</span><span class="sc-persona-tag sc-persona-dis">Priya !</span><span class="sc-persona-tag">David ~</span><span class="sc-persona-tag">Margaret ~</span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><span class="trend-name">Stablecoin Payment Rails</span></td>
+          <td><span class="trend-lens-tag" style="background:var(--green);">Digital Markets</span></td>
+          <td>
+            <div class="vim-score">
+              <span class="vim-cell vim-v">4</span>
+              <span class="vim-cell vim-i">4</span>
+              <span class="vim-cell vim-m">4</span>
+            </div>
+          </td>
+          <td><span class="trend-priority priority-watch">Watch &amp; Prepare</span></td>
+          <td><span class="trend-trajectory traj-str">&#9650; Strengthening</span></td>
+          <td><span class="cla-tag cla-complete">Complete</span></td>
+          <td>
+            <div class="sc-personas">
+              <span class="sc-persona-tag">Sarah ~</span><span class="sc-persona-tag sc-persona-opp">James +</span><span class="sc-persona-tag sc-persona-opp">Priya +</span><span class="sc-persona-tag">David ~</span><span class="sc-persona-tag">Margaret ~</span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><span class="trend-name">AI-Driven Workforce Restructuring</span></td>
+          <td><span class="trend-lens-tag" style="background:var(--workforce);">Workforce &amp; Talent</span></td>
+          <td>
+            <div class="vim-score">
+              <span class="vim-cell vim-v">5</span>
+              <span class="vim-cell vim-i">4</span>
+              <span class="vim-cell vim-m">3</span>
+            </div>
+          </td>
+          <td><span class="trend-priority priority-watch">Watch &amp; Prepare</span></td>
+          <td><span class="trend-trajectory traj-acc">&#9650;&#9650; Accelerating</span></td>
+          <td><span class="cla-tag cla-complete">Complete</span></td>
+          <td>
+            <div class="sc-personas">
+              <span class="sc-persona-tag">Sarah ~</span><span class="sc-persona-tag">James ~</span><span class="sc-persona-tag sc-persona-dis">Priya !</span><span class="sc-persona-tag">David ~</span><span class="sc-persona-tag sc-persona-dis">Margaret !</span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><span class="trend-name">Post-Quantum Cryptographic Migration</span></td>
+          <td><span class="trend-lens-tag" style="background:var(--purple);">Quantum</span></td>
+          <td>
+            <div class="vim-score">
+              <span class="vim-cell vim-v">3</span>
+              <span class="vim-cell vim-i">5</span>
+              <span class="vim-cell vim-m">3</span>
+            </div>
+          </td>
+          <td><span class="trend-priority priority-watch">Watch &amp; Prepare</span></td>
+          <td><span class="trend-trajectory traj-str">&#9650; Strengthening</span></td>
+          <td><span class="cla-tag cla-complete">Complete</span></td>
+          <td>
+            <div class="sc-personas">
+              <span class="sc-persona-tag sc-persona-dis">Sarah !</span><span class="sc-persona-tag">James ~</span><span class="sc-persona-tag sc-persona-dis">Priya !</span><span class="sc-persona-tag sc-persona-dis">David !</span><span class="sc-persona-tag">Margaret ~</span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><span class="trend-name">AI Coding Tool Vertical Integration</span></td>
+          <td><span class="trend-lens-tag" style="background:var(--indigo);">AI/Agents</span></td>
+          <td>
+            <div class="vim-score">
+              <span class="vim-cell vim-v">4</span>
+              <span class="vim-cell vim-i">4</span>
+              <span class="vim-cell vim-m">3</span>
+            </div>
+          </td>
+          <td><span class="trend-priority priority-watch">Watch &amp; Prepare</span></td>
+          <td><span class="trend-trajectory traj-acc">&#9650;&#9650; Accelerating</span></td>
+          <td><span class="cla-tag cla-complete">Complete</span></td>
+          <td>
+            <div class="sc-personas">
+              <span class="sc-persona-tag">Sarah ~</span><span class="sc-persona-tag sc-persona-opp">James +</span><span class="sc-persona-tag sc-persona-opp">Priya +</span><span class="sc-persona-tag">David ~</span><span class="sc-persona-tag">Margaret ~</span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><span class="trend-name">AI-Biology Convergence</span></td>
+          <td><span class="trend-lens-tag" style="background:var(--pink);">Bio-Human</span></td>
+          <td>
+            <div class="vim-score">
+              <span class="vim-cell vim-v">4</span>
+              <span class="vim-cell vim-i">4</span>
+              <span class="vim-cell vim-m">3</span>
+            </div>
+          </td>
+          <td><span class="trend-priority priority-watch">Watch &amp; Prepare</span></td>
+          <td><span class="trend-trajectory traj-str">&#9650; Strengthening</span></td>
+          <td><span class="cla-tag cla-complete">Complete</span></td>
+          <td>
+            <div class="sc-personas">
+              <span class="sc-persona-tag">Sarah ~</span><span class="sc-persona-tag">James ~</span><span class="sc-persona-tag sc-persona-opp">Priya +</span><span class="sc-persona-tag">David ~</span><span class="sc-persona-tag sc-persona-opp">Margaret +</span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><span class="trend-name">Branch Networks as AI Distribution Infrastructure</span></td>
+          <td><span class="trend-lens-tag" style="background:var(--orange);">Biz/Finance</span></td>
+          <td>
+            <div class="vim-score">
+              <span class="vim-cell vim-v">3</span>
+              <span class="vim-cell vim-i">4</span>
+              <span class="vim-cell vim-m">3</span>
+            </div>
+          </td>
+          <td><span class="trend-priority priority-watch">Watch &amp; Prepare</span></td>
+          <td><span class="trend-trajectory traj-str">&#9650; Strengthening</span></td>
+          <td><span class="cla-tag cla-complete">Complete</span></td>
+          <td>
+            <div class="sc-personas">
+              <span class="sc-persona-tag sc-persona-opp">Sarah +</span><span class="sc-persona-tag sc-persona-opp">James +</span><span class="sc-persona-tag">Priya ~</span><span class="sc-persona-tag sc-persona-opp">David +</span><span class="sc-persona-tag sc-persona-opp">Margaret +</span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><span class="trend-name">AI-Powered Consumer Health Services</span></td>
+          <td><span class="trend-lens-tag" style="background:var(--pink);">Bio-Human</span></td>
+          <td>
+            <div class="vim-score">
+              <span class="vim-cell vim-v">3</span>
+              <span class="vim-cell vim-i">4</span>
+              <span class="vim-cell vim-m">2</span>
+            </div>
+          </td>
+          <td><span class="trend-priority priority-watch">Watch &amp; Prepare</span></td>
+          <td><span class="trend-trajectory traj-acc">&#9650;&#9650; Accelerating</span></td>
+          <td><span class="cla-tag cla-complete">Complete</span></td>
+          <td>
+            <div class="sc-personas">
+              <span class="sc-persona-tag sc-persona-opp">Sarah +</span><span class="sc-persona-tag">James ~</span><span class="sc-persona-tag">Priya ~</span><span class="sc-persona-tag sc-persona-opp">David +</span><span class="sc-persona-tag sc-persona-dis">Margaret !</span>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div style="margin-top:16px;display:flex;gap:16px;align-items:center;">
+      <a href="foresight-trend-registry.xlsx" class="btn btn-outline" style="font-size:0.78rem;padding:8px 16px;">Open Full Registry &rarr;</a>
+      <span style="font-size:0.7rem;color:var(--text-muted);">19 active trends &bull; Last reviewed: 4 April 2026 &bull; VIM = Velocity &middot; Impact &middot; Maturity &bull; CLA = Causal Layered Analysis</span>
+    </div>
+    <div style="margin-top:12px; font-size:0.68rem; color:var(--text-muted);">
+      Archetype key: <span style="color:var(--green);">+</span> = opportunity &bull; <span style="color:var(--red);">&minus;</span> = threat &bull; <span>~</span> = neutral &bull; <span style="color:var(--red);">?</span> = uncertain
+    </div>
+  </div>
+
+  <!-- SCENARIO CANVAS -->
+  <div class="scenarios" id="scenarios">
+    <div class="section-label">Scenario Canvas &bull; Horizon 3 &bull; Wind Tunnel Protocol</div>
+
+    <!-- Generate New Scenario CTA -->
+    <div style="display:flex;gap:16px;margin-bottom:24px;flex-wrap:wrap;">
+      <div style="flex:1;min-width:280px;background:linear-gradient(135deg, var(--dark) 0%, var(--dark-surface) 100%);border-radius:8px;padding:24px;color:#fff;cursor:pointer;transition:transform 0.15s,box-shadow 0.15s;" onclick="openOverlay('scenarioOverlay')" onmouseenter="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 24px rgba(0,0,0,0.15)';" onmouseleave="this.style.transform='';this.style.boxShadow='';">
+        <div style="font-size:0.62rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--accent);margin-bottom:8px;">Scenario Generator</div>
+        <div style="font-family:'Playfair Display',Georgia,serif;font-size:1.1rem;font-weight:700;margin-bottom:6px;">Generate New Scenario Set</div>
+        <div style="font-size:0.78rem;color:#94a3b8;line-height:1.5;">Select two trend drivers to form the axes of a 2x2 scenario matrix with wind tunnel analysis and persona impacts.</div>
+      </div>
+      <div style="flex:1;min-width:280px;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:24px;cursor:pointer;transition:transform 0.15s,box-shadow 0.15s;" onclick="openOverlay('monitorOverlay')" onmouseenter="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 24px rgba(0,0,0,0.08)';" onmouseleave="this.style.transform='';this.style.boxShadow='';">
+        <div style="font-size:0.62rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--amber);margin-bottom:8px;">Monthly Review</div>
+        <div style="font-family:'Playfair Display',Georgia,serif;font-size:1.1rem;font-weight:700;color:var(--text);margin-bottom:6px;">Plausibility Monitor</div>
+        <div style="font-size:0.78rem;color:var(--text-secondary);line-height:1.5;">Review leading indicators, recalculate plausibility scores, and update scenario trajectories.</div>
+      </div>
+    </div>
+
+    <div class="archetype-toggle">
+      <span class="toggle-label">Analyse by archetype</span>
+      <button class="arch-btn" data-persona="sarah" onclick="togglePersona('sarah')"><span class="arch-btn-icon">&#128100;</span> Sarah</button>
+      <button class="arch-btn" data-persona="james" onclick="togglePersona('james')"><span class="arch-btn-icon">&#127970;</span> James</button>
+      <button class="arch-btn" data-persona="priya" onclick="togglePersona('priya')"><span class="arch-btn-icon">&#127970;</span> Priya</button>
+      <button class="arch-btn" data-persona="david" onclick="togglePersona('david')"><span class="arch-btn-icon">&#128176;</span> David</button>
+      <button class="arch-btn" data-persona="margaret" onclick="togglePersona('margaret')"><span class="arch-btn-icon">&#128101;</span> Margaret</button>
+    </div>
+    <div class="scenario-grid">
+      <div class="scenario-card" style="cursor:pointer;" onclick="window.location.href='scenario-agentic-embedded-finance-2026-03-19.html'"
+        data-sarah-impact="risk" data-sarah-text="Across most scenarios, Sarah's financial life is mediated by platforms and agents she does not fully understand. Her mortgage is negotiated by employer platforms, insurance renews through her car. She benefits from lower prices but loses visibility and accountability."
+        data-james-impact="risk" data-james-text="James's business finance is increasingly agent-mediated and platform-embedded. Price transparency collapses margins. In the best case he gets better products; in the worst, he loses the human judgement he needs when things go wrong."
+        data-priya-impact="risk" data-priya-text="Treasury automation accelerates across scenarios. The bank competes on API latency not relationships. Priya faces operational risk from BaaS dependencies and, in the wild card, must navigate bifurcated global payment infrastructure."
+        data-david-impact="neutral" data-david-text="Wealth management is disrupted more slowly. Complex advisory endures but the mass affluent feeder pipeline thins as platform-embedded products capture assets. David must justify fees through demonstrable alpha."
+        data-margaret-impact="risk" data-margaret-text="Margaret faces the starkest consequences across most scenarios. Branch contraction, AI-mediated phone banking, platform-only financial products. Only in The Steady State is her position protected.">
+        <div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--indigo);"></div>
+        <div class="sc-name">The Invisible Checkout</div>
+        <div class="sc-horizon">Agentic Commerce x Embedded Finance &bull; 2030&ndash;2035</div>
+        <div class="sc-desc">What happens when AI agents control the transaction and financial services vanish into platforms? Four scenarios explore the intersection of autonomous agent payment infrastructure and second-wave embedded finance.</div>
+        <div style="margin:10px 0;display:flex;gap:8px;flex-wrap:wrap;">
+          <span style="font-size:0.62rem;font-weight:700;padding:2px 8px;border-radius:3px;background:rgba(79,70,229,0.1);color:var(--indigo);">The Vanishing Point</span>
+          <span style="font-size:0.62rem;font-weight:700;padding:2px 8px;border-radius:3px;background:rgba(220,38,38,0.1);color:var(--accent);">The Agent Bazaar</span>
+          <span style="font-size:0.62rem;font-weight:700;padding:2px 8px;border-radius:3px;background:rgba(5,150,105,0.1);color:var(--green);">The Walled Gardens</span>
+          <span style="font-size:0.62rem;font-weight:700;padding:2px 8px;border-radius:3px;background:rgba(168,162,158,0.1);color:var(--text-muted);">The Steady State</span>
+          <span style="font-size:0.62rem;font-weight:700;padding:2px 8px;border-radius:3px;background:rgba(217,119,6,0.1);color:var(--amber);">&#9888; The Sovereign Agent</span>
+        </div>
+        <div class="sc-plausibility sc-rising">&#9650; New &bull; March 2026</div>
+        <div class="sc-personas">
+          <span class="sc-persona-tag sc-persona-risk" data-persona="sarah">Sarah &minus;</span>
+          <span class="sc-persona-tag sc-persona-risk" data-persona="james">James &minus;</span>
+          <span class="sc-persona-tag sc-persona-risk" data-persona="priya">Priya &minus;</span>
+          <span class="sc-persona-tag" data-persona="david">David ~</span>
+          <span class="sc-persona-tag sc-persona-risk" data-persona="margaret">Margaret &minus;</span>
+        </div>
+        <div class="sc-persona-expanded" data-persona-detail></div>
+      </div>
+      <div class="scenario-card" style="cursor:pointer;" onclick="window.location.href='scenario-ethics-agentic-commerce-2026-03-19.html'"
+        data-sarah-impact="opp" data-sarah-text="Sarah benefits across most scenarios from ethical AI practices. Her agent prefers providers with higher transparency scores. In the worst case (Speed Merchants), opaque pricing models contain hidden bias she cannot detect."
+        data-james-impact="opp" data-james-text="James values explainable credit decisions. Ethical certification influences his agent's banking partner selection. In the Speed Merchants scenario, he is denied working capital by agents with opaque decision logic."
+        data-priya-impact="opp" data-priya-text="Priya mandates ISO/IEC 42001 from all providers, making ethical certification a procurement weapon. In the Ethical Engine, this reshapes competitive dynamics. Corporate governance drives demand for transparency."
+        data-david-impact="opp" data-david-text="David's agents select wealth managers on explainability scores. Opaque algorithms create anxiety. In the Trust Premium scenario, explainable AI deepens the advisory relationship and builds loyalty."
+        data-margaret-impact="opp" data-margaret-text="Margaret is protected in most scenarios by fair treatment obligations that ethical AI certification imposes. In the Speed Merchants scenario she is most at risk from opaque, biased automated decisions.">
+        <div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--accent);"></div>
+        <div class="sc-name">The Trust Machine</div>
+        <div class="sc-horizon">AI Ethics x Agentic Commerce &bull; 2030&ndash;2035</div>
+        <div class="sc-desc">When AI ethics becomes the new brand equity and autonomous agents demand new accountability frameworks, which institutions capture the trust premium?</div>
+        <div style="margin:10px 0;display:flex;gap:8px;flex-wrap:wrap;">
+          <span style="font-size:0.62rem;font-weight:700;padding:2px 8px;border-radius:3px;background:rgba(79,70,229,0.1);color:var(--indigo);">The Ethical Engine</span>
+          <span style="font-size:0.62rem;font-weight:700;padding:2px 8px;border-radius:3px;background:rgba(220,38,38,0.1);color:var(--accent);">The Speed Merchants</span>
+          <span style="font-size:0.62rem;font-weight:700;padding:2px 8px;border-radius:3px;background:rgba(5,150,105,0.1);color:var(--green);">The Trust Premium</span>
+          <span style="font-size:0.62rem;font-weight:700;padding:2px 8px;border-radius:3px;background:rgba(168,162,158,0.1);color:var(--text-muted);">The Grey Zone</span>
+          <span style="font-size:0.62rem;font-weight:700;padding:2px 8px;border-radius:3px;background:rgba(217,119,6,0.1);color:var(--amber);">&#9888; The Ethical Agent Uprising</span>
+        </div>
+        <div class="sc-plausibility sc-rising">&#9650; New &bull; March 2026</div>
+        <div class="sc-personas">
+          <span class="sc-persona-tag sc-persona-opp" data-persona="sarah">Sarah +</span>
+          <span class="sc-persona-tag sc-persona-opp" data-persona="james">James +</span>
+          <span class="sc-persona-tag sc-persona-opp" data-persona="priya">Priya +</span>
+          <span class="sc-persona-tag sc-persona-opp" data-persona="david">David +</span>
+          <span class="sc-persona-tag sc-persona-opp" data-persona="margaret">Margaret +</span>
+        </div>
+        <div class="sc-persona-expanded" data-persona-detail></div>
+      </div>
+      <div class="scenario-card" style="cursor:pointer;" onclick="window.location.href='scenario-quantum-agents-2026-03-19.html'"
+        data-sarah-impact="risk" data-sarah-text="Sarah is largely unaware of quantum risk until a breach occurs. Across scenarios she benefits from agent-driven efficiency but faces data exposure in The Glass Engine and devastating trust collapse in The Quantum Heist."
+        data-james-impact="risk" data-james-text="James's supply chain data is quantum-vulnerable in most scenarios. In The Glass Engine, his entire commercial relationship map could be exposed. The Quantum Fortress is his strongest outcome but requires the bank to invest heavily."
+        data-priya-impact="risk" data-priya-text="Priya faces the sharpest risk. Autonomous treasury agents processing billions on quantum-vulnerable rails (Glass Engine) could be catastrophic. In The Quantum Heist, historical FX and counterparty data is exposed to adversaries."
+        data-david-impact="risk" data-david-text="David's entire financial history is quantum-vulnerable in most scenarios. For high-net-worth clients, the privacy risk is existential. He demands quantum-safe private banking the moment the threat materialises."
+        data-margaret-impact="neutral" data-margaret-text="Margaret's limited digital footprint means less quantum-vulnerable data. But she is most affected by the market disruption and cost pressures that follow a quantum incident, as branches close to fund emergency migration.">
+        <div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--purple);"></div>
+        <div class="sc-name">The Quantum Reckoning</div>
+        <div class="sc-horizon">Post-Quantum x AI Agents &bull; 2030&ndash;2035</div>
+        <div class="sc-desc">What happens when quantum computing breaks cryptography and AI agents control the financial system simultaneously?</div>
+        <div style="margin:10px 0;display:flex;gap:8px;flex-wrap:wrap;">
+          <span style="font-size:0.62rem;font-weight:700;padding:2px 8px;border-radius:3px;background:rgba(79,70,229,0.1);color:var(--indigo);">The Quantum Fortress</span>
+          <span style="font-size:0.62rem;font-weight:700;padding:2px 8px;border-radius:3px;background:rgba(220,38,38,0.1);color:var(--accent);">The Analogue Stronghold</span>
+          <span style="font-size:0.62rem;font-weight:700;padding:2px 8px;border-radius:3px;background:rgba(5,150,105,0.1);color:var(--green);">The Glass Engine</span>
+          <span style="font-size:0.62rem;font-weight:700;padding:2px 8px;border-radius:3px;background:rgba(168,162,158,0.1);color:var(--text-muted);">The Long Fuse</span>
+          <span style="font-size:0.62rem;font-weight:700;padding:2px 8px;border-radius:3px;background:rgba(217,119,6,0.1);color:var(--amber);">&#9888; The Quantum Heist</span>
+        </div>
+        <div class="sc-plausibility sc-rising">&#9650; New &bull; March 2026</div>
+        <div class="sc-personas">
+          <span class="sc-persona-tag sc-persona-risk" data-persona="sarah">Sarah &minus;</span>
+          <span class="sc-persona-tag sc-persona-risk" data-persona="james">James &minus;</span>
+          <span class="sc-persona-tag sc-persona-risk" data-persona="priya">Priya &minus;</span>
+          <span class="sc-persona-tag sc-persona-risk" data-persona="david">David &minus;</span>
+          <span class="sc-persona-tag" data-persona="margaret">Margaret ~</span>
+        </div>
+        <div class="sc-persona-expanded" data-persona-detail></div>
+      </div>
+      <div class="scenario-card" style="cursor:pointer;" onclick="window.location.href='scenario-embedded-agentic-commerce-2026-03-24.html'"
+        data-sarah-impact="risk" data-sarah-text="Sarah's financial life is increasingly agent-mediated across most scenarios. In The Swarm Economy, her loyalty shifts from the bank to her AI agent. In Ghost Pipes, she juggles a dozen embedded financial relationships. The Rogue Swarm freezes her account for three days."
+        data-james-impact="risk" data-james-text="James faces operational disruption in most scenarios. His working capital management is either automated away (Swarm Economy) or stuck in manual approval loops (Ghost Pipes). The Rogue Swarm causes 48-hour payment delays that threaten subcontractor relationships."
+        data-priya-impact="risk" data-priya-text="Priya faces the sharpest governance challenge. In The Swarm Economy, her role shifts from execution to oversight. The Rogue Swarm exploits exactly the cross-platform latency her team flagged, costing &pound;3.2 million in missed FX execution windows."
+        data-david-impact="opp" data-david-text="David benefits from agent-driven efficiency in most scenarios but the Human Premium creates a high-margin advisory segment. The Rogue Swarm triggers stop-loss orders on his ETF holdings, permanently damaging his trust in automated systems."
+        data-margaret-impact="risk" data-margaret-text="Margaret faces digital exclusion pressure in most scenarios. Only Frozen Channels preserves her current banking experience. In The Swarm Economy, her branch closes. In The Rogue Swarm, her direct debits fail and she cannot reach the bank by phone.">
+        <div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--teal);"></div>
+        <div class="sc-name">The Protocol Wars</div>
+        <div class="sc-horizon">Embedded Finance x Agentic Commerce &bull; 2030&ndash;2035</div>
+        <div class="sc-desc">What happens when competing payment protocols and embedded finance rails collide with AI agents as primary transaction initiators? An alternative exploration of the same axis pairing.</div>
+        <div style="margin:10px 0;display:flex;gap:8px;flex-wrap:wrap;">
+          <span style="font-size:0.62rem;font-weight:700;padding:2px 8px;border-radius:3px;background:rgba(79,70,229,0.1);color:var(--indigo);">The Swarm Economy</span>
+          <span style="font-size:0.62rem;font-weight:700;padding:2px 8px;border-radius:3px;background:rgba(220,38,38,0.1);color:var(--accent);">Ghost Pipes</span>
+          <span style="font-size:0.62rem;font-weight:700;padding:2px 8px;border-radius:3px;background:rgba(5,150,105,0.1);color:var(--green);">The Human Premium</span>
+          <span style="font-size:0.62rem;font-weight:700;padding:2px 8px;border-radius:3px;background:rgba(168,162,158,0.1);color:var(--text-muted);">Frozen Channels</span>
+          <span style="font-size:0.62rem;font-weight:700;padding:2px 8px;border-radius:3px;background:rgba(217,119,6,0.1);color:var(--amber);">&#9888; The Rogue Swarm</span>
+        </div>
+        <div class="sc-plausibility sc-rising">&#9650; New &bull; March 2026</div>
+        <div class="sc-personas">
+          <span class="sc-persona-tag sc-persona-risk" data-persona="sarah">Sarah &minus;</span>
+          <span class="sc-persona-tag sc-persona-risk" data-persona="james">James &minus;</span>
+          <span class="sc-persona-tag sc-persona-risk" data-persona="priya">Priya &minus;</span>
+          <span class="sc-persona-tag sc-persona-opp" data-persona="david">David +</span>
+          <span class="sc-persona-tag sc-persona-risk" data-persona="margaret">Margaret &minus;</span>
+        </div>
+        <div class="sc-persona-expanded" data-persona-detail></div>
+      </div>
+      <div class="scenario-card" style="cursor:pointer;" onclick="window.location.href='scenario-climate-agentic-commerce-2026-03-24.html'"
+        data-sarah-impact="risk" data-sarah-text="Sarah faces climate-driven repricing across mortgage and insurance markets. In The Carbon Oracle, her AI agent reveals flood-risk premiums she did not expect. In The Blind Optimizer, the agent fails to flag climate risk, leaving her exposed. In The Flood Refusal, her insurance claim is denied."
+        data-james-impact="risk" data-james-text="James's construction firm faces CBAM cost pressures and transition finance gaps across most scenarios. In The Carbon Oracle, his AI agent manages it but margins shrink. In Stranded Slowly, he cannot access affordable green finance. The Flood Refusal devastates his Midlands sites."
+        data-priya-impact="opp" data-priya-text="Priya's role expands from treasury to climate-risk governance in The Carbon Oracle, setting parameters for autonomous agents. In The Blind Optimizer, she flags the gap but faces competitive pressure. The Flood Refusal triggers a &pound;280 million provision on her property portfolio."
+        data-david-impact="opp" data-david-text="David's portfolio outperforms in The Carbon Oracle as his agent's climate models identify stranded assets early. In The Blind Optimizer, he overrides agent recommendations on instinct. The Flood Refusal crystallises losses when his agent sells property holdings automatically."
+        data-margaret-impact="risk" data-margaret-text="Margaret faces insurance repricing she cannot understand or navigate across most scenarios. In The Flood Refusal, her claim is denied, her phone line has a four-hour wait, and she feels abandoned by institutions she trusted. Only Comfortable Decline preserves her current experience.">
+        <div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--green);"></div>
+        <div class="sc-name">The Green Machine</div>
+        <div class="sc-horizon">Climate Risk x Agentic Commerce &bull; 2030&ndash;2035</div>
+        <div class="sc-desc">What happens when climate risk repricing collides with autonomous AI agents managing lending, insurance, and investment decisions?</div>
+        <div style="margin:10px 0;display:flex;gap:8px;flex-wrap:wrap;">
+          <span style="font-size:0.62rem;font-weight:700;padding:2px 8px;border-radius:3px;background:rgba(79,70,229,0.1);color:var(--indigo);">The Carbon Oracle</span>
+          <span style="font-size:0.62rem;font-weight:700;padding:2px 8px;border-radius:3px;background:rgba(220,38,38,0.1);color:var(--accent);">Stranded Slowly</span>
+          <span style="font-size:0.62rem;font-weight:700;padding:2px 8px;border-radius:3px;background:rgba(5,150,105,0.1);color:var(--green);">The Blind Optimizer</span>
+          <span style="font-size:0.62rem;font-weight:700;padding:2px 8px;border-radius:3px;background:rgba(168,162,158,0.1);color:var(--text-muted);">Comfortable Decline</span>
+          <span style="font-size:0.62rem;font-weight:700;padding:2px 8px;border-radius:3px;background:rgba(217,119,6,0.1);color:var(--amber);">&#9888; The Flood Refusal</span>
+        </div>
+        <div class="sc-plausibility sc-rising">&#9650; New &bull; March 2026</div>
+        <div class="sc-personas">
+          <span class="sc-persona-tag sc-persona-risk" data-persona="sarah">Sarah &minus;</span>
+          <span class="sc-persona-tag sc-persona-risk" data-persona="james">James &minus;</span>
+          <span class="sc-persona-tag sc-persona-opp" data-persona="priya">Priya +</span>
+          <span class="sc-persona-tag sc-persona-opp" data-persona="david">David +</span>
+          <span class="sc-persona-tag sc-persona-risk" data-persona="margaret">Margaret &minus;</span>
+        </div>
+        <div class="sc-persona-expanded" data-persona-detail></div>
+      </div>
+      <div class="scenario-card" style="cursor:pointer;" onclick="window.location.href='scenario-branch-ai-ethics-2026-03-27.html'"
+        data-sarah-impact="opp" data-sarah-text="Sarah benefits most in The Lighthouse, where branch AI explains its reasoning and a human adviser confirms the details. In The Uncanny Valley, she feels manipulated by opaque recommendations and switches banks. The Branch Uprising leads to a library pod where she takes her mother for face-to-face advice."
+        data-james-impact="opp" data-james-text="James values the Lighthouse model for quarterly business reviews: AI cash flow analysis validated by his relationship manager. In The Uncanny Valley, a complex fee structure costs him &pound;3,200 per year. The Branch Uprising raises his business banking fees by 12% to fund vulnerable customer access."
+        data-priya-impact="opp" data-priya-text="Priya uses the bank's ethical AI governance framework as a template for her own vendor assessment. In The Uncanny Valley, she diversifies banking relationships when the bank cannot document its AI ethics controls. The Branch Uprising creates a new ESG metric she adds to banking partner scorecards."
+        data-david-impact="opp" data-david-text="David finds the Lighthouse wealth advisory pod, combining AI analysis with human nuance, more trustworthy than either alone. In The Uncanny Valley, he moves &pound;800,000 to a competitor when he suspects product bias. He donates &pound;50,000 to the Age UK campaign after The Branch Uprising."
+        data-margaret-impact="risk" data-margaret-text="Margaret's experience defines the entire scenario set. The Lighthouse includes her; The Uncanny Valley betrays her; The Digital Divide Premium excludes her; The Long Retreat forgets her. The Branch Uprising is triggered by someone like her. She says: 'I thought you had all given up on us.'">
+        <div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--amber);"></div>
+        <div class="sc-name">The Trust Dividend</div>
+        <div class="sc-horizon">Branch AI x Ethics Differentiator &bull; 2030&ndash;2035</div>
+        <div class="sc-desc">What happens when bank branches become physical AI hubs and ethical AI positioning determines which institutions customers trust?</div>
+        <div style="margin:10px 0;display:flex;gap:8px;flex-wrap:wrap;">
+          <span style="font-size:0.62rem;font-weight:700;padding:2px 8px;border-radius:3px;background:rgba(79,70,229,0.1);color:var(--indigo);">The Lighthouse</span>
+          <span style="font-size:0.62rem;font-weight:700;padding:2px 8px;border-radius:3px;background:rgba(220,38,38,0.1);color:var(--accent);">The Uncanny Valley</span>
+          <span style="font-size:0.62rem;font-weight:700;padding:2px 8px;border-radius:3px;background:rgba(5,150,105,0.1);color:var(--green);">The Digital Divide Premium</span>
+          <span style="font-size:0.62rem;font-weight:700;padding:2px 8px;border-radius:3px;background:rgba(168,162,158,0.1);color:var(--text-muted);">The Long Retreat</span>
+          <span style="font-size:0.62rem;font-weight:700;padding:2px 8px;border-radius:3px;background:rgba(217,119,6,0.1);color:var(--amber);">&#9888; The Branch Uprising</span>
+        </div>
+        <div class="sc-plausibility sc-rising">&#9650; New &bull; March 2026</div>
+        <div class="sc-personas">
+          <span class="sc-persona-tag sc-persona-opp" data-persona="sarah">Sarah +</span>
+          <span class="sc-persona-tag sc-persona-opp" data-persona="james">James +</span>
+          <span class="sc-persona-tag sc-persona-opp" data-persona="priya">Priya +</span>
+          <span class="sc-persona-tag sc-persona-opp" data-persona="david">David +</span>
+          <span class="sc-persona-tag sc-persona-risk" data-persona="margaret">Margaret &minus;</span>
+        </div>
+        <div class="sc-persona-expanded" data-persona-detail></div>
+      </div>
+      <div class="sc-placeholder">
+        <div class="sc-plus">+</div>
+        <p>Scenario slot available<br><span style="font-size:0.68rem;">Use the generator above to create a new scenario set</span></p>
+      </div>
+    </div>
+
+    <!-- Scenario Archive -->
+    <div style="margin-top:32px;">
+      <div style="font-size:0.68rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--text-muted);margin-bottom:12px;">Scenario Archive</div>
+      <table style="width:100%;border-collapse:collapse;background:var(--surface);border:1px solid var(--border);border-radius:8px;overflow:hidden;">
+        <thead>
+          <tr style="background:var(--surface-alt);border-bottom:1px solid var(--border);">
+            <th style="text-align:left;font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--text-muted);padding:10px 12px;">Scenario</th>
+            <th style="text-align:left;font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--text-muted);padding:10px 12px;">Horizon</th>
+            <th style="text-align:left;font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--text-muted);padding:10px 12px;">Format</th>
+            <th style="text-align:left;font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--text-muted);padding:10px 12px;">Plausibility</th>
+            <th style="text-align:left;font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--text-muted);padding:10px 12px;">Note</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="cursor:pointer;transition:background 0.15s;" onclick="window.location.href='scenario-invisible-bank.html'" onmouseenter="this.style.background='var(--surface-alt)'" onmouseleave="this.style.background=''">
+            <td style="padding:12px;border-bottom:1px solid var(--border);font-weight:600;font-size:0.88rem;">The Invisible Bank</td>
+            <td style="padding:12px;border-bottom:1px solid var(--border);font-size:0.78rem;color:var(--text-secondary);">2030-2035</td>
+            <td style="padding:12px;border-bottom:1px solid var(--border);"><span style="font-size:0.62rem;font-weight:700;padding:2px 8px;border-radius:3px;background:var(--surface-alt);color:var(--text-muted);">Single dimension</span></td>
+            <td style="padding:12px;border-bottom:1px solid var(--border);font-size:0.72rem;font-weight:600;color:var(--green);">Rising</td>
+            <td style="padding:12px;border-bottom:1px solid var(--border);font-size:0.75rem;color:var(--text-muted);">Legacy format. Payments &amp; Distribution. Pre-dates 2x2 matrix template.</td>
+          </tr>
+          <tr style="cursor:pointer;transition:background 0.15s;" onclick="window.location.href='scenario-fortress-finance.html'" onmouseenter="this.style.background='var(--surface-alt)'" onmouseleave="this.style.background=''">
+            <td style="padding:12px;border-bottom:1px solid var(--border);font-weight:600;font-size:0.88rem;">Fortress Finance</td>
+            <td style="padding:12px;border-bottom:1px solid var(--border);font-size:0.78rem;color:var(--text-secondary);">2030-2035</td>
+            <td style="padding:12px;border-bottom:1px solid var(--border);"><span style="font-size:0.62rem;font-weight:700;padding:2px 8px;border-radius:3px;background:var(--surface-alt);color:var(--text-muted);">Single dimension</span></td>
+            <td style="padding:12px;border-bottom:1px solid var(--border);font-size:0.72rem;font-weight:600;color:var(--green);">Rising</td>
+            <td style="padding:12px;border-bottom:1px solid var(--border);font-size:0.75rem;color:var(--text-muted);">Legacy format. Trust &amp; Regulation. Pre-dates 2x2 matrix template.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- QUARTERLY PROVOCATION -->
+  <div class="provocation" id="provocation">
+    <div class="section-label">Quarterly Provocation &bull; Thought Leadership</div>
+    <div class="provocation-card">
+      <span class="prov-badge">Q1 2026 &bull; Published</span>
+      <h3>Half Your Customers Didn't Ask for This</h3>
+      <p class="prov-text">A provocation on the collision between agentic AI deployment speed, the consumer adoption split, and the branch networks being dismantled at the moment they are appreciating in value.</p>
+      <a href="quarterly-provocation-Q1-2026.html" style="display:inline-block;margin-top:16px;padding:10px 20px;background:var(--accent);color:#fff;text-decoration:none;border-radius:4px;font-size:0.85rem;font-weight:600;">Read the full provocation &rarr;</a>
+    </div>
+  </div>
+
+</div>
+
+<!-- SCENARIO GENERATOR OVERLAY -->
+<div class="fe-overlay" id="scenarioOverlay">
+  <div class="fe-panel">
+    <button class="fe-panel-close" onclick="closeOverlay('scenarioOverlay')">&times;</button>
+    <div class="fe-panel-header">
+      <h2>Generate Scenario Set</h2>
+      <p>Select two trend drivers from the registry to form the axes of a 2&times;2 scenario matrix. The generator will produce four named scenarios plus a wild card, with persona impacts and wind tunnel analysis.</p>
+    </div>
+    <div class="fe-panel-body">
+      <div class="step-indicator">
+        <span class="step-dot active" id="step1">1</span>
+        <span class="step-dot" id="step2">2</span>
+        <span class="step-dot" id="step3">3</span>
+      </div>
+
+      <!-- Step 1: Pick trends -->
+      <div id="pickStep">
+        <div style="font-size:0.72rem; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; color:var(--text-muted); margin-bottom:8px;">Select exactly two trend drivers</div>
+        <div class="trend-picker" id="trendPicker">
+          <div class="trend-pick-row" data-trend="Crypto-TradFi Infrastructure Convergence" data-vim="7/5/6" data-lens="Digital Markets" onclick="toggleTrend(this)">
+            <span class="tp-check"></span>
+            <span class="tp-name">Crypto-TradFi Infrastructure Convergence</span>
+            <span class="tp-vim">VIM 7/5/6</span>
+          </div>
+          <div class="trend-pick-row" data-trend="AI-Powered Military Operations" data-vim="5/5/6" data-lens="Geopolitical" onclick="toggleTrend(this)">
+            <span class="tp-check"></span>
+            <span class="tp-name">AI-Powered Military Operations</span>
+            <span class="tp-vim">VIM 5/5/6</span>
+          </div>
+          <div class="trend-pick-row" data-trend="Private Credit Liquidity Crisis" data-vim="5/5/6" data-lens="Business Finance &amp; Policy" onclick="toggleTrend(this)">
+            <span class="tp-check"></span>
+            <span class="tp-name">Private Credit Liquidity Crisis</span>
+            <span class="tp-vim">VIM 5/5/6</span>
+          </div>
+          <div class="trend-pick-row" data-trend="AI Capital Reallocation" data-vim="5/5/6" data-lens="Workforce &amp; Talent" onclick="toggleTrend(this)">
+            <span class="tp-check"></span>
+            <span class="tp-name">AI Capital Reallocation</span>
+            <span class="tp-vim">VIM 5/5/6</span>
+          </div>
+          <div class="trend-pick-row" data-trend="Agentic Commerce Infrastructure" data-vim="5/5/6" data-lens="Digital Markets" onclick="toggleTrend(this)">
+            <span class="tp-check"></span>
+            <span class="tp-name">Agentic Commerce Infrastructure</span>
+            <span class="tp-vim">VIM 5/5/6</span>
+          </div>
+          <div class="trend-pick-row" data-trend="Enterprise AI Agent Procurement" data-vim="5/5/6" data-lens="AI &amp; Agents" onclick="toggleTrend(this)">
+            <span class="tp-check"></span>
+            <span class="tp-name">Enterprise AI Agent Procurement</span>
+            <span class="tp-vim">VIM 5/5/6</span>
+          </div>
+          <div class="trend-pick-row" data-trend="AI Agent Security Attack Surface" data-vim="7/5/3" data-lens="Digital Trust" onclick="toggleTrend(this)">
+            <span class="tp-check"></span>
+            <span class="tp-name">AI Agent Security Attack Surface</span>
+            <span class="tp-vim">VIM 7/5/3</span>
+          </div>
+          <div class="trend-pick-row" data-trend="Climate Risk Repricing" data-vim="4/5/6" data-lens="Climate" onclick="toggleTrend(this)">
+            <span class="tp-check"></span>
+            <span class="tp-name">Climate Risk Repricing</span>
+            <span class="tp-vim">VIM 4/5/6</span>
+          </div>
+          <div class="trend-pick-row" data-trend="Embedded Finance 2.0" data-vim="4/4/6" data-lens="Consumer" onclick="toggleTrend(this)">
+            <span class="tp-check"></span>
+            <span class="tp-name">Embedded Finance 2.0</span>
+            <span class="tp-vim">VIM 4/4/6</span>
+          </div>
+          <div class="trend-pick-row" data-trend="UK Regulatory Structural Reform" data-vim="4/5/5" data-lens="Business Finance &amp; Policy" onclick="toggleTrend(this)">
+            <span class="tp-check"></span>
+            <span class="tp-name">UK Regulatory Structural Reform</span>
+            <span class="tp-vim">VIM 4/5/5</span>
+          </div>
+          <div class="trend-pick-row" data-trend="AI Ethics as Commercial Differentiator" data-vim="4/4/5" data-lens="Digital Trust" onclick="toggleTrend(this)">
+            <span class="tp-check"></span>
+            <span class="tp-name">AI Ethics as Commercial Differentiator</span>
+            <span class="tp-vim">VIM 4/4/5</span>
+          </div>
+          <div class="trend-pick-row" data-trend="Materials Bottleneck (Copper/Rare Earth Supply Gap)" data-vim="4/4/5" data-lens="Climate" onclick="toggleTrend(this)">
+            <span class="tp-check"></span>
+            <span class="tp-name">Materials Bottleneck (Copper/Rare Earth Supply Gap)</span>
+            <span class="tp-vim">VIM 4/4/5</span>
+          </div>
+          <div class="trend-pick-row" data-trend="Stablecoin Payment Rails" data-vim="4/4/4" data-lens="Digital Markets" onclick="toggleTrend(this)">
+            <span class="tp-check"></span>
+            <span class="tp-name">Stablecoin Payment Rails</span>
+            <span class="tp-vim">VIM 4/4/4</span>
+          </div>
+          <div class="trend-pick-row" data-trend="AI-Driven Workforce Restructuring" data-vim="5/4/3" data-lens="Workforce &amp; Talent" onclick="toggleTrend(this)">
+            <span class="tp-check"></span>
+            <span class="tp-name">AI-Driven Workforce Restructuring</span>
+            <span class="tp-vim">VIM 5/4/3</span>
+          </div>
+          <div class="trend-pick-row" data-trend="Post-Quantum Cryptographic Migration" data-vim="3/5/3" data-lens="Quantum" onclick="toggleTrend(this)">
+            <span class="tp-check"></span>
+            <span class="tp-name">Post-Quantum Cryptographic Migration</span>
+            <span class="tp-vim">VIM 3/5/3</span>
+          </div>
+          <div class="trend-pick-row" data-trend="AI Coding Tool Vertical Integration" data-vim="4/4/3" data-lens="AI &amp; Agents" onclick="toggleTrend(this)">
+            <span class="tp-check"></span>
+            <span class="tp-name">AI Coding Tool Vertical Integration</span>
+            <span class="tp-vim">VIM 4/4/3</span>
+          </div>
+          <div class="trend-pick-row" data-trend="AI-Biology Convergence" data-vim="4/4/3" data-lens="Bio-Human" onclick="toggleTrend(this)">
+            <span class="tp-check"></span>
+            <span class="tp-name">AI-Biology Convergence</span>
+            <span class="tp-vim">VIM 4/4/3</span>
+          </div>
+          <div class="trend-pick-row" data-trend="Branch Networks as AI Distribution Infrastructure" data-vim="3/4/3" data-lens="Business Finance &amp; Policy" onclick="toggleTrend(this)">
+            <span class="tp-check"></span>
+            <span class="tp-name">Branch Networks as AI Distribution Infrastructure</span>
+            <span class="tp-vim">VIM 3/4/3</span>
+          </div>
+          <div class="trend-pick-row" data-trend="AI-Powered Consumer Health Services" data-vim="3/4/2" data-lens="Bio-Human" onclick="toggleTrend(this)">
+            <span class="tp-check"></span>
+            <span class="tp-name">AI-Powered Consumer Health Services</span>
+            <span class="tp-vim">VIM 3/4/2</span>
+          </div>
+        </div>
+        <div id="selectionCount" style="font-size:0.75rem; color:var(--text-muted); margin-top:4px;">0 of 2 selected</div>
+      </div>
+
+      <!-- Step 2: Axis preview -->
+      <div class="axis-preview" id="axisPreview">
+        <h4>Proposed 2&times;2 Matrix</h4>
+        <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
+          <span style="font-size:0.72rem; font-weight:600; color:var(--indigo);" id="axis1Label">Axis 1</span>
+          <span style="font-size:0.72rem; font-weight:600; color:var(--accent);" id="axis2Label">Axis 2</span>
+        </div>
+        <div class="matrix-mini">
+          <div class="matrix-mini-cell">
+            <div class="mm-label">Both High</div>
+            <div class="mm-name" id="cellHH">Scenario A</div>
+          </div>
+          <div class="matrix-mini-cell">
+            <div class="mm-label" id="cellHLlabel">Axis 1 High / Axis 2 Low</div>
+            <div class="mm-name" id="cellHL">Scenario B</div>
+          </div>
+          <div class="matrix-mini-cell">
+            <div class="mm-label" id="cellLHlabel">Axis 1 Low / Axis 2 High</div>
+            <div class="mm-name" id="cellLH">Scenario C</div>
+          </div>
+          <div class="matrix-mini-cell">
+            <div class="mm-label">Both Low</div>
+            <div class="mm-name" id="cellLL">Scenario D</div>
+          </div>
+        </div>
+        <div style="text-align:center; margin-top:12px; padding:10px; background:rgba(217,119,6,0.06); border:1px dashed var(--amber); border-radius:6px;">
+          <span style="font-size:0.72rem; font-weight:700; color:var(--amber);">+ Wild Card Scenario</span>
+          <span style="font-size:0.68rem; color:var(--text-muted);"> &mdash; breaks the matrix</span>
+        </div>
+      </div>
+
+      <!-- Step 3: Generate prompt -->
+      <div id="promptStep" style="display:none;">
+        <div style="font-size:0.72rem; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; color:var(--text-muted); margin-bottom:8px;">Ready to generate</div>
+        <p style="font-size:0.82rem; color:var(--text-secondary); line-height:1.5; margin-bottom:12px;">Copy the command below and paste it into Cowork to run the Scenario Generator with your selected axes.</p>
+        <div class="prompt-box">
+          <button class="copy-btn" onclick="copyPrompt()">Copy</button>
+          <pre id="generatedPrompt"></pre>
+        </div>
+        <div style="margin-top:16px; display:flex; gap:12px;">
+          <button class="btn btn-primary" onclick="copyPrompt()" style="cursor:pointer; border:none;">Copy Command</button>
+          <button class="btn btn-outline" onclick="resetGenerator()" style="cursor:pointer;">Start Over</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PLAUSIBILITY MONITOR OVERLAY -->
+<div class="fe-overlay" id="monitorOverlay">
+  <div class="fe-panel">
+    <button class="fe-panel-close" onclick="closeOverlay('monitorOverlay')">&times;</button>
+    <div class="fe-panel-header">
+      <h2>Plausibility Monitor</h2>
+      <p>Monthly review of all active scenarios. Leading indicators are scored and plausibility recalibrated. Run on the first Monday of each month.</p>
+    </div>
+    <div class="fe-panel-body">
+      <div style="font-size:0.72rem; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; color:var(--text-muted); margin-bottom:12px;">Active Scenarios</div>
+
+      <div class="monitor-grid">
+        <div class="monitor-item">
+          <h4>The Invisible Checkout</h4>
+          <p>Agentic Commerce x Embedded Finance &bull; 2030&ndash;2035</p>
+          <span class="mi-status status-warming">&#9650; New</span>
+        </div>
+        <div class="monitor-item">
+          <h4>The Trust Machine</h4>
+          <p>AI Ethics x Agentic Commerce &bull; 2030&ndash;2035</p>
+          <span class="mi-status status-warming">&#9650; New</span>
+        </div>
+        <div class="monitor-item">
+          <h4>The Quantum Reckoning</h4>
+          <p>Post-Quantum x AI Agents &bull; 2030&ndash;2035</p>
+          <span class="mi-status status-warming">&#9650; New</span>
+        </div>
+        <div class="monitor-item">
+          <h4>The Protocol Wars</h4>
+          <p>Embedded Finance x Agentic Commerce &bull; 2030&ndash;2035</p>
+          <span class="mi-status status-warming">&#9650; New</span>
+        </div>
+        <div class="monitor-item">
+          <h4>The Green Machine</h4>
+          <p>Climate Risk x Agentic Commerce &bull; 2030&ndash;2035</p>
+          <span class="mi-status status-warming">&#9650; New</span>
+        </div>
+      </div>
+
+      <div style="font-size:0.72rem; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; color:var(--text-muted); margin:20px 0 12px;">Indicator Scoring Framework</div>
+      <div class="monitor-grid">
+        <div class="monitor-item">
+          <h4>Fired</h4>
+          <p>The indicator has clearly materialised. Evidence confirmed.</p>
+          <span class="mi-status status-fired">+2 points</span>
+        </div>
+        <div class="monitor-item">
+          <h4>Warming</h4>
+          <p>Partial or directional evidence. Moving towards materialisation.</p>
+          <span class="mi-status status-warming">+1 point</span>
+        </div>
+        <div class="monitor-item">
+          <h4>Cold</h4>
+          <p>No meaningful activity detected on this indicator.</p>
+          <span class="mi-status status-cold">0 points</span>
+        </div>
+        <div class="monitor-item">
+          <h4>Counter</h4>
+          <p>Evidence suggests the opposite. Weakens scenario plausibility.</p>
+          <span class="mi-status status-fired">&minus;1 point</span>
+        </div>
+      </div>
+
+      <div style="margin-top:16px; padding:16px; background:var(--surface-alt); border-radius:8px; border:1px solid var(--border);">
+        <div style="font-size:0.72rem; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; color:var(--text-muted); margin-bottom:8px;">Plausibility Scale</div>
+        <div style="font-size:0.78rem; color:var(--text-secondary); line-height:1.8;">
+          <strong style="color:var(--red);">6+ pts</strong> = High &mdash; multiple indicators converging<br>
+          <strong style="color:var(--amber);">3&ndash;5 pts</strong> = Moderate &mdash; some movement, worth attention<br>
+          <strong style="color:var(--indigo);">0&ndash;2 pts</strong> = Low &mdash; plausible but not gaining traction<br>
+          <strong style="color:var(--text-muted);">&lt; 0 pts</strong> = Declining &mdash; consider retiring or revising
+        </div>
+      </div>
+
+      <div style="margin-top:16px;">
+        <p style="font-size:0.82rem; color:var(--text-secondary); line-height:1.5;">To run the plausibility monitor, paste the command below into Cowork.</p>
+        <div class="prompt-box" style="margin-top:8px;">
+          <button class="copy-btn" onclick="copyMonitorPrompt()">Copy</button>
+          <pre id="monitorPrompt">Run the Scenario Plausibility Monitor for this month. Review all active scenarios in foresight-trend-registry.xlsx, check leading indicators against the last 30 days of daily briefings, recalculate plausibility scores, and generate the monitor report.</pre>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="container">
+    <div class="footer-logo">Disruption <span>Watch</span> <span style="font-size:0.55em;color:#d97706;font-weight:600;letter-spacing:0;">(beta)</span></div>
+    <p>The Foresight Engine &bull; v2.0 &bull; Last updated April 2026</p>
+    <p style="margin-top:4px;">19 active trends &bull; 8 active scenarios (2 archived) &bull; 5 customer archetypes &bull; VIM + CLA scoring &bull; Wind Tunnel protocol</p>
+    <p style="margin-top:8px;"><a href="disruption-foresight-engine.html" style="color:var(--accent);text-decoration:none;font-size:0.72rem;">Read the full methodology &rarr;</a> &nbsp; <a href="index.html" style="color:var(--text-muted);text-decoration:none;font-size:0.72rem;">Back to Intelligence Hub &rarr;</a></p>
+  </div>
+</div>
+
+<script>
+// Archetype Toggle
+var activePersona = null;
+var personaNames = {sarah:'Sarah (Mass Retail)',james:'James (SME)',priya:'Priya (Corporate)',david:'David (Wealth)',margaret:'Margaret (Digitally Excluded)'};
+
+function togglePersona(name) {
+  var btns = document.querySelectorAll('.arch-btn');
+  var cards = document.querySelectorAll('.scenario-grid .scenario-card');
+
+  if (activePersona === name) {
+    // Deactivate
+    activePersona = null;
+    btns.forEach(function(b){ b.classList.remove('active'); });
+    cards.forEach(function(c){
+      c.classList.remove('dimmed','highlighted');
+      var detail = c.querySelector('[data-persona-detail]');
+      if (detail) { detail.classList.remove('visible'); detail.innerHTML = ''; }
+      c.querySelectorAll('.sc-persona-tag').forEach(function(t){ t.classList.remove('persona-highlight'); });
+    });
+    return;
+  }
+
+  activePersona = name;
+  btns.forEach(function(b){
+    b.classList.toggle('active', b.dataset.persona === name);
+  });
+
+  cards.forEach(function(card){
+    var impact = card.getAttribute('data-' + name + '-impact');
+    var text = card.getAttribute('data-' + name + '-text');
+
+    // Skip cards without persona data (placeholder)
+    if (!impact) { return; }
+
+    // Highlight or dim based on impact
+    if (impact === 'neutral') {
+      card.classList.add('dimmed');
+      card.classList.remove('highlighted');
+    } else {
+      card.classList.remove('dimmed');
+      card.classList.add('highlighted');
+    }
+
+    // Highlight the matching persona tag
+    card.querySelectorAll('.sc-persona-tag').forEach(function(tag){
+      if (tag.dataset.persona === name) {
+        tag.classList.add('persona-highlight');
+      } else {
+        tag.classList.remove('persona-highlight');
+      }
+    });
+
+    // Expand the narrative
+    var detail = card.querySelector('[data-persona-detail]');
+    if (detail && text) {
+      var impactClass = impact === 'opp' ? 'impact-opp' : impact === 'risk' ? 'impact-risk' : 'impact-neutral';
+      var impactLabel = impact === 'opp' ? 'Opportunity' : impact === 'risk' ? 'Threat' : 'Neutral';
+      detail.innerHTML = '<div class="expanded-name ' + impactClass + '">' + personaNames[name] + ' &bull; ' + impactLabel + '</div>' + text;
+      detail.classList.add('visible');
+    }
+  });
+}
+
+// Scenario Generator
+const selectedTrends = [];
+
+function toggleTrend(el) {
+  const trend = el.dataset.trend;
+  const idx = selectedTrends.indexOf(trend);
+  if (idx > -1) {
+    selectedTrends.splice(idx, 1);
+    el.classList.remove('selected');
+    el.querySelector('.tp-check').textContent = '';
+  } else if (selectedTrends.length < 2) {
+    selectedTrends.push(trend);
+    el.classList.add('selected');
+    el.querySelector('.tp-check').textContent = '\u2713';
+  }
+  document.getElementById('selectionCount').textContent = selectedTrends.length + ' of 2 selected';
+
+  // Update steps
+  const step1 = document.getElementById('step1');
+  const step2 = document.getElementById('step2');
+  const step3 = document.getElementById('step3');
+  const axisPreview = document.getElementById('axisPreview');
+  const promptStep = document.getElementById('promptStep');
+
+  if (selectedTrends.length === 2) {
+    step1.className = 'step-dot done';
+    step2.className = 'step-dot active';
+    axisPreview.classList.add('visible');
+
+    // Update axis labels
+    document.getElementById('axis1Label').textContent = 'Axis 1: ' + selectedTrends[0];
+    document.getElementById('axis2Label').textContent = 'Axis 2: ' + selectedTrends[1];
+    var a1 = shortName(selectedTrends[0]);
+    var a2 = shortName(selectedTrends[1]);
+    document.getElementById('cellHH').textContent = a1 + ' High + ' + a2 + ' High';
+    document.getElementById('cellHL').textContent = a1 + ' High + ' + a2 + ' Low';
+    document.getElementById('cellLH').textContent = a1 + ' Low + ' + a2 + ' High';
+    document.getElementById('cellLL').textContent = a1 + ' Low + ' + a2 + ' Low';
+    document.getElementById('cellHLlabel').textContent = 'Axis 1 High / Axis 2 Low';
+    document.getElementById('cellLHlabel').textContent = 'Axis 1 Low / Axis 2 High';
+
+    // Show prompt
+    step2.className = 'step-dot done';
+    step3.className = 'step-dot active';
+    promptStep.style.display = 'block';
+    document.getElementById('generatedPrompt').textContent =
+      'Run the Scenario Generator with these axes:\n\n' +
+      'Axis 1: ' + selectedTrends[0] + '\n' +
+      'Axis 2: ' + selectedTrends[1] + '\n\n' +
+      'Generate the full 2\u00d72 matrix with four named scenarios, a wild card scenario, persona impacts for all five archetypes (Sarah, James, Priya, David, Margaret), and wind tunnel analysis. Deliver HTML output.';
+  } else {
+    step1.className = 'step-dot active';
+    step2.className = 'step-dot';
+    step3.className = 'step-dot';
+    axisPreview.classList.remove('visible');
+    promptStep.style.display = 'none';
+  }
+}
+
+function shortName(trend) {
+  var map = {
+    'Autonomous AI Agents in Financial Services': 'AI Agents',
+    'Stablecoin Payment Rails': 'Stablecoins',
+    'Post-Quantum Cryptographic Migration': 'Post-Quantum',
+    'Embedded Finance 2.0': 'Embedded Finance',
+    'Climate Risk Repricing': 'Climate Risk'
+  };
+  return map[trend] || trend;
+}
+
+function copyPrompt() {
+  var text = document.getElementById('generatedPrompt').textContent;
+  navigator.clipboard.writeText(text).then(function() {
+    var btn = document.querySelector('#promptStep .copy-btn');
+    if (btn) { btn.textContent = 'Copied!'; setTimeout(function(){ btn.textContent = 'Copy'; }, 2000); }
+  });
+}
+
+function copyMonitorPrompt() {
+  var text = document.getElementById('monitorPrompt').textContent;
+  navigator.clipboard.writeText(text).then(function() {
+    var btn = document.querySelector('#monitorOverlay .copy-btn');
+    if (btn) { btn.textContent = 'Copied!'; setTimeout(function(){ btn.textContent = 'Copy'; }, 2000); }
+  });
+}
+
+function resetGenerator() {
+  selectedTrends.length = 0;
+  document.querySelectorAll('.trend-pick-row').forEach(function(r) {
+    r.classList.remove('selected');
+    r.querySelector('.tp-check').textContent = '';
+  });
+  document.getElementById('selectionCount').textContent = '0 of 2 selected';
+  document.getElementById('step1').className = 'step-dot active';
+  document.getElementById('step2').className = 'step-dot';
+  document.getElementById('step3').className = 'step-dot';
+  document.getElementById('axisPreview').classList.remove('visible');
+  document.getElementById('promptStep').style.display = 'none';
+}
+
+function openOverlay(id) {
+  document.getElementById(id).classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeOverlay(id) {
+  document.getElementById(id).classList.remove('active');
+  document.body.style.overflow = '';
+  if (id === 'scenarioOverlay') resetGenerator();
+}
+
+// Close on backdrop click
+document.querySelectorAll('.fe-overlay').forEach(function(overlay) {
+  overlay.addEventListener('click', function(e) {
+    if (e.target === overlay) closeOverlay(overlay.id);
+  });
+});
+
+// Close on Escape
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    document.querySelectorAll('.fe-overlay.active').forEach(function(o) {
+      closeOverlay(o.id);
+    });
+  }
+});
+
+// Add PDF badges to scenario cards
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('.scenario-grid .scenario-card[onclick]').forEach(function(card) {
+    var match = card.getAttribute('onclick').match(/href='([^']+)'/);
+    if (match) {
+      var badge = document.createElement('a');
+      badge.className = 'sc-pdf-btn';
+      badge.href = match[1];
+      badge.target = '_blank';
+      badge.innerHTML = '&#11123; PDF';
+      badge.title = 'Open scenario, then use Download PDF button';
+      badge.onclick = function(e) { e.stopPropagation(); };
+      card.appendChild(badge);
+    }
+  });
+});
+
+// Attach click handlers to placeholder slots
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('.sc-placeholder').forEach(function(ph) {
+    ph.style.cursor = 'pointer';
+    ph.style.transition = 'border-color 0.2s, background 0.2s';
+    ph.addEventListener('click', function() { openOverlay('scenarioOverlay'); });
+    ph.addEventListener('mouseenter', function() {
+      this.style.borderColor = 'var(--indigo)';
+      this.style.background = 'rgba(79,70,229,0.03)';
+    });
+    ph.addEventListener('mouseleave', function() {
+      this.style.borderColor = '';
+      this.style.background = '';
+    });
+  });
+});
+</script>
+</body>
+</html>

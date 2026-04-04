@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Three Things to Know Today - Disruption Watch</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #fafaf9;
+    --surface: #ffffff;
+    --surface-alt: #f5f5f4;
+    --border: #e7e5e4;
+    --text: #1c1917;
+    --text-secondary: #57534e;
+    --text-muted: #a8a29e;
+    --accent: #dc2626;
+    --accent-hover: #b91c1c;
+    --indigo: #4F46E5;
+    --purple: #7C3AED;
+    --green: #059669;
+    --red: #DC2626;
+    --cyan: #0891B2;
+    --pink: #DB2777;
+    --orange: #EA580C;
+    --teal: #0D9488;
+    --amber: #D97706;
+    --climate: #16a34a;
+    --geopolitical: #7c3aed;
+    --workforce: #be185d;
+  }
+
+  /* === NAV === */
+  .nav { border-bottom:3px solid var(--text); }
+  .nav-inner { max-width:1100px; margin:0 auto; padding:16px 24px; display:flex; align-items:center; justify-content:space-between; }
+  .nav .logo { font-family:'Playfair Display',Georgia,serif; font-size:1.5rem; font-weight:900; letter-spacing:-0.5px; color:var(--text); text-decoration:none; }
+  .nav .logo span { color:var(--indigo); }
+  .nav-links { display:flex; gap:24px; align-items:center; }
+  .nav-links a { color:var(--text-secondary); text-decoration:none; font-size:0.82rem; font-weight:600; transition:color 0.2s; }
+  .nav-links a:hover { color:var(--text); }
+  .nav-links a.active { color:var(--accent, #dc2626); }
+  .nav .edition { font-size:0.72rem; font-weight:600; text-transform:uppercase; letter-spacing:2px; color:var(--text-muted); }
+  @media (max-width:768px) { .nav-inner { flex-direction:column; gap:12px; } .nav-links { gap:16px; flex-wrap:wrap; } }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background-color: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* === HEADER === */
+  .page-header {
+    text-align: center;
+    padding: 48px 0 40px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .page-header .kicker {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    color: var(--indigo);
+    margin-bottom: 12px;
+  }
+
+  .page-header h1 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 2.2rem;
+    font-weight: 900;
+    line-height: 1.15;
+    letter-spacing: -0.5px;
+    margin-bottom: 8px;
+  }
+
+  .page-header .date {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+  }
+
+  .page-header .read-time {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-top: 4px;
+  }
+
+  /* === ITEMS === */
+  .items {
+    padding: 40px 0 48px;
+  }
+
+  .item {
+    padding: 32px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .item:first-child {
+    padding-top: 0;
+  }
+
+  .item:last-child {
+    border-bottom: none;
+  }
+
+  .item-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--indigo);
+    color: #fff;
+    font-size: 0.8rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+
+  .item h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.3rem;
+    font-weight: 800;
+    line-height: 1.3;
+    margin-bottom: 14px;
+    letter-spacing: -0.3px;
+  }
+
+  .item .body-text {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.75;
+    margin-bottom: 16px;
+  }
+
+  .item .why-matters {
+    background: var(--surface-alt);
+    border-left: 3px solid var(--indigo);
+    padding: 14px 18px;
+    border-radius: 0 6px 6px 0;
+  }
+
+  .item .why-matters strong {
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--indigo);
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .item .why-matters p {
+    font-size: 0.88rem;
+    color: var(--text-secondary);
+    line-height: 1.65;
+  }
+
+  /* === FOOTER === */
+  .page-footer {
+    padding: 32px 0 48px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+  }
+
+  .page-footer .full-briefing-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    background: var(--text);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: background 0.15s;
+  }
+
+  .page-footer .full-briefing-link:hover {
+    background: var(--indigo);
+  }
+
+  .page-footer .disclaimer {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-top: 16px;
+  }
+
+  @media (max-width: 640px) {
+    .page-header h1 { font-size: 1.6rem; }
+    .item h2 { font-size: 1.1rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="logo">Disruption <span>Watch</span> <span style="font-size:0.55em;color:#d97706;font-weight:600;letter-spacing:0;">(beta)</span></a>
+    <div class="nav-links">
+      <a href="foresight-engine.html">Foresight Engine</a>
+      <a href="disruption-radar.html">Radar</a>
+      <a href="search.html">Search</a>
+      <span class="edition">Three Things to Know</span>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="page-header">
+    <div class="kicker">The 60-Second Brief</div>
+    <h1>Three Things to Know Today</h1>
+    <div class="date" id="tt-date">4 April 2026</div>
+    <div class="read-time">1 min read</div>
+  </div>
+
+  <div class="items" id="tt-items">
+
+    <div class="item">
+      <div class="item-number">1</div>
+      <h2>Drift Protocol Suffers £216M Hack via Social Engineering, Not Code Exploit</h2>
+      <p class="body-text">North Korean threat actors extracted £216 million ($285 million) from the Solana-based DeFi platform Drift Protocol using social engineering and a fabricated token (CarbonVote), not a cryptographic vulnerability. The attack, attributed to the Lazarus Group by TRM Labs, exploited human-controlled security gates rather than technical ones, succeeding in under 20 minutes.</p>
+      <div class="why-matters">
+        <strong>Why this matters</strong>
+        <p>Financial institutions evaluating crypto-native infrastructure now face evidence that billion-pound platforms can be breached without exploiting code. Social engineering is the binding constraint on infrastructure security, not cryptography.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="item-number">2</div>
+      <h2>Only 3% of US Consumer Households Are Paying for AI Products</h2>
+      <p class="body-text">Bank of America internal data reveals that despite massive adoption of free-tier AI tools, only 3% of US households are paying subscribers to AI services. Gen Z households show 54% year-on-year spending growth, but absolute penetration remains negligible. Over 60% of businesses now allocate 5% or more of tech spending to AI.</p>
+      <div class="why-matters">
+        <strong>Why this matters</strong>
+        <p>The consumer AI revenue model remains unproven at scale. The gap between enterprise AI spending (accelerating) and consumer willingness to pay (stalling) suggests the next battleground is converting free users to paying customers.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="item-number">3</div>
+      <h2>Bank of England Flags Agentic AI Risk in Payments and Markets</h2>
+      <p class="body-text">The Bank of England's Financial Policy Committee (April 2026 record) acknowledged that agentic AI has not yet created systemic risk but warned that risks are "likely to increase, potentially rapidly". The FPC requested further work on agentic AI behaviour in payments and financial markets, signalling regulatory attention is accelerating ahead of deployment.</p>
+      <div class="why-matters">
+        <strong>Why this matters</strong>
+        <p>Central bank attention on agentic AI in payments suggests governance frameworks will be imposed before the technology matures. Institutions building agentic payment systems should anticipate pre-emptive regulatory constraints.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="page-footer">
+    <a href="strategic-daily-briefing-2026-04-04.html" class="full-briefing-link">Read the full Daily Briefing &#8594;</a>
+    <div class="disclaimer">Full briefing: Issue #34 available in the Disruption Watch hub.</div>
+  </div>
+
+</div>
+
+<script src="share-widget.js"></script>
+<script>DWShare.init();</script>
+</body>
+</html>

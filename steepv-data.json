@@ -1,0 +1,356 @@
+{
+  "collected_at": "2026-04-04T09:56:33.985080Z",
+  "fx_rate": {
+    "gbp_usd": 0.7576,
+    "eur_usd": 0.8674,
+    "source": "open.er-api.com",
+    "timestamp": "2026-04-04T09:56:16.374757Z"
+  },
+  "collection_summary": {
+    "total_sources": 9,
+    "successful": 7,
+    "failed": 2
+  },
+  "sources": {
+    "carbon_intensity": {
+      "status": "ok",
+      "collected_at": "2026-04-04T09:56:17.017781Z",
+      "actual_gco2_kwh": 99,
+      "forecast_gco2_kwh": 98,
+      "index": "moderate",
+      "renewable_pct": 40.2,
+      "generation_mix": {
+        "biomass": 4.2,
+        "coal": 0,
+        "imports": 22.1,
+        "gas": 17.1,
+        "nuclear": 20.6,
+        "other": 0,
+        "hydro": 0,
+        "solar": 13.2,
+        "wind": 22.8
+      },
+      "lens": "Climate & Energy Transition",
+      "steepv": "Environmental"
+    },
+    "coingecko": {
+      "status": "ok",
+      "collected_at": "2026-04-04T09:56:17.541891Z",
+      "total_crypto_market_cap_gbp": 1807459582760,
+      "total_crypto_market_cap_usd": 2385770304593,
+      "stablecoin_market_cap_gbp": 215020268704,
+      "stablecoin_market_cap_usd": 283817672524,
+      "active_cryptocurrencies": 17839,
+      "top_stablecoins": [
+        {
+          "name": "Tether",
+          "symbol": "USDT",
+          "market_cap_gbp": 139501347704
+        },
+        {
+          "name": "USDC",
+          "symbol": "USDC",
+          "market_cap_gbp": 58738852430
+        },
+        {
+          "name": "USDS",
+          "symbol": "USDS",
+          "market_cap_gbp": 8946576402
+        },
+        {
+          "name": "Ethena USDe",
+          "symbol": "USDE",
+          "market_cap_gbp": 4458783734
+        },
+        {
+          "name": "Dai",
+          "symbol": "DAI",
+          "market_cap_gbp": 3374708434
+        }
+      ],
+      "lens": "Digital Markets & Assets",
+      "steepv": "Technological"
+    },
+    "arxiv": {
+      "status": "ok",
+      "collected_at": "2026-04-04T09:56:17.871885Z",
+      "ai_papers_total": 170280,
+      "quantum_papers_total": 176856,
+      "crypto_papers_total": 46897,
+      "lens": "AI & Agents; Quantum & Compute; Digital Trust",
+      "steepv": "Technological"
+    },
+    "world_bank": {
+      "status": "ok",
+      "collected_at": "2026-04-04T09:56:18.168257Z",
+      "gdp_growth_pct": {
+        "CN": {
+          "2024": 4.98,
+          "2023": 5.41
+        },
+        "DE": {
+          "2024": -0.5,
+          "2023": -0.87
+        },
+        "GB": {
+          "2024": 1.13,
+          "2023": 0.27
+        },
+        "US": {
+          "2024": 2.79,
+          "2023": 2.89
+        }
+      },
+      "lens": "Business Finance & Policy; Geopolitical Realignment",
+      "steepv": "Economic"
+    },
+    "github_trending": {
+      "status": "ok",
+      "collected_at": "2026-04-04T09:56:18.650852Z",
+      "total_new_repos_100stars": 257,
+      "top_repos": [
+        {
+          "name": "ultraworkers/claw-code",
+          "stars": 164234,
+          "language": "Rust",
+          "description": "[Notice] The repo temporarily locked while ownership transfer. in the meantime we maintain on here: https://github.com/u"
+        },
+        {
+          "name": "claude-code-best/claude-code",
+          "stars": 13258,
+          "language": "TypeScript",
+          "description": "\u539f\u6c41\u539f\u6627 Claude Code \u53ef\u8fd0\u884c,\u53ef\u6784\u5efa, \u53ef\u8c03\u8bd5\u7248; Typescript \u7c7b\u578b\u5168\u4fee\u590d; \u4f01\u4e1a\u7ea7\u53ef\u9760\u6027; \u5b89\u5168\u65e0\u6bd2, lock \u6587\u4ef6\u4fdd\u771f, \u53ef\u76f4\u63a5 bun i; bun run dev \u542f\u52a8"
+        },
+        {
+          "name": "Gitlawb/openclaude",
+          "stars": 12914,
+          "language": "TypeScript",
+          "description": "Open Claude Is Open-source coding-agent CLI for OpenAI, Gemini, DeepSeek, Ollama, Codex, GitHub Models, and 200+ models "
+        },
+        {
+          "name": "openai/codex-plugin-cc",
+          "stars": 11432,
+          "language": "JavaScript",
+          "description": "Use Codex from Claude Code to review code or delegate tasks."
+        },
+        {
+          "name": "sanbuphy/learn-coding-agent",
+          "stars": 11212,
+          "language": null,
+          "description": "Research on Coding Agents"
+        },
+        {
+          "name": "ChinaSiro/claude-code-sourcemap",
+          "stars": 8325,
+          "language": "TypeScript",
+          "description": ""
+        },
+        {
+          "name": "Kuberwastaken/claurst",
+          "stars": 7907,
+          "language": "Rust",
+          "description": "Your favorite Terminal Coding Agent, now in Rust & a Breakdown of the Claude Code leak & discoveries"
+        },
+        {
+          "name": "titanwings/colleague-skill",
+          "stars": 6784,
+          "language": "Python",
+          "description": "\u5c06\u51b0\u51b7\u7684\u79bb\u522b\u5316\u4e3a\u6e29\u6696\u7684 Skill\uff0c\u6b22\u8fce\u52a0\u5165\u6570\u5b57\u751f\u547d1.0\uff01Transforming cold farewells into warm skills? It's giving rebirth era. Welcome to Digital "
+        },
+        {
+          "name": "emdash-cms/emdash",
+          "stars": 6606,
+          "language": "TypeScript",
+          "description": "EmDash is a full-stack TypeScript CMS based on Astro; the spiritual successor to WordPress"
+        },
+        {
+          "name": "VoltAgent/awesome-design-md",
+          "stars": 5581,
+          "language": "HTML",
+          "description": "Collection of DESIGN.md files that capture design systems from popular websites. Drop one into your project and let codi"
+        }
+      ],
+      "ai_related_count": 5,
+      "crypto_related_count": 1,
+      "lens": "AI & Agents; Digital Markets & Assets",
+      "steepv": "Technological"
+    },
+    "parliament": {
+      "status": "error",
+      "error": "The read operation timed out"
+    },
+    "gdelt": {
+      "status": "error",
+      "error": "HTTP Error 429: Too Many Requests"
+    },
+    "hacker_news": {
+      "status": "ok",
+      "collected_at": "2026-04-04T09:56:33.641901Z",
+      "stories_analysed": 30,
+      "ai_stories": 6,
+      "quantum_stories": 0,
+      "crypto_stories": 0,
+      "fintech_stories": 0,
+      "top_stories": [
+        {
+          "title": "Tell HN: Anthropic no longer allowing Claude Code subscriptions to use OpenClaw",
+          "score": 680,
+          "url": ""
+        },
+        {
+          "title": "Artemis II crew take \u201cspectacular\u201d image of Earth",
+          "score": 762,
+          "url": "https://www.bbc.com/news/articles/ce8jzr423p9o"
+        },
+        {
+          "title": "Some Unusual Trees",
+          "score": 10,
+          "url": "https://thoughts.wyounas.com/p/some-unusual-trees"
+        },
+        {
+          "title": "iNaturalist",
+          "score": 424,
+          "url": "https://www.inaturalist.org/"
+        },
+        {
+          "title": "OpenClaw privilege escalation vulnerability",
+          "score": 367,
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-33579"
+        },
+        {
+          "title": "Herbie: Automatically improve imprecise floating point formulas",
+          "score": 120,
+          "url": "https://herbie.uwplse.org/doc/latest/tutorial.html"
+        },
+        {
+          "title": "Delve removed from Y Combinator",
+          "score": 297,
+          "url": "https://www.ycombinator.com/companies/delve"
+        },
+        {
+          "title": "Run Linux containers on Android, no root required",
+          "score": 123,
+          "url": "https://github.com/ExTV/Podroid"
+        },
+        {
+          "title": "What changes when you turn a Linux box into a router",
+          "score": 177,
+          "url": "https://patrickmccanna.net/7-configuration-changes-that-turn-a-multi-homed-host-into-a-switch-router/"
+        },
+        {
+          "title": "Improving my focus by giving up my big monitor",
+          "score": 94,
+          "url": "https://ounapuu.ee/posts/2026/04/01/focus/"
+        }
+      ],
+      "lens": "Technology signal velocity",
+      "steepv": "Technological"
+    },
+    "ons": {
+      "status": "ok",
+      "collected_at": "2026-04-04T09:56:33.984846Z",
+      "datasets_available": 337,
+      "sample_datasets": [
+        {
+          "id": "wellbeing-quarterly",
+          "title": "Quarterly personal well-being estimates"
+        },
+        {
+          "id": "wellbeing-local-authority",
+          "title": "Personal well-being estimates by local authority"
+        },
+        {
+          "id": "weekly-deaths-region",
+          "title": "Deaths registered weekly in England and Wales by region"
+        },
+        {
+          "id": "weekly-deaths-local-authority",
+          "title": "Death registrations and occurrences by local authority and place of death"
+        },
+        {
+          "id": "weekly-deaths-health-board",
+          "title": "Death registrations and occurrences by health board and place of death"
+        }
+      ],
+      "lens": "Consumer; Workforce & Talent",
+      "steepv": "Social",
+      "note": "ONS provides detailed UK employment, consumer, and demographic data. Specific indicators require deeper API queries."
+    }
+  },
+  "trend_anchors": {
+    "T-002": {
+      "trend": "Stablecoin Payment Rails",
+      "velocity_anchor": "Stablecoin market cap: \u00a3215B (CoinGecko)",
+      "data_points": [
+        "coingecko"
+      ]
+    },
+    "T-010": {
+      "trend": "Crypto-TradFi Infrastructure Convergence",
+      "velocity_anchor": "Total crypto market cap: \u00a31.81T",
+      "data_points": [
+        "coingecko"
+      ]
+    },
+    "T-003": {
+      "trend": "Post-Quantum Cryptographic Migration",
+      "velocity_anchor": "176856 quantum physics papers on arXiv",
+      "data_points": [
+        "arxiv"
+      ]
+    },
+    "T-013": {
+      "trend": "AI Coding Tool Vertical Integration",
+      "velocity_anchor": "170280 AI papers on arXiv",
+      "data_points": [
+        "arxiv"
+      ]
+    },
+    "T-005": {
+      "trend": "Climate Risk Repricing",
+      "velocity_anchor": "UK grid: 99 gCO2/kWh, 40.2% renewable",
+      "data_points": [
+        "carbon_intensity"
+      ]
+    },
+    "T-014": {
+      "trend": "Enterprise AI Agent Procurement",
+      "velocity_anchor": "5/10 top trending repos are AI-related",
+      "data_points": [
+        "github_trending"
+      ]
+    }
+  },
+  "steepv_summary": {
+    "social": {
+      "signal_count": 1,
+      "direction": "active",
+      "top_signal": ""
+    },
+    "technological": {
+      "signal_count": 4,
+      "direction": "active",
+      "top_signal": "AI papers: 170280"
+    },
+    "economic": {
+      "signal_count": 1,
+      "direction": "active",
+      "top_signal": ""
+    },
+    "environmental": {
+      "signal_count": 1,
+      "direction": "active",
+      "top_signal": "UK grid: 99 gCO2/kWh"
+    },
+    "political": {
+      "signal_count": 0,
+      "direction": "unavailable",
+      "top_signal": ""
+    },
+    "values": {
+      "signal_count": 0,
+      "direction": "unavailable",
+      "top_signal": "No dedicated values source in Wave 1"
+    }
+  }
+}

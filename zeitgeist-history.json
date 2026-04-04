@@ -1,0 +1,1272 @@
+{
+  "metadata": {
+    "extraction_date": "2026-03-19",
+    "total_files": 19,
+    "total_lenses": 12,
+    "date_range": "Feb 26 - Mar 17, 2026"
+  },
+  "scores_by_date": {
+    "2026-02-26": {
+      "AI & AGENTS": {
+        "trend": "ESCALATING",
+        "score": 7
+      },
+      "QUANTUM & COMPUTE": {
+        "trend": "ACCELERATING",
+        "score": 5
+      },
+      "DIGITAL MARKETS & ASSETS": {
+        "trend": "STRENGTHENING",
+        "score": 5
+      },
+      "DIGITAL TRUST": {
+        "trend": "ESCALATING",
+        "score": 8
+      },
+      "INTERFACE & SPATIAL": {
+        "trend": "STRENGTHENING",
+        "score": 7
+      },
+      "BIO-HUMAN": {
+        "trend": "ESCALATING",
+        "score": 9
+      },
+      "BUSINESS, FINANCE & POLICY": {
+        "trend": "ESCALATING",
+        "score": 8
+      },
+      "CONSUMER": {
+        "trend": "STRENGTHENING",
+        "score": 6
+      },
+      "HORIZON SCANNER": {
+        "trend": "NET NEW",
+        "score": 4
+      }
+    },
+    "2026-02-27": {
+      "AI & AGENTS": {
+        "trend": "ACCELERATING",
+        "score": 4
+      },
+      "QUANTUM & COMPUTE": {
+        "trend": "NET NEW",
+        "score": 5
+      },
+      "DIGITAL MARKETS & ASSETS": {
+        "trend": "STRENGTHENING",
+        "score": 5
+      },
+      "DIGITAL TRUST": {
+        "trend": "ESCALATING",
+        "score": 8
+      },
+      "INTERFACE & SPATIAL": {
+        "trend": "ACCELERATING",
+        "score": 6
+      },
+      "BIO-HUMAN": {
+        "trend": "NET NEW",
+        "score": 5
+      },
+      "BUSINESS FINANCE & POLICY": {
+        "trend": "STRENGTHENING",
+        "score": 4
+      },
+      "CONSUMER": {
+        "trend": "ACCELERATING",
+        "score": 5
+      },
+      "HORIZON SCANNER": {
+        "trend": "ESCALATING",
+        "score": 8
+      }
+    },
+    "2026-02-28": {
+      "AI & AGENTS": {
+        "trend": "ACCELERATING",
+        "score": 4
+      },
+      "QUANTUM & COMPUTE": {
+        "trend": "ESCALATING",
+        "score": 9
+      },
+      "DIGITAL MARKETS & ASSETS": {
+        "trend": "ACCELERATING",
+        "score": 4
+      },
+      "DIGITAL TRUST": {
+        "trend": "ESCALATING",
+        "score": 8
+      },
+      "INTERFACE & SPATIAL": {
+        "trend": "STRENGTHENING",
+        "score": 7
+      },
+      "BIO-HUMAN": {
+        "trend": "ACCELERATING",
+        "score": 5
+      },
+      "BUSINESS FINANCE & POLICY": {
+        "trend": "ESCALATING",
+        "score": 7
+      },
+      "CONSUMER": {
+        "trend": "STRENGTHENING",
+        "score": 6
+      },
+      "HORIZON SCANNER": {
+        "trend": "NET NEW",
+        "score": 4
+      }
+    },
+    "2026-03-02": {
+      "AI & AGENTS": {
+        "trend": "ESCALATING",
+        "score": 7
+      },
+      "QUANTUM & COMPUTE": {
+        "trend": "ACCELERATING",
+        "score": 5
+      },
+      "DIGITAL MARKETS & ASSETS": {
+        "trend": "NET NEW",
+        "score": 4
+      },
+      "DIGITAL TRUST": {
+        "trend": "ESCALATING",
+        "score": 8
+      },
+      "INTERFACE & SPATIAL": {
+        "trend": "STRENGTHENING",
+        "score": 7
+      },
+      "BIO-HUMAN": {
+        "trend": "ACCELERATING",
+        "score": 5
+      },
+      "BUSINESS FINANCE & POLICY": {
+        "trend": "ESCALATING",
+        "score": 7
+      },
+      "CONSUMER": {
+        "trend": "STRENGTHENING",
+        "score": 6
+      },
+      "HORIZON SCANNER": {
+        "trend": "NET NEW",
+        "score": 4
+      }
+    },
+    "2026-03-03": {
+      "AI & AGENTS": {
+        "trend": "STEADY",
+        "score": 3
+      },
+      "QUANTUM & COMPUTE": {
+        "trend": "STEADY",
+        "score": 4
+      },
+      "DIGITAL MARKETS & ASSETS": {
+        "trend": "STEADY",
+        "score": 3
+      },
+      "DIGITAL TRUST": {
+        "trend": "STEADY",
+        "score": 3
+      },
+      "INTERFACE & SPATIAL": {
+        "trend": "STEADY",
+        "score": 5
+      },
+      "BIO-HUMAN": {
+        "trend": "STEADY",
+        "score": 4
+      },
+      "BUSINESS FINANCE & POLICY": {
+        "trend": "STEADY",
+        "score": 3
+      },
+      "CONSUMER": {
+        "trend": "STEADY",
+        "score": 4
+      },
+      "HORIZON SCANNER": {
+        "trend": "STEADY",
+        "score": 4
+      }
+    },
+    "2026-03-04": {
+      "AI & AGENTS": {
+        "trend": "STEADY",
+        "score": 3
+      },
+      "QUANTUM & COMPUTE": {
+        "trend": "STEADY",
+        "score": 4
+      },
+      "DIGITAL MARKETS & ASSETS": {
+        "trend": "STEADY",
+        "score": 3
+      },
+      "DIGITAL TRUST": {
+        "trend": "STEADY",
+        "score": 3
+      },
+      "INTERFACE & SPATIAL": {
+        "trend": "STEADY",
+        "score": 5
+      },
+      "BIO-HUMAN": {
+        "trend": "STEADY",
+        "score": 4
+      },
+      "BUSINESS FINANCE & POLICY": {
+        "trend": "STEADY",
+        "score": 3
+      },
+      "CONSUMER": {
+        "trend": "STEADY",
+        "score": 4
+      },
+      "HORIZON SCANNER": {
+        "trend": "STEADY",
+        "score": 4
+      }
+    },
+    "2026-03-05": {
+      "AI & AGENTS": {
+        "trend": "STEADY",
+        "score": 3
+      },
+      "QUANTUM & COMPUTE": {
+        "trend": "STEADY",
+        "score": 4
+      },
+      "DIGITAL MARKETS & ASSETS": {
+        "trend": "STEADY",
+        "score": 3
+      },
+      "DIGITAL TRUST": {
+        "trend": "STEADY",
+        "score": 3
+      },
+      "INTERFACE & SPATIAL": {
+        "trend": "STEADY",
+        "score": 5
+      },
+      "BIO-HUMAN": {
+        "trend": "STEADY",
+        "score": 4
+      },
+      "BUSINESS FINANCE & POLICY": {
+        "trend": "STEADY",
+        "score": 3
+      },
+      "CONSUMER": {
+        "trend": "STEADY",
+        "score": 4
+      },
+      "HORIZON SCANNER": {
+        "trend": "STEADY",
+        "score": 4
+      }
+    },
+    "2026-03-06": {
+      "AI & AGENTS": {
+        "trend": "HOT",
+        "score": 7
+      },
+      "QUANTUM & COMPUTE": {
+        "trend": "HEATING",
+        "score": 4
+      },
+      "DIGITAL MARKETS & ASSETS": {
+        "trend": "HOT",
+        "score": 6
+      },
+      "DIGITAL TRUST": {
+        "trend": "HOT",
+        "score": 8
+      },
+      "INTERFACE & SPATIAL": {
+        "trend": "HEATING",
+        "score": 6
+      },
+      "BIO-HUMAN": {
+        "trend": "COOLING",
+        "score": 4
+      },
+      "BUSINESS FINANCE & POLICY": {
+        "trend": "HOT",
+        "score": 5
+      },
+      "CONSUMER": {
+        "trend": "HEATING",
+        "score": 4
+      },
+      "HORIZON SCANNER": {
+        "trend": "NEW",
+        "score": 5
+      }
+    },
+    "2026-03-07": {
+      "AI & AGENTS": {
+        "trend": "HOT",
+        "score": 7
+      },
+      "QUANTUM & COMPUTE": {
+        "trend": "HEATING",
+        "score": 4
+      },
+      "DIGITAL MARKETS & ASSETS": {
+        "trend": "HOT",
+        "score": 8
+      },
+      "DIGITAL TRUST": {
+        "trend": "HOT",
+        "score": 5
+      },
+      "INTERFACE & SPATIAL": {
+        "trend": "HEATING",
+        "score": 5
+      },
+      "BIO-HUMAN": {
+        "trend": "HEATING",
+        "score": 5
+      },
+      "BUSINESS FINANCE & POLICY": {
+        "trend": "HOT",
+        "score": 5
+      },
+      "CONSUMER": {
+        "trend": "HEATING",
+        "score": 4
+      },
+      "HORIZON SCANNER": {
+        "trend": "NEW",
+        "score": 5
+      }
+    },
+    "2026-03-09": {
+      "AI & AGENTS": {
+        "trend": "HOT",
+        "score": 5
+      },
+      "QUANTUM & COMPUTE": {
+        "trend": "HOT",
+        "score": 8
+      },
+      "DIGITAL MARKETS & ASSETS": {
+        "trend": "HEATING",
+        "score": 5
+      },
+      "DIGITAL TRUST": {
+        "trend": "HOT",
+        "score": 8
+      },
+      "INTERFACE & SPATIAL": {
+        "trend": "COOLING",
+        "score": 4
+      },
+      "BIO-HUMAN": {
+        "trend": "HEATING",
+        "score": 4
+      },
+      "BUSINESS FINANCE & POLICY": {
+        "trend": "HOT",
+        "score": 7
+      },
+      "CONSUMER": {
+        "trend": "COOLING",
+        "score": 3
+      },
+      "HORIZON SCANNER": {
+        "trend": "HOT",
+        "score": 8
+      }
+    },
+    "2026-03-10": {
+      "AI & AGENTS": {
+        "trend": "HOT",
+        "score": 7
+      },
+      "QUANTUM & COMPUTE": {
+        "trend": "HEATING",
+        "score": 5
+      },
+      "DIGITAL MARKETS & ASSETS": {
+        "trend": "HEATING",
+        "score": 4
+      },
+      "DIGITAL TRUST": {
+        "trend": "HOT",
+        "score": 8
+      },
+      "INTERFACE & SPATIAL": {
+        "trend": "HEATING",
+        "score": 5
+      },
+      "BIO-HUMAN": {
+        "trend": "HEATING",
+        "score": 4
+      },
+      "BUSINESS FINANCE & POLICY": {
+        "trend": "HOT",
+        "score": 5
+      },
+      "CONSUMER": {
+        "trend": "HEATING",
+        "score": 5
+      },
+      "HORIZON SCANNER": {
+        "trend": "HEATING",
+        "score": 5
+      }
+    },
+    "2026-03-11": {
+      "AI & AGENTS": {
+        "trend": "HOT",
+        "score": 7
+      },
+      "QUANTUM & COMPUTE": {
+        "trend": "HEATING",
+        "score": 5
+      },
+      "DIGITAL MARKETS & ASSETS": {
+        "trend": "HEATING",
+        "score": 5
+      },
+      "DIGITAL TRUST": {
+        "trend": "HOT",
+        "score": 8
+      },
+      "INTERFACE & SPATIAL": {
+        "trend": "HEATING",
+        "score": 6
+      },
+      "BIO-HUMAN": {
+        "trend": "HEATING",
+        "score": 4
+      },
+      "BUSINESS FINANCE & POLICY": {
+        "trend": "HOT",
+        "score": 7
+      },
+      "CONSUMER": {
+        "trend": "HEATING",
+        "score": 5
+      },
+      "HORIZON SCANNER": {
+        "trend": "HOT",
+        "score": 7
+      },
+      "CLIMATE & ENERGY TRANSITION": {
+        "trend": "HEATING",
+        "score": 4
+      },
+      "GEOPOLITICAL REALIGNMENT": {
+        "trend": "HOT",
+        "score": 5
+      },
+      "WORKFORCE & TALENT": {
+        "trend": "HEATING",
+        "score": 5
+      }
+    },
+    "2026-03-12": {
+      "AI & AGENTS": {
+        "trend": "HOT",
+        "score": 7
+      },
+      "QUANTUM & COMPUTE": {
+        "trend": "HEATING",
+        "score": 5
+      },
+      "DIGITAL MARKETS & ASSETS": {
+        "trend": "HOT",
+        "score": 6
+      },
+      "DIGITAL TRUST": {
+        "trend": "HOT",
+        "score": 5
+      },
+      "INTERFACE & SPATIAL": {
+        "trend": "HEATING",
+        "score": 5
+      },
+      "BIO-HUMAN": {
+        "trend": "HEATING",
+        "score": 4
+      },
+      "BUSINESS FINANCE & POLICY": {
+        "trend": "HOT",
+        "score": 5
+      },
+      "CONSUMER": {
+        "trend": "HEATING",
+        "score": 6
+      },
+      "HORIZON SCANNER": {
+        "trend": "HOT",
+        "score": 5
+      },
+      "CLIMATE & ENERGY TRANSITION": {
+        "trend": "HEATING",
+        "score": 5
+      },
+      "GEOPOLITICAL REALIGNMENT": {
+        "trend": "HOT",
+        "score": 6
+      },
+      "WORKFORCE & TALENT": {
+        "trend": "HEATING",
+        "score": 5
+      }
+    },
+    "2026-03-13": {
+      "AI & AGENTS": {
+        "trend": "HOT",
+        "score": 7
+      },
+      "QUANTUM & COMPUTE": {
+        "trend": "HEATING",
+        "score": 4
+      },
+      "DIGITAL MARKETS & ASSETS": {
+        "trend": "HOT",
+        "score": 6
+      },
+      "DIGITAL TRUST": {
+        "trend": "HOT",
+        "score": 5
+      },
+      "INTERFACE & SPATIAL": {
+        "trend": "HEATING",
+        "score": 6
+      },
+      "BIO-HUMAN": {
+        "trend": "HEATING",
+        "score": 4
+      },
+      "BUSINESS FINANCE & POLICY": {
+        "trend": "HOT",
+        "score": 7
+      },
+      "CONSUMER": {
+        "trend": "HEATING",
+        "score": 5
+      },
+      "HORIZON SCANNER": {
+        "trend": "HOT",
+        "score": 5
+      },
+      "CLIMATE & ENERGY TRANSITION": {
+        "trend": "HOT",
+        "score": 7
+      },
+      "GEOPOLITICAL REALIGNMENT": {
+        "trend": "HOT",
+        "score": 6
+      },
+      "WORKFORCE & TALENT": {
+        "trend": "HEATING",
+        "score": 5
+      }
+    },
+    "2026-03-14": {
+      "AI & AGENTS": {
+        "trend": "HOT",
+        "score": 7
+      },
+      "QUANTUM & COMPUTE": {
+        "trend": "DORMANT",
+        "score": 4
+      },
+      "DIGITAL MARKETS & ASSETS": {
+        "trend": "HOT",
+        "score": 6
+      },
+      "DIGITAL TRUST": {
+        "trend": "HOT",
+        "score": 5
+      },
+      "INTERFACE & SPATIAL": {
+        "trend": "DORMANT",
+        "score": 4
+      },
+      "BIO-HUMAN": {
+        "trend": "HEATING",
+        "score": 4
+      },
+      "BUSINESS FINANCE & POLICY": {
+        "trend": "HOT",
+        "score": 7
+      },
+      "CONSUMER": {
+        "trend": "HEATING",
+        "score": 5
+      },
+      "HORIZON SCANNER": {
+        "trend": "HEATING",
+        "score": 5
+      },
+      "CLIMATE & ENERGY TRANSITION": {
+        "trend": "HOT",
+        "score": 8
+      },
+      "GEOPOLITICAL REALIGNMENT": {
+        "trend": "HOT",
+        "score": 10
+      },
+      "WORKFORCE & TALENT": {
+        "trend": "HEATING",
+        "score": 5
+      }
+    },
+    "2026-03-16": {
+      "AI & AGENTS": {
+        "trend": "HOT",
+        "score": 7
+      },
+      "QUANTUM & COMPUTE": {
+        "trend": "HEATING",
+        "score": 4
+      },
+      "DIGITAL MARKETS & ASSETS": {
+        "trend": "HOT",
+        "score": 8
+      },
+      "DIGITAL TRUST": {
+        "trend": "HOT",
+        "score": 8
+      },
+      "INTERFACE & SPATIAL": {
+        "trend": "DORMANT",
+        "score": 4
+      },
+      "BIO-HUMAN": {
+        "trend": "HEATING",
+        "score": 4
+      },
+      "BUSINESS FINANCE & POLICY": {
+        "trend": "HOT",
+        "score": 7
+      },
+      "CONSUMER": {
+        "trend": "HEATING",
+        "score": 6
+      },
+      "HORIZON SCANNER": {
+        "trend": "HEATING",
+        "score": 5
+      },
+      "CLIMATE & ENERGY TRANSITION": {
+        "trend": "HOT",
+        "score": 8
+      },
+      "GEOPOLITICAL REALIGNMENT": {
+        "trend": "HOT",
+        "score": 10
+      },
+      "WORKFORCE & TALENT": {
+        "trend": "HEATING",
+        "score": 5
+      }
+    },
+    "2026-03-17": {
+      "AI & AGENTS": {
+        "trend": "HOT",
+        "score": 7
+      },
+      "QUANTUM & COMPUTE": {
+        "trend": "HEATING",
+        "score": 5
+      },
+      "DIGITAL MARKETS & ASSETS": {
+        "trend": "HOT",
+        "score": 8
+      },
+      "DIGITAL TRUST": {
+        "trend": "HOT",
+        "score": 5
+      },
+      "INTERFACE & SPATIAL": {
+        "trend": "HEATING",
+        "score": 6
+      },
+      "BIO-HUMAN": {
+        "trend": "HEATING",
+        "score": 5
+      },
+      "BUSINESS FINANCE & POLICY": {
+        "trend": "HOT",
+        "score": 7
+      },
+      "CONSUMER": {
+        "trend": "HEATING",
+        "score": 5
+      },
+      "HORIZON SCANNER": {
+        "trend": "HEATING",
+        "score": 5
+      },
+      "CLIMATE & ENERGY TRANSITION": {
+        "trend": "HOT",
+        "score": 7
+      },
+      "GEOPOLITICAL REALIGNMENT": {
+        "trend": "HOT",
+        "score": 10
+      },
+      "WORKFORCE & TALENT": {
+        "trend": "HOT",
+        "score": 6
+      }
+    },
+    "2026-03-18": {
+      "AI & AGENTS": {
+        "trend": "HOT",
+        "score": 7
+      },
+      "QUANTUM & COMPUTE": {
+        "trend": "HEATING",
+        "score": 7
+      },
+      "DIGITAL MARKETS & ASSETS": {
+        "trend": "HOT",
+        "score": 8
+      },
+      "DIGITAL TRUST": {
+        "trend": "HOT",
+        "score": 5
+      },
+      "INTERFACE & SPATIAL": {
+        "trend": "HEATING",
+        "score": 7
+      },
+      "BIO-HUMAN": {
+        "trend": "HEATING",
+        "score": 8
+      },
+      "BUSINESS, FINANCE & POLICY": {
+        "trend": "HEATING",
+        "score": 4
+      },
+      "CONSUMER": {
+        "trend": "STRENGTHENING",
+        "score": 5
+      },
+      "LEFT FIELD": {
+        "trend": "HOT",
+        "score": 5
+      },
+      "CLIMATE & ENERGY TRANSITION": {
+        "trend": "STRENGTHENING",
+        "score": 4
+      },
+      "GEOPOLITICAL REALIGNMENT": {
+        "trend": "HOT",
+        "score": 4
+      },
+      "WORKFORCE & TALENT": {
+        "trend": "HEATING",
+        "score": 5
+      }
+    },
+    "2026-03-19": {
+      "AI & AGENTS": {
+        "trend": "ESCALATING",
+        "score": 7
+      },
+      "QUANTUM & COMPUTE": {
+        "trend": "ESCALATING",
+        "score": 8
+      },
+      "DIGITAL MARKETS & ASSETS": {
+        "trend": "ESCALATING",
+        "score": 8
+      },
+      "DIGITAL TRUST": {
+        "trend": "ESCALATING",
+        "score": 5
+      },
+      "INTERFACE & SPATIAL": {
+        "trend": "STRENGTHENING",
+        "score": 7
+      },
+      "BIO-HUMAN": {
+        "trend": "ESCALATING",
+        "score": 8
+      },
+      "BUSINESS, FINANCE & POLICY": {
+        "trend": "ESCALATING",
+        "score": 5
+      },
+      "CONSUMER": {
+        "trend": "STRENGTHENING",
+        "score": 5
+      },
+      "LEFT FIELD": {
+        "trend": "STRENGTHENING",
+        "score": 5
+      },
+      "CLIMATE & ENERGY TRANSITION": {
+        "trend": "ESCALATING",
+        "score": 5
+      },
+      "GEOPOLITICAL REALIGNMENT": {
+        "trend": "ESCALATING",
+        "score": 5
+      },
+      "WORKFORCE & TALENT": {
+        "trend": "STRENGTHENING",
+        "score": 5
+      }
+    },
+    "2026-03-20": {
+      "AI & AGENTS": {
+        "trend": "HOT",
+        "score": 7
+      },
+      "QUANTUM & COMPUTE": {
+        "trend": "HEATING",
+        "score": 5
+      },
+      "DIGITAL MARKETS & ASSETS": {
+        "trend": "HOT",
+        "score": 8
+      },
+      "DIGITAL TRUST": {
+        "trend": "HOT",
+        "score": 5
+      },
+      "INTERFACE & SPATIAL": {
+        "trend": "HEATING",
+        "score": 6
+      },
+      "BIO-HUMAN": {
+        "trend": "HEATING",
+        "score": 5
+      },
+      "BUSINESS, FINANCE & POLICY": {
+        "trend": "HOT",
+        "score": 5
+      },
+      "CONSUMER": {
+        "trend": "HEATING",
+        "score": 5
+      },
+      "LEFT FIELD": {
+        "trend": "HEATING",
+        "score": 5
+      },
+      "CLIMATE & ENERGY TRANSITION": {
+        "trend": "HEATING",
+        "score": 4
+      },
+      "GEOPOLITICAL REALIGNMENT": {
+        "trend": "HOT",
+        "score": 5
+      },
+      "WORKFORCE & TALENT": {
+        "trend": "HOT",
+        "score": 6
+      }
+    },
+    "2026-03-21": null,
+    "2026-03-22": null,
+    "2026-03-23": null,
+    "2026-03-24": null,
+    "2026-03-25": null,
+    "2026-03-26": null,
+    "2026-03-27": null,
+    "2026-03-28": {
+      "AI & AGENTS": {
+        "trend": "ESCALATING",
+        "score": 7
+      },
+      "QUANTUM & COMPUTE": {
+        "trend": "DORMANT",
+        "score": 2
+      },
+      "DIGITAL MARKETS & ASSETS": {
+        "trend": "ESCALATING",
+        "score": 6
+      },
+      "DIGITAL TRUST": {
+        "trend": "ESCALATING",
+        "score": 6
+      },
+      "INTERFACE & SPATIAL": {
+        "trend": "COOLING",
+        "score": 3
+      },
+      "BIO-HUMAN": {
+        "trend": "DORMANT",
+        "score": 2
+      },
+      "BUSINESS, FINANCE & POLICY": {
+        "trend": "ESCALATING",
+        "score": 8
+      },
+      "CONSUMER": {
+        "trend": "STRENGTHENING",
+        "score": 5
+      },
+      "LEFT FIELD": {
+        "trend": "HEATING",
+        "score": 4
+      },
+      "CLIMATE & ENERGY TRANSITION": {
+        "trend": "STRENGTHENING",
+        "score": 5
+      },
+      "GEOPOLITICAL REALIGNMENT": {
+        "trend": "ESCALATING",
+        "score": 7
+      },
+      "WORKFORCE & TALENT": {
+        "trend": "ESCALATING",
+        "score": 6
+      }
+    },
+    "2026-03-29": {
+      "AI & Agents": 7,
+      "Quantum & Compute": 2,
+      "Digital Markets & Assets": 7,
+      "Digital Trust": 6,
+      "Interface & Spatial": 3,
+      "Bio-Human": 3,
+      "Business Finance & Policy": 6,
+      "Consumer": 5,
+      "Left Field": 4,
+      "Climate & Energy": 6,
+      "Geopolitical Realignment": 7,
+      "Workforce & Talent": 5
+    },
+    "2026-03-30": null
+  },
+  "analysis": [
+    {
+      "lens": "AI & Agents",
+      "seven_day_average": 4,
+      "mar6_score": 7,
+      "mar6_status": "HOT",
+      "change_from_average": 2.57,
+      "direction": "\u2191 UP",
+      "previous_7_day_scores": [
+        7,
+        4,
+        4,
+        7,
+        3,
+        3,
+        3
+      ]
+    },
+    {
+      "lens": "Quantum & Compute",
+      "seven_day_average": 5,
+      "mar6_score": 4,
+      "mar6_status": "HEATING",
+      "change_from_average": -1.0,
+      "direction": "\u2193 DOWN",
+      "previous_7_day_scores": [
+        5,
+        5,
+        9,
+        5,
+        4,
+        4,
+        4
+      ]
+    },
+    {
+      "lens": "Digital Markets & Assets",
+      "seven_day_average": 4,
+      "mar6_score": 6,
+      "mar6_status": "HOT",
+      "change_from_average": 2.14,
+      "direction": "\u2191 UP",
+      "previous_7_day_scores": [
+        5,
+        5,
+        4,
+        4,
+        3,
+        3,
+        3
+      ]
+    },
+    {
+      "lens": "Digital Trust",
+      "seven_day_average": 5,
+      "mar6_score": 8,
+      "mar6_status": "HOT",
+      "change_from_average": 1.71,
+      "direction": "\u2191 UP",
+      "previous_7_day_scores": [
+        8,
+        8,
+        8,
+        8,
+        3,
+        3,
+        3
+      ]
+    },
+    {
+      "lens": "Interface & Spatial",
+      "seven_day_average": 6,
+      "mar6_score": 6,
+      "mar6_status": "HEATING",
+      "change_from_average": 0.0,
+      "direction": "\u2192 STEADY",
+      "previous_7_day_scores": [
+        7,
+        6,
+        7,
+        7,
+        5,
+        5,
+        5
+      ]
+    },
+    {
+      "lens": "Bio-Human",
+      "seven_day_average": 5,
+      "mar6_score": 4,
+      "mar6_status": "COOLING",
+      "change_from_average": -2.0,
+      "direction": "\u2193 DOWN",
+      "previous_7_day_scores": [
+        9,
+        5,
+        5,
+        5,
+        4,
+        4,
+        4
+      ]
+    },
+    {
+      "lens": "Business Finance & Policy",
+      "seven_day_average": 4,
+      "mar6_score": 5,
+      "mar6_status": "HOT",
+      "change_from_average": 1.33,
+      "direction": "\u2191 UP",
+      "previous_7_day_scores": [
+        4,
+        7,
+        7,
+        3,
+        3,
+        3
+      ]
+    },
+    {
+      "lens": "Consumer",
+      "seven_day_average": 5,
+      "mar6_score": 4,
+      "mar6_status": "HEATING",
+      "change_from_average": -1.0,
+      "direction": "\u2193 DOWN",
+      "previous_7_day_scores": [
+        6,
+        5,
+        6,
+        6,
+        4,
+        4,
+        4
+      ]
+    },
+    {
+      "lens": "Horizon Scanner",
+      "seven_day_average": 4,
+      "mar6_score": 5,
+      "mar6_status": "NEW",
+      "change_from_average": 1.0,
+      "direction": "\u2191 UP",
+      "previous_7_day_scores": [
+        4,
+        8,
+        4,
+        4,
+        4,
+        4,
+        4
+      ]
+    }
+  ],
+  "2026-03-20-issue21": {
+    "AI & Agents": 7,
+    "Quantum & Compute": 3,
+    "Digital Markets & Assets": 6,
+    "Digital Trust": 4,
+    "Interface & Spatial": 4,
+    "Bio-Human": 4,
+    "Business Finance & Policy": 5,
+    "Consumer": 5,
+    "Left Field": 4,
+    "Climate & Energy": 6,
+    "Geopolitical": 5,
+    "Workforce & Talent": 4
+  },
+  "2026-03-21-issue22": {
+    "AI & Agents": 7,
+    "Quantum & Compute": 3,
+    "Digital Markets & Assets": 8,
+    "Digital Trust": 5,
+    "Interface & Spatial": 6,
+    "Bio-Human": 5,
+    "Business Finance & Policy": 7,
+    "Consumer": 5,
+    "Left Field": 5,
+    "Climate & Energy": 4,
+    "Geopolitical": 5,
+    "Workforce & Talent": 6
+  },
+  "2026-03-23-issue23": {
+    "AI & Agents": 7,
+    "Quantum & Compute": 4,
+    "Digital Markets & Assets": 8,
+    "Digital Trust": 5,
+    "Interface & Spatial": 5,
+    "Bio-Human": 6,
+    "Business Finance & Policy": 7,
+    "Consumer": 5,
+    "Left Field": 5,
+    "Climate & Energy": 5,
+    "Geopolitical": 5,
+    "Workforce & Talent": 8
+  },
+  "2026-03-24-issue24": {
+    "AI & Agents": 7,
+    "Quantum & Compute": 7,
+    "Digital Markets & Assets": 5,
+    "Digital Trust": 5,
+    "Interface & Spatial": 6,
+    "Bio-Human": 5,
+    "Business Finance & Policy": 7,
+    "Consumer": 4,
+    "Left Field": 7,
+    "Climate & Energy": 6,
+    "Geopolitical": 7,
+    "Workforce & Talent": 6
+  },
+  "2026-03-25-issue25": {
+    "AI & Agents": 7,
+    "Quantum & Compute": 4,
+    "Digital Markets & Assets": 6,
+    "Digital Trust": 5,
+    "Interface & Spatial": 4,
+    "Bio-Human": 5,
+    "Business Finance & Policy": 7,
+    "Consumer": 6,
+    "Left Field": 5,
+    "Climate & Energy": 4,
+    "Geopolitical": 5,
+    "Workforce & Talent": 6
+  },
+  "2026-03-26-issue26": {
+    "AI & Agents": 7,
+    "Quantum & Compute": 3,
+    "Digital Markets & Assets": 8,
+    "Digital Trust": 6,
+    "Interface & Spatial": 4,
+    "Bio-Human": 3,
+    "Business Finance & Policy": 8,
+    "Consumer": 5,
+    "Left Field": 5,
+    "Climate & Energy": 5,
+    "Geopolitical": 6,
+    "Workforce & Talent": 7
+  },
+  "2026-03-27-issue27": {
+    "AI & Agents": 8,
+    "Quantum & Compute": 4,
+    "Digital Markets & Assets": 7,
+    "Digital Trust": 7,
+    "Interface & Spatial": 4,
+    "Bio-Human": 5,
+    "Business Finance & Policy": 8,
+    "Consumer": 6,
+    "Left Field": 5,
+    "Climate & Energy": 4,
+    "Geopolitical": 7,
+    "Workforce & Talent": 6
+  },
+  "2026-03-31-issue30": {
+    "AI & Agents": 8,
+    "Quantum & Compute": 5,
+    "Digital Markets & Assets": 7,
+    "Digital Trust": 6,
+    "Interface & Spatial": 3,
+    "Bio-Human": 3,
+    "Business Finance & Policy": 7,
+    "Consumer": 5,
+    "Left Field": 4,
+    "Climate & Energy": 7,
+    "Geopolitical Realignment": 9,
+    "Workforce & Talent": 6
+  },
+  "2026-04-01-issue31": {
+    "AI & Agents": 7,
+    "Quantum & Compute": 5,
+    "Digital Markets & Assets": 5,
+    "Digital Trust": 8,
+    "Interface & Spatial": 6,
+    "Bio-Human": 4,
+    "Business Finance & Policy": 7,
+    "Consumer": 4,
+    "Left Field": 5,
+    "Climate & Energy": 5,
+    "Geopolitical Realignment": 8,
+    "Workforce & Talent": 7
+  },
+  "2026-04-02": {
+    "AI & Agents": 8,
+    "Quantum & Compute": 4,
+    "Digital Markets & Assets": 6,
+    "Digital Trust": 5,
+    "Interface & Spatial": 4,
+    "Bio-Human": 3,
+    "Business Finance & Policy": 7,
+    "Consumer": 4,
+    "Left Field": 4,
+    "Climate & Energy": 6,
+    "Geopolitical Realignment": 9,
+    "Workforce & Talent": 6
+  },
+  "2026-04-03": {
+    "AI & Agents": 7,
+    "Quantum & Compute": 4,
+    "Digital Markets & Assets": 5,
+    "Digital Trust": 7,
+    "Interface & Spatial": 4,
+    "Bio-Human": 6,
+    "Business Finance & Policy": 6,
+    "Consumer": 4,
+    "Left Field": 5,
+    "Climate & Energy": 5,
+    "Geopolitical Realignment": 5,
+    "Workforce & Talent": 7
+  },
+  "2026-04-04": {
+    "AI & Agents": 7,
+    "Quantum & Compute": 6,
+    "Digital Markets & Assets": 8,
+    "Digital Trust": 8,
+    "Interface & Spatial": 5,
+    "Bio-Human": 3,
+    "Business Finance & Policy": 7,
+    "Consumer": 5,
+    "Left Field": 6,
+    "Climate & Energy": 5,
+    "Geopolitical Realignment": 6,
+    "Workforce & Talent": 7
+  }
+}

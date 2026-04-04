@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disruption Radar - Disruption Watch</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+    <style>
+        :root {
+            --bg: #fafaf9;
+            --surface: #ffffff;
+            --surface-alt: #f5f5f4;
+            --border: #e7e5e4;
+            --text: #1c1917;
+            --text-secondary: #57534e;
+            --text-muted: #a8a29e;
+            --accent: #dc2626;
+            --indigo: #4F46E5;
+        }
+
+  /* === NAV === */
+  .nav { border-bottom:3px solid var(--text); }
+  .nav-inner { max-width:1100px; margin:0 auto; padding:16px 24px; display:flex; align-items:center; justify-content:space-between; }
+  .nav .logo { font-family:'Playfair Display',Georgia,serif; font-size:1.5rem; font-weight:900; letter-spacing:-0.5px; color:var(--text); text-decoration:none; }
+  .nav .logo span { color:var(--indigo); }
+  .nav-links { display:flex; gap:24px; align-items:center; }
+  .nav-links a { color:var(--text-secondary); text-decoration:none; font-size:0.82rem; font-weight:600; transition:color 0.2s; }
+  .nav-links a:hover { color:var(--text); }
+  .nav-links a.active { color:var(--accent, #dc2626); }
+  .nav .edition { font-size:0.72rem; font-weight:600; text-transform:uppercase; letter-spacing:2px; color:var(--text-muted); }
+  @media (max-width:768px) { .nav-inner { flex-direction:column; gap:12px; } .nav-links { gap:16px; flex-wrap:wrap; } }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background-color: var(--bg); color: var(--text); line-height: 1.6; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+        /* Page header */
+        .page-header { margin-bottom: 32px; }
+        .kicker { font-size: 12px; font-weight: 700; letter-spacing: 1px; color: var(--accent); text-transform: uppercase; margin-bottom: 10px; }
+        .page-title { font-family: 'Playfair Display', serif; font-size: 42px; font-weight: 700; margin-bottom: 12px; color: var(--text); }
+        .page-subtitle { font-size: 15px; color: var(--text-secondary); max-width: 620px; line-height: 1.7; }
+
+        /* Franchise bar */
+        .franchise-bar { display: flex; gap: 10px; margin-bottom: 24px; flex-wrap: wrap; }
+        .franchise-chip {
+            padding: 7px 14px; border: 2px solid var(--border); background-color: var(--surface);
+            border-radius: 20px; font-size: 13px; font-weight: 500; cursor: pointer;
+            transition: all 0.2s; color: var(--text);
+        }
+        .franchise-chip:hover { border-color: var(--indigo); }
+        .franchise-chip.active { border-color: var(--indigo); background-color: rgba(79, 70, 229, 0.08); color: var(--indigo); }
+
+        /* Summary strip */
+        .summary-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 32px; }
+        .stat-box { background-color: var(--surface); border: 1px solid var(--border); padding: 20px; border-radius: 8px; }
+        .stat-label { font-size: 11px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; }
+        .stat-value { font-size: 28px; font-weight: 700; color: var(--text); }
+
+        /* Radar */
+        .radar-section { margin-bottom: 48px; }
+        .radar-controls { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+        .radar-filter-label { font-size: 13px; color: var(--text-secondary); font-style: italic; min-height: 20px; }
+        .radar-container {
+            background: var(--surface);
+            border: 1px solid var(--border); border-radius: 12px; padding: 20px;
+            position: relative; overflow: hidden;
+        }
+        #radar-svg { width: 100%; display: block; }
+
+        /* Tooltip */
+        .tooltip {
+            position: absolute; background-color: var(--surface); border: 2px solid var(--text);
+            border-radius: 8px; padding: 12px 16px; font-size: 12px; pointer-events: none;
+            z-index: 1000; box-shadow: 0 4px 12px rgba(0,0,0,0.1); max-width: 300px;
+        }
+        .tooltip-title { font-weight: 600; margin-bottom: 6px; color: var(--text); font-size: 13px; }
+        .tooltip-item { margin-bottom: 3px; color: var(--text-secondary); }
+        .tooltip-item:last-child { margin-bottom: 0; }
+        .tooltip-lens { display: inline-block; width: 8px; height: 8px; border-radius: 2px; margin-right: 4px; vertical-align: middle; }
+        .tooltip-divider { border-top: 1px solid var(--border); margin: 6px 0; }
+
+        /* Legend */
+        .radar-legend {
+            display: flex; gap: 16px; justify-content: center; margin-top: 16px;
+            font-size: 11px; color: var(--text-secondary); flex-wrap: wrap; align-items: center;
+        }
+        .legend-item { display: flex; align-items: center; gap: 5px; }
+        .legend-ring { width: 12px; height: 12px; border-radius: 50%; border: 1.5px dashed #ccc; }
+        .legend-dot { width: 10px; height: 10px; border-radius: 50%; }
+        .legend-sep { width: 1px; height: 16px; background: var(--border); }
+
+        /* Lens colour legend */
+        .lens-legend { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; margin-top: 10px; font-size: 10px; }
+        .lens-legend-item { display: flex; align-items: center; gap: 4px; color: var(--text-muted); }
+        .lens-legend-dot { width: 8px; height: 8px; border-radius: 50%; }
+
+        /* Registry table */
+        .registry-section { margin-bottom: 60px; }
+        .registry-title { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 700; margin-bottom: 20px; color: var(--text); }
+        .registry-table { width: 100%; border-collapse: collapse; background-color: var(--surface); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+        .registry-table thead { background-color: var(--surface-alt); border-bottom: 1px solid var(--border); }
+        .registry-table th { padding: 14px 12px; text-align: left; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text); border-right: 1px solid var(--border); }
+        .registry-table th:last-child { border-right: none; }
+        .registry-table td { padding: 12px; border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); font-size: 13px; }
+        .registry-table td:last-child { border-right: none; }
+        .registry-table tbody tr { transition: background-color 0.2s, opacity 0.2s; }
+        .registry-table tbody tr:hover { background-color: var(--surface-alt); }
+        .registry-table tbody tr.neutral-row { opacity: 0.4; }
+        .trend-name { font-weight: 500; color: var(--text); }
+        .lens-tag { display: inline-block; padding: 3px 7px; border-radius: 4px; font-size: 10px; font-weight: 600; color: white; }
+        .priority-badge { display: inline-block; padding: 3px 7px; border-radius: 4px; font-size: 10px; font-weight: 600; color: white; min-width: 72px; text-align: center; }
+        .priority-act-now { background-color: var(--accent); }
+        .priority-watch-prepare { background-color: #f59e0b; }
+        .priority-monitor { background-color: var(--indigo); }
+        .vim-score { font-family: 'Courier New', monospace; font-size: 12px; }
+        .impact-neutral { opacity: 0.5; color: var(--text-muted); }
+        .impact-watch { color: var(--text); }
+        .impact-opportunity { color: #059669; font-weight: 600; }
+        .impact-disrupted { color: var(--accent); font-weight: 600; }
+
+        /* Footer */
+        footer { border-top: 3px solid black; background-color: var(--surface); padding: 24px 0; margin-top: 60px; }
+        footer .container { display: flex; justify-content: space-between; align-items: center; }
+        footer .left, footer .right { font-size: 0.72rem; color: var(--text-muted); }
+
+        @media (max-width: 768px) {
+            .page-title { font-size: 32px; }
+            .summary-strip { grid-template-columns: repeat(2, 1fr); }
+            .franchise-bar { gap: 6px; }
+            .franchise-chip { font-size: 12px; padding: 5px 10px; }
+            footer .container { flex-direction: column; gap: 12px; align-items: flex-start; }
+        }
+    </style>
+</head>
+<body>
+    <div class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="logo">Disruption <span>Watch</span> <span style="font-size:0.55em;color:#d97706;font-weight:600;letter-spacing:0;">(beta)</span></a>
+    <div class="nav-links">
+      <a href="foresight-engine.html">Foresight Engine</a>
+      <a href="disruption-radar.html" class="active">Radar</a>
+      <a href="search.html">Search</a>
+      <a href="spotlights.html">Joining the Dots</a>
+      <span class="edition">Disruption Radar</span>
+    </div>
+  </div>
+</div>
+
+    <main>
+        <div class="container">
+            <div class="page-header">
+                <div class="kicker">Foresight Engine</div>
+                <h1 class="page-title">Disruption Radar</h1>
+                <p class="page-subtitle">Centre is now; outer rings are further out. Bubble size reflects impact magnitude. Colour maps to strategic lens. Hover any bubble for detail.</p>
+            </div>
+
+            <div class="franchise-bar" id="franchiseBar">
+                <button class="franchise-chip active" data-franchise="bank-wide">Bank-wide</button>
+                <button class="franchise-chip" data-franchise="retail">Retail (Sarah)</button>
+                <button class="franchise-chip" data-franchise="sme">SME (James)</button>
+                <button class="franchise-chip" data-franchise="commercial">Commercial (Priya)</button>
+                <button class="franchise-chip" data-franchise="wealth">Wealth (David)</button>
+                <button class="franchise-chip" data-franchise="inclusive">Inclusive (Margaret)</button>
+                <button class="franchise-chip" data-franchise="operations">Operations (Alex)</button>
+            </div>
+
+            <div class="summary-strip">
+                <div class="stat-box"><div class="stat-label">Active Trends</div><div class="stat-value" id="stat-total">0</div></div>
+                <div class="stat-box"><div class="stat-label">Act Now</div><div class="stat-value" id="stat-act-now">0</div></div>
+                <div class="stat-box"><div class="stat-label">Avg Impact</div><div class="stat-value" id="stat-avg-impact">0</div></div>
+                <div class="stat-box"><div class="stat-label">Relevant</div><div class="stat-value" id="stat-showing">0</div></div>
+            </div>
+
+            <div class="radar-section">
+                <div class="radar-controls">
+                    <div class="radar-filter-label" id="filterLabel"></div>
+                    <label style="font-size:12px;color:var(--text-secondary);cursor:pointer;display:flex;align-items:center;gap:6px;">
+                        <input type="checkbox" id="showLabelsToggle" style="cursor:pointer;">
+                        Show labels
+                    </label>
+                </div>
+                <div class="radar-container">
+                    <svg id="radar-svg"></svg>
+                </div>
+                <div class="radar-legend" id="radarLegend"></div>
+                <div class="lens-legend" id="lensLegend"></div>
+            </div>
+
+            <div class="registry-section">
+                <h2 class="registry-title">Active Trend Registry</h2>
+                <table class="registry-table">
+                    <thead>
+                        <tr>
+                            <th>Trend</th>
+                            <th>Lens</th>
+                            <th>VIM</th>
+                            <th>Priority</th>
+                            <th>Proximity</th>
+                            <th>Impact</th>
+                            <th>Trajectory</th>
+                            <th id="table-impact-header" style="display: none;">Franchise</th>
+                        </tr>
+                    </thead>
+                    <tbody id="registryTableBody"></tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="left">Disruption Watch</div>
+            <div class="right"><a href="disruption-foresight-engine.html" style="color:inherit;text-decoration:none;">Methodology</a></div>
+        </div>
+    </footer>
+
+    <div class="tooltip" id="tooltip" style="display: none;"></div>
+
+    <script>
+        let allTrends = [];
+        let currentFranchise = 'bank-wide';
+        const franchiseMap = { retail: 'sarah', sme: 'james', commercial: 'priya', wealth: 'david', inclusive: 'margaret', operations: 'alex' };
+
+        // Proximity ring boundaries (years)
+        const rings = [
+            { label: 'Now', max: 0.75 },
+            { label: '1 year', max: 1.25 },
+            { label: '2 years', max: 2.5 },
+            { label: '3 years', max: 3.5 },
+            { label: '5+ years', max: 6 }
+        ];
+
+        function loadFranchisePreference() {
+            try {
+                const saved = localStorage.getItem('dw-franchise');
+                if (saved && saved !== 'bank-wide') {
+                    currentFranchise = saved;
+                    document.querySelectorAll('.franchise-chip').forEach(chip => {
+                        chip.classList.remove('active');
+                        if (chip.dataset.franchise === saved) chip.classList.add('active');
+                    });
+                }
+            } catch(e) { /* localStorage not available */ }
+        }
+
+        function saveFranchisePreference() {
+            try { localStorage.setItem('dw-franchise', currentFranchise); } catch(e) {}
+        }
+
+        async function loadTrends() {
+            try {
+                const response = await fetch('trends.json');
+                const data = await response.json();
+                allTrends = data.trends.filter(t => t.status === 'Active');
+                renderPage();
+            } catch (error) {
+                console.error('Error loading trends:', error);
+                document.querySelector('.radar-container').innerHTML = '<p style="padding:40px;text-align:center;color:#a8a29e;">Unable to load trend data. Run deploy.sh to generate trends.json.</p>';
+            }
+        }
+
+        function getFranchiseImpact(trend) {
+            if (currentFranchise === 'bank-wide') return 'all';
+            const archetype = franchiseMap[currentFranchise];
+            return trend.archetype_impacts[archetype]?.impact || 'neutral';
+        }
+
+        function isRelevant(trend) {
+            const impact = getFranchiseImpact(trend);
+            return impact !== 'neutral' && impact !== 'all';
+        }
+
+        function normPriority(p) {
+            return (p || 'MONITOR').replace(/\s*\(V\s*x\s*I\s*=\s*\d+\)/, '').trim();
+        }
+
+        function updateSummaryStats() {
+            const relevant = currentFranchise === 'bank-wide' ? allTrends : allTrends.filter(isRelevant);
+            const actNow = relevant.filter(t => normPriority(t.vim_priority) === 'ACT NOW').length;
+            const avgImp = relevant.length > 0 ? (relevant.reduce((s, t) => s + t.impact_magnitude, 0) / relevant.length).toFixed(1) : 0;
+
+            document.getElementById('stat-total').textContent = allTrends.length;
+            document.getElementById('stat-act-now').textContent = actNow;
+            document.getElementById('stat-avg-impact').textContent = avgImp;
+            document.getElementById('stat-showing').textContent = relevant.length;
+
+            const fl = document.getElementById('filterLabel');
+            if (currentFranchise !== 'bank-wide') {
+                const name = document.querySelector(`.franchise-chip[data-franchise="${currentFranchise}"]`).textContent;
+                fl.textContent = `Showing ${relevant.length} trends relevant to ${name}`;
+            } else {
+                fl.textContent = '';
+            }
+        }
+
+        function hexToRgb(hex) {
+            const r = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+            return r ? { r: parseInt(r[1],16), g: parseInt(r[2],16), b: parseInt(r[3],16) } : { r:100, g:100, b:100 };
+        }
+
+        // =============================================
+        // FORCE-DIRECTED RADIAL RADAR
+        // =============================================
+        function renderRadar() {
+            const svg = document.getElementById('radar-svg');
+            const containerEl = svg.parentElement;
+            const showLabels = document.getElementById('showLabelsToggle').checked;
+
+            const totalWidth = containerEl.offsetWidth - 40;
+            const radarSize = Math.min(totalWidth, 620);
+            const cx = radarSize / 2;
+            const cy = radarSize / 2;
+            const maxRadius = (radarSize / 2) - 20;
+            const svgW = showLabels ? Math.max(totalWidth, radarSize + 200) : totalWidth;
+            const svgH = showLabels ? radarSize + 40 : radarSize + 20;
+
+            svg.innerHTML = '';
+            const s = d3.select(svg).attr('width', svgW).attr('height', svgH);
+            const offsetX = (svgW - radarSize) / 2;
+            const g = s.append('g').attr('transform', `translate(${offsetX}, 10)`);
+
+            // Defs for glow filters
+            const defs = s.append('defs');
+            const glowRed = defs.append('filter').attr('id', 'glow-red').attr('x', '-50%').attr('y', '-50%').attr('width', '200%').attr('height', '200%');
+            glowRed.append('feGaussianBlur').attr('stdDeviation', '3').attr('result', 'blur');
+            glowRed.append('feFlood').attr('flood-color', '#dc2626').attr('flood-opacity', '0.4').attr('result', 'color');
+            glowRed.append('feComposite').attr('in', 'color').attr('in2', 'blur').attr('operator', 'in').attr('result', 'shadow');
+            const glowRedMerge = glowRed.append('feMerge');
+            glowRedMerge.append('feMergeNode').attr('in', 'shadow');
+            glowRedMerge.append('feMergeNode').attr('in', 'SourceGraphic');
+
+            const glowGreen = defs.append('filter').attr('id', 'glow-green').attr('x', '-50%').attr('y', '-50%').attr('width', '200%').attr('height', '200%');
+            glowGreen.append('feGaussianBlur').attr('stdDeviation', '3').attr('result', 'blur');
+            glowGreen.append('feFlood').attr('flood-color', '#059669').attr('flood-opacity', '0.4').attr('result', 'color');
+            glowGreen.append('feComposite').attr('in', 'color').attr('in2', 'blur').attr('operator', 'in').attr('result', 'shadow');
+            const glowGreenMerge = glowGreen.append('feMerge');
+            glowGreenMerge.append('feMergeNode').attr('in', 'shadow');
+            glowGreenMerge.append('feMergeNode').attr('in', 'SourceGraphic');
+
+            const glowAmber = defs.append('filter').attr('id', 'glow-amber').attr('x', '-50%').attr('y', '-50%').attr('width', '200%').attr('height', '200%');
+            glowAmber.append('feGaussianBlur').attr('stdDeviation', '3').attr('result', 'blur');
+            glowAmber.append('feFlood').attr('flood-color', '#f59e0b').attr('flood-opacity', '0.4').attr('result', 'color');
+            glowAmber.append('feComposite').attr('in', 'color').attr('in2', 'blur').attr('operator', 'in').attr('result', 'shadow');
+            const glowAmberMerge = glowAmber.append('feMerge');
+            glowAmberMerge.append('feMergeNode').attr('in', 'shadow');
+            glowAmberMerge.append('feMergeNode').attr('in', 'SourceGraphic');
+
+            const rScale = d3.scaleLinear().domain([0, 6]).range([0, maxRadius]);
+
+            // Draw concentric rings with soft fill bands
+            const ringRadii = rings.map(r => rScale(r.max));
+            const bandFills = ['rgba(220,38,38,0.03)', 'rgba(245,158,11,0.02)', 'rgba(79,70,229,0.02)', 'rgba(79,70,229,0.01)', 'rgba(79,70,229,0.005)'];
+
+            // Draw bands (filled rings from outer to inner)
+            for (let i = ringRadii.length - 1; i >= 0; i--) {
+                g.append('circle')
+                    .attr('cx', cx).attr('cy', cy).attr('r', ringRadii[i])
+                    .attr('fill', bandFills[i])
+                    .attr('stroke', i === 0 ? '#e0e0e0' : '#eeeeee')
+                    .attr('stroke-width', i === 0 ? 1.5 : 0.75)
+                    .attr('stroke-dasharray', i > 0 ? '4,6' : 'none');
+            }
+
+            // Ring labels at 10 o'clock position
+            ringRadii.forEach((r, i) => {
+                const labelAngle = -Math.PI * 0.65; // ~10 o'clock
+                const lx = cx + (r - 4) * Math.cos(labelAngle);
+                const ly = cy + (r - 4) * Math.sin(labelAngle);
+                g.append('text')
+                    .attr('x', lx).attr('y', ly)
+                    .attr('text-anchor', 'end')
+                    .attr('dominant-baseline', 'central')
+                    .attr('fill', '#c0c0c0')
+                    .attr('font-size', '9px')
+                    .attr('font-weight', '600')
+                    .attr('font-family', 'Inter, sans-serif')
+                    .text(rings[i].label);
+            });
+
+            // Centre marker
+            g.append('circle').attr('cx', cx).attr('cy', cy).attr('r', 4).attr('fill', '#e8e8e8').attr('stroke', '#ddd').attr('stroke-width', 1);
+            g.append('text').attr('x', cx).attr('y', cy + 1).attr('text-anchor', 'middle').attr('dominant-baseline', 'central')
+                .attr('fill', '#bbb').attr('font-size', '6px').attr('font-weight', '700').text('NOW');
+
+            // ---- FORCE-DIRECTED PLACEMENT ----
+            // Initial positions: spread trends evenly around their proximity ring using golden angle
+            const goldenAngle = Math.PI * (3 - Math.sqrt(5)); // ~137.5 degrees
+            const nodes = allTrends.map((trend, i) => {
+                const r = rScale(trend.proximity_years);
+                const angle = i * goldenAngle; // golden angle spread
+                const impact = getFranchiseImpact(trend);
+                const isNeutral = currentFranchise !== 'bank-wide' && impact === 'neutral';
+                const baseR = isNeutral ? 4 : (6 + (trend.impact_magnitude / 10) * 10); // 6-16px, or 4px if neutral
+
+                return {
+                    trend,
+                    targetR: r,
+                    x: cx + r * Math.cos(angle),
+                    y: cy + r * Math.sin(angle),
+                    bubbleR: baseR,
+                    impact,
+                    isNeutral,
+                    angle
+                };
+            });
+
+            // Run a simple force simulation to separate overlapping bubbles
+            // while keeping them near their target radius from centre
+            const simulation = d3.forceSimulation(nodes)
+                .force('collide', d3.forceCollide(d => d.bubbleR + 3).strength(0.8).iterations(4))
+                .force('radial', d3.forceRadial(d => d.targetR, cx, cy).strength(0.6))
+                .force('centre', d3.forceCenter(cx, cy).strength(0.01))
+                .stop();
+
+            // Run simulation synchronously
+            for (let i = 0; i < 120; i++) simulation.tick();
+
+            // Clamp nodes to stay within the radar area
+            nodes.forEach(n => {
+                const dx = n.x - cx;
+                const dy = n.y - cy;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+                if (dist > maxRadius - n.bubbleR) {
+                    const scale = (maxRadius - n.bubbleR) / dist;
+                    n.x = cx + dx * scale;
+                    n.y = cy + dy * scale;
+                }
+                // Don't let bubbles go inside the centre dot
+                if (dist < 10) {
+                    const scale = 10 / dist;
+                    n.x = cx + dx * scale;
+                    n.y = cy + dy * scale;
+                }
+            });
+
+            // Sort: draw neutral (faded) first, then relevant on top
+            const sorted = [...nodes].sort((a, b) => {
+                if (a.isNeutral && !b.isNeutral) return -1;
+                if (!a.isNeutral && b.isNeutral) return 1;
+                return 0;
+            });
+
+            // Draw bubbles
+            sorted.forEach(d => {
+                const rgb = hexToRgb(d.trend.primary_lens_colour);
+                let fillColour, strokeColour, strokeW, opacity, filterAttr;
+
+                if (d.isNeutral) {
+                    fillColour = 'rgba(200, 200, 200, 0.15)';
+                    strokeColour = '#ddd';
+                    strokeW = 0.75;
+                    opacity = 0.25;
+                    filterAttr = null;
+                } else if (currentFranchise !== 'bank-wide' && d.impact === 'disrupted') {
+                    fillColour = `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.2)`;
+                    strokeColour = '#dc2626';
+                    strokeW = 2.5;
+                    opacity = 1;
+                    filterAttr = 'url(#glow-red)';
+                } else if (currentFranchise !== 'bank-wide' && d.impact === 'opportunity') {
+                    fillColour = `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.2)`;
+                    strokeColour = '#059669';
+                    strokeW = 2.5;
+                    opacity = 1;
+                    filterAttr = 'url(#glow-green)';
+                } else if (currentFranchise !== 'bank-wide' && d.impact === 'watch') {
+                    fillColour = `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.2)`;
+                    strokeColour = '#f59e0b';
+                    strokeW = 2;
+                    opacity = 1;
+                    filterAttr = 'url(#glow-amber)';
+                } else {
+                    // Bank-wide: lens colour
+                    fillColour = `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.18)`;
+                    strokeColour = d.trend.primary_lens_colour;
+                    strokeW = 1.5;
+                    opacity = 0.9;
+                    filterAttr = null;
+                }
+
+                const circle = g.append('circle')
+                    .attr('cx', d.x).attr('cy', d.y).attr('r', d.bubbleR)
+                    .attr('fill', fillColour)
+                    .attr('stroke', strokeColour)
+                    .attr('stroke-width', strokeW)
+                    .attr('opacity', opacity)
+                    .attr('cursor', 'pointer')
+                    .style('transition', 'opacity 0.3s, r 0.3s');
+
+                if (filterAttr) circle.attr('filter', filterAttr);
+
+                // Priority marker: small inner dot for ACT NOW
+                if (!d.isNeutral && normPriority(d.trend.vim_priority) === 'ACT NOW') {
+                    g.append('circle')
+                        .attr('cx', d.x).attr('cy', d.y).attr('r', 2.5)
+                        .attr('fill', currentFranchise !== 'bank-wide' && d.impact === 'disrupted' ? '#dc2626' : d.trend.primary_lens_colour)
+                        .attr('opacity', 0.7)
+                        .attr('pointer-events', 'none');
+                }
+
+                // Tooltip
+                circle.on('mouseover', function(event) {
+                    showTooltip(event, d);
+                    d3.select(this).attr('opacity', 1).attr('stroke-width', strokeW + 1);
+                })
+                .on('mousemove', function(event) { moveTooltip(event); })
+                .on('mouseout', function() {
+                    hideTooltip();
+                    d3.select(this).attr('opacity', opacity).attr('stroke-width', strokeW);
+                });
+            });
+
+            // Labels
+            if (showLabels) {
+                const labelCandidates = nodes
+                    .filter(d => !d.isNeutral)
+                    .sort((a, b) => {
+                        const aPri = normPriority(a.trend.vim_priority) === 'ACT NOW' ? 0 : 1;
+                        const bPri = normPriority(b.trend.vim_priority) === 'ACT NOW' ? 0 : 1;
+                        if (aPri !== bPri) return aPri - bPri;
+                        return b.trend.impact_magnitude - a.trend.impact_magnitude;
+                    })
+                    .slice(0, Math.min(10, Math.max(5, Math.floor(nodes.filter(d => !d.isNeutral).length * 0.5))));
+
+                const labelData = labelCandidates.map(d => {
+                    const dx = d.x - cx;
+                    const dy = d.y - cy;
+                    const angle = Math.atan2(dy, dx);
+                    const lr = maxRadius + 30 + d.bubbleR;
+                    const lx = cx + lr * Math.cos(angle);
+                    const ly = cy + lr * Math.sin(angle);
+                    const anchor = Math.cos(angle) >= 0 ? 'start' : 'end';
+                    const name = d.trend.name.length > 28 ? d.trend.name.substring(0, 26) + '...' : d.trend.name;
+                    return { ...d, lx, ly, anchor, labelName: name, angle: angle };
+                });
+
+                // Collision avoidance
+                labelData.sort((a, b) => a.ly - b.ly);
+                for (let pass = 0; pass < 30; pass++) {
+                    for (let i = 0; i < labelData.length; i++) {
+                        for (let j = i + 1; j < labelData.length; j++) {
+                            const a = labelData[i], b = labelData[j];
+                            if (Math.abs(a.ly - b.ly) < 14 && ((a.anchor === b.anchor) || Math.abs(a.lx - b.lx) < 80)) {
+                                const mid = (a.ly + b.ly) / 2;
+                                a.ly = mid - 7.5;
+                                b.ly = mid + 7.5;
+                            }
+                        }
+                    }
+                }
+
+                labelData.forEach(d => {
+                    const edgeX = d.x + (d.bubbleR + 2) * Math.cos(d.angle);
+                    const edgeY = d.y + (d.bubbleR + 2) * Math.sin(d.angle);
+
+                    g.append('line')
+                        .attr('x1', edgeX).attr('y1', edgeY)
+                        .attr('x2', d.lx).attr('y2', d.ly)
+                        .attr('stroke', '#d0d0d0')
+                        .attr('stroke-width', 0.5)
+                        .attr('stroke-dasharray', '2,2');
+
+                    const isActNow = normPriority(d.trend.vim_priority) === 'ACT NOW';
+                    g.append('text')
+                        .attr('x', d.anchor === 'start' ? d.lx + 4 : d.lx - 4)
+                        .attr('y', d.ly)
+                        .attr('text-anchor', d.anchor)
+                        .attr('dominant-baseline', 'central')
+                        .attr('fill', isActNow ? '#333' : '#888')
+                        .attr('font-size', isActNow ? '10px' : '9px')
+                        .attr('font-weight', isActNow ? '600' : '400')
+                        .attr('font-family', 'Inter, sans-serif')
+                        .text(d.labelName);
+                });
+            }
+
+            buildLegend();
+        }
+
+        function showTooltip(event, d) {
+            const archetype = franchiseMap[currentFranchise];
+            const archetypeData = currentFranchise !== 'bank-wide' ? d.trend.archetype_impacts[archetype] : null;
+            const pri = normPriority(d.trend.vim_priority);
+
+            let tt = `<div class="tooltip-title"><span class="tooltip-lens" style="background:${d.trend.primary_lens_colour};"></span>${d.trend.name}</div>`;
+            tt += `<div class="tooltip-item"><strong>Lens:</strong> ${d.trend.primary_lens}</div>`;
+            tt += `<div class="tooltip-item"><strong>VIM:</strong> V:${d.trend.vim.v} I:${d.trend.vim.i} M:${d.trend.vim.m}</div>`;
+            tt += `<div class="tooltip-item"><strong>Priority:</strong> <span style="color:${pri === 'ACT NOW' ? '#dc2626' : pri === 'WATCH & PREPARE' ? '#f59e0b' : '#4F46E5'};font-weight:600;">${pri}</span></div>`;
+            tt += `<div class="tooltip-item"><strong>Proximity:</strong> ${d.trend.proximity_years}y &middot; <strong>Impact:</strong> ${d.trend.impact_magnitude}/10</div>`;
+            tt += `<div class="tooltip-item"><strong>Trajectory:</strong> ${d.trend.trajectory}</div>`;
+
+            if (archetypeData) {
+                const impactColour = archetypeData.impact === 'disrupted' ? '#dc2626' : archetypeData.impact === 'opportunity' ? '#059669' : archetypeData.impact === 'watch' ? '#f59e0b' : '#999';
+                tt += `<div class="tooltip-divider"></div>`;
+                tt += `<div class="tooltip-item"><strong>Franchise impact:</strong> <span style="color:${impactColour};font-weight:600;text-transform:uppercase;">${archetypeData.impact}</span></div>`;
+                if (archetypeData.summary && archetypeData.summary !== 'No data') {
+                    tt += `<div class="tooltip-item" style="font-size:11px;color:#888;">${archetypeData.summary}</div>`;
+                }
+            } else if (currentFranchise === 'bank-wide') {
+                // Show all archetype impacts in bank-wide mode
+                const impacts = d.trend.archetype_impacts;
+                const names = { sarah: 'Sarah (Retail)', james: 'James (SME)', priya: 'Priya (Commercial)', david: 'David (Wealth)', margaret: 'Margaret (Inclusive)' };
+                const nonNeutral = Object.entries(impacts).filter(([k,v]) => v.impact !== 'neutral');
+                if (nonNeutral.length > 0) {
+                    tt += `<div class="tooltip-divider"></div>`;
+                    nonNeutral.forEach(([key, val]) => {
+                        const col = val.impact === 'disrupted' ? '#dc2626' : val.impact === 'opportunity' ? '#059669' : val.impact === 'watch' ? '#f59e0b' : '#999';
+                        tt += `<div class="tooltip-item"><span style="color:${col};font-weight:600;">${val.impact.charAt(0).toUpperCase() + val.impact.slice(1)}</span> for ${names[key] || key}</div>`;
+                    });
+                }
+            }
+
+            const tooltipEl = document.getElementById('tooltip');
+            tooltipEl.innerHTML = tt;
+            tooltipEl.style.display = 'block';
+            moveTooltip(event);
+        }
+
+        function moveTooltip(event) {
+            const t = document.getElementById('tooltip');
+            const vw = window.innerWidth;
+            let left = event.pageX + 14;
+            if (left + 300 > vw) left = event.pageX - 314;
+            t.style.left = left + 'px';
+            t.style.top = (event.pageY + 14) + 'px';
+        }
+
+        function hideTooltip() { document.getElementById('tooltip').style.display = 'none'; }
+
+        function buildLegend() {
+            const legend = document.getElementById('radarLegend');
+            let html = '<div class="legend-item"><div class="legend-ring"></div> Proximity rings</div>';
+            html += '<div class="legend-item"><svg width="12" height="12"><circle cx="6" cy="6" r="3" fill="none" stroke="#999" stroke-width="1"/></svg> Small = lower impact</div>';
+            html += '<div class="legend-item"><svg width="18" height="18"><circle cx="9" cy="9" r="8" fill="none" stroke="#999" stroke-width="1"/></svg> Large = higher impact</div>';
+            html += '<div class="legend-item"><svg width="10" height="10"><circle cx="5" cy="5" r="2.5" fill="#666"/></svg> ACT NOW indicator</div>';
+
+            if (currentFranchise !== 'bank-wide') {
+                html += '<div class="legend-sep"></div>';
+                html += '<div class="legend-item"><div class="legend-dot" style="background:rgba(220,38,38,0.15);border:2.5px solid #dc2626;box-shadow:0 0 4px rgba(220,38,38,0.3);"></div> Disrupted</div>';
+                html += '<div class="legend-item"><div class="legend-dot" style="background:rgba(5,150,105,0.15);border:2.5px solid #059669;box-shadow:0 0 4px rgba(5,150,105,0.3);"></div> Opportunity</div>';
+                html += '<div class="legend-item"><div class="legend-dot" style="background:rgba(245,158,11,0.15);border:2px solid #f59e0b;box-shadow:0 0 4px rgba(245,158,11,0.3);"></div> Watch</div>';
+                html += '<div class="legend-item"><div class="legend-dot" style="background:rgba(200,200,200,0.15);border:1px solid #ddd;"></div> Neutral</div>';
+            }
+            legend.innerHTML = html;
+
+            // Lens colour legend
+            const lensLegend = document.getElementById('lensLegend');
+            const lenses = new Map();
+            allTrends.forEach(t => {
+                if (!lenses.has(t.primary_lens)) lenses.set(t.primary_lens, t.primary_lens_colour);
+            });
+            let lhtml = '';
+            lenses.forEach((colour, name) => {
+                lhtml += `<div class="lens-legend-item"><div class="lens-legend-dot" style="background:${colour};"></div>${name}</div>`;
+            });
+            lensLegend.innerHTML = lhtml;
+        }
+
+        // Registry table
+        function renderRegistry() {
+            const tbody = document.getElementById('registryTableBody');
+            tbody.innerHTML = '';
+
+            const sorted = [...allTrends].sort((a, b) => {
+                const po = { 'ACT NOW': 0, 'WATCH & PREPARE': 1, 'MONITOR': 2 };
+                const diff = (po[normPriority(a.vim_priority)] || 2) - (po[normPriority(b.vim_priority)] || 2);
+                return diff !== 0 ? diff : b.impact_magnitude - a.impact_magnitude;
+            });
+
+            const impHeader = document.getElementById('table-impact-header');
+            impHeader.style.display = currentFranchise !== 'bank-wide' ? 'table-cell' : 'none';
+
+            sorted.forEach(trend => {
+                const row = document.createElement('tr');
+                const fi = getFranchiseImpact(trend);
+                if (currentFranchise !== 'bank-wide' && fi === 'neutral') row.classList.add('neutral-row');
+
+                const rawPriority = normPriority(trend.vim_priority);
+                let pc = '';
+                if (rawPriority === 'ACT NOW') pc = 'priority-act-now';
+                else if (rawPriority === 'WATCH & PREPARE') pc = 'priority-watch-prepare';
+                else pc = 'priority-monitor';
+
+                let impactCell = '';
+                if (currentFranchise !== 'bank-wide') {
+                    impactCell = `<td class="impact-${fi}">${fi}</td>`;
+                }
+
+                row.innerHTML = `
+                    <td class="trend-name">${trend.name}</td>
+                    <td><span class="lens-tag" style="background-color:${trend.primary_lens_colour}">${trend.primary_lens}</span></td>
+                    <td class="vim-score">V:${trend.vim.v} I:${trend.vim.i} M:${trend.vim.m}</td>
+                    <td><span class="priority-badge ${pc}">${rawPriority}</span></td>
+                    <td>${trend.proximity_years}y</td>
+                    <td>${trend.impact_magnitude}/10</td>
+                    <td>${trend.trajectory}</td>
+                    ${impactCell}
+                `;
+                tbody.appendChild(row);
+            });
+        }
+
+        function renderPage() { updateSummaryStats(); renderRadar(); renderRegistry(); }
+
+        // Event listeners
+        document.querySelectorAll('.franchise-chip').forEach(chip => {
+            chip.addEventListener('click', function() {
+                document.querySelectorAll('.franchise-chip').forEach(c => c.classList.remove('active'));
+                this.classList.add('active');
+                currentFranchise = this.dataset.franchise;
+                saveFranchisePreference();
+                renderPage();
+            });
+        });
+
+        // Resize handler
+        let resizeTimer;
+        window.addEventListener('resize', () => { clearTimeout(resizeTimer); resizeTimer = setTimeout(renderPage, 200); });
+
+        // Label toggle
+        document.getElementById('showLabelsToggle').addEventListener('change', renderPage);
+
+        loadFranchisePreference();
+        loadTrends();
+    </script>
+</body>
+</html>

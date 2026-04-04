@@ -1,0 +1,1347 @@
+{
+  "version": 2,
+  "generated_at": "2026-04-04T09:56:16.065136Z",
+  "total_trends": 20,
+  "active_trends": 18,
+  "trends": [
+    {
+      "id": "T-001",
+      "name": "Autonomous AI Agents in Financial Services",
+      "description": "AI systems capable of executing multi-step financial tasks without human intervention \u2014 from compliance checks to portfolio rebalancing. Moving from demos to enterprise procurement.",
+      "primary_lens": "AI & Agents",
+      "primary_lens_colour": "#4F46E5",
+      "secondary_lenses": [
+        "Digital Trust",
+        "Business, Finance & Policy"
+      ],
+      "cipher_types": "I, P",
+      "vim": {
+        "v": 5.0,
+        "i": 5.0,
+        "m": 5.0,
+        "v_anchor": "Claude Code $1B ARR in 6mo; ChatGPT 900M WAU",
+        "i_anchor": "Affects all 5 archetypes; full value chain exposure",
+        "m_anchor": "TRL 6-7; live deployments at 3+ major banks"
+      },
+      "vim_priority": "ACT NOW",
+      "maturity_stage": "Developing",
+      "trajectory": "Retired",
+      "status": "Retired",
+      "first_identified": "2026-02-26",
+      "last_reviewed": "2026-04-04",
+      "signal_count_30d": 19,
+      "convergence_count": 3,
+      "key_signals": "Multiple daily briefing leads; OpenAI, Anthropic enterprise launches; UK FCA discussion paper on AI delegation; Issue #18: NemoClaw launch, Ramp/Stripe agent cards, OpenClaw 250K stars; Issue #19: Dispatch, Codex, Forge, Autoresearch; OpenClaw 210K stars, MiniMax M2.7, 54/43 adoption split, $138B OpenAI-AWS, Issue #20; Issue #21: Cursor Composer 2 (61.7% bench), MiniMax M2.7 self-evolving, Cloudflare agent traffic warning, OpenAI Astral acquisition; Issue #33: Autoresearch, Google Maps Gemini, OpenClaw agent OS; BoE warns agentic AI approach could amplify systemic risk in financial markets (Issue #34); Anthropic's Claude Code source leak reveals agent architecture patterns (Issue #34)",
+      "strategic_implications": "Requires strategic position on build vs. buy vs. partner for agentic AI; workforce planning implications; regulatory engagement needed",
+      "leading_indicators": "FCA formal guidance on AI agents; top-5 UK bank live deployment; insurance product for AI agent errors",
+      "proximity_years": 0.5,
+      "impact_magnitude": 9,
+      "archetype_impacts": {
+        "sarah": {
+          "impact": "opportunity",
+          "summary": "Faster, cheaper, personalised"
+        },
+        "james": {
+          "impact": "opportunity",
+          "summary": "AI-powered cash flow management"
+        },
+        "priya": {
+          "impact": "neutral",
+          "summary": "Efficiency gains vs control concerns"
+        },
+        "david": {
+          "impact": "watch",
+          "summary": "Trust vs convenience tension"
+        },
+        "margaret": {
+          "impact": "disrupted",
+          "summary": "Further digital exclusion risk"
+        },
+        "alex": {
+          "impact": "disrupted",
+          "summary": "disrupted"
+        }
+      },
+      "cla": {
+        "status": "Complete",
+        "litany": "AI agents coding, trading, and managing workflows autonomously. Headlines about AGI timelines. Enterprise adoption accelerating.",
+        "systemic": "Venture capital incentivises speed over safety. Cloud providers commoditise inference. Regulatory lag creates a permissive window. Winner-take-most dynamics in model quality.",
+        "worldview": "Techno-optimists see agents as productivity multipliers; critics see job displacement and accountability gaps. Both assume intelligence is a product, not a relationship.",
+        "myth": "The Sorcerer's Apprentice: tools that outgrow their master's ability to control them. Also Prometheus: fire stolen from the gods, transformative but dangerous."
+      }
+    },
+    {
+      "id": "T-002",
+      "name": "Stablecoin Payment Rails",
+      "description": "Stablecoins increasingly used as settlement and payment infrastructure, particularly for cross-border flows. Regulatory clarity improving in UK/EU.",
+      "primary_lens": "Digital Markets & Assets",
+      "primary_lens_colour": "#059669",
+      "secondary_lenses": [
+        "Business, Finance & Policy",
+        "Geopolitical Realignment"
+      ],
+      "cipher_types": "H, P",
+      "vim": {
+        "v": 4.0,
+        "i": 4.0,
+        "m": 4.0,
+        "v_anchor": "Circle IPO $9B; Visa-Bridge 100+ countries",
+        "i_anchor": "Cross-border payments $150T market",
+        "m_anchor": "TRL 5-6; UK consultation stage; live in select markets"
+      },
+      "vim_priority": "WATCH & PREPARE",
+      "maturity_stage": "Developing",
+      "trajectory": "Strengthening",
+      "status": "Active",
+      "first_identified": "2026-02-27",
+      "last_reviewed": "2026-04-04",
+      "signal_count_30d": 21,
+      "convergence_count": 3,
+      "key_signals": "Tether/Circle volumes; UK Treasury stablecoin consultation; bank partnerships with stablecoin issuers; Issue #18: Mastercard-BVNK $1.8B, stablecoin market $300B; Issue #19: MPP launch, Tempo mainnet, FCA stablecoin sprint; Mastercard BVNK \u00a31.45B, $350B stablecoin volumes, FCA sprint, Issue #20; Issue #21: Mastercard/BVNK \u00a31.4B acquisition, Nasdaq SEC-approved tokenised securities; Issue #23: SEC/CFTC 16-crypto commodity designation, USDC 98.6% EVM, x402 163M txns; Issue #25: CLARITY Act, Fink tokenisation; Issue #26: Starling agentic assistant, LendingClub 90% automation; Issue #27: Tazapay \u00a327M Series B funding; Issue #31; Issue #33: Polymarket/LALIGA, Kulipa/Better Money funding, BitGo Mint; Stablecoin settlement volume surpasses ACH for first time at \u00a36.2T monthly (Issue #34)",
+      "strategic_implications": "Potential disintermediation of correspondent banking; opportunity in custody and compliance services; FX revenue risk",
+      "leading_indicators": "UK stablecoin regulatory framework enacted; SWIFT stablecoin integration; top-10 corporate treasury adoption",
+      "proximity_years": 2,
+      "impact_magnitude": 7,
+      "archetype_impacts": {
+        "sarah": {
+          "impact": "neutral",
+          "summary": "Limited direct impact unless remitting"
+        },
+        "james": {
+          "impact": "opportunity",
+          "summary": "Cheaper cross-border payments"
+        },
+        "priya": {
+          "impact": "opportunity",
+          "summary": "Real-time settlement, reduced FX costs"
+        },
+        "david": {
+          "impact": "neutral",
+          "summary": "New asset class; tokenised portfolios"
+        },
+        "margaret": {
+          "impact": "neutral",
+          "summary": "Neutral unless cash is further marginalised"
+        },
+        "alex": {
+          "impact": "watch",
+          "summary": "watch"
+        }
+      },
+      "cla": {
+        "status": "Complete",
+        "litany": "Visa-Bridge stablecoin cards 100+ countries. Circle IPO. UK consults.",
+        "systemic": "Cross-border friction 3-5 days/6% fees. Correspondent banking consolidation. Dollar shortage in emerging markets.",
+        "worldview": "Money should be fast, programmable, borderless vs trusted intermediaries essential for stability.",
+        "myth": "Democratisation: technology as liberator from gatekeepers vs too-big-to-fail safety nets."
+      }
+    },
+    {
+      "id": "T-003",
+      "name": "Post-Quantum Cryptographic Migration",
+      "description": "The transition from current cryptographic standards to quantum-resistant alternatives. NIST standards published; migration timelines tightening.",
+      "primary_lens": "Quantum & Compute",
+      "primary_lens_colour": "#7C3AED",
+      "secondary_lenses": [
+        "Digital Trust"
+      ],
+      "cipher_types": "C, E",
+      "vim": {
+        "v": 3.0,
+        "i": 5.0,
+        "m": 3.0,
+        "v_anchor": "NIST PQC standards finalised 2024; Q-Day estimates 2029-2035",
+        "i_anchor": "All encrypted financial data at risk; regulatory mandates expected",
+        "m_anchor": "TRL 3-4; standards set but migration barely started"
+      },
+      "vim_priority": "WATCH & PREPARE",
+      "maturity_stage": "Emerging",
+      "trajectory": "Strengthening",
+      "status": "Active",
+      "first_identified": "2026-03-02",
+      "last_reviewed": "2026-04-04",
+      "signal_count_30d": 18,
+      "convergence_count": 2,
+      "key_signals": "NIST PQC standards finalised; Google quantum supremacy claims; banking sector crypto inventory exercises; Issue #18: CV Voice Summit announced, DIA voice AI; Issue #21: Turing Award for quantum cryptography (retrospective, no technical breakthrough); Issue #23: arXiv PQC embedded systems complexity; Issue #31; Issue #33: Google 500K qubit estimate; Drift Protocol hack exploited legacy cryptographic weakness in bridge contract (Issue #34)",
+      "strategic_implications": "Multi-year migration programme required; budget implications significant; competitive risk if delayed vs. peers",
+      "leading_indicators": "First quantum break of RSA-2048 announced; UK NCSC mandatory migration deadline; major bank completing PQC migration",
+      "proximity_years": 5,
+      "impact_magnitude": 9,
+      "archetype_impacts": {
+        "sarah": {
+          "impact": "disrupted",
+          "summary": "Invisible if bank migrates; catastrophic if not"
+        },
+        "james": {
+          "impact": "neutral",
+          "summary": "Same as above"
+        },
+        "priya": {
+          "impact": "disrupted",
+          "summary": "Migration cost and compliance burden"
+        },
+        "david": {
+          "impact": "disrupted",
+          "summary": "Portfolio security concerns"
+        },
+        "margaret": {
+          "impact": "neutral",
+          "summary": "No direct impact"
+        },
+        "alex": {
+          "impact": "disrupted",
+          "summary": "disrupted"
+        }
+      },
+      "cla": {
+        "status": "Complete",
+        "litany": "NIST standards finalised. Turing Award for quantum cryptography. Banks begin crypto inventory exercises. Timelines debated but converging on 2030s.",
+        "systemic": "Cryptographic infrastructure has 20+ year replacement cycles. First-mover disadvantage (early migration is expensive). Standards bodies create coordination mechanisms.",
+        "worldview": "Security professionals see existential risk; business leaders see distant cost. The tension is between precautionary investment and present-day budget pressure.",
+        "myth": "The Tower of Babel: a shared system of trust (encryption) that could be shattered overnight, returning us to a world where secure communication is impossible."
+      }
+    },
+    {
+      "id": "T-004",
+      "name": "Embedded Finance 2.0",
+      "description": "Financial services delivered invisibly within non-financial platforms \u2014 moving beyond payments into lending, insurance, and wealth. Second wave driven by AI personalisation.",
+      "primary_lens": "Consumer",
+      "primary_lens_colour": "#0D9488",
+      "secondary_lenses": [
+        "AI & Agents",
+        "Interface & Spatial"
+      ],
+      "cipher_types": "P, I",
+      "vim": {
+        "v": 4.0,
+        "i": 4.0,
+        "m": 6.0,
+        "v_anchor": "Notion 50%+ AI attach rate; Shopify/Stripe banking APIs",
+        "i_anchor": "Retail distribution model at risk; SME banking unbundling",
+        "m_anchor": "TRL 6-7; mainstream in e-commerce; emerging in broader contexts"
+      },
+      "vim_priority": "WATCH & PREPARE",
+      "maturity_stage": "Developing",
+      "trajectory": "Strengthening",
+      "status": "Active",
+      "first_identified": "2026-02-28",
+      "last_reviewed": "2026-04-02T00:00:00",
+      "signal_count_30d": 27,
+      "convergence_count": 3,
+      "key_signals": "Apple/Goldman pivot; Shopify financial services expansion; UK BaaS consolidation; Issue #18: From daily briefing; Issue #19: MPP pay-per-use, AgentCard, Burst; MPP traction, Visa Trusted Agent, Klarna 5M UK, Issue #20; Issue #21: Visa CLI agent payments, Stripe Tempo MPP mainnet, FCA PS25/22 targeted support regime; Issue #25: Revolut \u00a34.5B revenue, US charter; Issue #27: Revolut 68.3M users, \u00a3905M profit, Tide Cash ISA launch; Issue #28: Revolut \u00a34.8B revenue, 70M customers, global expansion; Issue #31; Issue #32: TikTok Brazil fintech licences, Monzo US closure",
+      "strategic_implications": "Distribution advantage shifting to platforms; brand relevance risk; opportunity in infrastructure/BaaS provision",
+      "leading_indicators": "Platform-originated lending exceeding 10% of personal loans market; regulatory framework for platform finance; major retailer offering full banking suite",
+      "proximity_years": 1.5,
+      "impact_magnitude": 8,
+      "archetype_impacts": {
+        "sarah": {
+          "impact": "disrupted",
+          "summary": "Gets banking via non-bank platforms; loyalty erodes"
+        },
+        "james": {
+          "impact": "opportunity",
+          "summary": "Integrated financial tools in business software"
+        },
+        "priya": {
+          "impact": "neutral",
+          "summary": "Treasury APIs but core relationship intact"
+        },
+        "david": {
+          "impact": "neutral",
+          "summary": "Limited impact on advice relationship"
+        },
+        "margaret": {
+          "impact": "disrupted",
+          "summary": "Further exclusion if banking moves off-platform"
+        },
+        "alex": {
+          "impact": "watch",
+          "summary": "watch"
+        }
+      },
+      "cla": {
+        "status": "Complete",
+        "litany": "Visa CLI, Stripe Tempo, FCA targeted support. BaaS consolidation. Apple/Goldman pivot. Financial services embedded into non-financial platforms.",
+        "systemic": "Platform economics reward bundling. Regulatory arbitrage between licensed and unlicensed providers. Data network effects create moats for platforms, not banks.",
+        "worldview": "Banks as utilities vs banks as relationship owners. The embedded finance thesis assumes financial services become invisible; the counter-thesis says trust requires visibility.",
+        "myth": "The Trojan Horse: financial services smuggled inside platforms that consumers already trust, eroding the bank's direct customer relationship."
+      }
+    },
+    {
+      "id": "T-005",
+      "name": "Climate Risk Repricing",
+      "description": "Physical and transition climate risks increasingly priced into asset valuations, insurance premiums, and lending decisions. Regulatory stress testing driving acceleration.",
+      "primary_lens": "Climate & Energy Transition",
+      "primary_lens_colour": "#16A34A",
+      "secondary_lenses": [
+        "Business, Finance & Policy"
+      ],
+      "cipher_types": "C, P",
+      "vim": {
+        "v": 4.0,
+        "i": 5.0,
+        "m": 6.0,
+        "v_anchor": "BoE climate stress test results; insurance withdrawal from flood plains",
+        "i_anchor": "Mortgage book exposure; regulatory capital requirements",
+        "m_anchor": "TRL 5-6; TCFD mandatory; physical risk models developing"
+      },
+      "vim_priority": "WATCH & PREPARE",
+      "maturity_stage": "Developing",
+      "trajectory": "Strengthening",
+      "status": "Active",
+      "first_identified": "2026-03-03",
+      "last_reviewed": "2026-04-02T00:00:00",
+      "signal_count_30d": 29,
+      "convergence_count": 2,
+      "key_signals": "BoE climate stress test results; insurance market withdrawals from flood zones; TCFD mandatory reporting uptake; Issue #18: From daily briefing; Issue #19: Iran Ras Laffan strike, Brent $114; Jet fuel shortages, 950K copper gap, AI capex energy, Issue #20; Issue #21: Copper One autonomous mine (50K t target), 950K t scrap exports, jet fuel shortage fears from Iran conflict; Issue #23: Pakistan 17GW solar, Fervo \u00a3462M geothermal, nuclear SMR acceleration; Issue #28: Iran energy shock, biggest sell-off since 2022; Issue #32: Solid-state transformer funding \u00a3106M, Gulf pipeline, coal resurgence",
+      "strategic_implications": "Lending portfolio exposure review required; opportunity in green finance products; stranded asset risk in commercial property",
+      "leading_indicators": "First UK bank taking material write-down on climate-exposed assets; mandatory climate-adjusted capital requirements; carbon border adjustment mechanism affecting UK trade",
+      "proximity_years": 3,
+      "impact_magnitude": 8,
+      "archetype_impacts": {
+        "sarah": {
+          "impact": "disrupted",
+          "summary": "Mortgage affordability in exposed areas"
+        },
+        "james": {
+          "impact": "disrupted",
+          "summary": "Transition costs for carbon-intensive SMEs"
+        },
+        "priya": {
+          "impact": "disrupted",
+          "summary": "Stranded asset risk in portfolios"
+        },
+        "david": {
+          "impact": "neutral",
+          "summary": "Portfolio diversification into climate assets"
+        },
+        "margaret": {
+          "impact": "neutral",
+          "summary": "Disproportionate impact if in flood/heat zones"
+        },
+        "alex": {
+          "impact": "watch",
+          "summary": "watch"
+        }
+      },
+      "cla": {
+        "status": "Complete",
+        "litany": "Insurance withdrawals from flood zones. TCFD mandatory reporting. Copper deficit threatens electrification. Iran conflict disrupts energy supply chains.",
+        "systemic": "Carbon pricing internalises externalities slowly. Insurance markets reprice faster than policy. Stranded asset risk creates cliff-edge capital reallocation.",
+        "worldview": "Green growth optimists vs degrowth advocates vs climate sceptics. All three compete to define what 'transition' means for capital allocation.",
+        "myth": "The Flood: biblical destruction followed by renewal. Also Icarus: human ambition (fossil fuel civilisation) flying too close to the sun."
+      }
+    },
+    {
+      "id": "T-006",
+      "name": "AI-Powered Military Operations",
+      "description": "AI systems deployed in active military operations \u2014 target identification, autonomous weapons, battlefield robotics, and AI-driven disinformation. First humanoid robot (Phantom MK-1) deployed to Ukraine. Commercial consequences emerging as defence contracts trigger consumer backlash.",
+      "primary_lens": "Geopolitical Realignment",
+      "primary_lens_colour": "#7C3AED",
+      "secondary_lenses": [
+        "AI & Agents",
+        "Digital Trust",
+        "Interface & Spatial"
+      ],
+      "cipher_types": "C, I",
+      "vim": {
+        "v": 5.0,
+        "i": 5.0,
+        "m": 6.0,
+        "v_anchor": "Phantom MK-1 deployed; MK-2 in 6 weeks; Iran AI disinfo at scale",
+        "i_anchor": "All 5 archetypes affected; defence, trade finance, insurance, sanctions",
+        "m_anchor": "TRL 7-8; live battlefield deployment; iterating in weeks not years"
+      },
+      "vim_priority": "ACT NOW",
+      "maturity_stage": "Developing",
+      "trajectory": "Accelerating",
+      "status": "Active",
+      "first_identified": "2026-03-12",
+      "last_reviewed": "2026-04-03T00:00:00",
+      "signal_count_30d": 26,
+      "convergence_count": 4,
+      "key_signals": "Phantom MK-1 deployed to Ukraine battlefield (Issue #17). Palantir/Anthropic 5,500+ Pentagon targets (Issue #14). OpenAI Pentagon deal triggered 295% uninstall surge (Issue #16). Iran AI disinformation campaigns at scale.; Issue #18: From daily briefing; Issue #19: Pentagon drops Anthropic, builds own LLMs; Issue #26: Russia-Iran drone/intel sharing; Issue #31; Issue #32: Trump primetime escalation, continued Gulf conflict; Issue #33: 41-nation Hormuz talks, AI war gaming proposal",
+      "strategic_implications": "Defence AI partnerships now carry measurable commercial risk. Vendor selection must factor ethical positioning. Humanoid battlefield deployment compresses civilian robotics timeline. AI-driven warfare reshapes insurance, trade finance, and sanctions compliance.",
+      "leading_indicators": "Phantom MK-2 April 2026; NATO AI doctrine publication; FCA guidance on defence-linked AI vendors; consumer boycott metrics stabilising or accelerating",
+      "proximity_years": 1,
+      "impact_magnitude": 6,
+      "archetype_impacts": {
+        "sarah": {
+          "impact": "neutral",
+          "summary": "Limited direct impact unless defence employer"
+        },
+        "james": {
+          "impact": "neutral",
+          "summary": "Supply chain disruption from conflict zones"
+        },
+        "priya": {
+          "impact": "disrupted",
+          "summary": "Defence exposure, sanctions compliance, vendor ethics risk"
+        },
+        "david": {
+          "impact": "disrupted",
+          "summary": "Defence sector investments, ethical portfolio screening"
+        },
+        "margaret": {
+          "impact": "neutral",
+          "summary": "Minimal direct impact"
+        },
+        "alex": {
+          "impact": "neutral",
+          "summary": "neutral"
+        }
+      },
+      "cla": {
+        "status": "Complete",
+        "litany": "Robots on battlefields. AI identifies targets. Defence contracts cost customers.",
+        "systemic": "Military-industrial AI complex forming. Consumer ethics as market force. Speed of autonomous weapons iteration outpacing governance.",
+        "worldview": "Technology as force multiplier in conflict vs technology as peace enabler. Ethics as competitive advantage vs ethics as constraint.",
+        "myth": "The clean war \u2014 machines fight so humans don't have to. The ethical consumer \u2014 brand choices as political acts."
+      }
+    },
+    {
+      "id": "T-007",
+      "name": "Private Credit Liquidity Crisis",
+      "description": "Wealthy individuals and institutions withdrawing capital from private credit funds at scale. Managers imposing gate-downs and withdrawal limits. Moving from projection to confirmed $10B+ outflows in Q1 2026. Blue Owl Capital collapse adds contagion signal.",
+      "primary_lens": "Business, Finance & Policy",
+      "primary_lens_colour": "#EA580C",
+      "secondary_lenses": [
+        "Digital Markets & Assets",
+        "Consumer"
+      ],
+      "cipher_types": "C, I",
+      "vim": {
+        "v": 5.0,
+        "i": 5.0,
+        "m": 6.0,
+        "v_anchor": "$10B+ Q1 confirmed outflows; Blue Owl collapse; gate-downs spreading",
+        "i_anchor": "Wealth clients, institutional investors, fund managers, credit markets",
+        "m_anchor": "TRL 7; real withdrawals happening; regulatory response forming"
+      },
+      "vim_priority": "ACT NOW",
+      "maturity_stage": "Developing",
+      "trajectory": "Accelerating",
+      "status": "Active",
+      "first_identified": "2026-03-14",
+      "last_reviewed": "2026-04-02T00:00:00",
+      "signal_count_30d": 14,
+      "convergence_count": 3,
+      "key_signals": "$10B+ confirmed Q1 withdrawals (Issue #16). Goldman $45-70B projection tracking upper end. Blue Owl Capital collapse (Issue #17). Fund managers limiting redemptions. Oil-driven inflation compounding pressure.; Issue #19: FT Lex European private credit coverage; Issue #21: The Diff SRT analysis shows risk transfer virality, private credit opacity deepening; Issue #23: BlackRock \u00a3620M redemption cap, Blackstone BCRED \u00a3310M injection, Blue Owl -34% YTD, JPMorgan software markdowns; Issue #31; Issue #32: Private credit \u00a3201B erased, fund gates at Ares/Apollo, 8% default rate",
+      "strategic_implications": "Contagion risk to broader credit markets. Wealth management clients seeking liquidity alternatives. Regulatory scrutiny of fund gate-down mechanisms imminent. Secondary market for private credit positions emerging.",
+      "leading_indicators": "FCA/SEC formal guidance on fund liquidity; contagion to public credit markets; private credit secondary market volumes; redemption queue lengths",
+      "proximity_years": 0.5,
+      "impact_magnitude": 8,
+      "archetype_impacts": {
+        "sarah": {
+          "impact": "neutral",
+          "summary": "Limited unless pension fund exposed"
+        },
+        "james": {
+          "impact": "neutral",
+          "summary": "Limited direct impact"
+        },
+        "priya": {
+          "impact": "disrupted",
+          "summary": "Treasury exposure to private credit funds"
+        },
+        "david": {
+          "impact": "disrupted",
+          "summary": "Direct portfolio exposure; liquidity constraints"
+        },
+        "margaret": {
+          "impact": "neutral",
+          "summary": "No direct impact"
+        },
+        "alex": {
+          "impact": "watch",
+          "summary": "watch"
+        }
+      },
+      "cla": {
+        "status": "Complete",
+        "litany": "SRTs enable risk transfer. $10B+ Q1 withdrawals. Goldman projects upper-end outflows. Blue Owl Capital collapse. The Diff calls it financial system 'virality'.",
+        "systemic": "Originate-to-distribute model separates risk creation from risk holding. Opacity in private credit prevents accurate pricing. Regulatory arbitrage between banks and shadow banks.",
+        "worldview": "Efficient markets thesis says risk is correctly priced; Minsky thesis says stability breeds instability. The SRT innovation sits exactly at this fault line.",
+        "myth": "The Emperor's New Clothes: everyone agrees the assets are well-priced until someone asks who actually holds the risk, and nobody can answer."
+      }
+    },
+    {
+      "id": "T-008",
+      "name": "AI Ethics as Commercial Differentiator",
+      "description": "Ethical positioning on AI \u2014 particularly regarding military and surveillance applications \u2014 now measurably impacts market share, app downloads, and enterprise procurement. OpenAI/Anthropic split is the canonical case: defence contract triggered 295% uninstalls while competitor gained 51%.",
+      "primary_lens": "Digital Trust",
+      "primary_lens_colour": "#DC2626",
+      "secondary_lenses": [
+        "AI & Agents",
+        "Consumer"
+      ],
+      "cipher_types": "C, I",
+      "vim": {
+        "v": 4.0,
+        "i": 4.0,
+        "m": 5.0,
+        "v_anchor": "295% uninstall surge; 51% competitor gain; measurable market share shift",
+        "i_anchor": "Consumer trust, enterprise procurement, brand value, regulatory posture",
+        "m_anchor": "TRL 6; measurable commercial impact; not yet industry-standard procurement criterion"
+      },
+      "vim_priority": "WATCH & PREPARE",
+      "maturity_stage": "Developing",
+      "trajectory": "Strengthening",
+      "status": "Active",
+      "first_identified": "2026-03-12",
+      "last_reviewed": "2026-04-04",
+      "signal_count_30d": 23,
+      "convergence_count": 3,
+      "key_signals": "OpenAI 295% US uninstall surge post-Pentagon deal (Issue #16). Anthropic surpasses ChatGPT daily installs (Issue #16). Meta E2EE retreat under government pressure (Issue #17). Facial recognition grocery pricing trials (Issue #17).; Issue #18: From daily briefing; Issue #19: AI code security gaps, chaos monkey agents; 86% EU internet fears, UK copyright, DMCCA delay, Anthropic defence, Issue #20; Issue #21: Anthropic 81K user interview study (professional excellence top hope, error fear outranks job anxiety); Issue #23: Meta/Amazon LLM code failures, Parliament AI labelling taskforce, FCA AI guidance mandate; Issue #25: Expert personas reduce accuracy, Meta $375M; Issue #28: Tegmark Bernie-to-Bannon coalition, China anthropomorphic AI ban; Issue #31; Issue #33: Meta Oversight Board defunding; EU AI Act enforcement begins generating first compliance penalties for non-transparent systems (Issue #34)",
+      "strategic_implications": "AI vendor selection now includes ethical positioning as procurement criterion. Enterprise customers may follow consumer defection patterns. Banks must evaluate reputational contagion risk from AI provider defence contracts.",
+      "leading_indicators": "Enterprise contract losses linked to ethics positioning; EU AI Act enforcement actions; UK AI Safety Institute vendor assessments; consumer ethics metrics stabilising",
+      "proximity_years": 2,
+      "impact_magnitude": 5,
+      "archetype_impacts": {
+        "sarah": {
+          "impact": "disrupted",
+          "summary": "App choice driven by values; trust erosion"
+        },
+        "james": {
+          "impact": "neutral",
+          "summary": "Limited unless AI vendor-dependent"
+        },
+        "priya": {
+          "impact": "disrupted",
+          "summary": "Vendor selection, reputational risk, procurement criteria"
+        },
+        "david": {
+          "impact": "neutral",
+          "summary": "ESG portfolio implications"
+        },
+        "margaret": {
+          "impact": "disrupted",
+          "summary": "Trust in digital services further eroded"
+        },
+        "alex": {
+          "impact": "opportunity",
+          "summary": "opportunity"
+        }
+      },
+      "cla": {
+        "status": "Complete",
+        "litany": "Anthropic surpasses ChatGPT installs. OpenAI Pentagon deal backlash. 81K user study shows professional excellence as top hope. Trust becomes a market signal.",
+        "systemic": "Consumer choice creates market incentives for ethical positioning. But ethics is expensive and may not survive competitive pressure. Regulatory frameworks lag market moves.",
+        "worldview": "Consequentialists focus on outcomes (does it work?); deontologists focus on process (was it built responsibly?). Both miss that trust is relational, not transactional.",
+        "myth": "David vs Goliath: smaller, principled companies (Anthropic) challenging larger, pragmatic ones (OpenAI). Also the Faustian Bargain: power in exchange for principles."
+      }
+    },
+    {
+      "id": "T-009",
+      "name": "AI Capital Reallocation",
+      "description": "Large enterprises explicitly cutting human headcount to fund AI infrastructure investment. Meta's 20% workforce reduction (~16,000 jobs) to offset $135B AI capex is the template. The equation \u2014 cut humans to fund machines \u2014 will be replicated across industries.",
+      "primary_lens": "Workforce & Talent",
+      "primary_lens_colour": "#BE185D",
+      "secondary_lenses": [
+        "AI & Agents",
+        "Business, Finance & Policy"
+      ],
+      "cipher_types": "I",
+      "vim": {
+        "v": 5.0,
+        "i": 5.0,
+        "m": 6.0,
+        "v_anchor": "Meta $135B capex + 16,000 job cuts; first explicit cut-humans-to-fund-AI at scale",
+        "i_anchor": "All industries face same equation; banking workforce directly exposed",
+        "m_anchor": "TRL 4-5; Meta first mover; others signalling but not yet acting"
+      },
+      "vim_priority": "ACT NOW",
+      "maturity_stage": "Emerging",
+      "trajectory": "Strengthening",
+      "status": "Active",
+      "first_identified": "2026-03-17",
+      "last_reviewed": "2026-04-04",
+      "signal_count_30d": 24,
+      "convergence_count": 3,
+      "key_signals": "Meta 20% workforce cut to fund $135B AI capex (Issue #17). Nvidia $1T revenue projection (Issue #17). a16z thesis: AI agents replacing $380B SI market. Semiconductor spending $82.5B. Fuse $25M AI-native loan origination.; Issue #18: From daily briefing; Issue #19: $400B Big Four capex, AMI Labs $1.03B; \u00a3524B Big Four capex, Meta 20% cuts, Figma 12% IPO, Issue #20; Issue #21: Bezos Project Prometheus \u00a377.5B manufacturing AI fund, Crypto.com 12% AI layoffs, Meta 20% layoffs planned; Issue #23: AMI Labs \u20ac1.03B, Nscale \u00a32B, NVIDIA Groq \u00a320B; Issue #25: Microsoft -21%, Nvidia $1T; Issue #26: Norway fund Claude deployment, Roche AI factory, OpenAI Sora pivot; Issue #27: OpenAI \u00a389.6B funding, Harvey \u00a3149M at \u00a38.2B valuation; Issue #28: Anthropic \u00a3301B valuation, LeCun \u00a3794M AMI Labs, Hummingbird \u00a3635M; Issue #31; Issue #32: OpenAI \u00a392B record round, Oracle 20K-30K layoffs for AI pivot; Issue #33: Oracle 30K layoffs for AI, CoreWeave \u00a36.4B, Related Digital \u00a312.1B; Global AI infrastructure spend hits \u00a389B in Q1 2026, up 34% YoY (Issue #34)",
+      "strategic_implications": "Every large enterprise faces the same capital reallocation equation. Banks should model 15-25% knowledge-worker displacement within 5 years. Consulting relationships supporting transformation programmes are themselves at risk. Workforce planning must shift to human-plus-agent capacity modelling.",
+      "leading_indicators": "Second major tech company announcing similar restructuring; banking sector AI-driven headcount reduction; SI contract values declining; AI agent productivity metrics published",
+      "proximity_years": 1,
+      "impact_magnitude": 8,
+      "archetype_impacts": {
+        "sarah": {
+          "impact": "neutral",
+          "summary": "Job security anxiety; mortgage affordability if displaced"
+        },
+        "james": {
+          "impact": "opportunity",
+          "summary": "Potential productivity gains from AI tools"
+        },
+        "priya": {
+          "impact": "disrupted",
+          "summary": "Workforce restructuring; AI capex budget battles; consulting dependency"
+        },
+        "david": {
+          "impact": "neutral",
+          "summary": "Portfolio exposure to restructuring companies"
+        },
+        "margaret": {
+          "impact": "disrupted",
+          "summary": "Further exclusion as human services reduce"
+        },
+        "alex": {
+          "impact": "disrupted",
+          "summary": "disrupted"
+        }
+      },
+      "cla": {
+        "status": "Complete",
+        "litany": "Bezos \u00a377.5B fund. Meta 20% layoffs. Nvidia $1T projection. Crypto.com 12% AI cuts. Capital flowing from labour to compute infrastructure at unprecedented speed.",
+        "systemic": "Network effects in AI capex: more compute attracts more talent attracts more data attracts more capital. Creates a self-reinforcing cycle that starves non-AI investment.",
+        "worldview": "Growth maximisers see necessary reallocation; labour advocates see extraction. The debate about AI capex is really about who benefits from productivity gains.",
+        "myth": "The Gold Rush: fortunes made by those who sell picks and shovels (Nvidia, cloud providers) rather than those who pan for gold (AI application companies)."
+      }
+    },
+    {
+      "id": "T-010",
+      "name": "Crypto-TradFi Infrastructure Convergence",
+      "description": "Crypto firms gaining access to traditional financial infrastructure (Fed payment rails, bank charters) while traditional banks adopt crypto-native tools (stablecoins, tokenised assets, on-chain settlement). The wall between the two systems is formally breached.",
+      "primary_lens": "Digital Markets & Assets",
+      "primary_lens_colour": "#059669",
+      "secondary_lenses": [
+        "Business, Finance & Policy",
+        "Digital Trust"
+      ],
+      "cipher_types": "I, P",
+      "vim": {
+        "v": 7.0,
+        "i": 5.0,
+        "m": 6.0,
+        "v_anchor": "Kraken Fed account; Galaxy tokenised CLO; Wells Fargo/SoFi stablecoins",
+        "i_anchor": "Payment rails, custody, settlement, regulatory architecture",
+        "m_anchor": "TRL 5; first approvals granted but not yet mainstream"
+      },
+      "vim_priority": "ACT NOW",
+      "maturity_stage": "Emerging",
+      "trajectory": "Strengthening",
+      "status": "Active",
+      "first_identified": "2026-03-17",
+      "last_reviewed": "2026-04-04",
+      "signal_count_30d": 21,
+      "convergence_count": 3,
+      "key_signals": "Kraken first crypto firm with Fed master account (Issue #17). Galaxy CLO on Avalanche \u2014 institutional structured credit on public blockchain. SoFi/Wells Fargo developing stablecoins. Morgan Stanley crypto trust custody. CLARITY Act stuck in committee.; Issue #18: From daily briefing; Issue #19: MPP bridges fiat and crypto natively; BVNK/Mastercard, Issue #20; Issue #21: Mastercard/BVNK \u00a31.4B stablecoin infrastructure, Nasdaq tokenised securities approved; Issue #23: SEC/CFTC 16-crypto commodity designation, FCA CP26/4 gateway; Issue #25: Fink letter, BlackRock $150B, CLARITY Act; Issue #26: Monument Bank \u00a3250M tokenised deposits; Issue #27: Better/Coinbase token-backed mortgages in GSE/Fannie Mae; Issue #33: Altcoin ATLs, stablecoin infra funding, x402 protocol; Stablecoins surpass ACH settlement volume marking crypto-TradFi infrastructure tipping point (Issue #34); Drift Protocol's \u00a3216M hack exposes DeFi bridge vulnerabilities as TradFi integration accelerates (Issue #34)",
+      "strategic_implications": "Parallel financial infrastructure emerging that incumbent banks cannot ignore. FCA will face pressure to match US permissiveness. Digital asset firms competing directly on payment speed and cost. the Bank digital asset strategy needs to account for competitors with Fed payment rails.",
+      "leading_indicators": "Second crypto firm receiving Fed account; FCA equivalent approval in UK; bank-issued stablecoin transaction volumes; tokenised asset AUM crossing $100B; CLARITY Act passage",
+      "proximity_years": 2,
+      "impact_magnitude": 7,
+      "archetype_impacts": {
+        "sarah": {
+          "impact": "neutral",
+          "summary": "Faster payments if adopted; limited awareness"
+        },
+        "james": {
+          "impact": "opportunity",
+          "summary": "Cheaper cross-border payments; new payment options"
+        },
+        "priya": {
+          "impact": "disrupted",
+          "summary": "Treasury settlement infrastructure; counterparty evaluation"
+        },
+        "david": {
+          "impact": "disrupted",
+          "summary": "New asset class access; custody considerations"
+        },
+        "margaret": {
+          "impact": "neutral",
+          "summary": "Neutral unless cash further marginalised"
+        },
+        "alex": {
+          "impact": "watch",
+          "summary": "watch"
+        }
+      },
+      "cla": {
+        "status": "Complete",
+        "litany": "Mastercard buys BVNK. Nasdaq approves tokenised securities. Kraken gets Fed master account. Galaxy CLO on Avalanche. Infrastructure converging fast.",
+        "systemic": "Regulatory clarity creates institutional entry points. Token economics reduce settlement friction. But interoperability between crypto and traditional rails remains incomplete.",
+        "worldview": "Crypto maximalists see replacement of TradFi; pragmatists see hybridisation. The actual convergence is neither: it is TradFi absorbing crypto's plumbing whilst retaining its governance.",
+        "myth": "The Ship of Theseus: if you replace every plank (settlement, custody, clearing) with blockchain, is it still traditional finance? The answer reveals what 'finance' actually means."
+      }
+    },
+    {
+      "id": "T-011",
+      "name": "Agentic Commerce Infrastructure",
+      "description": "The payment protocols, identity verification, and commercial frameworks enabling autonomous AI agents to transact across fiat and crypto rails at machine speed",
+      "primary_lens": "Digital Markets & Assets",
+      "primary_lens_colour": "#059669",
+      "secondary_lenses": [
+        "AI & Agents",
+        "Consumer",
+        "Digital Trust",
+        "Business Finance & Policy"
+      ],
+      "cipher_types": "I, P",
+      "vim": {
+        "v": 5.0,
+        "i": 5.0,
+        "m": 6.0,
+        "v_anchor": "Three major payment infrastructure launches in 3 days",
+        "i_anchor": "Touches all 5 archetypes and 5+ lenses",
+        "m_anchor": "Production protocols shipped but <1% of agent transactions use native rails"
+      },
+      "vim_priority": "ACT NOW",
+      "maturity_stage": "Emerging",
+      "trajectory": "Strengthening",
+      "status": "Active",
+      "first_identified": "2026-03-19",
+      "last_reviewed": "2026-04-04",
+      "signal_count_30d": 18,
+      "convergence_count": 5,
+      "key_signals": "Issue #17: Mastercard-BVNK $1.8B; Issue #18: Ramp/Stripe agent cards; Issue #19: MPP launch, AgentCard, Rhythmic; MPP adoption, Visa Trusted Agent, OpenClaw integration, Issue #20; Issue #21: Visa CLI agent card payments, Stripe Tempo MPP live on mainnet, DoorDash Tasks (gig-to-AI data); Issue #23: Karpathy 80% agent coding, Memento-Skills 87.88% GAIA, OpenClaw 210K stars, stablecoins as Dollar API; Issue #25: Mastercard/Santander live, Korea, Claude Dispatch; Issue #26: FCA agentic payments rewrite, Mastercard LATAM live, Starling, B2A concept; Issue #27: Starling agentic AI launch, Lloyds 21M accounts, Visa Agentic Ready; Issue #28: Karpathy Autoresearch 700 experiments, Lloyds 21M agentic AI; Issue #31; Issue #33: x402 protocol, agent supply chain attacks weaponised; Anthropic Claude Code leak reveals agent-to-agent commerce protocol specifications (Issue #34)",
+      "strategic_implications": "Disrupts advertising-funded internet model. Creates new revenue streams for API providers. Challenges existing payment networks.",
+      "leading_indicators": "MPP IETF adoption, agent transaction volume growth, stablecoin velocity acceleration",
+      "proximity_years": 1.5,
+      "impact_magnitude": 8,
+      "archetype_impacts": {
+        "sarah": {
+          "impact": "watch",
+          "summary": "agents may change shopping experience"
+        },
+        "james": {
+          "impact": "disrupted",
+          "summary": "new payment rails create opportunity and risk"
+        },
+        "priya": {
+          "impact": "disrupted",
+          "summary": "procurement agents need payment infrastructure"
+        },
+        "david": {
+          "impact": "watch",
+          "summary": "investment agents need transaction capability"
+        },
+        "margaret": {
+          "impact": "watch",
+          "summary": "may further widen digital divide"
+        },
+        "alex": {
+          "impact": "disrupted",
+          "summary": "disrupted"
+        }
+      },
+      "cla": {
+        "status": "Complete",
+        "litany": "Visa CLI, Stripe MPP, Mastercard/BVNK. DoorDash Tasks. Agent-to-agent payment rails being built by three networks simultaneously. Four briefings in seven days.",
+        "systemic": "Payment networks compete to become default agent rails. First-mover advantage in standards setting. Interoperability between MPP, CLI, and BVNK unclear. Fraud frameworks non-existent.",
+        "worldview": "Techno-utopians see frictionless agent economy; sceptics see surveillance capitalism's next phase. The real question is: who is liable when an agent makes a bad payment?",
+        "myth": "The Golem: a servant created to do its master's bidding that eventually acts autonomously, raising questions about control, agency, and responsibility."
+      }
+    },
+    {
+      "id": "T-012",
+      "name": "Materials Bottleneck (Copper/Rare Earth Supply Gap)",
+      "description": "Simultaneous demand from AI infrastructure buildout, electrification, and energy transition is outstripping copper and rare earth supply. The 950,000-tonne annual copper scrap gap threatens multiple transition timelines. Capital spending alone cannot resolve the constraint.",
+      "primary_lens": "Climate & Energy Transition",
+      "primary_lens_colour": "#16A34A",
+      "secondary_lenses": [
+        "AI & Agents",
+        "Geopolitical Realignment",
+        "Business, Finance & Policy"
+      ],
+      "cipher_types": "P, C",
+      "vim": {
+        "v": 4.0,
+        "i": 4.0,
+        "m": 5.0,
+        "v_anchor": "Jet fuel shortage (FirstFT lead); 950K-tonne copper scrap gap (Reuters)",
+        "i_anchor": "Connects AI infrastructure, electrification, energy transition; cross-sector constraint",
+        "m_anchor": "TRL N/A; structural supply-demand imbalance; no near-term resolution"
+      },
+      "vim_priority": "WATCH & PREPARE",
+      "maturity_stage": "Emerging",
+      "trajectory": "Strengthening",
+      "status": "Active",
+      "first_identified": "2026-03-14T00:00:00",
+      "last_reviewed": "2026-04-02T00:00:00",
+      "signal_count_30d": 13,
+      "convergence_count": 4,
+      "key_signals": "Issue #18: copper supply gap flagged in Climate lens; Issue #19: 950K-tonne annual shortfall confirmed; Issue #20: jet fuel shortage, copper gap threatens AI buildout and electrification simultaneously; Issue #21: Copper One autonomy-first mine (MarianaOS, 50K t annual target), US copper output down 50% in 25 years, 200K mining retirees this decade; Issue #26: Hormuz/oil scenario, Brent $98; Issue #31; Issue #32: Solid-state transformer funding, coal resurgence signals",
+      "strategic_implications": "Financing decisions on infrastructure projects must account for copper and rare earth availability, not just carbon intensity. Climate risk is now also materials risk and supply chain risk. Data centre buildout timelines face constraint.",
+      "leading_indicators": "Copper price sustained above $12,000/tonne; mining capex announcements; recycling infrastructure investment; data centre construction delays attributed to materials",
+      "proximity_years": 3,
+      "impact_magnitude": 6,
+      "archetype_impacts": {
+        "sarah": {
+          "impact": "neutral",
+          "summary": "Indirect; energy costs may rise"
+        },
+        "james": {
+          "impact": "disrupted",
+          "summary": "Supply chain cost inflation; input price risk"
+        },
+        "priya": {
+          "impact": "disrupted",
+          "summary": "Infrastructure project delays; capex overruns"
+        },
+        "david": {
+          "impact": "neutral",
+          "summary": "Portfolio exposure to mining and materials sector"
+        },
+        "margaret": {
+          "impact": "neutral",
+          "summary": "Neutral unless energy costs spike disproportionately"
+        },
+        "alex": {
+          "impact": "neutral",
+          "summary": "neutral"
+        }
+      },
+      "cla": {
+        "status": "Complete",
+        "litany": "Copper One autonomous mine. US output down 50% in 25 years. 950K t scrap exported. 200K mining retirees. Structural deficit approaching 10M t.",
+        "systemic": "Electrification and data centre growth create inelastic copper demand. Mine permitting takes 15+ years. Autonomous mining reduces labour bottleneck but not geological constraints.",
+        "worldview": "Techno-optimists trust substitution and innovation; resource pessimists see hard physical limits. The energy transition requires both perspectives to be partially right.",
+        "myth": "Cornucopia vs Limits to Growth: the belief that technology always finds more versus the geological reality that copper deposits are finite and declining in grade."
+      }
+    },
+    {
+      "id": "T-013",
+      "name": "AI Coding Tool Vertical Integration",
+      "description": "Coding platforms (Cursor, Windsurf, Replit) building or acquiring their own foundation models, commoditising the model layer from below. Cursor Composer 2 beating Opus 4.6 at 1/20th the cost is the canonical signal. OpenAI's Astral acquisition is the defensive response.",
+      "primary_lens": "AI & Agents",
+      "primary_lens_colour": "#4F46E5",
+      "secondary_lenses": [
+        "Business, Finance & Policy",
+        "Workforce & Talent"
+      ],
+      "cipher_types": "I, P",
+      "vim": {
+        "v": 4.0,
+        "i": 4.0,
+        "m": 3.0,
+        "v_anchor": "3 major vertical integration moves in 7 days (Cursor own model, OpenAI Astral, Windsurf Codestral)",
+        "i_anchor": "Affects enterprise AI procurement decisions, developer tooling market, model provider revenue",
+        "m_anchor": "TRL 5-6; production products exist but vertical integration just starting"
+      },
+      "vim_priority": "WATCH & PREPARE",
+      "maturity_stage": "Emerging",
+      "trajectory": "Accelerating",
+      "status": "Active",
+      "first_identified": "2026-03-21",
+      "last_reviewed": "2026-04-03T00:00:00",
+      "signal_count_30d": 8,
+      "convergence_count": 2,
+      "key_signals": "Issue #22: Cursor Composer 2 beats Opus 4.6 (61.7% vs 58%), Cursor \u00a31.55B ARR, OpenAI acquires Astral for $480M; Issue #23: Cursor \u00a32B ARR (doubled in 3 months), Groq 35x inference economics; Issue #25: Claude Dispatch, Copilot reorg; Issue #27: ARC-AGI-3 0.37%, TurboQuant 6x compression; Issue #28: Karpathy humans no longer write most code, Zitron LLM code critique; Issue #33: AI bug reports quality inversion, autoresearch",
+      "strategic_implications": "If model quality commoditises, the Bank's AI vendor strategy shifts from \"pick the best model\" to \"pick the best system\". Procurement frameworks need updating.",
+      "leading_indicators": "A coding tool's proprietary model outperforms GPT-5 on a mainstream benchmark; major bank switches from foundation model API to coding tool's integrated model",
+      "proximity_years": 1,
+      "impact_magnitude": 5,
+      "archetype_impacts": {
+        "sarah": {
+          "impact": "neutral",
+          "summary": "Indirect; better AI tools may improve Bank's digital services"
+        },
+        "james": {
+          "impact": "opportunity",
+          "summary": "Cheaper AI coding tools lower barrier to SME digital transformation"
+        },
+        "priya": {
+          "impact": "opportunity",
+          "summary": "Commoditised models reduce enterprise AI procurement costs"
+        },
+        "david": {
+          "impact": "neutral",
+          "summary": "Minimal direct impact on wealth services"
+        },
+        "margaret": {
+          "impact": "neutral",
+          "summary": "No direct impact"
+        },
+        "alex": {
+          "impact": "disrupted",
+          "summary": "disrupted"
+        }
+      },
+      "cla": {
+        "status": "Complete",
+        "litany": "Cursor beats the best model at a fraction of the cost. OpenAI buys a coding tool. The model layer is being absorbed.",
+        "systemic": "Coding tools have distribution (millions of developers). Distribution beats model quality when quality is \"good enough\". Vertical integration is the rational response to commoditisation.",
+        "worldview": "Model labs believe intelligence is the moat; tool builders believe workflow is the moat. History favours the integrator (cf. IBM vs Microsoft, Oracle vs Salesforce).",
+        "myth": "David and Goliath: the small, nimble tool-builder defeats the giant model lab not through superior intelligence but through superior positioning."
+      }
+    },
+    {
+      "id": "T-014",
+      "name": "Enterprise AI Agent Procurement",
+      "description": "The shift from AI pilots and proofs-of-concept to production procurement contracts with SLAs, liability frameworks, and workforce displacement plans. Anthropic Dispatch, OpenAI Codex enterprise, and the 54%/43% adoption split are the signal cluster.",
+      "primary_lens": "AI & Agents",
+      "primary_lens_colour": "#4F46E5",
+      "secondary_lenses": [
+        "Workforce & Talent",
+        "Business, Finance & Policy",
+        "Digital Trust"
+      ],
+      "cipher_types": "I, P, C",
+      "vim": {
+        "v": 5.0,
+        "i": 5.0,
+        "m": 6.0,
+        "v_anchor": "4 major enterprise agent product launches in 2 weeks (Dispatch, Codex, Forge, Autoresearch)",
+        "i_anchor": "Affects all 5 archetypes; full value chain from procurement to customer experience",
+        "m_anchor": "TRL 6-7; live deployments at 3+ major banks but pre-scale"
+      },
+      "vim_priority": "ACT NOW",
+      "maturity_stage": "Developing",
+      "trajectory": "Strengthening",
+      "status": "Active",
+      "first_identified": "2026-03-21 (signals tracked since 2026-02-26 under T-001)",
+      "last_reviewed": "2026-04-04",
+      "signal_count_30d": 16,
+      "convergence_count": 3,
+      "key_signals": "Issue #18: NemoClaw launch, Ramp/Stripe agent cards; Issue #19: Dispatch, Codex, Forge, Autoresearch; Issue #20: 54/43 adoption split, \u00a3138B OpenAI-AWS; Issue #22: Cursor Composer 2 cost advantage accelerating procurement timelines; Issue #23: HIMSS 80%+ exec confidence, Salesforce 6 healthcare agents, Topol Flagship/Perplexity advisory; Issue #25: Microsoft 3.3%, Agents Over Bubbles; Issue #26: Norway fund full deployment, Claude Code 42-54%, Aveni FinLLM; Issue #27: Lloyds deployment, M&S Copilot 11k staff, Starling launch; Issue #28: Claude extension vulnerability, Treasury Committee critical third party designation; Issue #31; Issue #32: OpenAI enterprise 40%+, Oracle \u00a3227B+ contract, Salesforce MCP; Only 3% of UK firms have deployed AI agents despite 67% planning to within 18 months (Issue #34)",
+      "strategic_implications": "Directly determines the Bank's own AI procurement posture and workforce planning. Production agent contracts require new vendor assessment frameworks, liability allocation, and performance SLAs.",
+      "leading_indicators": "Top-5 UK bank signs production agent deployment contract with measurable headcount offset; FCA issues formal guidance on AI agent delegation; insurance product for AI agent errors reaches market",
+      "proximity_years": 0.5,
+      "impact_magnitude": 9,
+      "archetype_impacts": {
+        "sarah": {
+          "impact": "opportunity",
+          "summary": "Faster, cheaper, personalised services through agent deployment"
+        },
+        "james": {
+          "impact": "opportunity",
+          "summary": "AI-powered cash flow management, automated compliance"
+        },
+        "priya": {
+          "impact": "neutral",
+          "summary": "Efficiency gains vs control concerns; procurement complexity"
+        },
+        "david": {
+          "impact": "watch",
+          "summary": "Trust vs convenience tension in wealth management"
+        },
+        "margaret": {
+          "impact": "disrupted",
+          "summary": "Further digital exclusion risk if agent-first channels replace human service"
+        },
+        "alex": {
+          "impact": "disrupted",
+          "summary": "disrupted"
+        }
+      },
+      "cla": {
+        "status": "Complete",
+        "litany": "Enterprise AI procurement accelerating. Adoption gap widening. SLAs and liability frameworks emerging.",
+        "systemic": "Venture capital incentivises speed over safety. Cloud providers commoditise inference. Regulatory lag creates a permissive window. Winner-take-most dynamics in platform lock-in.",
+        "worldview": "Efficiency advocates see agents as productivity multipliers; workforce advocates see job displacement. Both frames miss the liability question: who is accountable when an agent makes a consequential error?",
+        "myth": "The Sorcerer's Apprentice: tools that outgrow their master's ability to control them, requiring new forms of oversight."
+      }
+    },
+    {
+      "id": "T-015",
+      "name": "AI-Powered Consumer Health Services",
+      "description": "AI moving from research tool to consumer-facing diagnostic and treatment recommendation service. Perplexity Health is the latest signal. NHS AI triage pilots and Apple Health integrations are earlier markers.",
+      "primary_lens": "Bio-Human",
+      "primary_lens_colour": "#DB2777",
+      "secondary_lenses": [
+        "AI & Agents",
+        "Digital Trust",
+        "Consumer"
+      ],
+      "cipher_types": "P, E",
+      "vim": {
+        "v": 3.0,
+        "i": 4.0,
+        "m": 2.0,
+        "v_anchor": "Perplexity Health is first major AI platform to launch consumer diagnostics",
+        "i_anchor": "Touches insurance, lending (health-linked), protection products, consumer trust",
+        "m_anchor": "TRL 3-4; consumer products launching but no regulatory clearance"
+      },
+      "vim_priority": "WATCH & PREPARE",
+      "maturity_stage": "Emerging",
+      "trajectory": "Accelerating",
+      "status": "Active",
+      "first_identified": "2026-03-21",
+      "last_reviewed": "2026-04-01T00:00:00",
+      "signal_count_30d": 5,
+      "convergence_count": 1,
+      "key_signals": "Issue #22: Perplexity Health launches AI diagnostics; 81,000 people interviewed by Claude on AI hopes and fears (health a top concern); Issue #23: Topol dual advisory roles, HIMSS data, Solis cognitive load research; Issue #25: mychart-connector, 35+ MCP tools; Issue #31",
+      "strategic_implications": "Health insurance, longevity products, and wellness-linked financial services are all affected by AI diagnostics reaching consumers. The Bank's protection and insurance partnerships need scenario planning.",
+      "leading_indicators": "AI diagnostic tool receives MHRA approval for use without clinician oversight; major UK insurer offers premium discount for AI health monitoring; NHS formally integrates AI triage into 111 pathway",
+      "proximity_years": 4,
+      "impact_magnitude": 5,
+      "archetype_impacts": {
+        "sarah": {
+          "impact": "opportunity",
+          "summary": "Cheaper, faster health information; risk of misinformation"
+        },
+        "james": {
+          "impact": "neutral",
+          "summary": "Minimal direct impact"
+        },
+        "priya": {
+          "impact": "neutral",
+          "summary": "Corporate wellness programmes may integrate AI diagnostics"
+        },
+        "david": {
+          "impact": "opportunity",
+          "summary": "Longevity planning enhanced by AI health monitoring"
+        },
+        "margaret": {
+          "impact": "disrupted",
+          "summary": "May widen health literacy gap if digital-only"
+        },
+        "alex": {
+          "impact": "neutral",
+          "summary": "neutral"
+        }
+      },
+      "cla": {
+        "status": "Complete",
+        "litany": "Consumer diagnostics tools using LLMs appear simple and effective; platforms offer symptom checkers and health information. Perplexity Health launch signals mainstream adoption entering consumer products.",
+        "systemic": "Digital health access creates new accountability layers: platform liability, clinician-patient relationship redefinition, insurance underwriting based on AI-derived risk signals. Regulatory gaps between tech innovation and healthcare licensing.",
+        "worldview": "Techno-optimists view AI diagnostics as democratising healthcare access; traditionalists argue only qualified clinicians should advise on health. Tension between convenience and clinical responsibility.",
+        "myth": "Prometheus unbound: powerful knowledge (diagnosis) now available to all, but risk of misuse without wisdom. Also The Mirror: technology reflecting back our health data creates new forms of self-knowledge but also anxiety."
+      }
+    },
+    {
+      "id": "T-016",
+      "name": "AI Agent Security Attack Surface",
+      "description": "The expanding surface area of AI agent infrastructure (orchestration platforms, MCP servers, agent marketplaces) is creating novel attack vectors exploited faster than traditional software vulnerabilities.",
+      "primary_lens": "Digital Trust",
+      "primary_lens_colour": "#DC2626",
+      "secondary_lenses": [
+        "AI & Agents",
+        "Left Field"
+      ],
+      "cipher_types": "H, C",
+      "vim": {
+        "v": 7.0,
+        "i": 5.0,
+        "m": 3.0,
+        "v_anchor": "",
+        "i_anchor": "",
+        "m_anchor": ""
+      },
+      "vim_priority": "ACT NOW",
+      "maturity_stage": "Emerging",
+      "trajectory": "Accelerating",
+      "status": "Active",
+      "first_identified": "2026-03-25T00:00:00",
+      "last_reviewed": "2026-04-04",
+      "signal_count_30d": 7,
+      "convergence_count": 0,
+      "key_signals": "Issue #26: LiteLLM supply chain breach; Issue #28: Claude Chrome Extension injection, LangChain/LangGraph vulnerabilities, Trivy npm attack; Issue #31; Issue #32: Claude Code npm supply chain breach, 512K lines exposed; Issue #33: a16z supply chain attacks, 20% hallucinated packages, Perplexity data leak; Drift Protocol's \u00a3216M hack via manipulated AI trading agent oracle feeds (Issue #34); Claude Code source leak exposes agent authentication and sandboxing architecture (Issue #34)",
+      "strategic_implications": "",
+      "leading_indicators": "",
+      "proximity_years": 5.0,
+      "impact_magnitude": 5,
+      "archetype_impacts": {
+        "sarah": {
+          "impact": "neutral",
+          "summary": "No data"
+        },
+        "james": {
+          "impact": "neutral",
+          "summary": "No data"
+        },
+        "priya": {
+          "impact": "neutral",
+          "summary": "No data"
+        },
+        "david": {
+          "impact": "neutral",
+          "summary": "No data"
+        },
+        "margaret": {
+          "impact": "neutral",
+          "summary": "No data"
+        },
+        "alex": {
+          "impact": "disrupted",
+          "summary": "disrupted"
+        }
+      },
+      "cla": {
+        "status": "Complete",
+        "litany": "MFA fatigue attacks targeting executives; deepfake voice calls increasing; AI agents creating new attack surfaces for social engineering.",
+        "systemic": "AI agents multiply the number of autonomous actors with API access, creating exponentially more endpoints for adversaries; security architectures designed for human-speed attacks cannot cope with machine-speed exploitation.",
+        "worldview": "Tension between \"move fast and deploy agents\" (business) and \"secure the perimeter first\" (security); the attack surface grows faster than defensive capability.",
+        "myth": "The castle wall \u2014 once breached at one point, the entire interior is exposed; AI agents are creating thousands of new gates."
+      }
+    },
+    {
+      "id": "T-017",
+      "name": "UK Regulatory Structural Reform",
+      "description": "Mounting parliamentary and regulatory pressure to fundamentally restructure UK financial conduct oversight, driven by systemic failures in consumer protection, fraud prevention, and AI governance. Pattern is cross-cutting: motor finance redress, Royal Commission calls, AI-specific guidance demands, and third-party reporting rules are converging.",
+      "primary_lens": "Business Finance & Policy",
+      "primary_lens_colour": "#EA580C",
+      "secondary_lenses": [
+        "Digital Trust",
+        "Geopolitical Realignment"
+      ],
+      "cipher_types": "C, I",
+      "vim": {
+        "v": 4.0,
+        "i": 5.0,
+        "m": 5.0,
+        "v_anchor": "V=3: Regulatory pace is inherently slower than tech signals but 4 distinct actions in one day is unusual velocity for this domain",
+        "i_anchor": "I=5: Affects every UK-regulated financial institution; motor finance alone covers 14.2M agreements",
+        "m_anchor": "M=4: Consultation phase (FCA CP active, APPG report published, Treasury Committee reported); not yet enacted into binding rules"
+      },
+      "vim_priority": "WATCH & PREPARE",
+      "maturity_stage": "Developing",
+      "trajectory": "Strengthening",
+      "status": "Active",
+      "first_identified": "2026-03-25T00:00:00",
+      "last_reviewed": "2026-04-04",
+      "signal_count_30d": 8,
+      "convergence_count": 3,
+      "key_signals": "Issue #25: APPG Royal Commission call, Treasury Committee AI guidance demand, FCA motor finance \u00a38.2B redress (30 March), FCA PS26/2 third-party reporting rules (18 March). Issue #23: FCA CP26/4 crypto permissions gateway. Issue #22: SEC/CFTC 16-crypto commodity designation (US parallel).; Issue #26: FCA agentic payments rewrite, PS26/2 resilience; Issue #27: FCA CP26/8 and PS25/22 signal new categories; Issue #28: Treasury Committee AI report, FCA PS25/22 targeted support April, Bessent BoE model; FCA consults on AI-specific conduct rules for autonomous financial advice systems (Issue #34)",
+      "strategic_implications": "Large banks face multi-billion pound redress liabilities from motor finance. New third-party reporting rules (March 2027 deadline) require mapping material AI and cloud provider dependencies. If Royal Commission proceeds, the entire FCA governance model could be restructured. Banks that invest in compliance infrastructure now will be positioned for whatever framework emerges.",
+      "leading_indicators": "FCA motor finance announcement (30 March). APPG follow-up hearings. Treasury Committee AI guidance publication. Royal Commission political traction. Consumer Duty enforcement actions related to AI.",
+      "proximity_years": 1,
+      "impact_magnitude": 8,
+      "archetype_impacts": {
+        "sarah": {
+          "impact": "neutral",
+          "summary": "Motor finance redress could benefit millions; new rules may slow product innovation"
+        },
+        "james": {
+          "impact": "neutral",
+          "summary": "Third-party reporting adds compliance burden; clearer rules reduce uncertainty"
+        },
+        "priya": {
+          "impact": "neutral",
+          "summary": "Operational resilience rules require significant infrastructure investment"
+        },
+        "david": {
+          "impact": "neutral",
+          "summary": "Indirect: regulatory clarity supports market confidence"
+        },
+        "margaret": {
+          "impact": "opportunity",
+          "summary": "Stronger consumer protection improves outcomes for vulnerable customers"
+        },
+        "alex": {
+          "impact": "watch",
+          "summary": "watch"
+        }
+      },
+      "cla": {
+        "status": "Complete",
+        "litany": "Motor finance redress scheme announced, operational resilience rules enacted, FCA consulting on structural reforms including APPG and Treasury Committee reports on fair consumer outcomes. Four distinct regulatory actions in one week.",
+        "systemic": "Post-scandal regulatory system now favours prescriptive rules over principles. FCA/PRA structural reforms create new operational costs and compliance infrastructure for mid-market players. Consolidation incentives increase.",
+        "worldview": "Industry sees regulation as cost and constraint vs consumers see it as essential protection. Tensions between global competitiveness and domestic consumer safety create contradictory policy directions.",
+        "myth": "Babel: regulators and industry speaking different languages about fairness, operational resilience, and the role of institutional responsibility. Also Prometheus: fire (regulatory power) both protecting and constraining."
+      }
+    },
+    {
+      "id": "T-018",
+      "name": "AI-Driven Workforce Restructuring",
+      "description": "Convergence of AI-driven headcount reduction, token-based compensation models, and robot parity with human workers in physical tasks. Solaris explicitly frames 20% cuts as AI transformation; Jensen Huang proposes token compensation; Figure 03 matches human sorting speed.",
+      "primary_lens": "Workforce & Talent",
+      "primary_lens_colour": "#BE185D",
+      "secondary_lenses": [
+        "AI & Agents, Business Finance & Policy"
+      ],
+      "cipher_types": "I",
+      "vim": {
+        "v": 5.0,
+        "i": 4.0,
+        "m": 3.0,
+        "v_anchor": "",
+        "i_anchor": "",
+        "m_anchor": ""
+      },
+      "vim_priority": "WATCH & PREPARE",
+      "maturity_stage": "Emerging",
+      "trajectory": "Accelerating",
+      "status": "Active",
+      "first_identified": "2026-03-26",
+      "last_reviewed": "2026-04-04",
+      "signal_count_30d": 11,
+      "convergence_count": 3,
+      "key_signals": "Issue #26: Solaris 20% AI-native cuts, Jensen Huang token compensation, Figure 03 human parity, agentic workloads 15x, inventory drones 60-70 hrs/week saved; Issue #27: 22% workers concerned about job security, Anthropic recession warning; Issue #28: Block 4000 layoffs, JPMC 500+ branch expansion, Fintech Takes ATM paradox; Issue #31; Issue #32: Oracle 20K-30K layoffs, 18% workforce; Issue #33: Block 40%, Oracle 30K, Project Stagecraft; BT announces 2,000 additional role cuts citing agentic AI deployment in customer service (Issue #34)",
+      "strategic_implications": "",
+      "leading_indicators": "",
+      "proximity_years": 1,
+      "impact_magnitude": 7,
+      "archetype_impacts": {
+        "sarah": {
+          "impact": "neutral",
+          "summary": "Indirect impact through branch/contact centre automation"
+        },
+        "james": {
+          "impact": "neutral",
+          "summary": "AI tools reduce need for specialist hires"
+        },
+        "priya": {
+          "impact": "disrupted",
+          "summary": "Direct pressure on corporate workforce planning"
+        },
+        "david": {
+          "impact": "neutral",
+          "summary": "Advisory automation reshapes wealth management staffing"
+        },
+        "margaret": {
+          "impact": "disrupted",
+          "summary": "Service channel closures accelerate"
+        },
+        "alex": {
+          "impact": "disrupted",
+          "summary": "disrupted"
+        }
+      },
+      "cla": {
+        "status": "Complete",
+        "litany": "Headlines show 22% of workers fear AI job loss; Anthropic economist warns recession accelerates displacement; Lloyds launching AI Academy to upskill staff.",
+        "systemic": "AI productivity gains create incentive for workforce reduction, but talent scarcity in AI skills creates counter-pressure; firms that cut too fast lose institutional knowledge needed to deploy AI effectively.",
+        "worldview": "Tension between \"AI augments workers\" (corporate messaging) and \"AI replaces workers\" (economic modelling); neither fully accurate.",
+        "myth": "The Luddite narrative \u2014 technology destroys jobs \u2014 versus the Schumpeterian narrative \u2014 creative destruction creates more than it destroys."
+      }
+    },
+    {
+      "id": "T-019",
+      "name": "Branch Networks as AI Distribution Infrastructure",
+      "description": "Physical branch networks and legacy distribution channels are being revalued as appreciating infrastructure assets as AI deployment requires trusted physical touchpoints. The five-year narrative of branches as legacy liabilities is reversing.",
+      "primary_lens": "Business Finance & Policy",
+      "primary_lens_colour": "#EA580C",
+      "secondary_lenses": [
+        "Consumer",
+        "Workforce & Talent",
+        "Digital Markets & Assets"
+      ],
+      "cipher_types": "I; P",
+      "vim": {
+        "v": 3.0,
+        "i": 4.0,
+        "m": 3.0,
+        "v_anchor": 3,
+        "i_anchor": 4,
+        "m_anchor": 3
+      },
+      "vim_priority": "WATCH & PREPARE (V\u00d7I = 12)",
+      "maturity_stage": "Emerging",
+      "trajectory": "Strengthening",
+      "status": "Active",
+      "first_identified": "2026-03-27",
+      "last_reviewed": "2026-04-01T00:00:00",
+      "signal_count_30d": 5,
+      "convergence_count": 0,
+      "key_signals": "Issue #27: a16z Trust Wall thesis; Visa Agentic Ready selects Barclays/HSBC/Nationwide for branch network reach; Lloyds 21M account distribution advantage; Issue #28: JPMC 500+ branches planned, Fintech Takes analysis of branch value; Issue #31",
+      "strategic_implications": "Banks with large branch and customer networks may have an underappreciated competitive advantage in AI deployment. Acquisition targets may shift from fintechs to distribution-rich incumbents.",
+      "leading_indicators": "Incumbent bank AI trial selection criteria; branch footfall post-AI launch; bank M&A premium shifts",
+      "proximity_years": 1,
+      "impact_magnitude": 6,
+      "archetype_impacts": {
+        "sarah": {
+          "impact": "opportunity",
+          "summary": ""
+        },
+        "james": {
+          "impact": "opportunity",
+          "summary": ""
+        },
+        "priya": {
+          "impact": "neutral",
+          "summary": ""
+        },
+        "david": {
+          "impact": "opportunity",
+          "summary": ""
+        },
+        "margaret": {
+          "impact": "opportunity",
+          "summary": ""
+        },
+        "alex": {
+          "impact": "neutral",
+          "summary": "No data"
+        }
+      },
+      "cla": {
+        "status": "Complete",
+        "litany": "Visa selects Barclays, HSBC, Nationwide for agentic trials based on branch network reach; a16z publishes \"Trust Wall\" thesis; Lloyds leverages 21M account base.",
+        "systemic": "AI deployment requires trust distribution channels that digital-only players lack; branch networks provide physical identity verification, complaint resolution, and vulnerable customer support that cannot be replicated digitally.",
+        "worldview": "Tension between \"branches are legacy costs\" (fintech narrative) and \"branches are trust infrastructure\" (emerging revaluation).",
+        "myth": "The lighthouse \u2014 a fixed physical structure that seems obsolete until the storm arrives and ships need a beacon they can trust."
+      }
+    },
+    {
+      "id": "T-C01",
+      "name": "AI-Biology Convergence",
+      "description": "AI capabilities are converging with biological sciences across drug discovery, synthetic biology, genomics, and biomanufacturing. Major AI firms are acquiring biotech assets, creating a new category of AI-biology hybrid companies with implications for health insurance, longevity products, and ethical governance.",
+      "primary_lens": "Bio-Human",
+      "primary_lens_colour": "#DB2777",
+      "secondary_lenses": [
+        "AI & Agents",
+        "Business Finance & Policy"
+      ],
+      "cipher_types": "I; P; C",
+      "vim": {
+        "v": 4.0,
+        "i": 4.0,
+        "m": 3.0,
+        "v_anchor": 4,
+        "i_anchor": 4,
+        "m_anchor": 3
+      },
+      "vim_priority": "WATCH & PREPARE (V\u00d7I = 16)",
+      "maturity_stage": "Emerging",
+      "trajectory": "Strengthening",
+      "status": "Candidate",
+      "first_identified": "2026-04-03",
+      "last_reviewed": "2026-04-03",
+      "signal_count_30d": 4,
+      "convergence_count": 1,
+      "key_signals": "Issue #32: Anthropic acquires biotech startup for protein folding; Issue #33: DNA nanorobots deliver targeted cancer therapy in human trials; biohacking wearables market reaches \u00a33.8bn; AI-designed cosmetics reformulation",
+      "strategic_implications": "AI-biology convergence may reshape health and life insurance underwriting, create new longevity-linked financial products, and raise novel regulatory questions around AI-designed biological interventions. Wealth management may need bio-investment literacy.",
+      "leading_indicators": "AI firm biotech acquisitions; FDA AI-designed drug approvals; longevity product launches by insurers; synthetic biology patent filings",
+      "proximity_years": 2,
+      "impact_magnitude": 7,
+      "archetype_impacts": {
+        "sarah": {
+          "impact": "neutral",
+          "summary": ""
+        },
+        "james": {
+          "impact": "neutral",
+          "summary": ""
+        },
+        "priya": {
+          "impact": "opportunity",
+          "summary": ""
+        },
+        "david": {
+          "impact": "neutral",
+          "summary": ""
+        },
+        "margaret": {
+          "impact": "opportunity",
+          "summary": ""
+        },
+        "alex": {
+          "impact": "neutral",
+          "summary": ""
+        }
+      },
+      "cla": {
+        "status": "Complete",
+        "litany": "Anthropic acquires biotech firm; DNA nanorobots in human trials; biohacking wearables market surges; AI reformulates cosmetics.",
+        "systemic": "AI companies are vertically integrating into biology, creating capabilities that blur the line between technology and life sciences. This challenges existing regulatory frameworks built for distinct sectors.",
+        "worldview": "Tension between \"AI is a digital technology\" (traditional framing) and \"AI is becoming a biological tool\" (emerging reality). Questions whether existing health and technology governance can contain hybrid entities.",
+        "myth": "Prometheus \u2014 stealing fire from the gods. The power to reshape biology carries both transformative promise and profound risk."
+      }
+    }
+  ],
+  "lens_colours": {
+    "AI & Agents": "#4F46E5",
+    "Quantum & Compute": "#7C3AED",
+    "Digital Markets & Assets": "#059669",
+    "Digital Trust": "#DC2626",
+    "Interface & Spatial": "#0891B2",
+    "Bio-Human": "#DB2777",
+    "Business, Finance & Policy": "#EA580C",
+    "Business Finance & Policy": "#EA580C",
+    "Consumer": "#0D9488",
+    "Left Field": "#D97706",
+    "Climate & Energy Transition": "#16A34A",
+    "Geopolitical Realignment": "#7C3AED",
+    "Workforce & Talent": "#BE185D"
+  }
+}

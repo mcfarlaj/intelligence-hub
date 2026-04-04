@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Disruption Watch — Foresight Engine &amp; Intelligence Hub</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #fafaf9;
+    --surface: #ffffff;
+    --surface-alt: #f5f5f4;
+    --border: #e7e5e4;
+    --text: #1c1917;
+    --text-secondary: #57534e;
+    --text-muted: #a8a29e;
+    --accent: #dc2626;
+    --accent-hover: #b91c1c;
+    --indigo: #4F46E5;
+    --purple: #7C3AED;
+    --green: #059669;
+    --red: #DC2626;
+    --cyan: #0891B2;
+    --pink: #DB2777;
+    --orange: #EA580C;
+    --teal: #0D9488;
+    --amber: #D97706;
+    --climate: #16a34a;
+    --geopolitical: #7c3aed;
+    --workforce: #be185d;
+  }
+
+  /* === NAV === */
+  .nav { border-bottom:3px solid var(--text); }
+  .nav-inner { max-width:1100px; margin:0 auto; padding:16px 24px; display:flex; align-items:center; justify-content:space-between; }
+  .nav .logo { font-family:'Playfair Display',Georgia,serif; font-size:1.5rem; font-weight:900; letter-spacing:-0.5px; color:var(--text); text-decoration:none; }
+  .nav .logo span { color:var(--indigo); }
+  .nav-links { display:flex; gap:24px; align-items:center; }
+  .nav-links a { color:var(--text-secondary); text-decoration:none; font-size:0.82rem; font-weight:600; transition:color 0.2s; }
+  .nav-links a:hover { color:var(--text); }
+  .nav-links a.active { color:var(--accent, #dc2626); }
+  .nav .edition { font-size:0.72rem; font-weight:600; text-transform:uppercase; letter-spacing:2px; color:var(--text-muted); }
+  @media (max-width:768px) { .nav-inner { flex-direction:column; gap:12px; } .nav-links { gap:16px; flex-wrap:wrap; } }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:var(--bg); color:var(--text); font-family:'Inter',system-ui,-apple-system,sans-serif; line-height:1.6; -webkit-font-smoothing:antialiased; }
+
+  
+
+  .container { max-width:1100px; margin:0 auto; padding:0 24px; }
+
+  /* === DATA TICKER === */
+  .data-strip { padding:14px 0; border-bottom:1px solid var(--border); overflow:hidden; background:var(--surface); }
+  .data-strip-track { display:flex; gap:40px; animation:ticker 35s linear infinite; width:max-content; }
+  .data-strip-track:hover { animation-play-state:paused; }
+  .dp { white-space:nowrap; display:flex; align-items:center; gap:8px; }
+  .dp-dot { width:6px; height:6px; border-radius:50%; flex-shrink:0; }
+  .dp-figure { font-weight:800; font-size:0.85rem; color:var(--text); }
+  .dp-label { font-size:0.75rem; color:var(--text-secondary); }
+  .dp-sep { color:var(--border); font-size:0.7rem; }
+  @keyframes ticker {
+    0% { transform:translateX(0); }
+    100% { transform:translateX(-50%); }
+  }
+
+  /* === HERO === */
+  .hero { padding:48px 0 40px; border-bottom:1px solid var(--border); }
+  .hero-grid { display:grid; grid-template-columns:1fr 340px; gap:48px; align-items:start; }
+  .hero-kicker { font-size:0.7rem; font-weight:700; text-transform:uppercase; letter-spacing:2.5px; color:var(--accent); margin-bottom:12px; }
+  .hero h1 { font-family:'Playfair Display',Georgia,serif; font-size:2.6rem; font-weight:900; line-height:1.1; letter-spacing:-1px; margin-bottom:16px; }
+  .hero .byline { font-size:0.82rem; color:var(--text-secondary); margin-bottom:20px; }
+  .hero .byline strong { color:var(--text); }
+  .hero .summary { font-size:1.02rem; color:var(--text-secondary); line-height:1.75; margin-bottom:24px; }
+  .hero .summary::first-letter { font-family:'Playfair Display',Georgia,serif; font-size:3.2rem; font-weight:900; float:left; line-height:1; margin-right:8px; margin-top:4px; color:var(--accent); }
+  .hero .actions { display:flex; gap:12px; }
+  .btn { display:inline-flex; align-items:center; gap:8px; padding:12px 24px; border-radius:4px; font-size:0.85rem; font-weight:600; text-decoration:none; transition:all 0.15s; }
+  .btn-primary { background:var(--text); color:#fff; }
+  .btn-primary:hover { background:var(--accent); }
+  .btn-outline { background:transparent; color:var(--text); border:2px solid var(--text); }
+  .btn-outline:hover { background:var(--text); color:#fff; }
+
+  /* === THREE THINGS HERO LINK === */
+  .hero-three-things { display:flex; align-items:center; gap:10px; margin-top:16px; padding:10px 16px; background:#EEF2FF; border:1px solid #C7D2FE; border-radius:6px; text-decoration:none; color:var(--text); transition:background 0.15s, border-color 0.15s; }
+  .hero-three-things:hover { background:#E0E7FF; border-color:#A5B4FC; }
+  .hero-tt-badge { display:flex; align-items:center; justify-content:center; width:26px; height:26px; border-radius:50%; background:var(--indigo); color:#fff; font-size:0.78rem; font-weight:800; flex-shrink:0; }
+  .hero-tt-text { font-size:0.82rem; color:var(--text-secondary); flex:1; }
+  .hero-tt-text strong { color:var(--text); }
+  .hero-tt-arrow { color:var(--indigo); font-weight:600; font-size:1rem; }
+
+  /* === ZEITGEIST SIDEBAR === */
+  .hero-sidebar { background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:24px; }
+  .sidebar-title { font-size:0.68rem; font-weight:700; text-transform:uppercase; letter-spacing:2px; color:var(--text-muted); margin-bottom:16px; padding-bottom:10px; border-bottom:1px solid var(--border); }
+  .zeitgeist-item { display:flex; align-items:center; gap:8px; padding:6px 0; border-bottom:1px solid rgba(0,0,0,0.04); }
+  .zeitgeist-item:last-child { border-bottom:none; }
+  .z-lens { font-size:0.78rem; font-weight:500; flex:1; color:var(--text-secondary); }
+  .z-score { font-size:1rem; font-weight:900; width:24px; text-align:center; flex-shrink:0; }
+  .z-trend { font-size:0.65rem; font-weight:600; white-space:nowrap; display:inline-flex; align-items:center; flex-shrink:0; }
+  .z-trend.trend-up { color:#059669; }
+  .z-trend.trend-down { color:#dc2626; }
+  .z-trend.trend-steady { color:#d1d5db; }
+
+  /* === SECTION LABELS === */
+  .section-label { font-size:0.68rem; font-weight:700; text-transform:uppercase; letter-spacing:2.5px; color:var(--text-muted); margin-bottom:20px; }
+
+  /* === RECENT GRID === */
+  .recent { padding:40px 0; border-bottom:1px solid var(--border); }
+  .recent-grid { display:grid; grid-template-columns:repeat(3, 1fr); gap:1px; background:var(--border); border:1px solid var(--border); border-radius:8px; overflow:hidden; }
+  .recent-card { background:var(--surface); padding:24px; text-decoration:none; color:inherit; transition:background 0.15s; display:block; }
+  .recent-card:hover { background:var(--surface-alt); }
+  .card-date { font-size:0.7rem; font-weight:600; text-transform:uppercase; letter-spacing:1.5px; color:var(--text-muted); margin-bottom:8px; }
+  .card-accent { width:32px; height:3px; margin-bottom:12px; border-radius:2px; }
+  .card-title { font-family:'Playfair Display',Georgia,serif; font-size:1.02rem; font-weight:700; line-height:1.35; margin-bottom:10px; color:var(--text); }
+  .card-excerpt { font-size:0.8rem; color:var(--text-secondary); line-height:1.6; margin-bottom:14px; }
+  .card-meta { display:flex; gap:8px; align-items:center; }
+  .card-format { font-size:0.62rem; font-weight:700; text-transform:uppercase; letter-spacing:1px; padding:3px 8px; border:1px solid var(--border); border-radius:3px; color:var(--text-muted); text-decoration:none; transition:all 0.15s; }
+  .card-format:hover { border-color:var(--text); color:var(--text); }
+
+  /* === ARCHIVE === */
+  .archive { padding:40px 0 60px; }
+  .archive-table { width:100%; border-collapse:collapse; }
+  .archive-row { border-bottom:1px solid var(--border); }
+  .archive-row:hover { background:var(--surface-alt); }
+  .archive-row td { padding:14px 0; vertical-align:middle; }
+  .archive-date { font-size:0.78rem; color:var(--text-muted); font-weight:600; width:110px; }
+  .archive-title { font-size:0.9rem; color:var(--text); font-weight:500; }
+  .archive-links { text-align:right; white-space:nowrap; }
+  .archive-links a { color:var(--text-muted); text-decoration:none; font-size:0.72rem; font-weight:700; text-transform:uppercase; letter-spacing:0.5px; margin-left:16px; transition:color 0.15s; }
+  .archive-links a:hover { color:var(--text); }
+
+  /* === FOOTER === */
+  .footer { text-align:center; padding:28px 0; border-top:3px solid var(--text); }
+  .footer-logo { font-family:'Playfair Display',Georgia,serif; font-size:1.1rem; font-weight:900; color:var(--text); margin-bottom:4px; }
+  .footer-logo span { color:var(--indigo); }
+  .footer p { font-size:0.72rem; color:var(--text-muted); }
+  .footer .methodology { font-size:0.68rem; color:var(--text-muted); max-width:600px; margin:6px auto 0; }
+
+  /* === WEEKLY SYNTHESIS === */
+  .weekly { padding:40px 0; border-bottom:1px solid var(--border); }
+  .weekly-card { background:#faf5eb; border:1px solid #e8dcc8; border-radius:12px; padding:36px 40px; position:relative; overflow:hidden; text-decoration:none; display:block; transition:transform 0.15s, box-shadow 0.15s; }
+  .weekly-card:hover { transform:translateY(-2px); box-shadow:0 8px 32px rgba(0,0,0,0.06); }
+  .weekly-card::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background:linear-gradient(90deg, #c9a227, #e0c465, #c9a227); }
+  .weekly-badge { display:inline-block; font-size:0.62rem; font-weight:700; text-transform:uppercase; letter-spacing:2.5px; color:#9a7b2d; margin-bottom:14px; padding:4px 10px; border:1px solid rgba(154,123,45,0.25); border-radius:3px; background:rgba(154,123,45,0.06); }
+  .weekly-card h2 { font-family:'Playfair Display',Georgia,serif; font-size:1.6rem; font-weight:900; color:var(--text); line-height:1.25; margin-bottom:10px; letter-spacing:-0.5px; }
+  .weekly-card .weekly-wial { font-size:1.05rem; color:#8a6d1b; font-style:italic; margin-bottom:16px; line-height:1.5; font-weight:500; }
+  .weekly-card .weekly-excerpt { font-size:0.88rem; color:var(--text-secondary); line-height:1.7; margin-bottom:20px; }
+  .weekly-card .weekly-meta { display:flex; gap:12px; align-items:center; }
+  .weekly-format { font-size:0.62rem; font-weight:700; text-transform:uppercase; letter-spacing:1px; padding:5px 12px; border:1px solid rgba(154,123,45,0.3); border-radius:3px; color:#9a7b2d; text-decoration:none; transition:all 0.15s; }
+  .weekly-format:hover { border-color:#9a7b2d; background:rgba(154,123,45,0.1); color:#6b5518; }
+
+  /* === FORESIGHT ENGINE SECTION === */
+  .engine { padding:48px 0; border-bottom:1px solid var(--border); }
+  .engine-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:24px; }
+  .engine-header h2 { font-family:'Playfair Display',Georgia,serif; font-size:1.6rem; font-weight:900; letter-spacing:-0.5px; }
+  .engine-header h2 span { color:var(--accent); font-style:italic; }
+  .engine-
+  .engine-
+  .engine-
+  .engine-nav a.active { background:var(--text); color:#fff; border-color:var(--text); }
+
+  .three-layers { display:grid; grid-template-columns:repeat(3, 1fr); gap:1px; background:var(--border); border:1px solid var(--border); border-radius:8px; overflow:hidden; margin-bottom:24px; }
+  .layer-panel { background:var(--surface); padding:28px; }
+  .layer-panel .layer-badge { display:inline-block; font-size:0.58rem; font-weight:700; text-transform:uppercase; letter-spacing:2px; padding:3px 10px; border-radius:12px; color:#fff; margin-bottom:12px; }
+  .layer-panel h3 { font-family:'Playfair Display',Georgia,serif; font-size:1.1rem; font-weight:700; margin-bottom:4px; }
+  .layer-panel .layer-horizon { font-size:0.7rem; color:var(--text-muted); margin-bottom:12px; }
+  .layer-panel .layer-desc { font-size:0.82rem; color:var(--text-secondary); line-height:1.6; margin-bottom:16px; }
+  .layer-panel .layer-stat { display:flex; align-items:baseline; gap:6px; }
+  .layer-panel .layer-stat .stat-num { font-size:1.8rem; font-weight:900; color:var(--text); }
+  .layer-panel .layer-stat .stat-label { font-size:0.72rem; color:var(--text-muted); }
+
+  /* === TREND REGISTRY PREVIEW === */
+  .trends { padding:40px 0; border-bottom:1px solid var(--border); }
+  .trend-table { width:100%; border-collapse:collapse; }
+  .trend-table th { text-align:left; font-size:0.65rem; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; color:var(--text-muted); padding:10px 12px; border-bottom:2px solid var(--text); }
+  .trend-table td { padding:14px 12px; border-bottom:1px solid var(--border); vertical-align:middle; }
+  .trend-table tr:hover { background:var(--surface-alt); }
+  .trend-name { font-weight:600; font-size:0.88rem; color:var(--text); }
+  .trend-lens-tag { display:inline-block; font-size:0.58rem; font-weight:700; padding:2px 8px; border-radius:10px; color:#fff; }
+  .vim-score { display:flex; gap:4px; align-items:center; }
+  .vim-cell { width:28px; height:28px; display:flex; align-items:center; justify-content:center; font-size:0.75rem; font-weight:800; border-radius:4px; color:#fff; }
+  .vim-v { background:var(--indigo); }
+  .vim-i { background:var(--accent); }
+  .vim-m { background:var(--teal); }
+  .trend-priority { font-size:0.62rem; font-weight:700; text-transform:uppercase; letter-spacing:0.5px; padding:4px 10px; border-radius:3px; white-space:nowrap; }
+  .priority-act { background:#fef2f2; color:var(--red); }
+  .priority-watch { background:#fef3c7; color:#92400e; }
+  .priority-monitor { background:#dbeafe; color:#1e40af; }
+  .trend-trajectory { font-size:0.72rem; font-weight:600; }
+  .traj-acc { color:var(--green); }
+  .traj-str { color:var(--indigo); }
+  .traj-wkn { color:var(--accent); }
+
+  /* === SCENARIO CANVAS === */
+  .scenarios { padding:40px 0; border-bottom:1px solid var(--border); }
+  .scenario-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  .scenario-card { background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:28px; position:relative; overflow:hidden; }
+  .scenario-card::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; }
+  .scenario-card .sc-name { font-family:'Playfair Display',Georgia,serif; font-size:1.05rem; font-weight:700; margin-bottom:8px; }
+  .scenario-card .sc-horizon { font-size:0.68rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:1px; margin-bottom:12px; }
+  .scenario-card .sc-desc { font-size:0.82rem; color:var(--text-secondary); line-height:1.6; margin-bottom:14px; }
+  .scenario-card .sc-plausibility { font-size:0.68rem; font-weight:700; text-transform:uppercase; letter-spacing:0.5px; }
+  .sc-rising { color:var(--green); }
+  .sc-stable { color:var(--amber); }
+  .sc-placeholder { background:var(--surface-alt); border:2px dashed var(--border); border-radius:8px; padding:28px; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:8px; min-height:180px; }
+  .sc-placeholder .sc-plus { font-size:2rem; color:var(--text-muted); }
+  .sc-placeholder p { font-size:0.78rem; color:var(--text-muted); text-align:center; }
+
+  @media (max-width:800px) {
+    .hero-grid { grid-template-columns:1fr; gap:24px; }
+    .hero h1 { font-size:2rem; }
+    .recent-grid { grid-template-columns:1fr; }
+    .data-strip-track { gap:24px; }
+    .three-layers { grid-template-columns:1fr; }
+    .scenario-grid { grid-template-columns:1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<div class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="logo">Disruption <span>Watch</span> <span style="font-size:0.55em;color:#d97706;font-weight:600;letter-spacing:0;">(beta)</span></a>
+    <div class="nav-links">
+      <a href="foresight-engine.html">Foresight Engine</a>
+      <a href="disruption-radar.html">Radar</a>
+      <a href="search.html">Search</a>
+      <a href="spotlights.html">Joining the Dots</a>
+      <span class="edition">4 April 2026 (Issue #34)</span>
+    </div>
+  </div>
+</div>
+
+<!-- DATA TICKER -->
+<div class="data-strip">
+  <div class="container">
+    <div class="data-strip-track">
+      <div class="dp"><span class="dp-dot" style="background:#DC2626"></span><span class="dp-figure">&pound;216M</span><span class="dp-label">Drift Protocol hack</span><span class="dp-sep">&bull;</span></div>
+      <div class="dp"><span class="dp-dot" style="background:#DC2626"></span><span class="dp-figure">512K lines</span><span class="dp-label">Claude Code leak</span><span class="dp-sep">&bull;</span></div>
+      <div class="dp"><span class="dp-dot" style="background:#059669"></span><span class="dp-figure">&pound;5.45T</span><span class="dp-label">Stablecoin volumes</span><span class="dp-sep">&bull;</span></div>
+      <div class="dp"><span class="dp-dot" style="background:#EA580C"></span><span class="dp-figure">&pound;1.32T</span><span class="dp-label">SpaceX IPO target</span><span class="dp-sep">&bull;</span></div>
+      <div class="dp"><span class="dp-dot" style="background:#0D9488"></span><span class="dp-figure">3%</span><span class="dp-label">Households paying for AI</span><span class="dp-sep">&bull;</span></div>
+      <div class="dp"><span class="dp-dot" style="background:#D97706"></span><span class="dp-figure">49%</span><span class="dp-label">Flatbed rejection rate</span><span class="dp-sep">&bull;</span></div>
+      <div class="dp"><span class="dp-dot" style="background:#7C3AED"></span><span class="dp-figure">500K qubits</span><span class="dp-label">Quantum threat level</span><span class="dp-sep">&bull;</span></div>
+      <div class="dp"><span class="dp-dot" style="background:#0891B2"></span><span class="dp-figure">88%</span><span class="dp-label">AI resolution rate</span><span class="dp-sep">&bull;</span></div>
+      <!-- duplicate for seamless scroll -->
+      <div class="dp"><span class="dp-dot" style="background:#DC2626"></span><span class="dp-figure">&pound;216M</span><span class="dp-label">Drift Protocol hack</span><span class="dp-sep">&bull;</span></div>
+      <div class="dp"><span class="dp-dot" style="background:#DC2626"></span><span class="dp-figure">512K lines</span><span class="dp-label">Claude Code leak</span><span class="dp-sep">&bull;</span></div>
+      <div class="dp"><span class="dp-dot" style="background:#059669"></span><span class="dp-figure">&pound;5.45T</span><span class="dp-label">Stablecoin volumes</span><span class="dp-sep">&bull;</span></div>
+      <div class="dp"><span class="dp-dot" style="background:#EA580C"></span><span class="dp-figure">&pound;1.32T</span><span class="dp-label">SpaceX IPO target</span><span class="dp-sep">&bull;</span></div>
+      <div class="dp"><span class="dp-dot" style="background:#0D9488"></span><span class="dp-figure">3%</span><span class="dp-label">Households paying for AI</span><span class="dp-sep">&bull;</span></div>
+      <div class="dp"><span class="dp-dot" style="background:#D97706"></span><span class="dp-figure">49%</span><span class="dp-label">Flatbed rejection rate</span><span class="dp-sep">&bull;</span></div>
+      <div class="dp"><span class="dp-dot" style="background:#7C3AED"></span><span class="dp-figure">500K qubits</span><span class="dp-label">Quantum threat level</span><span class="dp-sep">&bull;</span></div>
+      <div class="dp"><span class="dp-dot" style="background:#0891B2"></span><span class="dp-figure">88%</span><span class="dp-label">AI resolution rate</span><span class="dp-sep">&bull;</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- HERO -->
+<div class="container">
+  <div class="hero">
+    <div class="hero-grid">
+      <div>
+        <div class="hero-kicker">Issue #34 &bull; 4 April 2026</div>
+        <h1>Drift Protocol&#x27;s £216M Hack and Claude Code&#x27;s Source Leak Expose the Fragile Security Layer Beneath AI and Crypto Infrastructure</h1>
+        <div class="byline">By <strong>Disruption Watch</strong></div>
+        <p class="summary" style="font-size:1.02rem; color:#57534e; line-height:1.75; margin-bottom:24px; margin-top:12px;">Two parallel infrastructure breaches converge on fragile security layer beneath AI and crypto. Drift hack extracted £216M via social engineering. Claude Code leaked 512K lines via npm error. Stablecoins surpass US ACH at £5.45T. Only 3% of US households paying for AI.</p>
+        <div class="actions" style="margin-top:24px;">
+          <a href="strategic-daily-briefing-2026-04-04.html" class="btn btn-primary">Read Full Briefing &rarr;</a>
+        </div>
+        <a href="three-things-latest.html" class="hero-three-things" style="display:flex; align-items:center; gap:10px; margin-top:16px; padding:10px 16px; background:#EEF2FF; border:1px solid #C7D2FE; border-radius:6px; text-decoration:none; color:#1c1917;">
+          <span class="hero-tt-badge" style="display:flex; align-items:center; justify-content:center; width:26px; height:26px; border-radius:50%; background:#4F46E5; color:#fff; font-size:0.78rem; font-weight:800; flex-shrink:0;">3</span>
+          <span class="hero-tt-text" style="font-size:0.82rem; color:#57534e; flex:1;">No time? <strong style="color:#1c1917;">Three things you need to know today</strong></span>
+          <span style="color:#4F46E5; font-weight:600; font-size:1rem;">&rarr;</span>
+        </a>
+      </div>
+      <div class="hero-sidebar">
+        <div class="sidebar-title">Zeitgeist &bull; 4 Apr 2026 (Issue #34)</div>
+        <div class="zeitgeist-item"><div class="z-score" style="color:var(--indigo)">8</div><div class="z-lens">AI &amp; Agents</div><span class="z-trend trend-up">&#9650;</span></div>
+        <div class="zeitgeist-item"><div class="z-score" style="color:var(--purple)">6</div><div class="z-lens">Quantum &amp; Compute</div><span class="z-trend trend-up">&#9650;</span></div>
+        <div class="zeitgeist-item"><div class="z-score" style="color:var(--green)">7</div><div class="z-lens">Digital Markets &amp; Assets</div><span class="z-trend trend-up">&#9650;</span></div>
+        <div class="zeitgeist-item"><div class="z-score" style="color:var(--red)">8</div><div class="z-lens">Digital Trust</div><span class="z-trend trend-up">&#9650;</span></div>
+        <div class="zeitgeist-item"><div class="z-score" style="color:var(--cyan)">5</div><div class="z-lens">Interface &amp; Spatial</div><span class="z-trend trend-steady">&#9654;</span></div>
+        <div class="zeitgeist-item"><div class="z-score" style="color:var(--pink)">5</div><div class="z-lens">Bio-Human</div><span class="z-trend trend-steady">&#9654;</span></div>
+        <div class="zeitgeist-item"><div class="z-score" style="color:var(--orange)">6</div><div class="z-lens">Business Finance &amp; Policy</div><span class="z-trend trend-steady">&#9654;</span></div>
+        <div class="zeitgeist-item"><div class="z-score" style="color:var(--teal)">5</div><div class="z-lens">Consumer</div><span class="z-trend trend-steady">&#9654;</span></div>
+        <div class="zeitgeist-item"><div class="z-score" style="color:var(--amber)">4</div><div class="z-lens">Left Field</div><span class="z-trend trend-down">&#9660;</span></div>
+        <div class="zeitgeist-item"><div class="z-score" style="color:var(--climate)">4</div><div class="z-lens">Climate &amp; Energy</div><span class="z-trend trend-down">&#9660;</span></div>
+        <div class="zeitgeist-item"><div class="z-score" style="color:var(--geopolitical)">6</div><div class="z-lens">Geopolitical</div><span class="z-trend trend-up">&#9650;</span></div>
+        <div class="zeitgeist-item"><div class="z-score" style="color:var(--workforce)">6</div><div class="z-lens">Workforce &amp; Talent</div><span class="z-trend trend-steady">&#9654;</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WEEKLY SYNTHESIS -->
+  <div class="weekly">
+    <div class="section-label">Weekly Synthesis &bull; Joining the Dots</div>
+    <a href="weekly-synthesis-2026-04-03.html" class="weekly-card">
+      <span class="weekly-badge">Week of 31 March to 3 April 2026</span>
+      <h2>Joining the Dots</h2>
+      <div class="weekly-wial">&ldquo;The week infrastructure scarcity replaced capability as the binding constraint on AI deployment, as Hormuz closed the world&#x27;s most critical oil chokepoint, 241GW of data centres sat stuck in grid queues, and frontier AI labs raised more capital in five days than most banks earn in a year.&rdquo;</div>
+      <div class="weekly-excerpt">Three convergences defined the week: cluster 1: the triple infrastructure bind. Cluster 2: Capital Flight from Incumbent to Frontier. Cluster 3: The Workforce Mapping Machine.</div>
+      <div class="weekly-meta">
+        <span class="weekly-format">HTML</span>
+      </div>
+    </a>
+    <div style="display:flex;align-items:center;gap:16px;margin-top:16px;padding:12px 0;">
+      <span style="font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--text-muted);">Previous:</span>
+      <a href="weekly-synthesis-2026-03-27.html" style="font-size:0.82rem;font-weight:600;color:var(--text-secondary);text-decoration:none;border-bottom:1px solid var(--border);padding-bottom:1px;transition:all 0.15s;">Week 13: Agentic Banking Stack Crystallises &rarr;</a>
+    </div>
+  </div>
+
+  <!-- DEEP DIVES & SPOTLIGHTS -->
+  <div style="padding:40px 0; border-bottom:1px solid var(--border);">
+    <div class="section-label">Deep Dives &amp; Franchise Briefings &bull; Joining the Dots</div>
+    <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:1px; background:var(--border); border:1px solid var(--border); border-radius:8px; overflow:hidden;">
+      <a href="deep-dive-distribution-scarcity-2026-03-27.html" style="background:var(--surface); padding:24px; text-decoration:none; color:inherit; display:block; transition:background 0.15s;">
+        <div style="font-size:0.68rem; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; color:var(--accent); margin-bottom:8px;">Deep Dive &bull; 27 Mar 2026</div>
+        <div style="font-family:'Playfair Display',Georgia,serif; font-size:1rem; font-weight:700; color:var(--text); line-height:1.3; margin-bottom:8px;">The Distribution Scarcity Thesis</div>
+        <div style="font-size:0.78rem; color:var(--text-secondary); line-height:1.5;">Why distribution channels are scarcer than products in the agentic economy, and what it means for banks, fintechs, and platform strategy.</div>
+      </a>
+      <a href="deep-dive-experian-chatgpt-incumbent-ai-2026-03-24.html" style="background:var(--surface); padding:24px; text-decoration:none; color:inherit; display:block; transition:background 0.15s;">
+        <div style="font-size:0.68rem; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; color:var(--accent); margin-bottom:8px;">Deep Dive &bull; 24 Mar 2026</div>
+        <div style="font-family:'Playfair Display',Georgia,serif; font-size:1rem; font-weight:700; color:var(--text); line-height:1.3; margin-bottom:8px;">The Incumbent Half-Step</div>
+        <div style="font-size:0.78rem; color:var(--text-secondary); line-height:1.5;">Why Experian's ChatGPT tool reveals financial services' AI blind spot. When incumbents build AI wrappers instead of AI-native products.</div>
+      </a>
+      <a href="deep-dive-machine-payments-protocol-2026-03-19.html" style="background:var(--surface); padding:24px; text-decoration:none; color:inherit; display:block; transition:background 0.15s;">
+        <div style="font-size:0.68rem; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; color:var(--accent); margin-bottom:8px;">Deep Dive &bull; 19 Mar 2026</div>
+        <div style="font-family:'Playfair Display',Georgia,serif; font-size:1rem; font-weight:700; color:var(--text); line-height:1.3; margin-bottom:8px;">HTTP 402 Finally Has an Answer</div>
+        <div style="font-size:0.78rem; color:var(--text-secondary); line-height:1.5;">The machine payments protocol that could rewrite how AI agents transact. What Tempo, Stripe, and Visa are building.</div>
+      </a>
+    </div>
+    <div style="margin-top:12px; text-align:right;">
+      <a href="spotlights.html" style="font-size:0.72rem; font-weight:600; color:var(--text-secondary); text-decoration:none; transition:color 0.15s;">View all briefings, deep dives &amp; spotlights &rarr;</a>
+    </div>
+  </div>
+
+  <!-- FORESIGHT ENGINE TEASER -->
+  <div class="engine" id="engine" style="padding:40px 0; border-bottom:1px solid var(--border);">
+    <a href="foresight-engine.html" style="text-decoration:none; color:inherit; display:block; background:#eef0ff; border:1px solid #d4d8f0; border-radius:12px; padding:36px 40px; position:relative; overflow:hidden; transition:transform 0.15s, box-shadow 0.15s;">
+      <div style="position:absolute; top:0; left:0; right:0; height:3px; background:linear-gradient(90deg, var(--indigo), #818cf8, var(--indigo));"></div>
+      <div style="display:flex; justify-content:space-between; align-items:center;">
+        <div>
+          <div style="font-size:0.62rem; font-weight:700; text-transform:uppercase; letter-spacing:2.5px; color:var(--indigo); margin-bottom:10px;">Strategic Foresight &bull; Horizon 2&ndash;15 Years</div>
+          <h2 style="font-family:'Playfair Display',Georgia,serif; font-size:1.6rem; font-weight:900; color:var(--text); line-height:1.25; margin-bottom:8px; letter-spacing:-0.5px;">The Foresight <span style="color:var(--indigo); font-style:italic;">Engine</span></h2>
+          <p style="font-size:0.85rem; color:var(--text-secondary); line-height:1.6; max-width:600px;">Proprietary trend registry, scenario canvas, and customer archetype analysis. Grounded in daily intelligence. Designed to surface the strategic questions the organisation needs to ask now.</p>
+        </div>
+        <div style="display:flex; gap:24px; text-align:center;">
+          <div><div style="font-size:1.6rem; font-weight:900; color:var(--text);">33</div><div style="font-size:0.62rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:1px;">Briefings</div></div>
+          <div><div style="font-size:1.6rem; font-weight:900; color:var(--text);">18</div><div style="font-size:0.62rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:1px;">Trends</div></div>
+          <div><div style="font-size:1.6rem; font-weight:900; color:var(--text);">8</div><div style="font-size:0.62rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:1px;">Scenarios</div></div>
+        </div>
+      </div>
+      <div style="margin-top:16px; display:flex; gap:12px;">
+        <span style="font-size:0.72rem; font-weight:600; color:var(--indigo);">Open Foresight Engine &rarr;</span>
+        <span style="font-size:0.72rem; color:var(--text-muted);">&bull;</span>
+        <span style="font-size:0.72rem; color:var(--text-muted);">v2.0 &bull; VIM + CLA scoring &bull; Wind Tunnel protocol &bull; Customer archetypes</span>
+      </div>
+    </a>
+  </div>
+
+  <!-- RECENT -->
+  <div class="recent">
+    <div class="section-label">Recent Briefings</div>
+        <div class="recent-grid">
+      <a href="strategic-daily-briefing-2026-04-03.html" class="recent-card">
+        <div class="card-date">3 Apr 2026</div>
+        <div class="card-accent" style="background:var(--indigo)"></div>
+        <div class="card-title">Anthropic Acquires Coefficient Bio for £303M ($400M) in Stock as AI Labs Cross Into Biological Research</div>
+        <div class="card-excerpt">Anthropic&#x27;s £303M+ ($400M+) acquisition of biotech startup Coefficient Bio marks the first major AI lab move into biological research, signalling that frontier AI companies now view wet-lab science as</div>
+        <div class="card-meta">
+          <span class="card-format">HTML</span>
+        </div>
+      </a>
+      <a href="strategic-daily-briefing-2026-04-02.html" class="recent-card">
+        <div class="card-date">2 Apr 2026</div>
+        <div class="card-accent" style="background:var(--orange)"></div>
+        <div class="card-title">OpenAI Raises £92B ($122B) in Largest Venture Round in History as Enterprise AI Revenue Overtakes Consumer Subscriptions</div>
+        <div class="card-excerpt">OpenAI closed the largest venture round in history at £92B ($122B), with enterprise customers now exceeding 40% of revenue, a structural inversion from the consumer model that dominated 18 months ago.</div>
+        <div class="card-meta">
+          <span class="card-format">HTML</span>
+        </div>
+      </a>
+      <a href="strategic-daily-briefing-2026-04-01.html" class="recent-card">
+        <div class="card-date">1 Apr 2026</div>
+        <div class="card-accent" style="background:var(--red)"></div>
+        <div class="card-title">Iran Conflict Opens Digital Front as IRGC Names 18 US Tech Companies as Targets</div>
+        <div class="card-excerpt">The IRGC released a statement threatening to target 18 US tech and defence companies including Cisco, HP, Intel, Oracle, Microsoft, Apple, Google, Meta, IBM, Dell, Palantir, Nvidia, Tesla, and Boeing.</div>
+        <div class="card-meta">
+          <span class="card-format">HTML</span>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <!-- ARCHIVE -->
+  <div class="archive">
+    <div class="section-label">Archive</div>
+    <table class="archive-table">
+      <tr class="archive-row">
+        <td class="archive-date">31 Mar 2026</td>
+        <td class="archive-title">Largest Oil Supply Disruption in History Meets AI Infrastructure Bottleneck</td>
+        <td class="archive-links">
+          <a href="strategic-daily-briefing-2026-03-31.html">HTML</a>
+        </td>
+      </tr>
+      <tr class="archive-row">
+        <td class="archive-date">29 Mar 2026</td>
+        <td class="archive-title">AI Agents Threaten the Bank-Customer Relationship as Starling Makes First UK Move</td>
+        <td class="archive-links">
+          <a href="strategic-daily-briefing-2026-03-29.html">HTML</a>
+        </td>
+      </tr>
+      <tr class="archive-row">
+        <td class="archive-date">28 Mar 2026</td>
+        <td class="archive-title">AI Lab Economics Enter Capital Markets Phase as Anthropic Targets October IPO</td>
+        <td class="archive-links">
+          <a href="strategic-daily-briefing-2026-03-28.html">HTML</a>
+        </td>
+      </tr>
+      <tr class="archive-row">
+        <td class="archive-date">27 Mar 2026</td>
+        <td class="archive-title">UK Banks Race to Deploy Agentic AI as Starling, Lloyds and Visa Move in a Single Week</td>
+        <td class="archive-links">
+          <a href="strategic-daily-briefing-2026-03-27.html">HTML</a>
+        </td>
+      </tr>
+      <tr class="archive-row">
+        <td class="archive-date">26 Mar 2026</td>
+        <td class="archive-title">FCA Signals Payments Regulation Rewrite as Agentic AI Goes Live Across Global Banking</td>
+        <td class="archive-links">
+          <a href="strategic-daily-briefing-2026-03-26.html">HTML</a>
+        </td>
+      </tr>
+      <tr class="archive-row">
+        <td class="archive-date">25 Mar 2026</td>
+        <td class="archive-title">Issue 2026-03-25</td>
+        <td class="archive-links">
+          <a href="strategic-daily-briefing-2026-03-25.html">HTML</a>
+        </td>
+      </tr>
+      <tr class="archive-row">
+        <td class="archive-date">24 Mar 2026</td>
+        <td class="archive-title">Issue 2026-03-24</td>
+        <td class="archive-links">
+          <a href="strategic-daily-briefing-2026-03-24.html">HTML</a>
+        </td>
+      </tr>
+      <tr class="archive-row">
+        <td class="archive-date">23 Mar 2026</td>
+        <td class="archive-title">Issue 2026-03-23</td>
+        <td class="archive-links">
+          <a href="strategic-daily-briefing-2026-03-23.html">HTML</a>
+        </td>
+      </tr>
+      <tr class="archive-row">
+        <td class="archive-date">21 Mar 2026</td>
+        <td class="archive-title">Issue 2026-03-21</td>
+        <td class="archive-links">
+          <a href="strategic-daily-briefing-2026-03-21.html">HTML</a>
+        </td>
+      </tr>
+      <tr class="archive-row">
+        <td class="archive-date">20 Mar 2026</td>
+        <td class="archive-title">Issue 2026-03-20</td>
+        <td class="archive-links">
+          <a href="strategic-daily-briefing-2026-03-20.html">HTML</a>
+        </td>
+      </tr>
+      <tr class="archive-row">
+        <td class="archive-date">19 Mar 2026</td>
+        <td class="archive-title">Issue 2026-03-19</td>
+        <td class="archive-links">
+          <a href="strategic-daily-briefing-2026-03-19.html">HTML</a>
+        </td>
+      </tr>
+      <tr class="archive-row">
+        <td class="archive-date">18 Mar 2026</td>
+        <td class="archive-title">Issue 2026-03-18</td>
+        <td class="archive-links">
+          <a href="strategic-daily-briefing-2026-03-18.html">HTML</a>
+        </td>
+      </tr>
+      <tr class="archive-row">
+        <td class="archive-date">17 Mar 2026</td>
+        <td class="archive-title">Issue 2026-03-17</td>
+        <td class="archive-links">
+          <a href="strategic-daily-briefing-2026-03-17.html">HTML</a>
+        </td>
+      </tr>
+      <tr class="archive-row">
+        <td class="archive-date">16 Mar 2026</td>
+        <td class="archive-title">Issue 2026-03-16</td>
+        <td class="archive-links">
+          <a href="strategic-daily-briefing-2026-03-16.html">HTML</a>
+        </td>
+      </tr>
+      <tr class="archive-row">
+        <td class="archive-date">14 Mar 2026</td>
+        <td class="archive-title">Issue 2026-03-14</td>
+        <td class="archive-links">
+          <a href="strategic-daily-briefing-2026-03-14.html">HTML</a>
+        </td>
+      </tr>
+      <tr class="archive-row">
+        <td class="archive-date">13 Mar 2026</td>
+        <td class="archive-title">Issue 2026-03-13</td>
+        <td class="archive-links">
+          <a href="strategic-daily-briefing-2026-03-13.html">HTML</a>
+        </td>
+      </tr>
+      <tr class="archive-row">
+        <td class="archive-date">12 Mar 2026</td>
+        <td class="archive-title">Issue 2026-03-12</td>
+        <td class="archive-links">
+          <a href="strategic-daily-briefing-2026-03-12.html">HTML</a>
+        </td>
+      </tr>
+      <tr class="archive-row">
+        <td class="archive-date">11 Mar 2026</td>
+        <td class="archive-title">Issue 2026-03-11</td>
+        <td class="archive-links">
+          <a href="strategic-daily-briefing-2026-03-11.html">HTML</a>
+        </td>
+      </tr>
+      <tr class="archive-row">
+        <td class="archive-date">10 Mar 2026</td>
+        <td class="archive-title">Issue 2026-03-10</td>
+        <td class="archive-links">
+          <a href="strategic-daily-briefing-2026-03-10.html">HTML</a>
+        </td>
+      </tr>
+      <tr class="archive-row">
+        <td class="archive-date">9 Mar 2026</td>
+        <td class="archive-title">Issue 2026-03-09</td>
+        <td class="archive-links">
+          <a href="strategic-daily-briefing-2026-03-09.html">HTML</a>
+        </td>
+      </tr>
+      <tr class="archive-row">
+        <td class="archive-date">7 Mar 2026</td>
+        <td class="archive-title">Issue 2026-03-07</td>
+        <td class="archive-links">
+          <a href="strategic-daily-briefing-2026-03-07.html">HTML</a>
+        </td>
+      </tr>
+      <tr class="archive-row">
+        <td class="archive-date">6 Mar 2026</td>
+        <td class="archive-title">Issue 2026-03-06</td>
+        <td class="archive-links">
+          <a href="strategic-daily-briefing-2026-03-06.html">HTML</a>
+        </td>
+      </tr>
+      <tr class="archive-row">
+        <td class="archive-date">5 Mar 2026</td>
+        <td class="archive-title">Issue 2026-03-05</td>
+        <td class="archive-links">
+          <a href="strategic-daily-briefing-2026-03-05.html">HTML</a>
+        </td>
+      </tr>
+      <tr class="archive-row">
+        <td class="archive-date">4 Mar 2026</td>
+        <td class="archive-title">Issue 2026-03-04</td>
+        <td class="archive-links">
+          <a href="strategic-daily-briefing-2026-03-04.html">HTML</a>
+        </td>
+      </tr>
+      <tr class="archive-row">
+        <td class="archive-date">3 Mar 2026</td>
+        <td class="archive-title">Issue 2026-03-03</td>
+        <td class="archive-links">
+          <a href="strategic-daily-briefing-2026-03-03.html">HTML</a>
+        </td>
+      </tr>
+      <tr class="archive-row">
+        <td class="archive-date">2 Mar 2026</td>
+        <td class="archive-title">Issue 2026-03-02</td>
+        <td class="archive-links">
+          <a href="strategic-daily-briefing-2026-03-02.html">HTML</a>
+        </td>
+      </tr>
+      <tr class="archive-row">
+        <td class="archive-date">28 Feb 2026</td>
+        <td class="archive-title">Issue 2026-02-28</td>
+        <td class="archive-links">
+          <a href="strategic-daily-briefing-2026-02-28.html">HTML</a>
+        </td>
+      </tr>
+      <tr class="archive-row">
+        <td class="archive-date">27 Feb 2026</td>
+        <td class="archive-title">Issue 2026-02-27</td>
+        <td class="archive-links">
+          <a href="strategic-daily-briefing-2026-02-27.html">HTML</a>
+        </td>
+      </tr>
+      <tr class="archive-row">
+        <td class="archive-date">26 Feb 2026</td>
+        <td class="archive-title">Issue 2026-02-26</td>
+        <td class="archive-links">
+          <a href="strategic-daily-briefing-2026-02-26.html">HTML</a>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="container">
+    <div class="footer-logo">Disruption <span>Watch</span> <span style="font-size:0.55em;color:#d97706;font-weight:600;letter-spacing:0;">(beta)</span></div>
+    <p>Foresight Engine &amp; Intelligence Hub &bull; Last updated 4 April 2026 (Issue #34)</p>
+    <div class="methodology">Disruption Signals &bull; 12 strategic lenses &bull; 4-layer foresight methodology v2.0 &bull; VIM + CLA scoring &bull; 5 customer archetypes &bull; CIPHER signal typing &bull; <a href="foresight-engine.html" style="color:var(--accent);text-decoration:none;">Open the Foresight Engine &rarr;</a> &bull; <a href="disruption-foresight-engine.html" style="color:var(--accent);text-decoration:none;">Methodology &rarr;</a></div>
+  </div>
+</div>
+
+</body>
+</html>
