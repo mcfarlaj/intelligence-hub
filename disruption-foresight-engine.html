@@ -1,0 +1,1277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disruption Watch — The Foresight Engine: Proprietary Methodology & Framework</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
+    <style>
+  :root {
+    --bg: #fafaf9;
+    --surface: #ffffff;
+    --surface-alt: #f5f5f4;
+    --border: #e7e5e4;
+    --text: #1c1917;
+    --text-secondary: #57534e;
+    --text-muted: #a8a29e;
+    --accent: #dc2626;
+    --accent-hover: #b91c1c;
+    --indigo: #4F46E5;
+    --purple: #7C3AED;
+    --green: #059669;
+    --red: #DC2626;
+    --cyan: #0891B2;
+    --pink: #DB2777;
+    --orange: #EA580C;
+    --teal: #0D9488;
+    --amber: #D97706;
+    --climate: #16a34a;
+    --geopolitical: #7c3aed;
+    --workforce: #be185d;
+  }
+
+
+  /* === NAV === */
+  .nav { border-bottom:3px solid var(--text); }
+  .nav-inner { max-width:1100px; margin:0 auto; padding:16px 24px; display:flex; align-items:center; justify-content:space-between; }
+  .nav .logo { font-family:'Playfair Display',Georgia,serif; font-size:1.5rem; font-weight:900; letter-spacing:-0.5px; color:var(--text); text-decoration:none; }
+  .nav .logo span { color:var(--indigo); }
+  .nav-links { display:flex; gap:24px; align-items:center; }
+  .nav-links a { color:var(--text-secondary); text-decoration:none; font-size:0.82rem; font-weight:600; transition:color 0.2s; }
+  .nav-links a:hover { color:var(--text); }
+  .nav-links a.active { color:var(--accent, #dc2626); }
+  .nav .edition { font-size:0.72rem; font-weight:600; text-transform:uppercase; letter-spacing:2px; color:var(--text-muted); }
+  @media (max-width:768px) { .nav-inner { flex-direction:column; gap:12px; } .nav-links { gap:16px; flex-wrap:wrap; } }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fafaf9;
+            color: #1c1917;
+            line-height: 1.7;
+        }
+
+        /* NAV */
+
+        .nav-brand {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: -1px;
+        }
+
+        .nav-brand span { color: #4F46E5; }
+
+        .nav-meta {
+            font-size: 13px;
+            color: #6b7280;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* HERO */
+        .hero {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+            color: #fff;
+            padding: 80px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(circle at 30% 50%, rgba(220,38,38,0.08) 0%, transparent 60%),
+                        radial-gradient(circle at 70% 50%, rgba(79,70,229,0.08) 0%, transparent 60%);
+        }
+
+        .hero-content { position: relative; z-index: 1; max-width: 800px; margin: 0 auto; }
+
+        .hero-kicker {
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: #dc2626;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.6rem;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            letter-spacing: -1px;
+        }
+
+        .hero h1 em {
+            font-style: italic;
+            color: #dc2626;
+        }
+
+        .hero-sub {
+            font-size: 18px;
+            color: #94a3b8;
+            line-height: 1.6;
+            max-width: 600px;
+            margin: 0 auto;
+            font-weight: 300;
+        }
+
+        .hero-version {
+            margin-top: 30px;
+            font-size: 12px;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* MAIN CONTENT */
+        .content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 60px 40px;
+        }
+
+        .section-break {
+            border: none;
+            border-top: 3px solid #000;
+            margin: 60px 0;
+        }
+
+        .section-break-light {
+            border: none;
+            border-top: 1px solid #e5e7eb;
+            margin: 40px 0;
+        }
+
+        /* TYPOGRAPHY */
+        h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+            line-height: 1.2;
+        }
+
+        h2 .num {
+            color: #dc2626;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            display: block;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        h3 {
+            font-family: 'Inter', sans-serif;
+            font-size: 20px;
+            font-weight: 700;
+            margin-top: 36px;
+            margin-bottom: 12px;
+            color: #0f172a;
+        }
+
+        h4 {
+            font-size: 16px;
+            font-weight: 700;
+            margin-top: 24px;
+            margin-bottom: 8px;
+            color: #374151;
+        }
+
+        p {
+            margin-bottom: 16px;
+            font-size: 16px;
+        }
+
+        .lead-para::first-letter {
+            font-family: 'Playfair Display', serif;
+            font-size: 64px;
+            float: left;
+            line-height: 0.8;
+            margin-right: 8px;
+            margin-top: 4px;
+            color: #dc2626;
+            font-weight: 700;
+        }
+
+        .callout {
+            background: #f8fafc;
+            border-left: 4px solid #dc2626;
+            padding: 24px 28px;
+            margin: 28px 0;
+            font-size: 15px;
+        }
+
+        .callout-dark {
+            background: #0f172a;
+            color: #e2e8f0;
+            border-left: 4px solid #dc2626;
+            padding: 28px 32px;
+            margin: 28px 0;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .callout-dark strong { color: #fff; }
+
+        .principle-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            font-style: italic;
+            color: #374151;
+            text-align: center;
+            padding: 32px 40px;
+            margin: 32px 0;
+            border-top: 1px solid #e5e7eb;
+            border-bottom: 1px solid #e5e7eb;
+            line-height: 1.5;
+        }
+
+        /* THREE LAYERS DIAGRAM */
+        .layers-diagram {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0;
+            margin: 40px 0;
+        }
+
+        .layer-card {
+            padding: 32px;
+            border: 2px solid #e5e7eb;
+            position: relative;
+        }
+
+        .layer-card:first-child { border-radius: 8px 8px 0 0; }
+        .layer-card:last-child { border-radius: 0 0 8px 8px; }
+        .layer-card + .layer-card { border-top: none; }
+
+        .layer-card .layer-tag {
+            display: inline-block;
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 12px;
+            color: #fff;
+        }
+
+        .layer-signal { background-color: #dc2626; }
+        .layer-signal .layer-tag { background: #dc2626; }
+
+        .layer-trend { background-color: #fff; }
+        .layer-trend .layer-tag { background: #4F46E5; }
+
+        .layer-scenario { background-color: #f8fafc; }
+        .layer-scenario .layer-tag { background: #0f172a; }
+
+        .layer-card h3 {
+            margin-top: 0;
+            font-size: 22px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .layer-card .horizon {
+            font-size: 13px;
+            color: #6b7280;
+            margin-bottom: 8px;
+        }
+
+        .layer-card p { font-size: 15px; margin-bottom: 12px; }
+
+        .connector {
+            text-align: center;
+            padding: 12px;
+            font-size: 20px;
+            color: #dc2626;
+        }
+
+        /* LENS GRID */
+        .lens-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin: 32px 0;
+        }
+
+        .lens-card {
+            padding: 20px;
+            border-radius: 6px;
+            border: 1px solid #e5e7eb;
+        }
+
+        .lens-card .lens-name {
+            font-weight: 700;
+            font-size: 14px;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .lens-card .lens-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            display: inline-block;
+            flex-shrink: 0;
+        }
+
+        .lens-card .lens-desc {
+            font-size: 13px;
+            color: #6b7280;
+            line-height: 1.5;
+        }
+
+        .lens-new {
+            background: #fef3c7;
+            border-color: #f59e0b;
+        }
+
+        .lens-new::after {
+            content: 'NEW';
+            font-size: 9px;
+            font-weight: 700;
+            color: #92400e;
+            background: #fde68a;
+            padding: 2px 6px;
+            border-radius: 3px;
+            float: right;
+            margin-top: -16px;
+            letter-spacing: 1px;
+        }
+
+        /* SCORING TABLE */
+        .score-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 24px 0;
+            font-size: 14px;
+        }
+
+        .score-table th {
+            text-align: left;
+            padding: 12px 16px;
+            background: #0f172a;
+            color: #fff;
+            font-weight: 600;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .score-table td {
+            padding: 12px 16px;
+            border-bottom: 1px solid #e5e7eb;
+            vertical-align: top;
+        }
+
+        .score-table tr:nth-child(even) { background: #f8fafc; }
+
+        .score-badge {
+            display: inline-block;
+            padding: 2px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        /* PROCESS FLOW */
+        .process-flow {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2px;
+            margin: 32px 0;
+        }
+
+        .process-step {
+            padding: 24px 16px;
+            text-align: center;
+            background: #f8fafc;
+            position: relative;
+        }
+
+        .process-step:first-child { border-radius: 6px 0 0 6px; }
+        .process-step:last-child { border-radius: 0 6px 6px 0; }
+
+        .process-step .step-num {
+            font-size: 28px;
+            font-weight: 700;
+            color: #dc2626;
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 8px;
+        }
+
+        .process-step .step-title {
+            font-weight: 700;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 6px;
+        }
+
+        .process-step .step-desc {
+            font-size: 12px;
+            color: #6b7280;
+            line-height: 1.4;
+        }
+
+        /* CADENCE TABLE */
+        .cadence-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin: 32px 0;
+        }
+
+        .cadence-card {
+            border: 2px solid #e5e7eb;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .cadence-header {
+            padding: 14px 16px;
+            font-weight: 700;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #fff;
+        }
+
+        .cadence-body {
+            padding: 16px;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        /* DATA SOURCES */
+        .source-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 32px 0;
+        }
+
+        .source-card {
+            padding: 24px;
+            border: 1px solid #e5e7eb;
+            border-radius: 6px;
+        }
+
+        .source-card h4 {
+            margin-top: 0;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+        }
+
+        .source-item {
+            font-size: 13px;
+            padding: 6px 0;
+            border-bottom: 1px solid #f1f5f9;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .source-item:last-child { border-bottom: none; }
+
+        .source-cost {
+            font-size: 11px;
+            font-weight: 600;
+            padding: 2px 8px;
+            border-radius: 10px;
+        }
+
+        .cost-free { background: #dcfce7; color: #166534; }
+        .cost-low { background: #fef3c7; color: #92400e; }
+        .cost-med { background: #fee2e2; color: #991b1b; }
+
+        /* FOOTER */
+        footer {
+            border-top: 3px solid #000;
+            padding: 40px;
+            text-align: center;
+            font-size: 13px;
+            color: #6b7280;
+        }
+
+        footer .footer-brand {
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 8px;
+        }
+
+        footer .footer-brand span { color: #4F46E5; }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 32px; }
+            .lens-grid { grid-template-columns: 1fr; }
+            .process-flow { grid-template-columns: 1fr 1fr; }
+            .cadence-grid { grid-template-columns: 1fr 1fr; }
+            .source-grid { grid-template-columns: 1fr; }
+            .content { padding: 40px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="logo">Disruption <span>Watch</span> <span style="font-size:0.55em;color:#d97706;font-weight:600;letter-spacing:0;">(beta)</span></a>
+    <div class="nav-links">
+      <a href="foresight-engine.html" class="active">Foresight Engine</a>
+      <a href="disruption-radar.html">Radar</a>
+      <a href="search.html">Search</a>
+      <a href="spotlights.html">Joining the Dots</a>
+      <span class="edition">Methodology</span>
+    </div>
+  </div>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+    <div class="hero-content">
+        <div class="hero-kicker">Proprietary Framework</div>
+        <h1>The Foresight <em>Engine</em></h1>
+        <p class="hero-sub">A three-layer methodology for turning daily intelligence into strategic foresight — connecting what's happening now to the futures that matter for your organisation.</p>
+        <div class="hero-version">Disruption Watch &bull; Methodology &bull; v1.0</div>
+    </div>
+</div>
+
+<div class="content">
+
+    <!-- SECTION 1: PURPOSE -->
+    <h2><span class="num">01 — Purpose</span>Why We Need This</h2>
+
+    <p class="lead-para">Disruption Watch already tracks disruption. Daily briefings scan signals across twelve strategic lenses, scoring their intensity and momentum. Weekly syntheses join the dots. But there is a structural gap between knowing what happened this week and understanding what it means for the next decade. The Foresight Engine bridges that gap.</p>
+
+    <p>Most organisations approach the future as a complicated problem to be solved — throw enough data and expertise at it, and the answer will emerge. But the future is complex, not complicated. Outcomes are emergent and only apparent in hindsight. Cause and effect relationships are not fully understood or even knowable in advance. The Cynefin framework makes this distinction clear: complicated problems reward expert analysis; complex problems reward exploration, divergent thinking, and the ability to hold multiple plausible outcomes simultaneously.</p>
+
+    <p>Strategic foresight is not forecasting. Forecasting asks "what will happen?" and attempts to answer with precision. Foresight asks "what could happen?" and prepares for multiple possibilities. As the Copenhagen Institute for Futures Studies frames it: the future unfolds in a friction field between drivers pushing change forward and turners and blockers slowing or redirecting it. The outcome depends on this power struggle, and the implications for any organisation flow from understanding it — not from picking a single trajectory and betting the strategy on it.</p>
+
+    <div class="principle-text">
+        "Absent foresight, strategy is blind to contextual change — therefore a recipe for failure when change occurs. Absent strategy, foresight is speculation and conjecture disconnected from purpose."
+    </div>
+
+    <p>The Foresight Engine connects the two. It takes the daily intelligence we already produce, layers analytical rigour on top of it, and creates a living, proprietary knowledge base that informs strategic decisions across innovation, product, and strategy teams.</p>
+
+    <div class="callout">
+        <strong>What this is not:</strong> This is not a prediction tool. It does not provide certainty. It provides structured ways to think about uncertainty — and to do so better than competitors who are either ignoring the future or trying to forecast their way into it.
+    </div>
+
+    <hr class="section-break">
+
+    <!-- SECTION 2: THREE-LAYER ARCHITECTURE -->
+    <h2><span class="num">02 — Architecture</span>Four Layers of Foresight</h2>
+
+    <p>The Engine operates across three analytical layers and one translation layer. The analytical layers correspond to different time horizons. Information flows upwards from signals to scenarios, and insight flows back down — scenarios inform which signals to watch; trends tell us which scenarios are becoming more plausible. The Customer Impact Layer runs vertically through all three, grounding abstract analysis in the lived experience of real customers.</p>
+
+    <div class="layers-diagram">
+        <div class="layer-card layer-scenario">
+            <span class="layer-tag" style="background:#0f172a;">Layer 3</span>
+            <div class="horizon">Horizon 3 — 5 to 15 years</div>
+            <h3>Scenario Canvas</h3>
+            <p>Named plausible futures, constructed from converging trends, stress-tested against strategic priorities. Refreshed quarterly. Each scenario explores what the competitive landscape could look like if specific forces dominate — drawing from the futures cone to map possible, plausible, and preferable outcomes.</p>
+            <p><strong>Output:</strong> 3–4 named scenarios per strategic theme, with implications mapped to business units.</p>
+        </div>
+        <div class="layer-card layer-trend">
+            <span class="layer-tag" style="background:#4F46E5;">Layer 2</span>
+            <div class="horizon">Horizon 2 — 2 to 5 years</div>
+            <h3>Trend Registry</h3>
+            <p>Persistent, named patterns of change that emerge when signals cluster and recur. Each trend is scored on three dimensions (velocity, impact, maturity), tagged to strategic lenses, and tracked monthly. This is the proprietary knowledge base — no one else has this, because no one else is scanning through our specific lenses with our specific strategic context.</p>
+            <p><strong>Output:</strong> Living registry of 40–80 scored trends, updated monthly, with trajectory calls.</p>
+        </div>
+        <div class="layer-card layer-signal" style="background:#fef2f2;">
+            <span class="layer-tag" style="background:#dc2626;">Layer 1</span>
+            <div class="horizon">Horizon 1 — Now to 2 years</div>
+            <h3>Signal Scanner</h3>
+            <p>The daily intelligence operation. Raw signals captured from newsletters, influencers, prediction markets, regulatory filings, and patent databases. Each signal is classified by type, scored for intensity (Zeitgeist Score), and tagged to one or more of 12 strategic lenses. This is where new information enters the system.</p>
+            <p><strong>Output:</strong> Daily briefings, weekly syntheses, rolling data tracker.</p>
+        </div>
+    </div>
+
+    <div class="callout-dark">
+        <strong>The feedback loop:</strong> Signals that persist across multiple briefings are candidates for trend elevation. Trends that strengthen or converge challenge or validate existing scenarios. Scenarios that shift in plausibility trigger new signal-watching priorities. The system is circular, not linear.
+    </div>
+
+    <h3>The Customer Impact Layer</h3>
+
+    <p>Running vertically through all three analytical layers is the Customer Impact Layer — five customer archetypes that translate every signal, trend, and scenario into concrete human consequences. Without this layer, foresight remains intellectually stimulating but strategically inert. With it, a product manager can read a scenario and immediately understand what it means for their customers. The five archetypes are defined in Section 06.</p>
+
+    <hr class="section-break">
+
+    <!-- SECTION 3: SIGNAL LAYER DETAIL -->
+    <h2><span class="num">03 — Layer 1</span>The Signal Scanner</h2>
+
+    <p>The Signal Scanner is the foundation — the always-on intelligence operation that feeds everything above it. It already exists in the form of the daily strategic briefings. The methodology upgrade adds three enhancements: signal typing, an expanded lens set, and formalised graduation criteria.</p>
+
+    <h3>Signal Classification (CIPHER Framework)</h3>
+
+    <p>Inspired by the Future Today Institute's CIPHER model, every signal captured in the daily scan is classified by type. This matters because not all signals carry the same weight. A new scientific breakthrough (Rarity) demands different attention from a workaround that early adopters are inventing (Hack). Classification helps prioritise and helps spot when multiple signal types converge on the same theme — which is a strong indicator that a trend is forming.</p>
+
+    <table class="score-table">
+        <thead>
+            <tr>
+                <th>Type</th>
+                <th>Definition</th>
+                <th>Example</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Contradiction</strong></td>
+                <td>A development that challenges prevailing assumptions or norms</td>
+                <td>A major bank shutting its innovation lab while doubling AI spend</td>
+            </tr>
+            <tr>
+                <td><strong>Inflection</strong></td>
+                <td>An idea, behaviour, or technology spreading rapidly across domains</td>
+                <td>AI agents moving from consumer novelty to enterprise procurement</td>
+            </tr>
+            <tr>
+                <td><strong>Practice</strong></td>
+                <td>An emerging behaviour gaining traction among early adopters</td>
+                <td>Gen Z using social platforms as primary financial planning tools</td>
+            </tr>
+            <tr>
+                <td><strong>Hack</strong></td>
+                <td>A clever workaround exploiting gaps in current systems</td>
+                <td>Stablecoin rails being used for cross-border payroll</td>
+            </tr>
+            <tr>
+                <td><strong>Extreme</strong></td>
+                <td>An outlier experiment pushing boundaries of what's possible</td>
+                <td>Quantum-resistant encryption deployed in a live payment system</td>
+            </tr>
+            <tr>
+                <td><strong>Rarity</strong></td>
+                <td>A novel invention or discovery with no precedent</td>
+                <td>A fundamentally new consensus mechanism for distributed ledgers</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>The 12 Strategic Lenses</h3>
+
+    <p>The existing nine lenses are retained and three new lenses are added to close gaps identified through PESTLE and STEEPV analysis. The new lenses cover forces that are already reshaping industries but were not previously tracked with dedicated focus.</p>
+
+    <div class="lens-grid">
+        <div class="lens-card">
+            <div class="lens-name"><span class="lens-dot" style="background:#4F46E5;"></span> AI &amp; Agents</div>
+            <div class="lens-desc">Foundation models, autonomous agents, enterprise AI adoption, AI governance and safety</div>
+        </div>
+        <div class="lens-card">
+            <div class="lens-name"><span class="lens-dot" style="background:#7C3AED;"></span> Quantum &amp; Compute</div>
+            <div class="lens-desc">Quantum computing readiness, cryptographic risk, high-performance computing advances</div>
+        </div>
+        <div class="lens-card">
+            <div class="lens-name"><span class="lens-dot" style="background:#059669;"></span> Digital Markets &amp; Assets</div>
+            <div class="lens-desc">Crypto, tokenisation, CBDCs, DeFi, digital securities, stablecoin infrastructure</div>
+        </div>
+        <div class="lens-card">
+            <div class="lens-name"><span class="lens-dot" style="background:#DC2626;"></span> Digital Trust</div>
+            <div class="lens-desc">Cybersecurity, digital identity, fraud, deepfakes, data privacy, consent architecture</div>
+        </div>
+        <div class="lens-card">
+            <div class="lens-name"><span class="lens-dot" style="background:#0891B2;"></span> Interface &amp; Spatial</div>
+            <div class="lens-desc">Conversational UI, AR/VR, spatial computing, ambient interfaces, voice-first services</div>
+        </div>
+        <div class="lens-card">
+            <div class="lens-name"><span class="lens-dot" style="background:#DB2777;"></span> Bio-Human</div>
+            <div class="lens-desc">Longevity, neuroscience, health-finance intersection, biometric authentication, human augmentation</div>
+        </div>
+        <div class="lens-card">
+            <div class="lens-name"><span class="lens-dot" style="background:#EA580C;"></span> Business, Finance &amp; Policy</div>
+            <div class="lens-desc">Regulatory shifts, central bank policy, M&amp;A, fintech funding, market structure changes</div>
+        </div>
+        <div class="lens-card">
+            <div class="lens-name"><span class="lens-dot" style="background:#0D9488;"></span> Consumer</div>
+            <div class="lens-desc">Behavioural shifts, generational attitudes, financial wellbeing, trust in institutions</div>
+        </div>
+        <div class="lens-card">
+            <div class="lens-name"><span class="lens-dot" style="background:#D97706;"></span> Left Field</div>
+            <div class="lens-desc">Peripheral signals — weak signals, wild cards, black elephants, and sideways developments that don't fit neatly into any domain lens but demand attention precisely because they're unexpected</div>
+        </div>
+        <div class="lens-card lens-new">
+            <div class="lens-name"><span class="lens-dot" style="background:#16a34a;"></span> Climate &amp; Energy Transition</div>
+            <div class="lens-desc">Net zero commitments, carbon markets, green finance, stranded assets, climate risk modelling, energy system shifts</div>
+        </div>
+        <div class="lens-card lens-new">
+            <div class="lens-name"><span class="lens-dot" style="background:#7c3aed;"></span> Geopolitical Realignment</div>
+            <div class="lens-desc">Trade fragmentation, sanctions architecture, new centres of power, supply chain rewiring, economic blocs</div>
+        </div>
+        <div class="lens-card lens-new">
+            <div class="lens-name"><span class="lens-dot" style="background:#be185d;"></span> Workforce &amp; Talent</div>
+            <div class="lens-desc">Skills displacement, human-AI collaboration models, remote/distributed work, demographic shifts in financial services</div>
+        </div>
+    </div>
+
+    <h3>Enhanced Signal Scoring</h3>
+
+    <p>Each signal retains its existing Zeitgeist Score (1–10) and status label (NEW, HEATING, HOT, COOLING, DORMANT). The following additional metrics are added to enable richer analysis and trend graduation:</p>
+
+    <table class="score-table">
+        <thead>
+            <tr>
+                <th>Metric</th>
+                <th>Scale</th>
+                <th>What It Captures</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Convergence Count</strong></td>
+                <td>1–12</td>
+                <td>Number of lenses touched. Multi-lens signals (3+) are systemically significant.</td>
+            </tr>
+            <tr>
+                <td><strong>Institutional Commitment</strong></td>
+                <td>None / Exploratory / Committed / Dominant</td>
+                <td>Is there capital behind this? Investment, M&amp;A, patent filings, strategic references in annual reports.</td>
+            </tr>
+            <tr>
+                <td><strong>Regulatory Proximity</strong></td>
+                <td>Distant / Proposed / Imminent / Active</td>
+                <td>How close is regulation? Distant = thought leadership only. Active = enforceable rules in place.</td>
+            </tr>
+            <tr>
+                <td><strong>Counter-Signal Strength</strong></td>
+                <td>Weak / Moderate / Strong</td>
+                <td>The friction field: what forces are working against this signal? Borrowing from CIFS: turners and blockers matter as much as drivers.</td>
+            </tr>
+            <tr>
+                <td><strong>CIPHER Type</strong></td>
+                <td>C / I / P / H / E / R</td>
+                <td>Signal classification per the CIPHER framework above.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <hr class="section-break">
+
+    <!-- SECTION 4: TREND LAYER -->
+    <h2><span class="num">04 — Layer 2</span>The Trend Registry</h2>
+
+    <p>The Trend Registry is the proprietary core of the Foresight Engine. It is where signals graduate into named, scored, trackable patterns of change — and where organisations build institutional knowledge that compounds over time.</p>
+
+    <h3>What Is a Trend (and What Isn't)</h3>
+
+    <p>A trend is not a single event or data point. It is a persistent pattern of change with discernible direction and momentum. For a signal to graduate to trend status, it must meet at least three of the following five criteria:</p>
+
+    <div class="callout">
+        <strong>Trend Graduation Criteria:</strong><br><br>
+        <strong>1. Persistence</strong> — The signal has appeared across 3+ daily briefings within a 30-day window.<br>
+        <strong>2. Breadth</strong> — It touches 2+ strategic lenses (convergence count ≥ 2).<br>
+        <strong>3. Institutional traction</strong> — There is evidence of capital commitment (investment, patents, strategic announcements).<br>
+        <strong>4. Behavioural evidence</strong> — Consumer or enterprise behaviour is shifting, not just commentary or speculation.<br>
+        <strong>5. Structural implication</strong> — It has identifiable second-order consequences for industry value chains.
+    </div>
+
+    <h3>Trend Scoring: The VIM Model</h3>
+
+    <p>Every trend in the registry is scored across three dimensions — Velocity, Impact, and Maturity. Together these form the <strong>VIM Score</strong>, which enables prioritisation, comparison, and tracking over time. The model borrows from Foresight Factory's dual-axis approach but adds a sector-specific impact dimension.</p>
+
+    <table class="score-table">
+        <thead>
+            <tr>
+                <th>Dimension</th>
+                <th>Scale</th>
+                <th>Assessment Criteria</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Velocity</strong></td>
+                <td>1–5</td>
+                <td><strong>1</strong> = Decelerating (losing momentum, coverage declining)<br>
+                    <strong>2</strong> = Stable (consistent but not growing)<br>
+                    <strong>3</strong> = Moderate acceleration (growing steadily)<br>
+                    <strong>4</strong> = Rapid acceleration (multiple signals converging, capital flowing)<br>
+                    <strong>5</strong> = Exponential (breakthrough pace, market-defining momentum)</td>
+            </tr>
+            <tr>
+                <td><strong>Impact</strong></td>
+                <td>1–5</td>
+                <td><strong>1</strong> = Peripheral (affects niche segments, limited value chain exposure)<br>
+                    <strong>2</strong> = Moderate (affects one business line or customer segment)<br>
+                    <strong>3</strong> = Significant (affects multiple business lines or creates new competitive dynamics)<br>
+                    <strong>4</strong> = Structural (requires strategic response, reshapes how we compete)<br>
+                    <strong>5</strong> = Transformative (redefines the industry, existential if ignored)</td>
+            </tr>
+            <tr>
+                <td><strong>Maturity</strong></td>
+                <td>Stage</td>
+                <td><strong>Emerging</strong> (1–3) = Early signals, limited institutional adoption, high uncertainty<br>
+                    <strong>Developing</strong> (4–6) = Growing evidence, some institutional commitment, direction clearer<br>
+                    <strong>Maturing</strong> (7–8) = Widespread adoption underway, regulatory frameworks forming<br>
+                    <strong>Established</strong> (9–10) = Mainstream, embedded in business-as-usual</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>The Priority Matrix</h3>
+
+    <p>Plotting Velocity against Impact creates a four-quadrant view that drives resource allocation:</p>
+
+    <div class="callout-dark">
+        <strong>High Impact + High Velocity = ACT NOW</strong> — Strategic response required. Escalate to leadership.<br><br>
+        <strong>High Impact + Low Velocity = WATCH &amp; PREPARE</strong> — Structural but slow-moving. Build optionality.<br><br>
+        <strong>Low Impact + High Velocity = MONITOR</strong> — Moving fast but limited strategic weight. Could escalate.<br><br>
+        <strong>Low Impact + Low Velocity = LOG</strong> — Background. Review quarterly. May be a weak signal of something larger.
+    </div>
+
+    <h3>VIM Calibration Protocol</h3>
+
+    <p>Subjective scoring is a known weakness in foresight frameworks — it risks embedding existing biases into the system. To mitigate this, every VIM score must be anchored to at least one external data point. This does not eliminate judgment, but it makes the judgment transparent and contestable.</p>
+
+    <table class="score-table">
+        <thead>
+            <tr>
+                <th>Dimension</th>
+                <th>Anchor Data Required</th>
+                <th>Source</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Velocity</strong></td>
+                <td>At least one of: VC funding growth rate (YoY), patent filing acceleration, Google Trends velocity, GitHub star growth, or adoption curve data</td>
+                <td>Crunchbase, Lens.org, Google Trends, GitHub, industry reports</td>
+            </tr>
+            <tr>
+                <td><strong>Impact</strong></td>
+                <td>At least one of: addressable market size, regulatory scope (number of jurisdictions), affected customer base estimate, or value chain disruption breadth</td>
+                <td>Industry reports, FCA/PRA registers, internal customer data</td>
+            </tr>
+            <tr>
+                <td><strong>Maturity</strong></td>
+                <td>Mapped to a defined readiness scale: number of live deployments in industry, regulatory framework status (none / consultation / enacted), or technology readiness level (TRL 1–9)</td>
+                <td>Case studies, regulatory pipeline, vendor landscape scans</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <p>Scores that cannot be anchored to any external data point should be flagged with a confidence marker (Low / Medium / High). Over time, this creates a self-correcting system: low-confidence scores get prioritised for deeper research at the next monthly review.</p>
+
+    <h3>Causal Layered Analysis</h3>
+
+    <p>Drawing on Sohail Inayatullah's Causal Layered Analysis framework, each trend in the registry includes a depth assessment across four layers. This prevents the Foresight Engine from operating purely at the surface level of observable events — and forces us to interrogate the structural and ideological forces underneath.</p>
+
+    <table class="score-table">
+        <thead>
+            <tr>
+                <th>Layer</th>
+                <th>Question</th>
+                <th>Example (Stablecoin Payment Rails)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Litany</strong></td>
+                <td>What is observable? What are the facts and events?</td>
+                <td>Visa-Bridge launches stablecoin cards in 100+ countries. Circle IPO valued at $9B. UK consults on stablecoin regulation.</td>
+            </tr>
+            <tr>
+                <td><strong>Systemic causes</strong></td>
+                <td>What social, economic, or political structures produce this?</td>
+                <td>Cross-border payment friction (3-5 days, 6% fees). Correspondent network consolidation. Dollar shortage in emerging markets. Programmable money reducing settlement risk.</td>
+            </tr>
+            <tr>
+                <td><strong>Worldview</strong></td>
+                <td>What assumptions, values, or discourse enables or resists this?</td>
+                <td>The belief that money should be fast, programmable, and borderless — versus the incumbent view that trusted intermediaries are essential for financial stability.</td>
+            </tr>
+            <tr>
+                <td><strong>Myth / metaphor</strong></td>
+                <td>What deep narrative or cultural archetype is at play?</td>
+                <td>The "democratisation" narrative: technology as liberator from gatekeepers. Counterbalanced by the "too big to fail" narrative: systemic institutions as essential safety nets.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <p>Not every trend requires deep CLA analysis at first registration. But any trend scoring VIM Impact ≥ 4 should have CLA completed within one review cycle. The systemic and worldview layers are particularly valuable for scenario construction, because they reveal the fault lines along which futures diverge.</p>
+
+    <h3>Registry Operations</h3>
+
+    <p>The trend registry is maintained in a structured spreadsheet with monthly scoring reviews. Each trend record includes: a unique ID, trend name, description, primary lens, secondary lenses, VIM scores with anchor data (current and previous month), maturity stage, trajectory call (strengthening/stable/weakening), CLA depth assessment, customer archetype impacts, the date it was first identified, the signals that feed it, and strategic implications.</p>
+
+    <p>A monthly review cycle — ideally a 60-minute session with the innovation and strategy teams — recalibrates scores against anchor data, reviews CLA depth layers for high-impact trends, graduates new trends from the signal layer, retires trends that have reached "established" status or faded, and identifies convergences between trends that may warrant scenario exploration.</p>
+
+    <hr class="section-break">
+
+    <!-- SECTION 5: SCENARIO LAYER -->
+    <h2><span class="num">05 — Layer 3</span>The Scenario Canvas</h2>
+
+    <p>The Scenario Canvas is where foresight becomes strategic. It takes the strongest, most consequential trends from the registry and asks: if these forces play out together, what does the competitive landscape look like in 2035?</p>
+
+    <p>This is not prediction. It is structured imagination — creating windows into plausible futures that challenge assumptions, reveal blind spots, and surface strategic questions leaders should be asking now.</p>
+
+    <h3>Scenario Construction Method</h3>
+
+    <p>The approach draws on CIFS's friction field model and the three horizons framework. For each strategic theme (e.g. "the future of payments" or "the future of financial advice"), the process follows four steps:</p>
+
+    <div class="process-flow">
+        <div class="process-step">
+            <div class="step-num">1</div>
+            <div class="step-title">Select Drivers</div>
+            <div class="step-desc">Identify the 2–3 highest-impact trends from the registry that shape this theme. These become the scenario axes.</div>
+        </div>
+        <div class="process-step">
+            <div class="step-num">2</div>
+            <div class="step-title">Map the Field</div>
+            <div class="step-desc">For each driver, identify the turners and blockers. What could accelerate it? What could redirect or halt it?</div>
+        </div>
+        <div class="process-step">
+            <div class="step-num">3</div>
+            <div class="step-title">Build Worlds</div>
+            <div class="step-desc">Construct 3–4 named scenarios from the intersections. Each must be plausible, internally consistent, and strategically distinct.</div>
+        </div>
+        <div class="process-step">
+            <div class="step-num">4</div>
+            <div class="step-title">Stress Test</div>
+            <div class="step-desc">Map current strategy against each scenario. Where does it hold? Where does it break? What would we need to do differently?</div>
+        </div>
+    </div>
+
+    <h3>Scenario Design Principles</h3>
+
+    <p>Good scenarios are not good news and bad news — they are genuinely different futures. Drawing from the CIFS methodology:</p>
+
+    <p><strong>Plausibility over probability.</strong> We are not ranking likelihoods. Each scenario should be credible enough that a reasonable person could argue for it. The futures cone teaches us that the further out we look, the wider the outcome space. Our job is to populate that space usefully, not narrow it prematurely.</p>
+
+    <p><strong>Challenge, don't comfort.</strong> At least one scenario should make the room uncomfortable. If every scenario validates current strategy, the exercise has failed. As CIFS notes, organisations should not engage in foresight to find certainty — they should engage to challenge the assumptions that create a false sense of certainty.</p>
+
+    <p><strong>Name them memorably.</strong> Scenarios need to become part of the team's working vocabulary. A scenario called "Fragmented Trust" is more useful than "Scenario B" because it can be referenced in strategy discussions, product reviews, and risk assessments.</p>
+
+    <p><strong>Connect back to signals.</strong> Each scenario should identify its leading indicators — specific signals from Layer 1 that would suggest this future is becoming more plausible. This creates a live connection between daily intelligence and long-term strategic thinking.</p>
+
+    <h3>The Wild Card Scenario</h3>
+
+    <p>The 2×2 matrix is a useful tool, but it has a known limitation: it only accommodates two variables and can produce scenarios that are too neat. To address this, every scenario set includes an explicit fifth scenario — the Wild Card — that breaks the matrix. This is the "what if the question itself is wrong?" scenario: an outcome that neither axis anticipated, driven by a force outside the current framing. Wild cards are drawn from the Left Field lens, from CLA myth-layer disruptions, or from cross-scenario convergences that the matrix misses.</p>
+
+    <h3>The Wind Tunnel</h3>
+
+    <p>Individual scenario stress tests are valuable, but the greatest strategic insight comes from testing current strategy against the full set simultaneously. The Wind Tunnel is a structured exercise run after each scenario set is completed:</p>
+
+    <div class="callout">
+        <strong>Wind Tunnel Protocol:</strong><br><br>
+        <strong>1. Identify robust moves</strong> — strategic actions that are valuable across 4+ of the 5 scenarios (including the wild card). These are the highest-priority investments because they pay off regardless of which future materialises.<br><br>
+        <strong>2. Identify fragile bets</strong> — strategic positions that only succeed in one or two scenarios. These are not necessarily wrong, but they are concentrated risk and should be acknowledged as such.<br><br>
+        <strong>3. Identify option-creating moves</strong> — low-cost actions that preserve the ability to pivot if a specific scenario gains plausibility. These are the foresight equivalent of buying insurance.<br><br>
+        <strong>4. Map the trigger points</strong> — for each fragile bet, identify the specific leading indicator that would signal it's time to pivot. This connects scenario planning directly to operational decision-making.
+    </div>
+
+    <h3>Customer Archetype Impact</h3>
+
+    <p>Every scenario must include a persona impact section answering, for each of the five customer archetypes defined in Section 06: how does this future feel for this customer? What changes in their behaviour, needs, and expectations? This is what converts abstract foresight into something product and strategy teams can act on. A scenario that says "embedded finance disrupts distribution" is less useful than one that says "Sarah (Mass Retail) now gets her mortgage through her employer's benefits platform and has no reason to visit a provider's website."</p>
+
+    <hr class="section-break">
+
+    <!-- SECTION 6: CUSTOMER ARCHETYPES -->
+    <h2><span class="num">06 — Customer Archetypes</span>The Human Layer</h2>
+
+    <p class="lead-para">Foresight that cannot be translated into customer impact is foresight that will not be acted on. The Customer Impact Layer defines five customer archetypes that run through all three analytical layers — grounding signals, trends, and scenarios in the lived experience of real people.</p>
+
+    <p>These are not marketing personas. They are strategic archetypes — simplified representations of distinct customer relationships that differ in their needs, behaviours, risk profiles, and exposure to disruption. Each archetype responds differently to the same trend: autonomous AI agents might delight a digitally fluent retail customer while alarming a relationship-dependent wealth client.</p>
+
+    <h3>The Five Archetypes</h3>
+
+    <table class="score-table">
+        <thead>
+            <tr>
+                <th>Archetype</th>
+                <th>Profile</th>
+                <th>Disruption Exposure</th>
+                <th>Key Needs</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Mass Retail</strong><br><em>"Sarah"</em></td>
+                <td>Individual consumer. Current account, savings, mortgage, insurance. Digital-first, price-sensitive, convenience-driven. Increasingly expects platform-level experiences from financial services.</td>
+                <td>High. Most exposed to embedded finance, AI-driven switching, neobank migration, and platform disintermediation. The archetype most likely to experience financial services through a non-traditional interface within 5 years.</td>
+                <td>Simplicity, speed, transparency, value. Wants financial services to be invisible — something that works in the background rather than demanding attention.</td>
+            </tr>
+            <tr>
+                <td><strong>SME / Business</strong><br><em>"James"</em></td>
+                <td>Small-to-medium enterprise owner. Business account, working capital, payments, FX. Time-poor, relationship-dependent for complex needs, self-serve for routine transactions. Underserved by most banks.</td>
+                <td>Moderate-to-high. Exposed to fintech lending, accounting platform integration, cross-border payment disruption, and AI-powered financial management. The archetype most likely to unbundle service relationships across specialist providers.</td>
+                <td>Cash flow visibility, speed of decisions, integrated tools, human support for complex moments. Wants their provider to understand their business, not just their balance.</td>
+            </tr>
+            <tr>
+                <td><strong>Corporate / Institutional</strong><br><em>"Priya"</em></td>
+                <td>CFO or treasury function of a mid-to-large corporate. Complex financial needs: syndicated lending, derivatives, cash management, trade finance. Multi-bank relationships. Regulated and risk-conscious.</td>
+                <td>Moderate. Exposed to DeFi treasury management, tokenised securities, real-time settlement, and AI-driven risk management. Slower to move but the stakes are higher. The archetype where regulatory change has the most direct impact.</td>
+                <td>Certainty, control, counterparty trust, bespoke solutions. Wants a partner that understands their sector and can structure solutions, not just execute transactions.</td>
+            </tr>
+            <tr>
+                <td><strong>Wealth</strong><br><em>"David"</em></td>
+                <td>High-net-worth or affluent individual. Investment portfolio, tax planning, estate management, philanthropy. Relationship-intensive, advice-dependent, generationally diverse (inheritors vs. creators).</td>
+                <td>Moderate. Exposed to robo-advisory, tokenised alternative assets, AI-powered financial planning, and intergenerational wealth transfer to digitally native heirs. The archetype where trust and personal relationships matter most — and where disruption feels most personal.</td>
+                <td>Trust, expertise, personalisation, discretion. Wants a human who knows them, supported by technology — not replaced by it.</td>
+            </tr>
+            <tr>
+                <td><strong>Digitally Excluded</strong><br><em>"Margaret"</em></td>
+                <td>Customers unable or unwilling to engage through digital channels. Elderly, low-income, rural, disability-affected, or simply preferring in-person interaction. Disproportionately reliant on branches and cash. Often invisible in innovation discussions.</td>
+                <td>Extreme — but inverted. Every trend towards digital, AI, and platform services increases exclusion risk. The archetype that stress-tests whether innovation is genuinely inclusive or simply efficient. Regulatory and reputational exposure is significant.</td>
+                <td>Access, human contact, simplicity, dignity. Wants to be able to access basic services without needing a smartphone, an app, or a password they cannot remember.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>How Archetypes Are Used</h3>
+
+    <p><strong>In the Signal Scanner (Layer 1):</strong> When a signal has particular relevance to one or more archetypes, this is noted in the daily briefing. A signal about "AI agents managing personal finance" is tagged to Mass Retail and Wealth. A signal about "branch closures accelerating" is tagged to Digitally Excluded.</p>
+
+    <p><strong>In the Trend Registry (Layer 2):</strong> Each trend record includes a customer impact field mapping the trend's relevance and threat/opportunity profile against each archetype. This is reviewed monthly alongside VIM scores.</p>
+
+    <p><strong>In the Scenario Canvas (Layer 3):</strong> Every scenario includes a persona narrative for each archetype — a short paragraph describing what this future feels like for Sarah, James, Priya, David, and Margaret. This is what makes scenarios actionable: a product manager reading "The Invisible Bank" scenario can immediately see that Sarah is delighted, David is anxious, and Margaret is locked out.</p>
+
+    <p><strong>In the Quarterly Provocation:</strong> The provocation output specifically highlights which archetype is most at risk from the quarter's dominant trends — and asks whether current strategy adequately serves them.</p>
+
+    <hr class="section-break">
+
+    <!-- SECTION 7: OPERATING CADENCE -->
+    <h2><span class="num">07 — Operating Cadence</span>How the Engine Runs</h2>
+
+    <p>The three layers operate at different speeds, but they feed each other continuously. The cadence is designed to be sustainable for a small team while building genuine institutional foresight over time.</p>
+
+    <div class="cadence-grid">
+        <div class="cadence-card">
+            <div class="cadence-header" style="background:#dc2626;">Daily</div>
+            <div class="cadence-body">
+                <strong>Signal scan</strong><br>
+                Newsletters, influencer monitoring, prediction markets, verification. Produces the daily strategic briefing with Zeitgeist Scores and signal statuses across 12 lenses.
+            </div>
+        </div>
+        <div class="cadence-card">
+            <div class="cadence-header" style="background:#4F46E5;">Weekly</div>
+            <div class="cadence-body">
+                <strong>Synthesis &amp; convergence</strong><br>
+                Cross-lens pattern detection, signal tracker updates, contrarian analysis. Produces the weekly synthesis. Flags signals for potential trend graduation.
+            </div>
+        </div>
+        <div class="cadence-card">
+            <div class="cadence-header" style="background:#0f172a;">Monthly</div>
+            <div class="cadence-body">
+                <strong>Trend registry review</strong><br>
+                60-minute team session. Recalibrate VIM scores, graduate new trends, retire fading ones, identify convergences. Update the registry spreadsheet.
+            </div>
+        </div>
+        <div class="cadence-card">
+            <div class="cadence-header" style="background:#059669;">Quarterly</div>
+            <div class="cadence-body">
+                <strong>Scenario refresh</strong><br>
+                Half-day workshop. Review existing scenarios against trend movements. Construct new scenarios for emerging strategic themes. Stress-test strategy.
+            </div>
+        </div>
+    </div>
+
+    <h3>The Signal-to-Scenario Pipeline</h3>
+
+    <p>The following diagram illustrates how intelligence flows through the system:</p>
+
+    <div class="callout">
+        <strong>Daily signals</strong> → tagged, typed, scored → <strong>Weekly synthesis</strong> → patterns identified, convergences flagged → <strong>Monthly review</strong> → trends graduated, VIM scores updated → <strong>Quarterly canvas</strong> → scenarios constructed or recalibrated → <strong>Strategic implications</strong> → fed back into signal priorities
+    </div>
+
+    <p>The critical discipline is the feedback loop. Scenarios should change which signals we watch for. If a scenario posits a world where embedded finance has eliminated the branch network, the daily scan should be actively monitoring signals related to embedded finance adoption, branch footfall data, and regulatory attitudes to non-bank distribution. The scenarios set the watching brief; the signals test it.</p>
+
+    <hr class="section-break">
+
+    <!-- SECTION 8: THE DISRUPTION HUB -->
+    <h2><span class="num">08 — The Hub</span>Disruption Hub Architecture</h2>
+
+    <p>The Disruption Hub operates as two structurally separated surfaces. This is a deliberate design choice: research consistently shows that organisations which don't separate tactical intelligence from strategic foresight end up with foresight colonised by the urgent. The daily signal is important, but it should not crowd out the long view.</p>
+
+    <h3>Surface 1: Intelligence Hub (index.html)</h3>
+
+    <p>The daily operational surface. This is where signal-level intelligence lives — the briefings, the Zeitgeist scores, the weekly synthesis, the data ticker. It is updated daily and optimised for current awareness. Its purpose is to answer: <em>what happened and what does it mean this week?</em></p>
+
+    <h3>Surface 2: Foresight Engine (foresight-engine.html)</h3>
+
+    <p>The strategic surface. This houses the Trend Registry, the Scenario Canvas, the Customer Archetype impacts, and the Quarterly Provocations. It is updated monthly/quarterly and optimised for long-range strategic thinking. Its purpose is to answer: <em>how might the world change, and what should we do about it?</em></p>
+
+    <p>The Intelligence Hub links to the Foresight Engine (and vice versa) but does not embed it. A compact teaser card on the hub provides at-a-glance Foresight Engine status — active trends, scenario count, latest provocation — and links through to the full foresight surface.</p>
+
+    <h3>Combined Structure</h3>
+
+    <table class="score-table">
+        <thead>
+            <tr>
+                <th>Section</th>
+                <th>Surface</th>
+                <th>Content</th>
+                <th>Update Frequency</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Zeitgeist Dashboard</strong></td>
+                <td>Intelligence Hub</td>
+                <td>12-lens Zeitgeist grid with current scores, statuses, and rolling averages. Lead signal of the day.</td>
+                <td>Daily</td>
+            </tr>
+            <tr>
+                <td><strong>Daily Briefings</strong></td>
+                <td>Intelligence Hub</td>
+                <td>Latest briefing in hero position, recent in grid, archive table. HTML links.</td>
+                <td>Daily</td>
+            </tr>
+            <tr>
+                <td><strong>Weekly Synthesis</strong></td>
+                <td>Intelligence Hub</td>
+                <td>Latest weekly in prominent position. Convergence highlights, signal tracker, contrarian corner.</td>
+                <td>Weekly</td>
+            </tr>
+            <tr>
+                <td><strong>Trend Registry</strong></td>
+                <td>Foresight Engine</td>
+                <td>Full interactive table of all active trends with VIM scores, anchor data, CLA depth, trajectory calls, maturity stages, and archetype impacts. Sortable by any dimension.</td>
+                <td>Monthly</td>
+            </tr>
+            <tr>
+                <td><strong>Scenario Canvas</strong></td>
+                <td>Foresight Engine</td>
+                <td>Named scenarios with persona narratives, leading indicators, plausibility tracking, and wind tunnel results. Includes wild card scenario.</td>
+                <td>Quarterly</td>
+            </tr>
+            <tr>
+                <td><strong>Customer Archetypes</strong></td>
+                <td>Foresight Engine</td>
+                <td>Five archetype profiles with trend impact heatmap showing which trends affect which customers most.</td>
+                <td>Quarterly</td>
+            </tr>
+            <tr>
+                <td><strong>Quarterly Provocation</strong></td>
+                <td>Foresight Engine</td>
+                <td>One-page thought leadership piece designed to challenge current strategic assumptions. The uncomfortable question the organisation needs to hear.</td>
+                <td>Quarterly</td>
+            </tr>
+            <tr>
+                <td><strong>Data Tracker</strong></td>
+                <td>Intelligence Hub</td>
+                <td>Cumulative data points from daily briefings. Filterable by lens, date, trend.</td>
+                <td>Daily</td>
+            </tr>
+            <tr>
+                <td><strong>Methodology</strong></td>
+                <td>This document. The reference guide for the framework.</td>
+                <td>As needed</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <hr class="section-break">
+
+    <!-- SECTION 9: INTELLECTUAL FOUNDATIONS -->
+    <h2><span class="num">09 — Foundations</span>Standing on Shoulders</h2>
+
+    <p>The Foresight Engine draws on established academic and practitioner frameworks while adapting them for practical application. The key intellectual debts are acknowledged here — both to give credit and to help practitioners who want to go deeper into the underlying thinking.</p>
+
+    <table class="score-table">
+        <thead>
+            <tr>
+                <th>Source</th>
+                <th>Contribution to the Engine</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Copenhagen Institute for Futures Studies</strong></td>
+                <td>Friction field model (drivers vs. turners/blockers), futures cone (possible/plausible/probable/preferable), Cynefin complexity framing, systems thinking approach to change</td>
+            </tr>
+            <tr>
+                <td><strong>Future Today Institute (Amy Webb)</strong></td>
+                <td>CIPHER signal classification framework, seven-step forecasting funnel, signal-to-trend graduation methodology, quantitative foresight rigour</td>
+            </tr>
+            <tr>
+                <td><strong>Foresight Factory</strong></td>
+                <td>Velocity/Impact/Maturity scoring model, three-ring trend hierarchy (macro → consumer → category), always-on commercial activity scanning approach, PESTLE macro driver framework</td>
+            </tr>
+            <tr>
+                <td><strong>Bill Sharpe (Three Horizons)</strong></td>
+                <td>Coexisting horizons framework — the insight that Horizon 3 elements are already present in Horizon 1 as "pockets of the future"</td>
+            </tr>
+            <tr>
+                <td><strong>Pierre Wack (Shell)</strong></td>
+                <td>The concept of reperception — using scenarios not to predict but to change how people think about the future</td>
+            </tr>
+            <tr>
+                <td><strong>Voros (2003)</strong></td>
+                <td>The futures cone taxonomy: possible, plausible, probable, preferable futures</td>
+            </tr>
+            <tr>
+                <td><strong>Van Der Laan (2012)</strong></td>
+                <td>The relationship between foresight and strategy — the framework for connecting foresight outputs to strategic decision-making</td>
+            </tr>
+            <tr>
+                <td><strong>Sohail Inayatullah (Causal Layered Analysis)</strong></td>
+                <td>Four-layer depth model (litany → systemic causes → worldview → myth/metaphor) for probing beyond surface-level trends. The insight that foresight operating only at the "litany" level reproduces existing assumptions rather than challenging them</td>
+            </tr>
+            <tr>
+                <td><strong>Rafael Popper (Foresight Diamond)</strong></td>
+                <td>Four knowledge sources for foresight (creativity, expertise, interaction, evidence). Methods Combination Matrix for selecting appropriate foresight techniques. The principle that robust foresight requires multiple evidence types, not just expert opinion</td>
+            </tr>
+            <tr>
+                <td><strong>Peter Bishop (Framework Foresight)</strong></td>
+                <td>Meta-method covering the full foresight lifecycle: framing → scanning → forecasting → visioning → planning → acting. The structured approach to connecting foresight outputs to organisational action</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <hr class="section-break">
+
+    <!-- SECTION 10: WHAT MAKES THIS PROPRIETARY -->
+    <h2><span class="num">10 — Proprietary Edge</span>What Makes This Ours</h2>
+
+    <p class="lead-para">Frameworks are borrowed. Data is common. What creates proprietary value is the specific combination of lenses, the accumulated trend registry built through our daily scanning, and the institutional knowledge embedded in our scoring and scenario work over time.</p>
+
+    <p>The following elements are unique to this implementation and cannot be replicated by purchasing an off-the-shelf foresight platform:</p>
+
+    <p><strong>Purpose-built lens architecture.</strong> The 12 lenses are calibrated for real strategic concerns — not generic PESTLE categories, not consumer goods trend taxonomies. They reflect the specific intersection of technology, regulation, and consumer behaviour that defines the competitive landscape.</p>
+
+    <p><strong>Cumulative trend registry.</strong> Every month of scoring adds a new data point to each trend's trajectory. After six months, we have a proprietary dataset showing how fast each force is moving, how our assessment has evolved, and where our early calls were right or wrong. This institutional memory is the compound interest of foresight work.</p>
+
+    <p><strong>Signal-to-scenario traceability.</strong> Every scenario is traceable back through the trends that inform it to the daily signals that feed those trends. This creates accountability — scenarios are not speculation, they are built on evidence, and that evidence chain is documented.</p>
+
+    <p><strong>Friction field analysis.</strong> Most scanning operations track drivers. We also systematically track blockers and turners — the regulatory pushback, the cultural resistance, the incumbent dynamics that slow or redirect change. This is where nuance lives, and it is almost entirely absent from commercial foresight platforms.</p>
+
+    <p><strong>Temporal depth.</strong> The daily data tracker is already accumulating quantitative signals over time. Combined with the trend registry's monthly scoring history and the quarterly scenario plausibility shifts, we are building a longitudinal view of how the landscape is evolving — not snapshots, but a moving picture.</p>
+
+    <p><strong>Customer archetype grounding.</strong> Most foresight operations stop at trends and scenarios. By running every output through five customer archetypes, we create a translation layer that connects abstract futures to concrete customer impact. This is what makes foresight actionable — and it is absent from virtually every commercial foresight platform.</p>
+
+    <p><strong>Causal depth.</strong> The CLA framework ensures we are not just cataloguing what is changing but interrogating why — the systemic causes, the enabling worldviews, the deep narratives that determine whether a trend accelerates or reverses. This is where strategic insight lives, and it cannot be automated or purchased.</p>
+
+    <p><strong>Calibrated scoring.</strong> The VIM calibration protocol ties every score to external evidence, making the registry defensible and reproducible. Competitors relying on purely subjective scoring will find their registries drift towards institutional biases over time. Ours self-corrects.</p>
+
+    <div class="callout-dark">
+        <strong>The competitive moat is time.</strong> Every day of scanning, every monthly scoring session, every quarterly scenario exercise, every archetype impact assessment adds to a knowledge base that no competitor has and no vendor can sell. The methodology can be described on paper — but the accumulated intelligence cannot be replicated.
+    </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-brand">Disruption <span>Watch</span> <span style="font-size:0.55em;color:#d97706;font-weight:600;letter-spacing:0;">(beta)</span></div>
+    <p>The Foresight Engine — Proprietary Methodology v2.0</p>
+    <p>Disruption Watch — March 2026</p>
+</footer>
+
+</body>
+</html>
