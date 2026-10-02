@@ -1,0 +1,360 @@
+{
+  "collected_at": "2026-10-02T08:57:28.402108Z",
+  "fx_rate": {
+    "gbp_usd": 0.7571,
+    "eur_usd": 0.8873,
+    "source": "open.er-api.com",
+    "timestamp": "2026-10-02T08:57:07.538906Z"
+  },
+  "collection_summary": {
+    "total_sources": 9,
+    "successful": 7,
+    "failed": 2
+  },
+  "sources": {
+    "carbon_intensity": {
+      "status": "ok",
+      "collected_at": "2026-10-02T08:57:08.138437Z",
+      "actual_gco2_kwh": 138,
+      "forecast_gco2_kwh": 147,
+      "index": "moderate",
+      "renewable_pct": 51.3,
+      "generation_mix": {
+        "biomass": 7.5,
+        "coal": 0,
+        "imports": 7.2,
+        "gas": 27.7,
+        "nuclear": 11.8,
+        "other": 2,
+        "hydro": 1.6,
+        "solar": 9,
+        "wind": 33.2
+      },
+      "lens": "Climate & Energy Transition",
+      "steepv": "Environmental"
+    },
+    "coingecko": {
+      "status": "ok",
+      "collected_at": "2026-10-02T08:57:08.774937Z",
+      "total_crypto_market_cap_gbp": 2230630273505,
+      "total_crypto_market_cap_usd": 2946282226264,
+      "stablecoin_market_cap_gbp": 210066663686,
+      "stablecoin_market_cap_usd": 277462242354,
+      "active_cryptocurrencies": 21777,
+      "top_stablecoins": [
+        {
+          "name": "Tether",
+          "symbol": "USDT",
+          "market_cap_gbp": 139317384965
+        },
+        {
+          "name": "USDC",
+          "symbol": "USDC",
+          "market_cap_gbp": 56035254835
+        },
+        {
+          "name": "USDS",
+          "symbol": "USDS",
+          "market_cap_gbp": 7528520208
+        },
+        {
+          "name": "Ethena USDe",
+          "symbol": "USDE",
+          "market_cap_gbp": 3711955754
+        },
+        {
+          "name": "Dai",
+          "symbol": "DAI",
+          "market_cap_gbp": 3473547924
+        }
+      ],
+      "lens": "Digital Markets & Assets",
+      "steepv": "Technological"
+    },
+    "arxiv": {
+      "status": "ok",
+      "collected_at": "2026-10-02T08:57:09.678444Z",
+      "ai_papers_total": 204067,
+      "quantum_papers_total": 188028,
+      "crypto_papers_total": 52857,
+      "lens": "AI & Agents; Quantum & Compute; Digital Trust",
+      "steepv": "Technological"
+    },
+    "world_bank": {
+      "status": "ok",
+      "collected_at": "2026-10-02T08:57:09.869678Z",
+      "gdp_growth_pct": {
+        "CN": {
+          "2025": 4.96,
+          "2024": 4.96,
+          "2023": 5.42
+        },
+        "DE": {
+          "2025": 0.24,
+          "2024": -0.5,
+          "2023": -0.87
+        },
+        "GB": {
+          "2025": 1.39,
+          "2024": 1.08,
+          "2023": 0.27
+        },
+        "US": {
+          "2025": 2.16,
+          "2024": 2.79,
+          "2023": 2.93
+        }
+      },
+      "lens": "Business Finance & Policy; Geopolitical Realignment",
+      "steepv": "Economic"
+    },
+    "github_trending": {
+      "status": "ok",
+      "collected_at": "2026-10-02T08:57:10.601648Z",
+      "total_new_repos_100stars": 120,
+      "top_repos": [
+        {
+          "name": "KKKKhazix/AIHOT",
+          "stars": 4834,
+          "language": "TypeScript",
+          "description": "\u4e00\u4e2a\u81ea\u5df1\u627e\u70ed\u70b9\u3001\u81ea\u5df1\u5199\u65e5\u62a5\u7684\u7f51\u7ad9\u6846\u67b6\u3002\u628a\u4fe1\u6e90\u548c\u7cbe\u9009\u6807\u51c6\u6362\u6210\u4f60\u7684\uff0c\u5b83\u5c31\u662f\u4f60\u7684\u884c\u4e1a\u70ed\u70b9\u7ad9\u3002"
+        },
+        {
+          "name": "Louis-CFM/coucou",
+          "stars": 2628,
+          "language": "Swift",
+          "description": "A tiny friend that lives in your notch (macOS) or at the top of your screen (Windows, Linux) and keeps an eye on your co"
+        },
+        {
+          "name": "feder-cr/dots",
+          "stars": 2411,
+          "language": "Python",
+          "description": "Open-source dots for the web: an AI agent with its own browser, one that does not get blocked."
+        },
+        {
+          "name": "dzhng/jevgrep",
+          "stars": 2024,
+          "language": "TypeScript",
+          "description": "Find code by asking what it does. A CLI for coding agents that uses Jev to discover relevant files and source context."
+        },
+        {
+          "name": "rehan-remade/universal-modder",
+          "stars": 1724,
+          "language": "Python",
+          "description": "Point Claude at any game. Skills, tools and the fal MCP that let Claude Code mod almost any PC game you own: recon, reve"
+        },
+        {
+          "name": "kaankiziltug/logo-design-skill",
+          "stars": 1399,
+          "language": "HTML",
+          "description": "A comprehensive logo-design skill for Claude, Gemini CLI, Codex and other AI agents: principles, process, SVG craft, tes"
+        },
+        {
+          "name": "yihui-dev/awesome-opus5-5-videos",
+          "stars": 1322,
+          "language": null,
+          "description": "A growing collection of viral videos made with Claude Opus 5.5 and the prompts behind them. Watch each original next to "
+        },
+        {
+          "name": "firelex/jeff",
+          "stars": 1291,
+          "language": "Python",
+          "description": "Millisecond decisions, any domain: a 0.8B open \"System 1\" model that picks between your options with calibrated probabil"
+        },
+        {
+          "name": "wy51ai/floorplan-3d",
+          "stars": 1226,
+          "language": "HTML",
+          "description": ""
+        },
+        {
+          "name": "feitangyuan/onetake",
+          "stars": 1203,
+          "language": "Python",
+          "description": "Motion films that never cut to the next slide: every beat grows out of the one before, one continuous camera, continuity"
+        }
+      ],
+      "ai_related_count": 8,
+      "crypto_related_count": 0,
+      "lens": "AI & Agents; Digital Markets & Assets",
+      "steepv": "Technological"
+    },
+    "parliament": {
+      "status": "error",
+      "error": "The read operation timed out"
+    },
+    "gdelt": {
+      "status": "error",
+      "error": "<urlopen error _ssl.c:985: The handshake operation timed out>"
+    },
+    "hacker_news": {
+      "status": "ok",
+      "collected_at": "2026-10-02T08:57:27.652501Z",
+      "stories_analysed": 30,
+      "ai_stories": 1,
+      "quantum_stories": 0,
+      "crypto_stories": 0,
+      "fintech_stories": 0,
+      "top_stories": [
+        {
+          "title": "Pi 1.0",
+          "score": 1240,
+          "url": "https://earendil.com/posts/pi-1-0/"
+        },
+        {
+          "title": "Shimano Bicycle Museum Review",
+          "score": 81,
+          "url": "https://inrng.com/2026/10/shimano-bicycle-museum/"
+        },
+        {
+          "title": "How Singapore's government-run dating service works",
+          "score": 140,
+          "url": "https://www.singapore-samizdat.com/p/how-singapores-government-run-dating-service-firstdate-works"
+        },
+        {
+          "title": "Several vulnerabilities have been discovered in the Linux kernel",
+          "score": 280,
+          "url": "https://lwn.net/Articles/1097401/"
+        },
+        {
+          "title": "DeepSeek Harness Desktop for macOS and Windows",
+          "score": 218,
+          "url": "https://www.deepseek.com/en/harness/"
+        },
+        {
+          "title": "Clef: Open-weight decision models, and new RL fine-tuning platform",
+          "score": 499,
+          "url": "https://blog.cloudflare.com/clef-decision-models/"
+        },
+        {
+          "title": "SvelteKit 3",
+          "score": 261,
+          "url": "https://svelte.dev/blog/sveltekit-3-is-here"
+        },
+        {
+          "title": "Pi Durable",
+          "score": 365,
+          "url": "https://earendil.com/posts/pi-durable/"
+        },
+        {
+          "title": "Ask HN: Who is hiring? (October 2026)",
+          "score": 200,
+          "url": ""
+        },
+        {
+          "title": "Automatic Transmission \u2013 a data-privacy study of connected vehicles",
+          "score": 183,
+          "url": "https://automatictransmission.khoury.northeastern.edu/index.html"
+        }
+      ],
+      "lens": "Technology signal velocity",
+      "steepv": "Technological"
+    },
+    "ons": {
+      "status": "ok",
+      "collected_at": "2026-10-02T08:57:28.401865Z",
+      "datasets_available": 338,
+      "sample_datasets": [
+        {
+          "id": "wellbeing-quarterly",
+          "title": "Quarterly personal well-being estimates"
+        },
+        {
+          "id": "wellbeing-local-authority",
+          "title": "Personal well-being estimates by local authority"
+        },
+        {
+          "id": "weekly-deaths-region",
+          "title": "Deaths registered weekly in England and Wales by region"
+        },
+        {
+          "id": "weekly-deaths-local-authority",
+          "title": "Death registrations and occurrences by local authority and place of death"
+        },
+        {
+          "id": "weekly-deaths-health-board",
+          "title": "Death registrations and occurrences by health board and place of death"
+        }
+      ],
+      "lens": "Consumer; Workforce & Talent",
+      "steepv": "Social",
+      "note": "ONS provides detailed UK employment, consumer, and demographic data. Specific indicators require deeper API queries."
+    }
+  },
+  "trend_anchors": {
+    "T-002": {
+      "trend": "Stablecoin Payment Rails",
+      "velocity_anchor": "Stablecoin market cap: \u00a3210B (CoinGecko)",
+      "data_points": [
+        "coingecko"
+      ]
+    },
+    "T-010": {
+      "trend": "Crypto-TradFi Infrastructure Convergence",
+      "velocity_anchor": "Total crypto market cap: \u00a32.23T",
+      "data_points": [
+        "coingecko"
+      ]
+    },
+    "T-003": {
+      "trend": "Post-Quantum Cryptographic Migration",
+      "velocity_anchor": "188028 quantum physics papers on arXiv",
+      "data_points": [
+        "arxiv"
+      ]
+    },
+    "T-013": {
+      "trend": "AI Coding Tool Vertical Integration",
+      "velocity_anchor": "204067 AI papers on arXiv",
+      "data_points": [
+        "arxiv"
+      ]
+    },
+    "T-005": {
+      "trend": "Climate Risk Repricing",
+      "velocity_anchor": "UK grid: 138 gCO2/kWh, 51.3% renewable",
+      "data_points": [
+        "carbon_intensity"
+      ]
+    },
+    "T-014": {
+      "trend": "Enterprise AI Agent Procurement",
+      "velocity_anchor": "8/10 top trending repos are AI-related",
+      "data_points": [
+        "github_trending"
+      ]
+    }
+  },
+  "steepv_summary": {
+    "social": {
+      "signal_count": 1,
+      "direction": "active",
+      "top_signal": ""
+    },
+    "technological": {
+      "signal_count": 4,
+      "direction": "active",
+      "top_signal": "AI papers: 204067"
+    },
+    "economic": {
+      "signal_count": 1,
+      "direction": "active",
+      "top_signal": ""
+    },
+    "environmental": {
+      "signal_count": 1,
+      "direction": "active",
+      "top_signal": "UK grid: 138 gCO2/kWh"
+    },
+    "political": {
+      "signal_count": 0,
+      "direction": "unavailable",
+      "top_signal": ""
+    },
+    "values": {
+      "signal_count": 0,
+      "direction": "unavailable",
+      "top_signal": "No dedicated values source in Wave 1"
+    }
+  }
+}
