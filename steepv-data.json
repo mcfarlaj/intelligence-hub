@@ -1,0 +1,360 @@
+{
+  "collected_at": "2026-10-09T11:28:01.333097Z",
+  "fx_rate": {
+    "gbp_usd": 0.7565,
+    "eur_usd": 0.8923,
+    "source": "open.er-api.com",
+    "timestamp": "2026-10-09T11:27:40.997960Z"
+  },
+  "collection_summary": {
+    "total_sources": 9,
+    "successful": 7,
+    "failed": 2
+  },
+  "sources": {
+    "carbon_intensity": {
+      "status": "ok",
+      "collected_at": "2026-10-09T11:27:41.546349Z",
+      "actual_gco2_kwh": 36,
+      "forecast_gco2_kwh": 32,
+      "index": "low",
+      "renewable_pct": 70.1,
+      "generation_mix": {
+        "biomass": 1.7,
+        "coal": 0,
+        "imports": 12,
+        "gas": 5.5,
+        "nuclear": 10.7,
+        "other": 1.6,
+        "hydro": 1.1,
+        "solar": 9.7,
+        "wind": 57.6
+      },
+      "lens": "Climate & Energy Transition",
+      "steepv": "Environmental"
+    },
+    "coingecko": {
+      "status": "ok",
+      "collected_at": "2026-10-09T11:27:42.130126Z",
+      "total_crypto_market_cap_gbp": 2096153504222,
+      "total_crypto_market_cap_usd": 2770857242858,
+      "stablecoin_market_cap_gbp": 209233098551,
+      "stablecoin_market_cap_usd": 276580434304,
+      "active_cryptocurrencies": 22113,
+      "top_stablecoins": [
+        {
+          "name": "Tether",
+          "symbol": "USDT",
+          "market_cap_gbp": 139264603126
+        },
+        {
+          "name": "USDC",
+          "symbol": "USDC",
+          "market_cap_gbp": 55197395031
+        },
+        {
+          "name": "USDS",
+          "symbol": "USDS",
+          "market_cap_gbp": 7680963902
+        },
+        {
+          "name": "Ethena USDe",
+          "symbol": "USDE",
+          "market_cap_gbp": 3636242927
+        },
+        {
+          "name": "Dai",
+          "symbol": "DAI",
+          "market_cap_gbp": 3453893566
+        }
+      ],
+      "lens": "Digital Markets & Assets",
+      "steepv": "Technological"
+    },
+    "arxiv": {
+      "status": "ok",
+      "collected_at": "2026-10-09T11:27:43.221444Z",
+      "ai_papers_total": 205821,
+      "quantum_papers_total": 188686,
+      "crypto_papers_total": 53180,
+      "lens": "AI & Agents; Quantum & Compute; Digital Trust",
+      "steepv": "Technological"
+    },
+    "world_bank": {
+      "status": "ok",
+      "collected_at": "2026-10-09T11:27:43.508285Z",
+      "gdp_growth_pct": {
+        "CN": {
+          "2025": 4.96,
+          "2024": 4.96,
+          "2023": 5.42
+        },
+        "DE": {
+          "2025": 0.24,
+          "2024": -0.5,
+          "2023": -0.87
+        },
+        "GB": {
+          "2025": 1.39,
+          "2024": 1.08,
+          "2023": 0.27
+        },
+        "US": {
+          "2025": 2.16,
+          "2024": 2.79,
+          "2023": 2.93
+        }
+      },
+      "lens": "Business Finance & Policy; Geopolitical Realignment",
+      "steepv": "Economic"
+    },
+    "github_trending": {
+      "status": "ok",
+      "collected_at": "2026-10-09T11:27:44.082564Z",
+      "total_new_repos_100stars": 165,
+      "top_repos": [
+        {
+          "name": "openai/math",
+          "stars": 12688,
+          "language": "Lean",
+          "description": ""
+        },
+        {
+          "name": "alchaincyf/huashu-art-motion",
+          "stars": 2735,
+          "language": "JavaScript",
+          "description": "\u827a\u672f\u52a8\u753bskill\uff1a35\u79cd\u827a\u672f\u98ce\u683c\u30019\u79cd\u89e3\u8bf4\u8bed\u6cd5\uff0c\u7528\u4ee3\u7801\u8ba9\u753b\u52a8\u8d77\u6765\u3002"
+        },
+        {
+          "name": "mhtsec/ARTEX",
+          "stars": 1809,
+          "language": "Go",
+          "description": "AI \u81ea\u4e3b\u6e17\u900f\u6d4b\u8bd5\u7cfb\u7edf | \u767e\u5ea6\u201cagent+\u201d\u653b\u9632\u6311\u6218\u8d5b\u51a0\u519b\u9879\u76ee"
+        },
+        {
+          "name": "kargulstudio/sales-crm",
+          "stars": 1663,
+          "language": "TypeScript",
+          "description": ""
+        },
+        {
+          "name": "nullmoth/nvidia-macos-driver",
+          "stars": 1594,
+          "language": "Rust",
+          "description": "Metal driver for NVIDIA GeForce RTX cards on macOS 15 Sequoia (Intel / OpenCore). Free, source included."
+        },
+        {
+          "name": "zhongerxin/iPhone-use",
+          "stars": 1215,
+          "language": "Python",
+          "description": "\u8ba9 Codex \u901a\u8fc7 USB \u64cd\u4f5c\u771f\u5b9e iPhone\uff1a\u5f15\u5bfc\u5b89\u88c5\u3001App \u81ea\u52a8\u5316\u3001\u5b9e\u65f6\u5c4f\u5e55\u4e0e\u622a\u56fe\u56de\u9000\u3002"
+        },
+        {
+          "name": "Jakeschincariol/replica-skill",
+          "stars": 1211,
+          "language": "Python",
+          "description": "Eleven free Claude skills that clone any app: reverse-engineer it, rebuild it, test it for bugs, then fix what its users"
+        },
+        {
+          "name": "alejandrobujan/tendedero",
+          "stars": 1140,
+          "language": "Swift",
+          "description": "Screenshots, hung out to dry. A tiny native macOS app that hangs every screenshot on a line at the top of your screen."
+        },
+        {
+          "name": "storytold/wordcraft",
+          "stars": 1135,
+          "language": "Rust",
+          "description": "An open-source, clean-room reimplementation of Microsoft Word in pure Rust"
+        },
+        {
+          "name": "LoreanXavier/pt-pc",
+          "stars": 1101,
+          "language": "C++",
+          "description": "Native PC port of P.T. (runs from your own PS4 game files)"
+        }
+      ],
+      "ai_related_count": 2,
+      "crypto_related_count": 0,
+      "lens": "AI & Agents; Digital Markets & Assets",
+      "steepv": "Technological"
+    },
+    "parliament": {
+      "status": "error",
+      "error": "The read operation timed out"
+    },
+    "gdelt": {
+      "status": "error",
+      "error": "<urlopen error _ssl.c:985: The handshake operation timed out>"
+    },
+    "hacker_news": {
+      "status": "ok",
+      "collected_at": "2026-10-09T11:28:01.058068Z",
+      "stories_analysed": 30,
+      "ai_stories": 6,
+      "quantum_stories": 0,
+      "crypto_stories": 0,
+      "fintech_stories": 0,
+      "top_stories": [
+        {
+          "title": "Let your AI agents paint big arrows, boxes and text on your screen",
+          "score": 17,
+          "url": "https://github.com/franzenzenhofer/big-arrow-on-the-screen"
+        },
+        {
+          "title": "Nobel Peace Prize for 2026 to Navanethem \"NAVI\" Pillay",
+          "score": 78,
+          "url": "https://www.nobelprize.org/prizes/peace/2026/press-release/"
+        },
+        {
+          "title": "Why isn't the industry freaking out about DeepSeek 4.1 Flash?",
+          "score": 816,
+          "url": "https://www.dgt.is/blog/2026-10-07-deepseek-freek-out/"
+        },
+        {
+          "title": "Whistle: Speech to Text in 16.9 MB",
+          "score": 792,
+          "url": "https://cactuscompute.com/blog/whistle"
+        },
+        {
+          "title": "MXC - a sandboxed code execution system",
+          "score": 58,
+          "url": "https://github.com/microsoft/mxc"
+        },
+        {
+          "title": "Man discovers his parents' coffee machine used 1TB of data in 10 days",
+          "score": 737,
+          "url": "https://www.dexerto.com/entertainment/man-discovers-his-parents-coffee-machine-used-1tb-of-data-in-10-days-3416399/"
+        },
+        {
+          "title": "Keyboard differences between Windows and Macs",
+          "score": 171,
+          "url": "https://unsung.aresluna.org/deeper-dive-keyboard-differences-between-windows-and-macs/"
+        },
+        {
+          "title": "I hired an illustrator to draw my house. Now it's my Home Assistant dashboard",
+          "score": 684,
+          "url": "https://antonfrolov.substack.com/p/i-hired-an-illustrator-to-draw-my"
+        },
+        {
+          "title": "Yes, and",
+          "score": 482,
+          "url": "https://htmx.org/essays/yes-and/"
+        },
+        {
+          "title": "Theranos.world",
+          "score": 465,
+          "url": "https://www.theranos.world/"
+        }
+      ],
+      "lens": "Technology signal velocity",
+      "steepv": "Technological"
+    },
+    "ons": {
+      "status": "ok",
+      "collected_at": "2026-10-09T11:28:01.332862Z",
+      "datasets_available": 338,
+      "sample_datasets": [
+        {
+          "id": "wellbeing-quarterly",
+          "title": "Quarterly personal well-being estimates"
+        },
+        {
+          "id": "wellbeing-local-authority",
+          "title": "Personal well-being estimates by local authority"
+        },
+        {
+          "id": "weekly-deaths-region",
+          "title": "Deaths registered weekly in England and Wales by region"
+        },
+        {
+          "id": "weekly-deaths-local-authority",
+          "title": "Death registrations and occurrences by local authority and place of death"
+        },
+        {
+          "id": "weekly-deaths-health-board",
+          "title": "Death registrations and occurrences by health board and place of death"
+        }
+      ],
+      "lens": "Consumer; Workforce & Talent",
+      "steepv": "Social",
+      "note": "ONS provides detailed UK employment, consumer, and demographic data. Specific indicators require deeper API queries."
+    }
+  },
+  "trend_anchors": {
+    "T-002": {
+      "trend": "Stablecoin Payment Rails",
+      "velocity_anchor": "Stablecoin market cap: \u00a3209B (CoinGecko)",
+      "data_points": [
+        "coingecko"
+      ]
+    },
+    "T-010": {
+      "trend": "Crypto-TradFi Infrastructure Convergence",
+      "velocity_anchor": "Total crypto market cap: \u00a32.10T",
+      "data_points": [
+        "coingecko"
+      ]
+    },
+    "T-003": {
+      "trend": "Post-Quantum Cryptographic Migration",
+      "velocity_anchor": "188686 quantum physics papers on arXiv",
+      "data_points": [
+        "arxiv"
+      ]
+    },
+    "T-013": {
+      "trend": "AI Coding Tool Vertical Integration",
+      "velocity_anchor": "205821 AI papers on arXiv",
+      "data_points": [
+        "arxiv"
+      ]
+    },
+    "T-005": {
+      "trend": "Climate Risk Repricing",
+      "velocity_anchor": "UK grid: 36 gCO2/kWh, 70.1% renewable",
+      "data_points": [
+        "carbon_intensity"
+      ]
+    },
+    "T-014": {
+      "trend": "Enterprise AI Agent Procurement",
+      "velocity_anchor": "2/10 top trending repos are AI-related",
+      "data_points": [
+        "github_trending"
+      ]
+    }
+  },
+  "steepv_summary": {
+    "social": {
+      "signal_count": 1,
+      "direction": "active",
+      "top_signal": ""
+    },
+    "technological": {
+      "signal_count": 4,
+      "direction": "active",
+      "top_signal": "AI papers: 205821"
+    },
+    "economic": {
+      "signal_count": 1,
+      "direction": "active",
+      "top_signal": ""
+    },
+    "environmental": {
+      "signal_count": 1,
+      "direction": "active",
+      "top_signal": "UK grid: 36 gCO2/kWh"
+    },
+    "political": {
+      "signal_count": 0,
+      "direction": "unavailable",
+      "top_signal": ""
+    },
+    "values": {
+      "signal_count": 0,
+      "direction": "unavailable",
+      "top_signal": "No dedicated values source in Wave 1"
+    }
+  }
+}
