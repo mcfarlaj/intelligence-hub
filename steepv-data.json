@@ -1,0 +1,336 @@
+{
+  "collected_at": "2026-10-20T16:21:53.166376Z",
+  "fx_rate": {
+    "gbp_usd": 0.7511,
+    "eur_usd": 0.8915,
+    "source": "open.er-api.com",
+    "timestamp": "2026-10-20T16:21:28.543803Z"
+  },
+  "collection_summary": {
+    "total_sources": 9,
+    "successful": 6,
+    "failed": 3
+  },
+  "sources": {
+    "carbon_intensity": {
+      "status": "ok",
+      "collected_at": "2026-10-20T16:21:29.046764Z",
+      "actual_gco2_kwh": 144,
+      "forecast_gco2_kwh": 127,
+      "index": "moderate",
+      "renewable_pct": 48.0,
+      "generation_mix": {
+        "biomass": 7.5,
+        "coal": 0,
+        "imports": 3.8,
+        "gas": 30,
+        "nuclear": 12.6,
+        "other": 5.5,
+        "hydro": 3.7,
+        "solar": 1.9,
+        "wind": 34.9
+      },
+      "lens": "Climate & Energy Transition",
+      "steepv": "Environmental"
+    },
+    "coingecko": {
+      "status": "ok",
+      "collected_at": "2026-10-20T16:21:29.702225Z",
+      "total_crypto_market_cap_gbp": 2077971616427,
+      "total_crypto_market_cap_usd": 2766571184166,
+      "stablecoin_market_cap_gbp": 206125605430,
+      "stablecoin_market_cap_usd": 274431640833,
+      "active_cryptocurrencies": 22406,
+      "top_stablecoins": [
+        {
+          "name": "Tether",
+          "symbol": "USDT",
+          "market_cap_gbp": 137472068521
+        },
+        {
+          "name": "USDC",
+          "symbol": "USDC",
+          "market_cap_gbp": 54213718755
+        },
+        {
+          "name": "USDS",
+          "symbol": "USDS",
+          "market_cap_gbp": 7523035768
+        },
+        {
+          "name": "Ethena USDe",
+          "symbol": "USDE",
+          "market_cap_gbp": 3517369321
+        },
+        {
+          "name": "Dai",
+          "symbol": "DAI",
+          "market_cap_gbp": 3399413065
+        }
+      ],
+      "lens": "Digital Markets & Assets",
+      "steepv": "Technological"
+    },
+    "arxiv": {
+      "status": "ok",
+      "collected_at": "2026-10-20T16:21:30.842517Z",
+      "ai_papers_total": 208060,
+      "quantum_papers_total": 189343,
+      "crypto_papers_total": 53582,
+      "lens": "AI & Agents; Quantum & Compute; Digital Trust",
+      "steepv": "Technological"
+    },
+    "world_bank": {
+      "status": "error",
+      "error": "The read operation timed out"
+    },
+    "github_trending": {
+      "status": "ok",
+      "collected_at": "2026-10-20T16:21:34.743361Z",
+      "total_new_repos_100stars": 236,
+      "top_repos": [
+        {
+          "name": "Gathin23/cleanyourtv",
+          "stars": 10227,
+          "language": "Java",
+          "description": "Debloat any Android or Google TV over Wi-Fi and get an Apple TV-style home."
+        },
+        {
+          "name": "deepseek-ai/DeepInfer",
+          "stars": 10061,
+          "language": "Python",
+          "description": "DeepInfer: High-performance, large-scale inference framework for DeepSeek models"
+        },
+        {
+          "name": "feder-cr/git-ai",
+          "stars": 2581,
+          "language": "Go",
+          "description": "Git designed for AI agents."
+        },
+        {
+          "name": "ly05010419/MacNativeGames",
+          "stars": 2548,
+          "language": "C",
+          "description": ""
+        },
+        {
+          "name": "ahwootech/BRUTAL",
+          "stars": 2033,
+          "language": "C#",
+          "description": "A free, open source C# framework for making games, or your own game engine. Direct access to native APIs and Vulkan, wit"
+        },
+        {
+          "name": "Leonxlnx/earshot",
+          "stars": 1853,
+          "language": "Python",
+          "description": "Ears for coding agents: let AI hear, review and make sound. CPU-only, open source."
+        },
+        {
+          "name": "chenglou/handwired",
+          "stars": 1846,
+          "language": "TypeScript",
+          "description": "Turn your regular JavaScript code into a neural net."
+        },
+        {
+          "name": "Supermedo/uncharted_pc",
+          "stars": 1677,
+          "language": "C++",
+          "description": "Uncharted: The Nathan Drake Collection running natively on Windows - by SuperMedo"
+        },
+        {
+          "name": "xiaoyang111222/cn-math-taxonomy",
+          "stars": 1512,
+          "language": "Python",
+          "description": "\u4e2d\u5c0f\u5b66\u77e5\u8bc6\u56fe\u8c31 + \u524d\u7f6e\u8bca\u65ad\uff1a\u6570\u5b66\uff08\u4e00\u2013\u4e5d\u5e74\u7ea7\u3001\u9ad8\u4e2d\u5fc5\u4fee\u4e0e\u9009\u62e9\u6027\u5fc5\u4fee\uff09+ \u5c0f\u5b66\u82f1\u8bed\uff0c\u8bfe\u6807\u5bf9\u9f50\u3001\u4eba\u6559\u7248\uff0c999 \u77e5\u8bc6\u70b9\u30014143 \u9898\u3001\u81ea\u9002\u5e94\u8bca\u65ad"
+        },
+        {
+          "name": "Caho1/open-claude-ui",
+          "stars": 1281,
+          "language": "TypeScript",
+          "description": "\u57fa\u4e8e REA \u6df1\u5ea6\u62c6\u89e3\u5e76\u9ad8\u4fdd\u771f\u8fd8\u539f Claude \u5b98\u65b9\u684c\u9762\u7aef UI\u3002\u8fd8\u539f 30 \u4e2a\u72ec\u7acb React \u7ec4\u4ef6\u4e0e 8 \u9879\u786c\u6838\u4ea4\u4e92\u7269\u7406\u7b97\u6cd5\uff0c\u9644\u5e26 3000+ \u884c\u9006\u5411\u5206\u6790\u624b\u518c\u3002"
+        }
+      ],
+      "ai_related_count": 4,
+      "crypto_related_count": 0,
+      "lens": "AI & Agents; Digital Markets & Assets",
+      "steepv": "Technological"
+    },
+    "parliament": {
+      "status": "error",
+      "error": "The read operation timed out"
+    },
+    "gdelt": {
+      "status": "error",
+      "error": "<urlopen error _ssl.c:985: The handshake operation timed out>"
+    },
+    "hacker_news": {
+      "status": "ok",
+      "collected_at": "2026-10-20T16:21:52.462115Z",
+      "stories_analysed": 30,
+      "ai_stories": 6,
+      "quantum_stories": 0,
+      "crypto_stories": 0,
+      "fintech_stories": 0,
+      "top_stories": [
+        {
+          "title": "Facebook now charging to post more than 2 links a month",
+          "score": 198,
+          "url": "https://mastodon.gamedev.place/@AshleyGullen/117473851565913919"
+        },
+        {
+          "title": "DeepSeek just open-sourced its inference engine",
+          "score": 1646,
+          "url": "https://github.com/deepseek-ai/DeepInfer"
+        },
+        {
+          "title": "EMudhra Intermediate CA Compromise",
+          "score": 149,
+          "url": "https://emudhra.we-have-a-problem.com/"
+        },
+        {
+          "title": "Apple broke an essential presentation feature of iPads",
+          "score": 247,
+          "url": "https://teddysvoronos.com/2026-10-19-apple-broke-an-essential-presentation-feature-of-ipads/"
+        },
+        {
+          "title": "Publish fake stats, get cited in LLMs",
+          "score": 157,
+          "url": "https://peec.ai/blog/publish-stats-get-cited-the-tactic-that-put-my-data-all-over-the-web"
+        },
+        {
+          "title": "How I got over 300 Tor exit nodes removed",
+          "score": 107,
+          "url": "https://kaba.cx/posts/20261020_Tor/"
+        },
+        {
+          "title": "Triplet of 'ghostly' galaxies hints at what dark matter is and isn't",
+          "score": 29,
+          "url": "https://www.quantamagazine.org/triplet-of-ghostly-galaxies-hints-at-what-dark-matter-is-and-isnt-20261014/"
+        },
+        {
+          "title": "My Friend Bob Cringely",
+          "score": 65,
+          "url": "https://tyma.com/my-cringe-story/"
+        },
+        {
+          "title": "Show HN: Jev Cards, Can you beat a vision model at a picture quiz?",
+          "score": 20,
+          "url": "https://jevcards.com"
+        },
+        {
+          "title": "2026 is an exciting year for the Rust compiler (and me)",
+          "score": 45,
+          "url": "https://yoyo-code.com/2026-is-exciting-year-for-rust-compiler-and-me/"
+        }
+      ],
+      "lens": "Technology signal velocity",
+      "steepv": "Technological"
+    },
+    "ons": {
+      "status": "ok",
+      "collected_at": "2026-10-20T16:21:53.166155Z",
+      "datasets_available": 338,
+      "sample_datasets": [
+        {
+          "id": "wellbeing-quarterly",
+          "title": "Quarterly personal well-being estimates"
+        },
+        {
+          "id": "wellbeing-local-authority",
+          "title": "Personal well-being estimates by local authority"
+        },
+        {
+          "id": "weekly-deaths-region",
+          "title": "Deaths registered weekly in England and Wales by region"
+        },
+        {
+          "id": "weekly-deaths-local-authority",
+          "title": "Death registrations and occurrences by local authority and place of death"
+        },
+        {
+          "id": "weekly-deaths-health-board",
+          "title": "Death registrations and occurrences by health board and place of death"
+        }
+      ],
+      "lens": "Consumer; Workforce & Talent",
+      "steepv": "Social",
+      "note": "ONS provides detailed UK employment, consumer, and demographic data. Specific indicators require deeper API queries."
+    }
+  },
+  "trend_anchors": {
+    "T-002": {
+      "trend": "Stablecoin Payment Rails",
+      "velocity_anchor": "Stablecoin market cap: \u00a3206B (CoinGecko)",
+      "data_points": [
+        "coingecko"
+      ]
+    },
+    "T-010": {
+      "trend": "Crypto-TradFi Infrastructure Convergence",
+      "velocity_anchor": "Total crypto market cap: \u00a32.08T",
+      "data_points": [
+        "coingecko"
+      ]
+    },
+    "T-003": {
+      "trend": "Post-Quantum Cryptographic Migration",
+      "velocity_anchor": "189343 quantum physics papers on arXiv",
+      "data_points": [
+        "arxiv"
+      ]
+    },
+    "T-013": {
+      "trend": "AI Coding Tool Vertical Integration",
+      "velocity_anchor": "208060 AI papers on arXiv",
+      "data_points": [
+        "arxiv"
+      ]
+    },
+    "T-005": {
+      "trend": "Climate Risk Repricing",
+      "velocity_anchor": "UK grid: 144 gCO2/kWh, 48.0% renewable",
+      "data_points": [
+        "carbon_intensity"
+      ]
+    },
+    "T-014": {
+      "trend": "Enterprise AI Agent Procurement",
+      "velocity_anchor": "4/10 top trending repos are AI-related",
+      "data_points": [
+        "github_trending"
+      ]
+    }
+  },
+  "steepv_summary": {
+    "social": {
+      "signal_count": 1,
+      "direction": "active",
+      "top_signal": ""
+    },
+    "technological": {
+      "signal_count": 4,
+      "direction": "active",
+      "top_signal": "AI papers: 208060"
+    },
+    "economic": {
+      "signal_count": 0,
+      "direction": "unavailable",
+      "top_signal": ""
+    },
+    "environmental": {
+      "signal_count": 1,
+      "direction": "active",
+      "top_signal": "UK grid: 144 gCO2/kWh"
+    },
+    "political": {
+      "signal_count": 0,
+      "direction": "unavailable",
+      "top_signal": ""
+    },
+    "values": {
+      "signal_count": 0,
+      "direction": "unavailable",
+      "top_signal": "No dedicated values source in Wave 1"
+    }
+  }
+}
