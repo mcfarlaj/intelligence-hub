@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+
+<!-- CANONICAL TEMPLATE. Snapshot of the 2026-06-09 issue (Issue #77, validator APPROVED). This file is the structural scaffold for generation: copy it and substitute content section-by-section. Refresh this file deliberately whenever a structural rule changes (see decisions-log.md 2026-06-09 entry). Do NOT treat dated issue files as scaffolds. -->
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Three Things to Know Today - Disruption Watch</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;family=Playfair+Display:wght@700;800;900&amp;display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --bg: #fafaf9;
+    --surface: #ffffff;
+    --surface-alt: #f5f5f4;
+    --border: #e7e5e4;
+    --text: #1c1917;
+    --text-secondary: #57534e;
+    --text-muted: #a8a29e;
+    --accent: #dc2626;
+    --accent-hover: #b91c1c;
+    --indigo: #4F46E5;
+    --purple: #7C3AED;
+    --green: #059669;
+    --red: #DC2626;
+    --cyan: #0891B2;
+    --pink: #DB2777;
+    --orange: #EA580C;
+    --teal: #0D9488;
+    --amber: #D97706;
+    --climate: #16a34a;
+    --geopolitical: #7c3aed;
+    --workforce: #be185d;
+  }
+
+  /* === NAV === */
+  .nav { border-bottom:3px solid var(--text); }
+  .nav-inner { max-width:1100px; margin:0 auto; padding:16px 24px; display:flex; align-items:center; justify-content:space-between; }
+  .nav .logo { font-family:'Playfair Display',Georgia,serif; font-size:1.5rem; font-weight:900; letter-spacing:-0.5px; color:var(--text); text-decoration:none; }
+  .nav .logo span { color:var(--indigo); }
+  .nav-links { display:flex; gap:24px; align-items:center; }
+  .nav-links a { color:var(--text-secondary); text-decoration:none; font-size:0.82rem; font-weight:600; transition:color 0.2s; }
+  .nav-links a:hover { color:var(--text); }
+  .nav-links a.active { color:var(--accent, #dc2626); }
+  .nav .edition { font-size:0.72rem; font-weight:600; text-transform:uppercase; letter-spacing:2px; color:var(--text-muted); }
+  @media (max-width:768px) { .nav-inner { flex-direction:column; gap:12px; } .nav-links { gap:16px; flex-wrap:wrap; } }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background-color: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* === HEADER === */
+  .page-header {
+    text-align: center;
+    padding: 48px 0 40px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .page-header .kicker {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    color: var(--indigo);
+    margin-bottom: 12px;
+  }
+
+  .page-header h1 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 2.2rem;
+    font-weight: 900;
+    line-height: 1.15;
+    letter-spacing: -0.5px;
+    margin-bottom: 8px;
+  }
+
+  .page-header .date {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+  }
+
+  .page-header .read-time {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-top: 4px;
+  }
+
+  /* === ITEMS === */
+  .items {
+    padding: 40px 0 48px;
+  }
+
+  .item {
+    padding: 32px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .item:first-child {
+    padding-top: 0;
+  }
+
+  .item:last-child {
+    border-bottom: none;
+  }
+
+  .item-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--indigo);
+    color: #fff;
+    font-size: 0.8rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+
+  .item h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.3rem;
+    font-weight: 800;
+    line-height: 1.3;
+    margin-bottom: 14px;
+    letter-spacing: -0.3px;
+  }
+
+  .item .body-text {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.75;
+    margin-bottom: 16px;
+  }
+
+  .item .why-matters {
+    background: var(--surface-alt);
+    border-left: 3px solid var(--indigo);
+    padding: 14px 18px;
+    border-radius: 0 6px 6px 0;
+  }
+
+  .item .why-matters strong {
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--indigo);
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .item .why-matters p {
+    font-size: 0.88rem;
+    color: var(--text-secondary);
+    line-height: 1.65;
+  }
+
+  /* === FOOTER === */
+  .page-footer {
+    padding: 32px 0 48px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+  }
+
+  .page-footer .full-briefing-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    background: var(--text);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: background 0.15s;
+  }
+
+  .page-footer .full-briefing-link:hover {
+    background: var(--indigo);
+  }
+
+  .page-footer .disclaimer {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-top: 16px;
+  }
+
+  @media (max-width: 640px) {
+    .page-header h1 { font-size: 1.6rem; }
+    .item h2 { font-size: 1.1rem; }
+  }
+</style>
+</head>
+<body>
+<div class="nav">
+<div class="nav-inner">
+<a class="logo" href="index.html">Disruption <span>Watch</span> <span style="font-size:0.55em;color:#d97706;font-weight:600;letter-spacing:0;">(beta)</span></a>
+<div class="nav-links">
+<a href="foresight-engine.html">Foresight Engine</a>
+<a href="disruption-radar.html">Radar</a>
+<a href="search.html">Search</a>
+<span class="edition">Three Things to Know</span>
+</div>
+</div>
+</div>
+<div class="container">
+<div class="page-header">
+<div class="kicker">The 60-Second Brief</div>
+<h1>Three Things to Know Today</h1>
+<div class="date" id="tt-date">30 October 2026</div>
+<div class="read-time">1 min read</div>
+</div>
+<div class="items" id="tt-items"><div class="item"><div class="item-number">1</div><h2>Binance Halts Withdrawals After a Security Incident</h2><p class="body-text">Binance suspended deposits and withdrawals after what it called a security incident. It put the total impact at about £4.7bn ($6.3bn) and said about £2.3bn ($3bn) had been frozen on-chain. It will cover losses from SAFU, its emergency fund for users, and from company funds. Tether froze more than 1.567bn USDT and Circle froze 823m USDC.</p><div class="why-matters"><strong>Why this matters</strong><p>Stablecoin issuers can freeze tokens within hours of an incident. Any bank or payment firm that holds stablecoins, or settles in them, carries that freeze power inside its own balances.</p></div></div><div class="item"><div class="item-number">2</div><h2>Kalshi's Valuation Nearly Doubles in Five Months</h2><p class="body-text">Kalshi, the American prediction market, raised £751m ($1bn) at a £30.0bn ($40bn) valuation, nearly double its price five months ago. It claims more than three quarters of prediction-market volume and plans single-stock perpetual futures. Coinbase says its prediction markets now earn more than £150m ($200m) a year.</p><div class="why-matters"><strong>Why this matters</strong><p>A prediction market planning single-stock futures competes for the same retail trader as brokers and investment platforms. Their trading revenue now has a rival priced on event contracts.</p></div></div><div class="item"><div class="item-number">3</div><h2>ICE Brings Crypto Perpetual Futures Onshore</h2><p class="body-text">Intercontinental Exchange, owner of the New York Stock Exchange, agreed to bring Trade[XYZ]'s perpetual futures, built on the Hyperliquid exchange, onshore in a regulated American market, and is taking a stake. Perpetual futures are contracts with no expiry date, popular on crypto venues. The plan needs regulatory approval.</p><div class="why-matters"><strong>Why this matters</strong><p>Perpetual futures would trade in a regulated American market run by the owner of the NYSE. Futures brokers and clearing banks gain a product to offer clients, with the margin and clearing exposure that comes with it.</p></div></div></div>
+<div class="page-footer">
+<a class="full-briefing-link" href="strategic-daily-briefing-2026-10-30.html">Read the full Daily Briefing →</a>
+<div class="disclaimer">This content is for internal use only.</div>
+</div>
+</div>
+<script src="share-widget.js"></script>
+<script>DWShare.init();</script>
+</body>
+</html>

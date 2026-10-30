@@ -1,0 +1,360 @@
+{
+  "collected_at": "2026-10-30T11:20:38.742595Z",
+  "fx_rate": {
+    "gbp_usd": 0.7492,
+    "eur_usd": 0.8959,
+    "source": "open.er-api.com",
+    "timestamp": "2026-10-30T11:20:16.071455Z"
+  },
+  "collection_summary": {
+    "total_sources": 9,
+    "successful": 7,
+    "failed": 2
+  },
+  "sources": {
+    "carbon_intensity": {
+      "status": "ok",
+      "collected_at": "2026-10-30T11:20:16.625682Z",
+      "actual_gco2_kwh": 138,
+      "forecast_gco2_kwh": 150,
+      "index": "moderate",
+      "renewable_pct": 43.9,
+      "generation_mix": {
+        "biomass": 8.9,
+        "coal": 0,
+        "imports": 7.5,
+        "gas": 35.2,
+        "nuclear": 13.5,
+        "other": 0,
+        "hydro": 0,
+        "solar": 13.6,
+        "wind": 21.4
+      },
+      "lens": "Climate & Energy Transition",
+      "steepv": "Environmental"
+    },
+    "coingecko": {
+      "status": "ok",
+      "collected_at": "2026-10-30T11:20:17.191829Z",
+      "total_crypto_market_cap_gbp": 1952953817248,
+      "total_crypto_market_cap_usd": 2606718923182,
+      "stablecoin_market_cap_gbp": 202523593316,
+      "stablecoin_market_cap_usd": 270319798873,
+      "active_cryptocurrencies": 22634,
+      "top_stablecoins": [
+        {
+          "name": "Tether",
+          "symbol": "USDT",
+          "market_cap_gbp": 135116382814
+        },
+        {
+          "name": "USDC",
+          "symbol": "USDC",
+          "market_cap_gbp": 53436597839
+        },
+        {
+          "name": "USDS",
+          "symbol": "USDS",
+          "market_cap_gbp": 7180477609
+        },
+        {
+          "name": "Dai",
+          "symbol": "DAI",
+          "market_cap_gbp": 3400438213
+        },
+        {
+          "name": "Ethena USDe",
+          "symbol": "USDE",
+          "market_cap_gbp": 3389696840
+        }
+      ],
+      "lens": "Digital Markets & Assets",
+      "steepv": "Technological"
+    },
+    "arxiv": {
+      "status": "ok",
+      "collected_at": "2026-10-30T11:20:17.677670Z",
+      "ai_papers_total": 210088,
+      "quantum_papers_total": 190014,
+      "crypto_papers_total": 53976,
+      "lens": "AI & Agents; Quantum & Compute; Digital Trust",
+      "steepv": "Technological"
+    },
+    "world_bank": {
+      "status": "ok",
+      "collected_at": "2026-10-30T11:20:17.920668Z",
+      "gdp_growth_pct": {
+        "CN": {
+          "2025": 4.96,
+          "2024": 4.96,
+          "2023": 5.42
+        },
+        "DE": {
+          "2025": 0.24,
+          "2024": -0.5,
+          "2023": -0.87
+        },
+        "GB": {
+          "2025": 1.39,
+          "2024": 1.08,
+          "2023": 0.27
+        },
+        "US": {
+          "2025": 2.16,
+          "2024": 2.79,
+          "2023": 2.93
+        }
+      },
+      "lens": "Business Finance & Policy; Geopolitical Realignment",
+      "steepv": "Economic"
+    },
+    "github_trending": {
+      "status": "ok",
+      "collected_at": "2026-10-30T11:20:18.523466Z",
+      "total_new_repos_100stars": 279,
+      "top_repos": [
+        {
+          "name": "unclebob/ub-mode",
+          "stars": 5153,
+          "language": null,
+          "description": ""
+        },
+        {
+          "name": "rddmwmddr/android-ad-cleaner",
+          "stars": 4940,
+          "language": "Python",
+          "description": "\u5173\u6389\u56fd\u4ea7\u5b89\u5353\u624b\u673a\u7cfb\u7edf\u91cc\u7684\u5e7f\u544a\u3001\u70ed\u641c\u3001\u8d44\u8baf\u63a8\u8350\u548c\u8425\u9500\u63a8\u9001\u3002\u4e0d root\uff0c\u53ef\u8fd8\u539f\uff0c\u652f\u6301 AI \u667a\u80fd\u4f53\u4e00\u952e\u6267\u884c\u3002"
+        },
+        {
+          "name": "interplains/Zero-Breach-Toolkit",
+          "stars": 3728,
+          "language": "Python",
+          "description": "Free, open-source, offline checks for traces of known mercenary spyware. Works on Windows, macOS and Linux, Android phon"
+        },
+        {
+          "name": "anhao/ai-pose-gallery-zh",
+          "stars": 3685,
+          "language": "HTML",
+          "description": "\u4e2d\u6587\u7248 AI \u59ff\u52bf\u53c2\u8003\u56fe\u5e93 \u00b7 1439 \u7ec4 / 2878 \u5f20\u56fe\u7247 / \u5b8c\u6574\u6c49\u5316 \u00b7 \u96f6\u4f9d\u8d56\u9759\u6001\u753b\u5eca"
+        },
+        {
+          "name": "designfuchen/word-atlas",
+          "stars": 3311,
+          "language": "TypeScript",
+          "description": "\u8bcd\u5149 \u00b7 Word Atlas \u2014 Illustrated IELTS vocabulary with 7,298 words, UK/US audio and FSRS review. Open-source app + CC BY 4."
+        },
+        {
+          "name": "t3dotgg/tstack",
+          "stars": 2429,
+          "language": "Python",
+          "description": "The agent skills I use every day. Works with Claude Code and Codex."
+        },
+        {
+          "name": "ccch1mneyyy/dsh-Go",
+          "stars": 1595,
+          "language": "Dart",
+          "description": "dsh-go \u2014 DeepSeek Harness \u88c5\u8fdb\u53e3\u888b\uff1a\u624b\u673a\u672c\u673a\u8fd0\u884c\uff0c\u4e5f\u80fd\u9065\u63a7\u4f60\u7684\u7535\u8111\u3002"
+        },
+        {
+          "name": "andyhuo520/digital-human-koubo",
+          "stars": 1534,
+          "language": "TypeScript",
+          "description": "AI digital-human talking-head videos from one photo: Renoise MCP generation + 5 editing styles + 48 creator-grade packag"
+        },
+        {
+          "name": "DenisSergeevitch/ex-ussr-kinship-research",
+          "stars": 1285,
+          "language": "Python",
+          "description": "Evidence-first genealogy skill for AI agents (Codex, Claude Code): church books, civil, military, deportation and repres"
+        },
+        {
+          "name": "qybaihe/bla",
+          "stars": 1151,
+          "language": "TypeScript",
+          "description": "\ud83d\udee1\ufe0f BLA (Blind LLM Agents) \u2014 Adversarial defense shield that protects binaries, Electron apps, JS bundles, Python, and We"
+        }
+      ],
+      "ai_related_count": 7,
+      "crypto_related_count": 0,
+      "lens": "AI & Agents; Digital Markets & Assets",
+      "steepv": "Technological"
+    },
+    "parliament": {
+      "status": "error",
+      "error": "The read operation timed out"
+    },
+    "gdelt": {
+      "status": "error",
+      "error": "<urlopen error _ssl.c:985: The handshake operation timed out>"
+    },
+    "hacker_news": {
+      "status": "ok",
+      "collected_at": "2026-10-30T11:20:38.366868Z",
+      "stories_analysed": 30,
+      "ai_stories": 9,
+      "quantum_stories": 0,
+      "crypto_stories": 0,
+      "fintech_stories": 0,
+      "top_stories": [
+        {
+          "title": "Binance-hacker-1029 \u2013 $5.6B stolen from Binance",
+          "score": 1433,
+          "url": "https://arkm.com/explorer/entity/21a94755-f604-45e5-9501-6542e23005e8"
+        },
+        {
+          "title": "elect.horse",
+          "score": 22,
+          "url": "https://elect.horse/"
+        },
+        {
+          "title": "We're releasing the weights of Mistral Large 4",
+          "score": 1519,
+          "url": "https://mistral.ai/news/mistral-large-4-oss/"
+        },
+        {
+          "title": "How Do You Take a Picture of a Black Hole?",
+          "score": 18,
+          "url": "https://www.quantamagazine.org/how-do-you-take-a-picture-of-a-black-hole-20261029/"
+        },
+        {
+          "title": "Gilgamesh by Simon Armitage review \u2013 an ancient epic is brilliantly translated",
+          "score": 50,
+          "url": "https://www.theguardian.com/books/2026/oct/20/gilgamesh-by-simon-armitage-review-an-ancient-epic-is-brilliantly-translated-for-our-times"
+        },
+        {
+          "title": "Cuis: The Modern Smalltalk-80",
+          "score": 131,
+          "url": "https://cuis.st/"
+        },
+        {
+          "title": "Herdr has released native app",
+          "score": 230,
+          "url": "https://github.com/herdrdev/herdr-app"
+        },
+        {
+          "title": "I'm so bad at billiards that I ended up in the hyperbolic plane [video]",
+          "score": 148,
+          "url": "https://www.youtube.com/watch?v=kL9BTbIGxLg"
+        },
+        {
+          "title": "Astroterm: A Planetarium for Your Terminal",
+          "score": 151,
+          "url": "https://github.com/da-luce/astroterm"
+        },
+        {
+          "title": "We ran AI agent swarms in Minecraft and Mindustry",
+          "score": 303,
+          "url": "https://labs.ycombinator.com/projects/games/index.html"
+        }
+      ],
+      "lens": "Technology signal velocity",
+      "steepv": "Technological"
+    },
+    "ons": {
+      "status": "ok",
+      "collected_at": "2026-10-30T11:20:38.742352Z",
+      "datasets_available": 338,
+      "sample_datasets": [
+        {
+          "id": "wellbeing-quarterly",
+          "title": "Quarterly personal well-being estimates"
+        },
+        {
+          "id": "wellbeing-local-authority",
+          "title": "Personal well-being estimates by local authority"
+        },
+        {
+          "id": "weekly-deaths-region",
+          "title": "Deaths registered weekly in England and Wales by region"
+        },
+        {
+          "id": "weekly-deaths-local-authority",
+          "title": "Death registrations and occurrences by local authority and place of death"
+        },
+        {
+          "id": "weekly-deaths-health-board",
+          "title": "Death registrations and occurrences by health board and place of death"
+        }
+      ],
+      "lens": "Consumer; Workforce & Talent",
+      "steepv": "Social",
+      "note": "ONS provides detailed UK employment, consumer, and demographic data. Specific indicators require deeper API queries."
+    }
+  },
+  "trend_anchors": {
+    "T-002": {
+      "trend": "Stablecoin Payment Rails",
+      "velocity_anchor": "Stablecoin market cap: \u00a3203B (CoinGecko)",
+      "data_points": [
+        "coingecko"
+      ]
+    },
+    "T-010": {
+      "trend": "Crypto-TradFi Infrastructure Convergence",
+      "velocity_anchor": "Total crypto market cap: \u00a31.95T",
+      "data_points": [
+        "coingecko"
+      ]
+    },
+    "T-003": {
+      "trend": "Post-Quantum Cryptographic Migration",
+      "velocity_anchor": "190014 quantum physics papers on arXiv",
+      "data_points": [
+        "arxiv"
+      ]
+    },
+    "T-013": {
+      "trend": "AI Coding Tool Vertical Integration",
+      "velocity_anchor": "210088 AI papers on arXiv",
+      "data_points": [
+        "arxiv"
+      ]
+    },
+    "T-005": {
+      "trend": "Climate Risk Repricing",
+      "velocity_anchor": "UK grid: 138 gCO2/kWh, 43.9% renewable",
+      "data_points": [
+        "carbon_intensity"
+      ]
+    },
+    "T-014": {
+      "trend": "Enterprise AI Agent Procurement",
+      "velocity_anchor": "7/10 top trending repos are AI-related",
+      "data_points": [
+        "github_trending"
+      ]
+    }
+  },
+  "steepv_summary": {
+    "social": {
+      "signal_count": 1,
+      "direction": "active",
+      "top_signal": ""
+    },
+    "technological": {
+      "signal_count": 4,
+      "direction": "active",
+      "top_signal": "AI papers: 210088"
+    },
+    "economic": {
+      "signal_count": 1,
+      "direction": "active",
+      "top_signal": ""
+    },
+    "environmental": {
+      "signal_count": 1,
+      "direction": "active",
+      "top_signal": "UK grid: 138 gCO2/kWh"
+    },
+    "political": {
+      "signal_count": 0,
+      "direction": "unavailable",
+      "top_signal": ""
+    },
+    "values": {
+      "signal_count": 0,
+      "direction": "unavailable",
+      "top_signal": "No dedicated values source in Wave 1"
+    }
+  }
+}
