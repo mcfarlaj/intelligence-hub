@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Intelligence Search - Disruption Watch</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    :root{--bg:#fafaf9;--surface:#fff;--surface-alt:#f5f5f4;--border:#e7e5e4;--text:#1c1917;--text-secondary:#57534e;--text-muted:#a8a29e;--accent:#dc2626;--indigo:#4F46E5;--lens-ai:#4F46E5;--lens-quantum:#7C3AED;--lens-digital-markets:#059669;--lens-digital-trust:#DC2626;--lens-interface:#0891B2;--lens-bio:#DB2777;--lens-business:#EA580C;--lens-consumer:#0D9488;--lens-left-field:#D97706;--lens-climate:#16A34A;--lens-geopolitical:#7C3AED;--lens-workforce:#BE185D}
+    .nav{border-bottom:3px solid var(--text)}.nav-inner{max-width:1100px;margin:0 auto;padding:16px 24px;display:flex;align-items:center;justify-content:space-between}.nav .logo{font-family:"Playfair Display",Georgia,serif;font-size:1.5rem;font-weight:900;letter-spacing:-.5px;color:var(--text);text-decoration:none}.nav .logo span{color:var(--indigo)}.nav-links{display:flex;gap:24px;align-items:center}.nav-links a{color:var(--text-secondary);text-decoration:none;font-size:.82rem;font-weight:600;transition:color .2s}.nav-links a:hover{color:var(--text)}.nav-links a.active{color:var(--accent)}.nav .edition{font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:2px;color:var(--text-muted)}
+    body{background-color:var(--bg);color:var(--text);font-family:"Inter",sans-serif;line-height:1.6}
+    .container{max-width:1100px;margin:0 auto;padding:2rem}
+    .search-section{margin-bottom:2rem}
+    .search-title{font-family:"Playfair Display",serif;font-size:2.5rem;font-weight:700;margin-bottom:.5rem}
+    .search-subtitle{font-size:.85rem;color:var(--text-muted);margin-bottom:2rem}
+    .search-input-wrapper{position:relative;margin-bottom:1.5rem}
+    .search-input{width:100%;padding:1rem 3rem 1rem 1.5rem;font-size:1rem;border:1px solid var(--border);border-radius:4px;background-color:var(--surface);color:var(--text);font-family:"Inter",sans-serif;transition:border-color .2s}
+    .search-input:focus{outline:none;border-color:var(--indigo);box-shadow:0 0 0 3px rgba(79,70,229,.1)}
+    .search-icon{position:absolute;right:1.5rem;top:50%;transform:translateY(-50%);color:var(--text-muted);font-size:1.25rem;pointer-events:none}
+    .filter-section{margin-bottom:2rem}
+    .filter-row{display:flex;flex-wrap:wrap;gap:.75rem;align-items:center}
+    .filter-label{font-weight:600;font-size:.8rem;color:var(--text-secondary);text-transform:uppercase;letter-spacing:.05em;width:60px;flex-shrink:0}
+    .filter-chips{display:flex;gap:.5rem;flex-wrap:wrap}
+    .lens-chip{padding:.4rem .85rem;border:2px solid var(--border);background-color:var(--surface);color:var(--text);border-radius:20px;cursor:pointer;font-size:.8rem;font-weight:500;transition:all .2s}
+    .lens-chip:hover{border-color:var(--text)}
+    .lens-chip.active{color:var(--text);font-weight:600}
+    .lens-chip[data-lens="AI & Agents"].active{border-color:var(--lens-ai);background-color:rgba(79,70,229,.1)}
+    .lens-chip[data-lens="Quantum & Compute"].active{border-color:var(--lens-quantum);background-color:rgba(124,58,237,.1)}
+    .lens-chip[data-lens="Digital Markets & Assets"].active,.lens-chip[data-lens="Digital Markets"].active{border-color:var(--lens-digital-markets);background-color:rgba(5,150,105,.1)}
+    .lens-chip[data-lens="Digital Trust"].active{border-color:var(--lens-digital-trust);background-color:rgba(220,38,38,.1)}
+    .lens-chip[data-lens="Interface & Spatial"].active,.lens-chip[data-lens="Interface"].active{border-color:var(--lens-interface);background-color:rgba(8,145,178,.1)}
+    .lens-chip[data-lens="Bio-Human"].active{border-color:var(--lens-bio);background-color:rgba(219,39,119,.1)}
+    .lens-chip[data-lens="Business Finance & Policy"].active{border-color:var(--lens-business);background-color:rgba(234,88,12,.1)}
+    .lens-chip[data-lens="Consumer"].active{border-color:var(--lens-consumer);background-color:rgba(13,148,136,.1)}
+    .lens-chip[data-lens="Left Field"].active{border-color:var(--lens-left-field);background-color:rgba(217,119,6,.1)}
+    .lens-chip[data-lens="Climate & Energy Transition"].active,.lens-chip[data-lens="Climate & Energy"].active{border-color:var(--lens-climate);background-color:rgba(22,163,74,.1)}
+    .lens-chip[data-lens="Geopolitical Realignment"].active{border-color:var(--lens-geopolitical);background-color:rgba(124,58,237,.1)}
+    .lens-chip[data-lens="Workforce & Talent"].active{border-color:var(--lens-workforce);background-color:rgba(190,24,93,.1)}
+    .results-count{font-size:.875rem;color:var(--text-secondary);margin-bottom:1.5rem}
+    .results-count strong{color:var(--text);font-weight:600}
+    .results-container{display:grid;gap:1rem;margin-bottom:3rem}
+    .result-card{background-color:var(--surface);border:1px solid var(--border);border-left:4px solid var(--border);padding:1.25rem 1.5rem;border-radius:4px;transition:box-shadow .2s,border-color .2s;cursor:pointer;text-decoration:none;display:block;color:inherit}
+    .result-card:hover{box-shadow:0 2px 8px rgba(0,0,0,.1);border-color:var(--indigo);border-left-width:4px}
+    .result-card[data-lens="AI & Agents"]{border-left-color:var(--lens-ai)}
+    .result-card[data-lens="Quantum & Compute"]{border-left-color:var(--lens-quantum)}
+    .result-card[data-lens="Digital Markets & Assets"],.result-card[data-lens="Digital Markets"]{border-left-color:var(--lens-digital-markets)}
+    .result-card[data-lens="Digital Trust"]{border-left-color:var(--lens-digital-trust)}
+    .result-card[data-lens="Interface & Spatial"],.result-card[data-lens="Interface"]{border-left-color:var(--lens-interface)}
+    .result-card[data-lens="Bio-Human"]{border-left-color:var(--lens-bio)}
+    .result-card[data-lens="Business Finance & Policy"]{border-left-color:var(--lens-business)}
+    .result-card[data-lens="Consumer"]{border-left-color:var(--lens-consumer)}
+    .result-card[data-lens="Left Field"]{border-left-color:var(--lens-left-field)}
+    .result-card[data-lens="Climate & Energy Transition"],.result-card[data-lens="Climate & Energy"]{border-left-color:var(--lens-climate)}
+    .result-card[data-lens="Geopolitical Realignment"]{border-left-color:var(--lens-geopolitical)}
+    .result-card[data-lens="Workforce & Talent"]{border-left-color:var(--lens-workforce)}
+    .result-header{display:flex;gap:1rem;align-items:flex-start;margin-bottom:.75rem;flex-wrap:wrap;justify-content:space-between}
+    .result-tags{display:flex;gap:.5rem;flex-wrap:wrap;align-items:center}
+    .tag{font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;padding:.3rem .6rem;border-radius:12px;white-space:nowrap}
+    .tag-lens{background-color:rgba(79,70,229,.15);color:var(--lens-ai)}
+    .tag-cipher{background-color:var(--surface-alt);color:var(--text-secondary);border:1px solid var(--border)}
+    .result-source-tag{font-size:.65rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;padding:.2rem .5rem;border-radius:4px;background-color:rgba(79,70,229,.08);color:var(--indigo);border:1px solid rgba(79,70,229,.2)}
+    .result-meta{font-size:.75rem;color:var(--text-muted);font-weight:500;white-space:nowrap}
+    .result-headline{font-family:"Playfair Display",serif;font-size:1rem;font-weight:700;color:var(--text);margin-bottom:.5rem;line-height:1.4}
+    .result-text{color:var(--text-secondary);font-size:.875rem;margin-bottom:.5rem;line-height:1.5}
+    .highlight{background-color:rgba(79,70,229,.15);padding:0 .2rem;border-radius:2px}
+    .result-so-what{font-size:.85rem;font-style:italic;color:var(--text-secondary);margin-bottom:.5rem;padding-top:.5rem;border-top:1px solid var(--border)}
+    .result-trends{font-size:.75rem;color:var(--text-secondary)}
+    .trend-link{color:var(--indigo);text-decoration:none;font-weight:600}
+    .empty-state{text-align:center;padding:4rem 2rem;color:var(--text-secondary)}
+    .empty-state p{font-size:1rem}
+    .empty-state .hint{font-size:.85rem;color:var(--text-muted);margin-top:.5rem}
+    footer{background-color:var(--surface);border-top:3px solid var(--text);padding:2rem;margin-top:3rem}
+    .footer-container{max-width:1100px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;font-size:.875rem;color:var(--text-secondary)}
+    .footer-brand{font-family:"Playfair Display",serif;font-weight:700;color:var(--text)}
+    @media(max-width:768px){.nav-inner{flex-direction:column;gap:12px}.nav-links{gap:16px;flex-wrap:wrap}.filter-label{width:100%}.result-header{flex-direction:column}.search-title{font-size:1.75rem}.footer-container{flex-direction:column;gap:1rem;text-align:center}}
+  </style>
+</head>
+<body>
+  <div class="nav"><div class="nav-inner">
+    <a href="index.html" class="logo">Disruption <span>Watch</span> <span style="font-size:0.55em;color:#d97706;font-weight:600;letter-spacing:0;">(beta)</span></a>
+    <div class="nav-links">
+      <a href="foresight-engine.html">Foresight Engine</a>
+      <a href="disruption-radar.html">Radar</a>
+      <a href="search.html" class="active">Search</a>
+      <a href="spotlights.html">Joining the Dots</a>
+      <span class="edition">Intelligence Search</span>
+    </div>
+  </div></div>
+
+  <div class="container">
+    <section class="search-section">
+      <h1 class="search-title">Intelligence Search</h1>
+      <p class="search-subtitle">Search across all signals, briefings, and analysis. Filter by strategic lens.</p>
+      <div class="search-input-wrapper">
+        <input type="text" class="search-input" id="searchInput" placeholder="Search signals, trends, scenarios..." autofocus>
+        <span class="search-icon">&#128269;</span>
+      </div>
+    </section>
+    <section class="filter-section">
+      <div class="filter-row">
+        <div class="filter-label">Lens</div>
+        <div class="filter-chips" id="lensFilters">
+          <button class="lens-chip active" data-lens="all">All</button>
+        </div>
+      </div>
+    </section>
+    <div class="results-count"><strong id="resultCount">0</strong> results</div>
+    <div class="results-container" id="resultsContainer"></div>
+    <div class="empty-state" id="emptyState" style="display:none;">
+      <p>No signals found matching your search.</p>
+      <p class="hint">Try different keywords or remove the lens filter.</p>
+    </div>
+    <div class="empty-state" id="initialState">
+      <p>Start typing to search the intelligence archive.</p>
+      <p class="hint">Results are drawn from daily briefings, spotlights, and analysis.</p>
+    </div>
+  </div>
+
+  <footer><div class="footer-container">
+    <span class="footer-brand">Disruption Watch <span style="font-size:0.55em;color:#d97706;font-weight:600;letter-spacing:0;">(beta)</span></span>
+    <span><a href="disruption-foresight-engine.html" style="color:#94a3b8;text-decoration:none;">Methodology</a></span>
+  </div></footer>
+
+  <script>
+  var LENS_COLORS={"AI & Agents":"#4F46E5","Quantum & Compute":"#7C3AED","Digital Markets & Assets":"#059669","Digital Markets":"#059669","Digital Trust":"#DC2626","Interface & Spatial":"#0891B2","Interface":"#0891B2","Bio-Human":"#DB2777","Business Finance & Policy":"#EA580C","Consumer":"#0D9488","Left Field":"#D97706","Climate & Energy Transition":"#16A34A","Climate & Energy":"#16A34A","Geopolitical Realignment":"#7C3AED","Workforce & Talent":"#BE185D"};
+  function getSource(e){if(e.source)return e.source;var f=(e.file||"").toLowerCase();if(f.startsWith("strategic-daily-briefing"))return"Daily Briefing";if(f.startsWith("weekly-synthesis"))return"Weekly Synthesis";if(f.startsWith("scenario-"))return"Scenario";if(f.startsWith("spotlight-")||f.startsWith("spotlights"))return"Joining the Dots";if(f.startsWith("three-things-"))return"Three Things";if(f.startsWith("deep-dive-"))return"Deep Dive";if(f.startsWith("research-"))return"Research Brief";return"Other"}
+  function getEntryURL(e){if(!e.file)return null;var u=e.file;if(e.type==="lens_analysis"&&e.lens){u+="#lens-"+e.lens.toLowerCase().replace(/[&]/g,"").replace(/\s+/g,"-").replace(/-+/g,"-")}if(e.type==="lead_signal")u+="#lead-signal";return u}
+  var searchIndex=[],activeLens=null,query="";
+  function init(){fetch("search-index.json").then(function(r){return r.json()}).then(function(data){searchIndex=data.entries||data;searchIndex.forEach(function(e){e._source=getSource(e)});buildLensChips();restoreFromURL();setupListeners();if(query||activeLens)performSearch()}).catch(function(err){console.error("Error loading search index:",err);document.getElementById("initialState").innerHTML="<p>Search index not yet available.</p><p class=\"hint\">The index is generated during the daily briefing run.</p>"})}
+  function buildLensChips(){var c=document.getElementById("lensFilters");var lenses=["AI & Agents","Quantum & Compute","Digital Markets & Assets","Digital Trust","Interface & Spatial","Bio-Human","Business Finance & Policy","Consumer","Left Field","Climate & Energy Transition","Geopolitical Realignment","Workforce & Talent"];lenses.forEach(function(lens){var b=document.createElement("button");b.className="lens-chip";b.textContent=lens;b.dataset.lens=lens;b.addEventListener("click",function(){toggleLens(lens)});c.appendChild(b)})}
+  function setupListeners(){var input=document.getElementById("searchInput");input.addEventListener("keyup",debounce(function(){query=input.value.trim().toLowerCase();performSearch();updateURL()},200));document.querySelector(".lens-chip[data-lens=\"all\"]").addEventListener("click",function(){activeLens=null;document.querySelectorAll(".lens-chip").forEach(function(c){c.classList.remove("active")});document.querySelector(".lens-chip[data-lens=\"all\"]").classList.add("active");performSearch();updateURL()})}
+  function toggleLens(lens){if(activeLens===lens){activeLens=null;document.querySelectorAll(".lens-chip").forEach(function(c){c.classList.remove("active")});document.querySelector(".lens-chip[data-lens=\"all\"]").classList.add("active")}else{activeLens=lens;document.querySelectorAll(".lens-chip").forEach(function(c){c.classList.remove("active")});var t=document.querySelector(".lens-chip[data-lens=\""+lens+"\"]");if(t)t.classList.add("active")}performSearch();updateURL()}
+  function performSearch(){var ini=document.getElementById("initialState"),emp=document.getElementById("emptyState"),con=document.getElementById("resultsContainer"),cnt=document.getElementById("resultCount");if(!query&&!activeLens){ini.style.display="block";emp.style.display="none";con.style.display="none";cnt.textContent="0";return}ini.style.display="none";var results=searchIndex.slice();if(query){results=results.filter(function(e){return(e.headline||"").toLowerCase().includes(query)||(e.text||"").toLowerCase().includes(query)||(e.so_what&&e.so_what.toLowerCase().includes(query))})}if(activeLens){results=results.filter(function(e){return e.lens===activeLens})}results.sort(function(a,b){var d=new Date(b.date)-new Date(a.date);return d!==0?d:(b.zeitgeist||0)-(a.zeitgeist||0)});cnt.textContent=results.length;con.innerHTML="";if(results.length===0){con.style.display="none";emp.style.display="block"}else{con.style.display="grid";emp.style.display="none";results.slice(0,100).forEach(function(e){con.appendChild(createResultCard(e))});if(results.length>100){var m=document.createElement("div");m.style.cssText="text-align:center;padding:1rem;color:var(--text-muted);font-size:.85rem";m.textContent="Showing 100 of "+results.length+" results. Refine your search to see more.";con.appendChild(m)}}}
+  function createResultCard(entry){var url=getEntryURL(entry);var card=document.createElement(url?"a":"div");card.className="result-card";card.dataset.lens=entry.lens||"";if(url){card.href=url;card.title="View in "+entry._source}var ds=new Date(entry.date).toLocaleDateString("en-GB",{year:"numeric",month:"short",day:"numeric"});var st="<span class=\"result-source-tag\">"+entry._source+"</span>";var lt=entry.lens?"<span class=\"tag tag-lens\">"+entry.lens+"</span>":"";var ct=entry.cipher?"<span class=\"tag tag-cipher\">CIPHER: "+entry.cipher+"</span>":"";var sw=entry.so_what?"<div class=\"result-so-what\">"+highlightQuery(entry.so_what)+"</div>":"";var tr="";if(entry.trends&&entry.trends.length>0){tr="<div class=\"result-trends\">Trends: "+entry.trends.map(function(t){return"<span class=\"trend-link\">"+t+"</span>"}).join(", ")+"</div>"}var is=entry.issue?" &middot; Issue "+entry.issue:"";card.innerHTML="<div class=\"result-header\"><div class=\"result-tags\">"+st+lt+ct+"</div><div class=\"result-meta\">"+ds+is+"</div></div><h3 class=\"result-headline\">"+highlightQuery(entry.headline)+"</h3><p class=\"result-text\">"+highlightQuery((entry.text||"").substring(0,200))+((entry.text||"").length>200?"...":"")+"</p>"+sw+tr;return card}
+  function highlightQuery(text){if(!query||!text)return text||"";var esc=query.replace(/[.*+?^${}()|[\]\\]/g,"\\$&");return text.replace(new RegExp("("+esc+")","gi"),"<mark class=\"highlight\">$1</mark>")}
+  function updateURL(){var p=new URLSearchParams();if(query)p.set("q",query);if(activeLens)p.set("lens",activeLens);window.history.replaceState({},"",p.toString()?"?"+p.toString():window.location.pathname)}
+  function restoreFromURL(){var p=new URLSearchParams(window.location.search);if(p.has("q")){query=p.get("q").toLowerCase();document.getElementById("searchInput").value=p.get("q")}if(p.has("lens")){activeLens=p.get("lens");document.querySelectorAll(".lens-chip").forEach(function(c){c.classList.remove("active")});var t=document.querySelector(".lens-chip[data-lens=\""+activeLens+"\"]");if(t)t.classList.add("active")}}
+  function debounce(fn,w){var t;return function(){var a=arguments,c=this;clearTimeout(t);t=setTimeout(function(){fn.apply(c,a)},w)}}
+  init();
+  </script>
+</body>
+</html>
